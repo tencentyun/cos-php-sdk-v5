@@ -8,10 +8,12 @@ class TestHelper {
 
     public static function nuke($bucket) {
         try {
-            $cosClient = new Client(array(
-                        'region' => getenv('COS_REGION'),
-                        'key' => getenv('COS_KEY'),
-                        'secret' => getenv('COS_SECRET')));
+            $cosClient = new Client(array('region' => getenv('COS_REGION'),
+                    'key' => getenv('COS_KEY'),
+                    'credentials'=> array(
+                        'appId' => getenv('COS_APPID'),
+                        'secretId'    => getenv('COS_KEY'),
+                        'secretKey' => getenv('COS_SECRET'))));
             $result = $cosClient->listObjects(array('Bucket' => $bucket));
             if ($result->get('Contents')) {
                 foreach ($result ->get('Contents') as $content) {

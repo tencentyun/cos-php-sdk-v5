@@ -22,7 +22,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 
 
     protected function tearDown() {
-        TestHelper::nuke('testbucket-1252448703');
+        TestHelper::nuke('testbucket');
     }
 
     public function testPutObject() {
@@ -58,7 +58,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
     public function testUploadLargeObject() {
         try {
             $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            $this->cosClient->upload($bucket='testbucket', $key='hello.txt', $body=str_repeat('a', 20 * 1024 * 1024));
+            $this->cosClient->upload('testbucket', 'hello.txt', str_repeat('a', 20 * 1024 * 1024));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }

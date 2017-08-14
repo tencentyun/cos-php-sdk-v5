@@ -20,7 +20,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
     }
 
     protected function tearDown() {
-        TestHelper::nuke('testbucket-1252448703');
+        TestHelper::nuke('testbucket');
     }
 
     public function testCreateBucket() {
