@@ -20,8 +20,6 @@ class Signature {
         $signTime = (string)(time() - 60) . ';' . (string)(time() + 3600);
         $httpString = strtolower($request->getMethod()) . "\n" . urldecode($request->getPath()) .
             "\n\nhost=" . $request->getHost() . "\n";
-
-        echo($httpString);
         $sha1edHttpString = sha1($httpString);
         $stringToSign = "sha1\n$signTime\n$sha1edHttpString\n";
         $signKey = hash_hmac('sha1', $signTime, $this->secretKey);
