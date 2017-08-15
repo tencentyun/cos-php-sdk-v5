@@ -9,8 +9,7 @@ class TestHelper {
     public static function nuke($bucket) {
         try {
             $cosClient = new Client(array('region' => getenv('COS_REGION'),
-                    'key' => getenv('COS_KEY'),
-                    'credentials'=> array(
+                        'credentials'=> array(
                         'appId' => getenv('COS_APPID'),
                         'secretId'    => getenv('COS_KEY'),
                         'secretKey' => getenv('COS_SECRET'))));

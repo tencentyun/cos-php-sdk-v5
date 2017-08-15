@@ -12,8 +12,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
         TestHelper::nuke('testbucket');
 
         $this->cosClient = new Client(array('region' => getenv('COS_REGION'),
-            'key' => getenv('COS_KEY'),
-            'credentials'=> array(
+                'credentials'=> array(
                 'appId' => getenv('COS_APPID'),
                 'secretId'    => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
