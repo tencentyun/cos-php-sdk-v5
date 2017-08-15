@@ -84,7 +84,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
     public function testGetObjectUrl() {
         try{
             $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            $this->getObjectUrl('testbucket', 'hello.txt', '+10 minutes');
+            $this->cosClient->getObjectUrl('testbucket', 'hello.txt', '+10 minutes');
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
