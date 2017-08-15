@@ -5,9 +5,9 @@ require(__DIR__ . DIRECTORY_SEPARATOR . 'cos-autoloader.php');
 $cosClient = new Qcloud\Cos\Client(
                             array('region' => 'cn-north',
                             'credentials'=> array(
-                            'appId' => '1252448703',
-                            'secretId'    => 'AKID15IsskiBQKTZbAo6WhgcBqVls9SmuG00',
-                            'secretKey' => 'ciivKvnnrMvSvQpMAWuIz12pThGGlWRW'),
+                            'appId' => '',
+                            'secretId'    => '',
+                            'secretKey' => ''),
                             'timeout' => 1
                             )
 );
