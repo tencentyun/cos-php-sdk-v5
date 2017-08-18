@@ -4,9 +4,8 @@ require(__DIR__ . DIRECTORY_SEPARATOR . 'cos-autoloader.php');
 
 $cosClient = new Qcloud\Cos\Client(
                             array(
-                            'region' => '',
-                            'timeout' => 1000,
-                            'credentials'=> array(
+                            'region' => 'cn-north',
+                                'credentials'=> array(
                                 'appId' => '',
                                 'secretId'    => '',
                                 'secretKey' => '')));
@@ -21,9 +20,9 @@ try {
 #uploadbigfile
 try {
     $result = $cosClient->upload(
-                 'testbucket',
+                 $bucket='testbucket',
                  '111.txt',
-        str_repeat('a', 20 * 1024 * 1024));
+        str_repeat('a', 5* 1024 * 1024));
     var_dump($result);
     } catch (\Exception $e) {
     echo "$e\n";
@@ -70,15 +69,39 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
-$bucket =  'lewzylu02';
-$key = 'hello.txt';
-$region = 'cn-south';
-$url = "/{$key}";
 
-// get() returns a Guzzle\Http\Message\Request object
-$request = $cosClient->get($url);
-// Create a signed URL from a completely custom HTTP request that
-// will last for 10 minutes from the current time
-$signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
+#headObject
+try {
+    $result = $cosClient->headObject(array(
+        'Bucket' => 'testbucket',
+        'Key' => 'hello.txt'));
+    var_dump($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 
-echo ($signedUrl);
+#listObjects
+try {
+    $result = $cosClient->listObjects(array(
+        'Bucket' => 'testbucket'));
+    var_dump($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
+#listObjects
+try {
+    $bucket =  'testbucket';
+    $key = 'hello.txt';
+    $region = 'cn-south';
+    $url = "/{$key}";
+    $request = $cosClient->get($url);
+    $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
+    echo ($signedUrl);
+
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
