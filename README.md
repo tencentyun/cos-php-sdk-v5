@@ -31,13 +31,13 @@ $args是包含以下字段的关联数组：
 ```php
 // 从内存中上传
 $cosClient->putObject(array(
-    'Bucket' => 'testbucket-1253969820',
+    'Bucket' => 'testbucket',
     'Key' => 'hello.txt',
     'Body' => 'Hello World!'));
 
 // 上传本地文件
 $cosClient->putObject(array(
-    'Bucket' => 'testbucket-1253969820',
+    'Bucket' => 'testbucket',
     'Key' => 'hello.txt',
     'Body' => fopen('./hello.txt', 'rb')));
 ```
@@ -74,6 +74,17 @@ public Guzzle\Service\Resource\Model listParts(array $args = array());
 // 终止分块上传
 public Guzzle\Service\Resource\Model abortMultipartUpload(array $args = array());
 ```
+### 上传文件 upload
+#### 示例
+```php
+//上传文件
+$result = $cosClient->upload(
+                 $bucket = 'testbucket',
+                 $key = '111.txt',
+                 $body = '131213');
+```
+单文件小于5M时，使用单文件上传
+反之使用分片上传
 
 ### 下载文件 getobject
 
@@ -107,12 +118,12 @@ $args是包含以下字段的关联数组：
 ```php
 // 下载文件到内存
 $result = $cosClient->getObject(array(
-    'Bucket' => 'testbucket-1253969820',
+    'Bucket' => 'testbucket',
     'Key' => 'hello.txt'));
 
 // 下载文件到本地
 $result = $cosClient->getObject(array(
-    'Bucket' => 'testbucket-1253969820',
+    'Bucket' => 'testbucket',
     'Key' => 'hello.txt',
     'SaveAs' => './hello.txt'));
 ```
@@ -149,7 +160,7 @@ $args是包含以下字段的关联数组：
 ```php
 // 删除COS对象
 $result = $cosClient->deleteObject(array(
-    'Bucket' => 'testbucket-1253969820',
+    'Bucket' => 'testbucket',
     'Key' => 'hello.txt'));
 ```
 
@@ -185,7 +196,7 @@ $args是包含以下字段的关联数组：
 
 ```java
 // 获取COS文件属性
-$result $cosClient->headObject(array('Bucket' => 'testbucket-1253969820', 'Key' => 'hello.txt'));
+$result $cosClient->headObject(array('Bucket' => 'testbucket', 'Key' => 'hello.txt'));
 ```
 
 
@@ -222,5 +233,5 @@ $args是包含以下字段的关联数组：
 
 ```php
 // 获取bucket下成员
-$result = $cosClient->listObjects(array('Bucket' => 'testbucket-1253969820'));
+$result = $cosClient->listObjects(array('Bucket' => 'testbucket'));
 ```
