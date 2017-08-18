@@ -28,28 +28,28 @@ class Client extends GSClient {
         $this->secretId = $config['credentials']['secretId'];
         $this->secretKey = $config['credentials']['secretKey'];
 
-        $this->timeout = isset($config['timeout']) ? $config['timeout'] : 600;
-        $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 600;
+        $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3600;
+        $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
         $this->signature = new signature($this->secretId, $this->secretKey);
         parent::__construct(
                 'http://' . $this->region . '.myqcloud.com/',    // base url
-                array('request.options' => array('timeout' => 5, 'connect_timeout' => $this->connect_timeout),
+                array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
                     )); // show curl verbose or not
 
-        $desc = ServiceDescription::factory(Service::getService());
-        $this->setDescription($desc);
-        $this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
+$desc = ServiceDescription::factory(Service::getService());
+$this->setDescription($desc);
+$this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
 
-        $this->addSubscriber(new ExceptionListener());
-        $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
-        $this->addSubscriber(new BucketStyleListener($this->appId));
+$this->addSubscriber(new ExceptionListener());
+$this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
+$this->addSubscriber(new BucketStyleListener($this->appId));
 
-        // Allow for specifying bodies with file paths and file handles
-        $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
-    }
+    // Allow for specifying bodies with file paths and file handles
+$this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
+}
 
-    public function __destruct() {
-    }
+public function __destruct() {
+}
 
     public function __call($method, $args) {
         return parent::__call(ucfirst($method), $args);
