@@ -87,7 +87,7 @@ public function __destruct() {
 
         return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
     }
-    public function upload($bucket, $key, $body, $acl = 'private', $options = array()) {
+    public function upload($bucket, $key, $body, $acl = '', $options = array()) {
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
                     'min_part_size' => MultipartUpload::MIN_PART_SIZE,
