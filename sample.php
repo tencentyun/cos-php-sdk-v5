@@ -39,7 +39,7 @@ try {
     echo "$e\n";
 }
 
-#putObject
+#getObject
 try {
     $result = $cosClient->getObject(array(
         'Bucket' => 'testbucket',
@@ -90,7 +90,7 @@ try {
 }
 
 
-#listObjects
+#getObjectUrl
 try {
     $bucket =  'testbucket';
     $key = 'hello.txt';
