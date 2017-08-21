@@ -235,3 +235,19 @@ $args是包含以下字段的关联数组：
 // 获取bucket下成员
 $result = $cosClient->listObjects(array('Bucket' => 'testbucket'));
 ```
+
+### 获得object下载url
+
+获得object带签名的下载url
+
+#### 示例
+
+```php
+//获得object的下载url
+$bucket =  'testbucket';
+$key = 'hello.txt';
+$region = 'cn-south';
+$url = "/{$key}";
+$request = $cosClient->get($url);
+$signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
+```
