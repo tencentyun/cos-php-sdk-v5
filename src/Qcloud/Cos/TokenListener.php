@@ -10,15 +10,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Listener used to sign requests before they are sent over the wire.
  */
-class SignatureListener implements EventSubscriberInterface {
+class TokenListener implements EventSubscriberInterface {
     // cos signature.
-    protected $signature;
+    protected $token;
 
     /**
      * Construct a new request signing plugin
      */
-    public function __construct($accessKey, $secretKey) {
-        $this->signature = new Signature($accessKey, $secretKey);
+    public function __construct($token) {
+        $this->token = $token;
     }
 
     /**
@@ -27,7 +27,7 @@ class SignatureListener implements EventSubscriberInterface {
     public static function getSubscribedEvents()
     {
         return array(
-            'request.before_send'        => array('onRequestBeforeSend', -255));
+            'request.before_send'        => array('onRequestBeforeSend', -254));
     }
 
     /**
@@ -36,8 +36,9 @@ class SignatureListener implements EventSubscriberInterface {
      * @param Event $event Event emitted
      */
     public function onRequestBeforeSend(Event $event) {
-
-        $this->signature->signRequest($event['request']);
+        if ($this->token != null) {
+            $event['request']->setHeader('x-cos-security-token', $this->token);
+        }
 /*
         if(!$this->credentials instanceof NullCredentials) {
             $this->signature->signRequest($event['request'], $this->credentials);
