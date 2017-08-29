@@ -8,6 +8,7 @@ use Guzzle\Common\Collection;
 use Guzzle\Http\EntityBody;
 use Guzzle\Http\Message\RequestInterface;
 use Qcloud\Cos\Signature;
+use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
     const VERSION = '0.0.3';
@@ -27,7 +28,7 @@ class Client extends GSClient {
         $this->appId = $config['credentials']['appId'];
         $this->secretId = $config['credentials']['secretId'];
         $this->secretKey = $config['credentials']['secretKey'];
-
+        $this->token = isset($config['credentials']['token']) ? $config['credentials']['token'] : null;
         $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3600;
         $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
         $this->signature = new signature($this->secretId, $this->secretKey);
@@ -41,6 +42,7 @@ $this->setDescription($desc);
 $this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
 
 $this->addSubscriber(new ExceptionListener());
+$this->addSubscriber(new TokenListener($this->token));
 $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
 $this->addSubscriber(new BucketStyleListener($this->appId));
 
