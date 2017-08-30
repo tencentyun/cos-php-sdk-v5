@@ -251,3 +251,18 @@ $url = "/{$key}";
 $request = $cosClient->get($url);
 $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
 ```
+### 使用临时密钥
+
+#### 示例
+
+```php
+$cosClient = new Qcloud\Cos\Client(
+    array(
+        'region' => 'cn-south',
+        'timeout' => ,
+        'credentials'=> array(
+            'appId' => '',
+            'secretId'    => '',
+            'secretKey' => '',
+            'token' => '')));
+```
