@@ -263,4 +263,4 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'    => '',
             'secretKey' => '',
             'token' => '')));
-```
+

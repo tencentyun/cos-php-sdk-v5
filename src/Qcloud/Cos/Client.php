@@ -33,7 +33,7 @@ class Client extends GSClient {
         $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
         $this->signature = new signature($this->secretId, $this->secretKey);
         parent::__construct(
-                'http://' . $this->region . '.myqcloud.com/',    // base url
+                'http://cos.' . $this->region . '.myqcloud.com/',    // base url
                 array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
                     )); // show curl verbose or not
 
