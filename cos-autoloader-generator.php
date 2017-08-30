@@ -15,8 +15,8 @@ while ($iter->valid()) {
         $ext = pathinfo($path, PATHINFO_EXTENSION);
         if ($ext === 'php') {
             $namespace =  preg_replace('/.php$/s', '', $path);
-            $namespace = str_replace('/', '\\', $namespace);
-            echo "    '$namespace' => 'src\\$path',\n";
+            $path = str_replace('\\', '/', $path);
+            echo "    '$namespace' => 'src/$path',\n";
         }
     }
 
