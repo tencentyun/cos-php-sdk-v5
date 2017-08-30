@@ -102,7 +102,7 @@ public Guzzle\Service\Resource\Model getObject(array $args = array());
 $args是包含以下字段的关联数组：
 
 | 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
-| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
 | Key      |     string     |  无    | 是           |         对象名称         |
 | SaveAs   |     string     |  无    | 否           | 保存到本地的本地文件路径                 |
@@ -253,8 +253,6 @@ $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
 ```
 ### 使用临时密钥
 
-#### 示例
-
 ```php
 $cosClient = new Qcloud\Cos\Client(
     array(
@@ -265,4 +263,4 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'    => '',
             'secretKey' => '',
             'token' => '')));
-```
+
