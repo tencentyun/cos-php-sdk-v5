@@ -11,6 +11,19 @@ class Service {
                 'description' => 'Cos V5 API Service',
 
                 'operations' => array(
+                    'ListBuckets' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'ListBucketsOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
                     'AbortMultipartUpload' => array(
                         'httpMethod' => 'DELETE',
                         'uri' => '/{Bucket}{/Key*}',
