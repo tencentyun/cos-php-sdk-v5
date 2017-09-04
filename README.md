@@ -1,5 +1,24 @@
 ## 开发准备
 
+### 获取bucket列表 listbuckets
+#### 方法原型
+```php
+public Guzzle\Service\Resource\Model listBucket(array $args = array())
+```
+#### 成功返回值
+
+|      返回值类型               |        返回值描述        |
+| :-------------:               | :-----------------: |
+| Guzzle\Service\Resource\Model | bucket列表的信息  |
+
+#### 示例
+
+```php
+//获取bucket列表
+$result = $cosClient->listBuckets();
+```
+
+
 ### 简单文件上传 putobject
 
 #### 方法原型
