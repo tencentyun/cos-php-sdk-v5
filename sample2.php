@@ -9,19 +9,10 @@ $cosClient = new Qcloud\Cos\Client(
                                 'appId' => '',
                                 'secretId'    => '',
                                 'secretKey' => '')));
-#listBuckets
-try {
-    $result = $cosClient->listBuckets();
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-
-
 #createBucket
 try {
     $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
-    print_r($result);
+    var_dump($result);
     } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -32,7 +23,7 @@ try {
                  $bucket='testbucket',
                  '111.txt',
         str_repeat('a', 5* 1024 * 1024));
-    print_r($result);
+    var_dump($result);
     } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -43,7 +34,7 @@ try {
         'Bucket' => 'testbucket',
         'Key' => '111',
         'Body' => 'Hello World!'));
-    print_r($result);
+    var_dump($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -54,7 +45,7 @@ try {
         'Bucket' => 'testbucket',
         'Key' => '111',
         'Body' => 'Hello World!'));
-    print_r($result);
+    var_dump($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -64,7 +55,7 @@ try {
     $result = $cosClient->deleteObject(array(
         'Bucket' => 'testbucket',
         'Key' => '111'));
-    print_r($result);
+    var_dump($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -74,7 +65,7 @@ try {
 try {
     $result = $cosClient->deleteBucket(array(
         'Bucket' => 'testbucket'));
-    print_r($result);
+    var_dump($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -84,7 +75,7 @@ try {
     $result = $cosClient->headObject(array(
         'Bucket' => 'testbucket',
         'Key' => 'hello.txt'));
-    print_r($result);
+    var_dump($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -93,7 +84,7 @@ try {
 try {
     $result = $cosClient->listObjects(array(
         'Bucket' => 'testbucket'));
-    print_r($result);
+    var_dump($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }

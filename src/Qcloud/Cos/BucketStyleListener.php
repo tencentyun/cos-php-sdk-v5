@@ -17,7 +17,7 @@ class BucketStyleListener implements EventSubscriberInterface {
     }
 
     public static function getSubscribedEvents() {
-        return array('command.after_prepare' => array('onCommandAfterPrepare', -255));
+        return array('command.after_prepare' => array('onCommandAfterPrepare', -230));
     }
 
     /**
