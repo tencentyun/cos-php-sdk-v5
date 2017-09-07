@@ -24,6 +24,16 @@ class Client extends GSClient {
 
     public function __construct($config) {
         $this->region = isset($config['region']) ? $config['region'] : '';
+        $regionmap = array('cn-east'=>'ap-shanghai',
+                        'cn-sorth'=>'ap-guangzhou',
+                        'cn-north'=>'ap-beijing-1',
+                        'cn-south-2'=>'ap-guangzhou-2',
+                        'cn-southwest'=>'ap-chengdu',
+                        'sg'=>'ap-singapore');
+        if (array_key_exists($this->region,$regionmap))
+        {
+            $this->region = $regionmap[$this->region];
+        }
         $this->credentials = $config['credentials'];
         $this->appId = $config['credentials']['appId'];
         $this->secretId = $config['credentials']['secretId'];
