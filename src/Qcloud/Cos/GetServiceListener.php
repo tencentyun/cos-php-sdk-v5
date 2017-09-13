@@ -34,8 +34,12 @@ class GetServiceListener implements EventSubscriberInterface {
      * @param Event $event Event emitted
      */
     public function onRequestBeforeSend(Event $event) {
-        if($event['request']->getPath() == '/' && $event['request']->getMethod() == 'GET')
-        {$event['request']->setUrl('http://service.cos.myqcloud.com');}
+        #print_r($event['request']);
+        if($event['request']->getPath() == '/ASDWQdsawqefdQWESDFFSDFSADCXSVSDQWERTREGERTYTHDF' && $event['request']->getMethod() == 'GET')
+        {
+            $event['request']->setPath('/');
+            $event['request']->setUrl('http://service.cos.myqcloud.com');
+        }
 /*
         if(!$this->credentials instanceof NullCredentials) {
             $this->signature->signRequest($event['request'], $this->credentials);

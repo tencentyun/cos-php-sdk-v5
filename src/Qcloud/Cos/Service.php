@@ -13,7 +13,7 @@ class Service {
                 'operations' => array(
                     'ListBuckets' => array(
                         'httpMethod' => 'GET',
-                        'uri' => '/',
+                        'uri' => '/ASDWQdsawqefdQWESDFFSDFSADCXSVSDQWERTREGERTYTHDF',
                         'class' => 'Qcloud\\Cos\\Command',
                         'responseClass' => 'ListBucketsOutput',
                         'responseType' => 'model',
@@ -370,6 +370,167 @@ class Service {
                                     'sentAs' => 'x-cos-meta-',
                                     'additionalProperties' => array(
                                         'type' => 'string')))),
+                    'PutObjectAcl' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}{/Key*}?acl',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutObjectAclOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'AccessControlPolicy',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'ACL' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-acl',
+                            ),
+                            'Grants' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'AccessControlList',
+                                'items' => array(
+                                    'name' => 'Grant',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Grantee' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'DisplayName' => array(
+                                                    'type' => 'string'),
+                                                /*
+                                                'EmailAddress' => array(
+                                                    'type' => 'string'),
+                                                */
+                                                'ID' => array(
+                                                    'type' => 'string'),
+                                                /*
+                                                'Type' => array(
+                                                    'type' => 'string',
+                                                    'sentAs' => 'xsi:type',
+                                                    'data' => array(
+                                                        'xmlAttribute' => true,
+                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance')),
+                                                */
+                                                /*'URI' => array(
+                                                    'type' => 'string') */)),
+                                        'Permission' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'Owner' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'DisplayName' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'ID' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'GrantFullControl' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-full-control',
+                            ),
+                            'GrantRead' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-read',
+                            ),
+                            'GrantReadACP' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-read-acp',
+                            ),
+                            'GrantWrite' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-write',
+                            ),
+                            'GrantWriteACP' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-write-acp',
+                            ),
+                            'Key' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                                'minLength' => 1,
+                                #!!!!!!!!!!!!!
+//                                'filters' => array(
+//                                    'Aws\\S3\\S3Client::explodeKey',
+//                                ),
+                            ),
+                            'RequestPayer' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-payer',
+                            ),
+                            'ACP' => array(
+                                'type' => 'object',
+                                'additionalProperties' => true,
+                            ),
+                        ),
+                        'errorResponses' => array(
+                            array(
+                                'reason' => 'The specified key does not exist.',
+                                'class' => 'NoSuchKeyException',
+                            ),
+                        ),
+                    ),
+                    'GetObjectAcl' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}{/Key*}?acl',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'GetObjectAclOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Key' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                                'minLength' => 1,
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'versionId',
+                            ),
+                            'RequestPayer' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-amz-request-payer',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                        'errorResponses' => array(
+                            array(
+                                'reason' => 'The specified key does not exist.',
+                                'class' => 'NoSuchKeyException',
+                            ),
+                        ),
+                    ),
                     'CreateMultipartUpload' => array(
                         'httpMethod' => 'POST',
                         'uri' => '/{Bucket}{/Key*}?uploads',
@@ -742,6 +903,69 @@ class Service {
                             'RequestId' => array(
                                     'location' => 'header',
                                     'sentAs' => 'x-cos-request-id'))),
+                    'GetObjectAclOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Owner' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'DisplayName' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'ID' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                            'Grants' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'AccessControlList',
+                                'items' => array(
+                                    'name' => 'Grant',
+                                    'type' => 'object',
+                                    'sentAs' => 'Grant',
+                                    'properties' => array(
+                                        'Grantee' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'DisplayName' => array(
+                                                    'type' => 'string'),
+                                                /*
+                                                'EmailAddress' => array(
+                                                    'type' => 'string'),
+                                                */
+                                                'ID' => array(
+                                                    'type' => 'string'),
+                                                /*
+                                                'Type' => array(
+                                                    'type' => 'string',
+                                                    'sentAs' => 'xsi:type',
+                                                    'data' => array(
+                                                        'xmlAttribute' => true,
+                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance')),
+                                                */
+                                                /*'URI' => array(
+                                                    'type' => 'string') */)),
+                                        'Permission' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'UploadPartOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -771,6 +995,21 @@ class Service {
                                     'sentAs' => 'x-cos-request-id'),
                             'ObjectURL' => array(
                                     ))),
+                    'PutObjectAclOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'ListPartsOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -905,6 +1144,45 @@ class Service {
                             'RequestId' => array(
                                     'location' => 'header',
                                     'sentAs' => 'x-cos-request-id'))),
+                    'ListBucketsOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Buckets' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'items' => array(
+                                    'name' => 'Bucket',
+                                    'type' => 'object',
+                                    'sentAs' => 'Bucket',
+                                    'properties' => array(
+                                        'Name' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'CreationDate' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'Owner' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'DisplayName' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'ID' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'HeadObjectOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
