@@ -13,7 +13,7 @@ class Service {
                 'operations' => array(
                     'ListBuckets' => array(
                         'httpMethod' => 'GET',
-                        'uri' => '/ASDWQdsawqefdQWESDFFSDFSADCXSVSDQWERTREGERTYTHDF',
+                        'uri' => '/',
                         'class' => 'Qcloud\\Cos\\Command',
                         'responseClass' => 'ListBucketsOutput',
                         'responseType' => 'model',
@@ -517,7 +517,7 @@ class Service {
                             'RequestPayer' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-amz-request-payer',
+                                'sentAs' => 'x-cos-request-payer',
                             ),
                             'command.expects' => array(
                                 'static' => true,
