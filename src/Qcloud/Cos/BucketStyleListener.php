@@ -28,7 +28,11 @@ class BucketStyleListener implements EventSubscriberInterface {
         $command = $event['command'];
         $bucket = $command['Bucket'];
         $request = $command->getRequest();
-
+        if ($command->getName() == 'ListBuckets')
+        {
+            $request->setHost('service.cos.myqcloud.com');
+            return ;
+        }
         if ($key = $command['Key']) {
             // Modify the command Key to account for the {/Key*} explosion into an array
             if (is_array($key)) {
