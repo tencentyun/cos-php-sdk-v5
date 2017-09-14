@@ -248,7 +248,6 @@ $mapping = array(
     'Qcloud\Cos\Exception\ServiceResponseException' => 'src/Qcloud/Cos/Exception/ServiceResponseException.php',
     'Qcloud\Cos\ExceptionListener' => 'src/Qcloud/Cos/ExceptionListener.php',
     'Qcloud\Cos\ExceptionParser' => 'src/Qcloud/Cos/ExceptionParser.php',
-    'Qcloud\Cos\GetServiceListener' => 'src/Qcloud/Cos/GetServiceListener.php',
     'Qcloud\Cos\MultipartUpload' => 'src/Qcloud/Cos/MultipartUpload.php',
     'Qcloud\Cos\Service' => 'src/Qcloud/Cos/Service.php',
     'Qcloud\Cos\Signature' => 'src/Qcloud/Cos/Signature.php',

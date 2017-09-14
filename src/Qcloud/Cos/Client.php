@@ -52,7 +52,6 @@ $this->setDescription($desc);
 $this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
 
 $this->addSubscriber(new ExceptionListener());
-$this->addSubscriber(new GetServiceListener());
 $this->addSubscriber(new TokenListener($this->token));
 $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
 $this->addSubscriber(new BucketStyleListener($this->appId));
