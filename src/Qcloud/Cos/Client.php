@@ -52,11 +52,12 @@ $this->setDescription($desc);
 $this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
 
 $this->addSubscriber(new ExceptionListener());
+$this->addSubscriber(new Md5Listener($this->signature));
 $this->addSubscriber(new TokenListener($this->token));
 $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
 $this->addSubscriber(new BucketStyleListener($this->appId));
 
-    // Allow for specifying bodies with file paths and file handles
+// Allow for specifying bodies with file paths and file handles
 $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
 }
 

@@ -168,6 +168,42 @@ class Service {
                             'command.expects' => array(
                                 'static' => true,
                                 'default' => 'application/xml'))),
+                    'GetBucketCors' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?cors',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'GetBucketCorsOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
+                    'GetBucketLifecycle' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?lifecycle',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'GetBucketLifecycleOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
                     'GetObject' => array(
                         'httpMethod' => 'GET',
                         'uri' => '/{Bucket}{/Key*}',
@@ -488,6 +524,196 @@ class Service {
                             array(
                                 'reason' => 'The specified key does not exist.',
                                 'class' => 'NoSuchKeyException',
+                            ),
+                        ),
+                    ),
+                    'PutBucketCors' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?cors',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketCorsOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'CORSConfiguration',
+                            ),
+                            'contentMd5' => true,
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'CORSRules' => array(
+                                'required' => true,
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'CORSRule',
+                                    'type' => 'object',
+                                    'sentAs' => 'CORSRule',
+                                    'properties' => array(
+                                        'AllowedHeaders' => array(
+                                            'type' => 'array',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'AllowedHeader',
+                                                'type' => 'string',
+                                                'sentAs' => 'AllowedHeader',
+                                            ),
+                                        ),
+                                        'AllowedMethods' => array(
+                                            'required' => true,
+                                            'type' => 'array',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'AllowedMethod',
+                                                'type' => 'string',
+                                                'sentAs' => 'AllowedMethod',
+                                            ),
+                                        ),
+                                        'AllowedOrigins' => array(
+                                            'required' => true,
+                                            'type' => 'array',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'AllowedOrigin',
+                                                'type' => 'string',
+                                                'sentAs' => 'AllowedOrigin',
+                                            ),
+                                        ),
+                                        'ExposeHeaders' => array(
+                                            'type' => 'array',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'ExposeHeader',
+                                                'type' => 'string',
+                                                'sentAs' => 'ExposeHeader',
+                                            ),
+                                        ),
+                                        'MaxAgeSeconds' => array(
+                                            'type' => 'numeric',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    'PutBucketLifecycle' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?lifecycle',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketLifecycleOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'LifecycleConfiguration',
+                            ),
+                            'contentMd5' => true,
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Rules' => array(
+                                'required' => true,
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'Rule',
+                                    'type' => 'object',
+                                    'sentAs' => 'Rule',
+                                    'properties' => array(
+                                        'Expiration' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Date' => array(
+                                                    'type' => array(
+                                                        'object',
+                                                        'string',
+                                                        'integer',
+                                                    ),
+                                                    'format' => 'date-time',
+                                                ),
+                                                'Days' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                            ),
+                                        ),
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Filter' => array(
+                                            'type' => 'object',
+                                            'require' => true,
+                                            'properties' => array(
+                                                'Prefix' => array(
+                                                    'type' => 'string',
+                                                    'require' => true,
+                                                ),
+                                            ),
+                                        ),
+                                        'Status' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Transition' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Date' => array(
+                                                    'type' => array(
+                                                        'object',
+                                                        'string',
+                                                        'integer',
+                                                    ),
+                                                    'format' => 'date-time',
+                                                ),
+                                                'Days' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'NoncurrentVersionTransition' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'NoncurrentDays' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'NoncurrentVersionExpiration' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'NoncurrentDays' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -966,6 +1192,160 @@ class Service {
                             ),
                         ),
                     ),
+                    'GetBucketCorsOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'CORSRules' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'CORSRule',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'CORSRule',
+                                    'type' => 'object',
+                                    'sentAs' => 'CORSRule',
+                                    'properties' => array(
+                                        'AllowedHeaders' => array(
+                                            'type' => 'array',
+                                            'sentAs' => 'AllowedHeader',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'AllowedHeader',
+                                                'type' => 'string',
+                                                'sentAs' => 'AllowedHeader',
+                                            ),
+                                        ),
+                                        'AllowedMethods' => array(
+                                            'type' => 'array',
+                                            'sentAs' => 'AllowedMethod',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'AllowedMethod',
+                                                'type' => 'string',
+                                                'sentAs' => 'AllowedMethod',
+                                            ),
+                                        ),
+                                        'AllowedOrigins' => array(
+                                            'type' => 'array',
+                                            'sentAs' => 'AllowedOrigin',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'AllowedOrigin',
+                                                'type' => 'string',
+                                                'sentAs' => 'AllowedOrigin',
+                                            ),
+                                        ),
+                                        'ExposeHeaders' => array(
+                                            'type' => 'array',
+                                            'sentAs' => 'ExposeHeader',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
+                                            ),
+                                            'items' => array(
+                                                'name' => 'ExposeHeader',
+                                                'type' => 'string',
+                                                'sentAs' => 'ExposeHeader',
+                                            ),
+                                        ),
+                                        'MaxAgeSeconds' => array(
+                                            'type' => 'numeric',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'GetBucketLifecycleOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Rules' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'Rule',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'Rule',
+                                    'type' => 'object',
+                                    'sentAs' => 'Rule',
+                                    'properties' => array(
+                                        'Expiration' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Date' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Days' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                            ),
+                                        ),
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Prefix' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Status' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Transition' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Date' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Days' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'NoncurrentVersionTransition' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'NoncurrentDays' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'NoncurrentVersionExpiration' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'NoncurrentDays' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'UploadPartOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -1004,6 +1384,26 @@ class Service {
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-charged',
                             ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'PutBucketCorsOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'PutBucketLifecycleOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
                             'RequestId' => array(
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-id',
