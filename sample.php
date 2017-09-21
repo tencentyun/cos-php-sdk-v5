@@ -2,13 +2,11 @@
 
 require(__DIR__ . DIRECTORY_SEPARATOR . 'cos-autoloader.php');
 
-$cosClient = new Qcloud\Cos\Client(
-                            array(
-                            'region' => 'cn-north',
-                                'credentials'=> array(
-                                'appId' => '',
-                                'secretId'    => '',
-                                'secretKey' => '')));
+$cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
+    'credentials'=> array(
+        'appId' => getenv('COS_APPID'),
+        'secretId'    => getenv('COS_KEY'),
+        'secretKey' => getenv('COS_SECRET'))));
 //#listBuckets
 //try {
 //    $result = $cosClient->listBuckets();
@@ -18,7 +16,7 @@ $cosClient = new Qcloud\Cos\Client(
 //}
 //
 //
-//#createBucket
+#createBucket
 //try {
 //    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
 //    print_r($result);
@@ -48,16 +46,15 @@ $cosClient = new Qcloud\Cos\Client(
 //    echo "$e\n";
 //}
 //
-//#getObject
-//try {
-//    $result = $cosClient->getObject(array(
-//        'Bucket' => 'testbucket',
-//        'Key' => '111',
-//        'Body' => 'Hello World!'));
-//    print_r($result);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
+#getObject
+try {
+    $result = $cosClient->getObject(array(
+        'Bucket' => 'testbucket',
+        'Key' => '111'));
+    echo($result['Body']);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 //
 //#deleteObject
 //try {

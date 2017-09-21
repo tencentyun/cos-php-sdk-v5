@@ -20,12 +20,14 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
 
     protected function tearDown() {
         TestHelper::nuke('testbucket');
+        sleep(2);
     }
 
     public function testCreateBucket() {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
             var_dump($result);
+            sleep(2);
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
@@ -35,6 +37,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
             var_dump($result);
+            sleep(2);
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
             var_dump($result);
         } catch (CosException $e) {
@@ -47,6 +50,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
             var_dump($result);
+            sleep(2);
             $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
             var_dump($result);
         } catch (\Exception $e) {
@@ -58,6 +62,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
         try {
             $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
             var_dump($result);
+            sleep(2);
         } catch (CosException $e) {
             $this->assertTrue($e->getExceptionCode() === 'NoSuchBucket');
             $this->assertTrue($e->getStatusCode() === 404);
@@ -67,11 +72,13 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
     public function testDeleteNonemptyBucket() {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+            sleep(2);
             $this->cosClient->putObject(array(
                         'Bucket' => 'testbucket', 'Key' => 'hello.txt', 'Body' => 'Hello World!'));
             $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
         } catch (CosException $e) {
             echo "$e\n";
+            echo $e->getExceptionCode();
             $this->assertTrue($e->getExceptionCode() === 'BucketNotEmpty');
             $this->assertTrue($e->getStatusCode() === 409);
         }
