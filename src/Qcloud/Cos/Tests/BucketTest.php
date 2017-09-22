@@ -73,9 +73,9 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
             sleep(2);
-            $this->cosClient->putObject(array(
+            $result = $this->cosClient->putObject(array(
                         'Bucket' => 'testbucket', 'Key' => 'hello.txt', 'Body' => 'Hello World!'));
-            $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
+            $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
         } catch (CosException $e) {
             echo "$e\n";
             echo $e->getExceptionCode();
@@ -83,4 +83,108 @@ class BucketTest extends \PHPUnit_Framework_TestCase {
             $this->assertTrue($e->getStatusCode() === 409);
         }
     }
+    public function testPutBucketLifecycle() {
+        try {
+            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+            sleep(2);
+            $result = $this->cosClient->putBucketLifecycle(array(
+                // Bucket is required
+                'Bucket' => 'testbucket',
+                // Rules is required
+                'Rules' => array(
+                    array(
+                        'Expiration' => array(
+                            'Days' => 1,
+                        ),
+                        'ID' => 'id1',
+                        'Filter' => array(
+                            'Prefix' => 'documents/'
+                        ),
+                        // Status is required
+                        'Status' => 'Enabled',
+                        'Transition' => array(
+                            'Days' => 100,
+                            'StorageClass' => 'NEARLINE',
+                        ),
+                        // ... repeated
+                    ),
+                )));
+            var_dump($result);
+        } catch (\Exception $e) {
+            $this->assertFalse(true, $e);
+        }
+    }
+    public function testGetBucketLifecycle() {
+        try {
+            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+            sleep(2);
+            $result = $this->cosClient->putBucketLifecycle(array(
+                // Bucket is required
+                'Bucket' => 'testbucket',
+                // Rules is required
+                'Rules' => array(
+                    array(
+                        'Expiration' => array(
+                            'Days' => 1,
+                        ),
+                        'ID' => 'id1',
+                        'Filter' => array(
+                            'Prefix' => 'documents/'
+                        ),
+                        // Status is required
+                        'Status' => 'Enabled',
+                        'Transition' => array(
+                            'Days' => 100,
+                            'StorageClass' => 'NEARLINE',
+                        ),
+                        // ... repeated
+                    ),
+                )));
+            sleep(5);
+            $result = $this->cosClient->getBucketLifecycle(array(
+                // Bucket is required
+                'Bucket' => 'testbucket',
+                ));
+            var_dump($result);
+        } catch (\Exception $e) {
+            $this->assertFalse(true, $e);
+        }
+    }
+    public function testDeleteBucketLifecycle() {
+        try {
+            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+            sleep(2);
+            $result = $this->cosClient->putBucketLifecycle(array(
+                // Bucket is required
+                'Bucket' => 'testbucket',
+                // Rules is required
+                'Rules' => array(
+                    array(
+                        'Expiration' => array(
+                            'Days' => 1,
+                        ),
+                        'ID' => 'id1',
+                        'Filter' => array(
+                            'Prefix' => 'documents/'
+                        ),
+                        // Status is required
+                        'Status' => 'Enabled',
+                        'Transition' => array(
+                            'Days' => 100,
+                            'StorageClass' => 'NEARLINE',
+                        ),
+                        // ... repeated
+                    ),
+                )));
+            sleep(5);
+            $result = $this->cosClient->deleteBucketLifecycle(array(
+                // Bucket is required
+                'Bucket' => 'testbucket',
+            ));
+            var_dump($result);
+        } catch (\Exception $e) {
+            $this->assertFalse(true, $e);
+        }
+    }
+
 }

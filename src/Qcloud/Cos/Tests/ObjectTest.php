@@ -156,34 +156,4 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
             $this->assertFalse(true, $e);
         }
     }
-    public function testDeleteObjectACL()
-    {
-        try {
-            $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(5);
-            $this->cosClient->upload('testbucket', '11', 'hello.txt');
-            $this->cosClient->PutObjectAcl(array(
-                'Bucket' => 'testbucket',
-                'Key' => '11',
-                'Grants' => array(
-                    array(
-                        'Grantee' => array(
-                            'DisplayName' => 'string',
-                            'ID' => 'qcs::cam::uin/123:uin/123',
-                        ),
-                        'Permission' => 'FULL_CONTROL',
-                    ),
-                    // ... repeated
-                ),
-                'Owner' => array(
-                    'ID' => 'qcs::cam::uin/123:uin/123',
-                ),));
-            $this->cosClient->DeleteObjectAcl(array(
-                'Bucket' => 'testbucket',
-                'Key' => '11'));
-
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
-    }
 }
