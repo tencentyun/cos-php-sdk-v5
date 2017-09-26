@@ -17,13 +17,13 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //
 //
 #createBucket
-//try {
-//    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
-//    print_r($result);
-//    } catch (\Exception $e) {
-//    echo "$e\n";
-//}
-//
+try {
+    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
+    print_r($result);
+    } catch (\Exception $e) {
+    echo "$e\n";
+}
+
 //#uploadbigfile
 //try {
 //    $result = $cosClient->upload(
@@ -36,25 +36,25 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //}
 //
 //#putObject
-//try {
-//    $result = $cosClient->putObject(array(
-//        'Bucket' => 'testbucket',
-//        'Key' => '111',
-//        'Body' => 'Hello World!'));
-//    print_r($result);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
-//
-#getObject
 try {
-    $result = $cosClient->getObject(array(
+    $result = $cosClient->putObject(array(
         'Bucket' => 'testbucket',
-        'Key' => '111'));
-    echo($result['Body']);
+        'Key' => '11',
+        'Body' => 'Hello World!'));
+    print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
+//
+//#getObject
+//try {
+//    $result = $cosClient->getObject(array(
+//        'Bucket' => 'testbucket',
+//        'Key' => '111'));
+//    echo($result['Body']);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //
 //#deleteObject
 //try {
@@ -107,36 +107,66 @@ try {
 //} catch (\Exception $e) {
 //    echo "$e\n";
 //}
-
-
-//#putObjectACL
+//#putBucketACL
 //try {
-//    $result = $cosClient->PutObjectAcl(array(
-//        'Bucket' => 'lewzylu02',
-//        'Key' => '11',
+//    $result = $cosClient->PutBucketAcl(array(
+//        'Bucket' => 'testbucket',
 //        'Grants' => array(
 //            array(
 //                'Grantee' => array(
-//                    'DisplayName' => 'string',
-//                    'ID' => 'qcs::cam::uin/123:uin/123',
+//                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+//                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+//                    'Type' => 'CanonicalUser',
 //                ),
 //                'Permission' => 'FULL_CONTROL',
 //            ),
 //            // ... repeated
 //        ),
 //        'Owner' => array(
-//            'ID' => 'qcs::cam::uin/123:uin/123',
+//            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+//            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
 //        ),));
 //    print_r($result);
 //} catch (\Exception $e) {
 //    echo "$e\n";
 //}
+//#getBucketACL
+//try {
+//    $result = $cosClient->GetBucketAcl(array(
+//        'Bucket' => 'testbucket',));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //
-//
+#putObjectACL
+try {
+    $result = $cosClient->PutBucketAcl(array(
+        'Bucket' => 'testbucket',
+        'Grants' => array(
+            array(
+                'Grantee' => array(
+                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'Type' => 'CanonicalUser',
+                ),
+                'Permission' => 'FULL_CONTROL',
+            ),
+            // ... repeated
+        ),
+        'Owner' => array(
+            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+        ),));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
 //#getObjectACL
 //try {
 //    $result = $cosClient->getObjectAcl(array(
-//        'Bucket' => 'lewzylu02',
+//        'Bucket' => 'testbucket',
 //        'Key' => '11'));
 //    print_r($result);
 //} catch (\Exception $e) {

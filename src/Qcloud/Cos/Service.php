@@ -414,12 +414,15 @@ class Service {
                         'responseType' => 'model',
                         'data' => array(
                             'xmlRoot' => array(
-                                'name' => 'AccessControlPolicy')),
+                                'name' => 'AccessControlPolicy',
+                            ),
+                        ),
                         'parameters' => array(
                             'ACL' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-acl'),
+                                'sentAs' => 'x-cos-acl',
+                            ),
                             'Grants' => array(
                                 'type' => 'array',
                                 'location' => 'xml',
@@ -432,50 +435,82 @@ class Service {
                                             'type' => 'object',
                                             'properties' => array(
                                                 'DisplayName' => array(
-                                                    'type' => 'string'),
+                                                    'type' => 'string',
+                                                ),
                                                 'EmailAddress' => array(
-                                                    'type' => 'string'),
+                                                    'type' => 'string',
+                                                ),
                                                 'ID' => array(
-                                                    'type' => 'string'),
+                                                    'type' => 'string',
+                                                ),
+                                                'Type' => array(
+                                                    'required' => true,
+                                                    'type' => 'string',
+                                                    'sentAs' => 'xsi:type',
+                                                    'data' => array(
+                                                        'xmlAttribute' => true,
+                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance',
+                                                    ),
+                                                ),
                                                 'URI' => array(
-                                                    'type' => 'string'))),
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
                                         'Permission' => array(
-                                            'type' => 'string')))),
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
                             'Owner' => array(
                                 'type' => 'object',
                                 'location' => 'xml',
                                 'properties' => array(
                                     'DisplayName' => array(
-                                        'type' => 'string'),
+                                        'type' => 'string',
+                                    ),
                                     'ID' => array(
-                                        'type' => 'string'))),
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
                             'Bucket' => array(
                                 'required' => true,
                                 'type' => 'string',
-                                'location' => 'uri'),
+                                'location' => 'uri',
+                            ),
                             'GrantFullControl' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-grant-full-control'),
+                                'sentAs' => 'x-cos-grant-full-control',
+                            ),
                             'GrantRead' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-grant-read'),
+                                'sentAs' => 'x-cos-grant-read',
+                            ),
                             'GrantReadACP' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-grant-read-acp'),
+                                'sentAs' => 'x-cos-grant-read-acp',
+                            ),
                             'GrantWrite' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-grant-write'),
+                                'sentAs' => 'x-cos-grant-write',
+                            ),
                             'GrantWriteACP' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-grant-write-acp'),
+                                'sentAs' => 'x-cos-grant-write-acp',
+                            ),
                             'ACP' => array(
                                 'type' => 'object',
-                                'additionalProperties' => true))),
+                                'additionalProperties' => true,
+                            ),
+                        ),
+                    ),
                     'GetObject' => array(
                         'httpMethod' => 'GET',
                         'uri' => '/{Bucket}{/Key*}',
@@ -783,22 +818,16 @@ class Service {
                                             'properties' => array(
                                                 'DisplayName' => array(
                                                     'type' => 'string'),
-                                                /*
-                                                'EmailAddress' => array(
-                                                    'type' => 'string'),
-                                                */
                                                 'ID' => array(
                                                     'type' => 'string'),
-                                                /*
                                                 'Type' => array(
                                                     'type' => 'string',
                                                     'sentAs' => 'xsi:type',
                                                     'data' => array(
                                                         'xmlAttribute' => true,
                                                         'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance')),
-                                                */
-                                                /*'URI' => array(
-                                                    'type' => 'string') */)),
+                                                'URI' => array(
+                                                    'type' => 'string') )),
                                         'Permission' => array(
                                             'type' => 'string',
                                         ),

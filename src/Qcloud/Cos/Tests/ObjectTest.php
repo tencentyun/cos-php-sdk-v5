@@ -39,7 +39,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
     public function testPutObjectIntoNonexistedBucket() {
         try {
             $this->cosClient->putObject(array(
-                        'Bucket' => '000testbucket', 'Key' => 'hello.txt', 'Body' => 'Hello World'));
+                        'Bucket' => 'testbucket', 'Key' => 'hello.txt', 'Body' => 'Hello World'));
         } catch (CosException $e) {
             $this->assertTrue($e->getExceptionCode() === 'NoSuchBucket');
             $this->assertTrue($e->getStatusCode() === 404);
@@ -111,15 +111,17 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'string',
-                            'ID' => 'qcs::cam::uin/123:uin/123',
+                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'Type' => 'CanonicalUser',
                         ),
                         'Permission' => 'FULL_CONTROL',
                     ),
                     // ... repeated
                 ),
                 'Owner' => array(
-                    'ID' => 'qcs::cam::uin/123:uin/123',
+                    'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+                    'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
                 ),));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
@@ -138,19 +140,18 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'string',
-                            'ID' => 'qcs::cam::uin/123:uin/123',
+                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'Type' => 'CanonicalUser',
                         ),
                         'Permission' => 'FULL_CONTROL',
                     ),
                     // ... repeated
                 ),
                 'Owner' => array(
-                    'ID' => 'qcs::cam::uin/123:uin/123',
+                    'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+                    'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
                 ),));
-            $this->cosClient->GetObjectAcl(array(
-                'Bucket' => 'testbucket',
-                'Key' => '11'));
 
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
