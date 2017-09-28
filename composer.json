@@ -17,7 +17,7 @@
   },
   "autoload": {
     "psr-0": {
-      "Aws": "src/"
+      "Qcloud\\Cos\\": "src/"
     }
   }
 }
