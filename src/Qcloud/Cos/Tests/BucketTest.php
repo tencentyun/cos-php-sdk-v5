@@ -89,242 +89,242 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'Type' => 'CanonicalUser',
-                        ),
+    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+    'Type' => 'CanonicalUser',
+),
                         'Permission' => 'FULL_CONTROL',
                     ),
                     // ... repeated
                 ),
                 'Owner' => array(
-                    'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
-                    'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
-                ),));
+    'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+    'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+),));
         } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
+    $this->assertFalse(true, $e);
+}
 
     }
 
     public function testGetBucketACL()
-    {
-        try {
-            $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(5);
-            $this->cosClient->PutBucketAcl(array(
-                'Bucket' => 'testbucket',
-                'Grants' => array(
-                    array(
-                        'Grantee' => array(
-                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'Type' => 'CanonicalUser',
-                        ),
-                        'Permission' => 'FULL_CONTROL',
+{
+    try {
+        $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(5);
+        $this->cosClient->PutBucketAcl(array(
+            'Bucket' => 'testbucket',
+            'Grants' => array(
+                array(
+                    'Grantee' => array(
+                        'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                        'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                        'Type' => 'CanonicalUser',
                     ),
-                    // ... repeated
+                    'Permission' => 'FULL_CONTROL',
                 ),
-                'Owner' => array(
-                    'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
-                    'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
-                ),));
+                // ... repeated
+            ),
+            'Owner' => array(
+                'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+                'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+            ),));
 
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
     }
+}
 
     public function testPutBucketLifecycle()
-    {
-        try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(2);
-            $result = $this->cosClient->putBucketLifecycle(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-                // Rules is required
-                'Rules' => array(
-                    array(
-                        'Expiration' => array(
-                            'Days' => 1,
-                        ),
-                        'ID' => 'id1',
-                        'Filter' => array(
-                            'Prefix' => 'documents/'
-                        ),
-                        // Status is required
-                        'Status' => 'Enabled',
-                        'Transition' => array(
-                            'Days' => 100,
-                            'StorageClass' => 'NEARLINE',
-                        ),
-                        // ... repeated
+{
+    try {
+        $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(2);
+        $result = $this->cosClient->putBucketLifecycle(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+            // Rules is required
+            'Rules' => array(
+                array(
+                    'Expiration' => array(
+                        'Days' => 1,
                     ),
-                )));
-            var_dump($result);
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
+                    'ID' => 'id1',
+                    'Filter' => array(
+                        'Prefix' => 'documents/'
+                    ),
+                    // Status is required
+                    'Status' => 'Enabled',
+                    'Transition' => array(
+                        'Days' => 100,
+                        'StorageClass' => 'NEARLINE',
+                    ),
+                    // ... repeated
+                ),
+            )));
+        var_dump($result);
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
     }
+}
 
     public function testGetBucketLifecycle()
-    {
-        try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(2);
-            $result = $this->cosClient->putBucketLifecycle(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-                // Rules is required
-                'Rules' => array(
-                    array(
-                        'Expiration' => array(
-                            'Days' => 1,
-                        ),
-                        'ID' => 'id1',
-                        'Filter' => array(
-                            'Prefix' => 'documents/'
-                        ),
-                        // Status is required
-                        'Status' => 'Enabled',
-                        'Transition' => array(
-                            'Days' => 100,
-                            'StorageClass' => 'NEARLINE',
-                        ),
-                        // ... repeated
+{
+    try {
+        $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(2);
+        $result = $this->cosClient->putBucketLifecycle(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+            // Rules is required
+            'Rules' => array(
+                array(
+                    'Expiration' => array(
+                        'Days' => 1,
                     ),
-                )));
-            sleep(5);
-            $result = $this->cosClient->getBucketLifecycle(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-            ));
-            var_dump($result);
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
+                    'ID' => 'id1',
+                    'Filter' => array(
+                        'Prefix' => 'documents/'
+                    ),
+                    // Status is required
+                    'Status' => 'Enabled',
+                    'Transition' => array(
+                        'Days' => 100,
+                        'StorageClass' => 'NEARLINE',
+                    ),
+                    // ... repeated
+                ),
+            )));
+        sleep(5);
+        $result = $this->cosClient->getBucketLifecycle(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+        ));
+        var_dump($result);
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
     }
+}
 
     public function testDeleteBucketLifecycle()
-    {
-        try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(2);
-            $result = $this->cosClient->putBucketLifecycle(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-                // Rules is required
-                'Rules' => array(
-                    array(
-                        'Expiration' => array(
-                            'Days' => 1,
-                        ),
-                        'ID' => 'id1',
-                        'Filter' => array(
-                            'Prefix' => 'documents/'
-                        ),
-                        // Status is required
-                        'Status' => 'Enabled',
-                        'Transition' => array(
-                            'Days' => 100,
-                            'StorageClass' => 'NEARLINE',
-                        ),
-                        // ... repeated
+{
+    try {
+        $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(2);
+        $result = $this->cosClient->putBucketLifecycle(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+            // Rules is required
+            'Rules' => array(
+                array(
+                    'Expiration' => array(
+                        'Days' => 1,
                     ),
-                )));
-            sleep(5);
-            $result = $this->cosClient->deleteBucketLifecycle(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-            ));
-            var_dump($result);
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
+                    'ID' => 'id1',
+                    'Filter' => array(
+                        'Prefix' => 'documents/'
+                    ),
+                    // Status is required
+                    'Status' => 'Enabled',
+                    'Transition' => array(
+                        'Days' => 100,
+                        'StorageClass' => 'NEARLINE',
+                    ),
+                    // ... repeated
+                ),
+            )));
+        sleep(5);
+        $result = $this->cosClient->deleteBucketLifecycle(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+        ));
+        var_dump($result);
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
     }
+}
 
     public function testPutBucketCors()
-    {
-        try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(2);
-            $result = $this->cosClient->putBucketCors(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-                // CORSRules is required
-                'CORSRules' => array(
-                    array(
-                        'AllowedHeaders' => array('*',),
-                        // AllowedMethods is required
-                        'AllowedMethods' => array('Put',),
-                        // AllowedOrigins is required
-                        'AllowedOrigins' => array('*',),
-                        'ExposeHeaders' => array('*',),
-                        'MaxAgeSeconds' => 1,
-                    ),
-                    // ... repeated
+{
+    try {
+        $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(2);
+        $result = $this->cosClient->putBucketCors(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+            // CORSRules is required
+            'CORSRules' => array(
+                array(
+                    'AllowedHeaders' => array('*',),
+                    // AllowedMethods is required
+                    'AllowedMethods' => array('Put',),
+                    // AllowedOrigins is required
+                    'AllowedOrigins' => array('*',),
+                    'ExposeHeaders' => array('*',),
+                    'MaxAgeSeconds' => 1,
                 ),
-            ));
-            var_dump($result);
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }
+                // ... repeated
+            ),
+        ));
+        var_dump($result);
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
     }
+}
     public function testGetBucketCors() {
-        try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(2);
-            $result = $this->cosClient->putBucketCors(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-                // CORSRules is required
-                'CORSRules' => array(
-                    array(
-                        'AllowedHeaders' => array('*',),
-                        // AllowedMethods is required
-                        'AllowedMethods' => array('Put', ),
-                        // AllowedOrigins is required
-                        'AllowedOrigins' => array('*', ),
-                        'ExposeHeaders' => array('*', ),
-                        'MaxAgeSeconds' => 1,
-                    ),
-                    // ... repeated
+    try {
+        $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(2);
+        $result = $this->cosClient->putBucketCors(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+            // CORSRules is required
+            'CORSRules' => array(
+                array(
+                    'AllowedHeaders' => array('*',),
+                    // AllowedMethods is required
+                    'AllowedMethods' => array('Put', ),
+                    // AllowedOrigins is required
+                    'AllowedOrigins' => array('*', ),
+                    'ExposeHeaders' => array('*', ),
+                    'MaxAgeSeconds' => 1,
                 ),
-            ));
-            $result = $this->cosClient->getBucketCors(array(
-                'Bucket' => 'testbucket',
-            ));
-            var_dump($result);
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }}
+                // ... repeated
+            ),
+        ));
+        $result = $this->cosClient->getBucketCors(array(
+            'Bucket' => 'testbucket',
+        ));
+        var_dump($result);
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
+    }}
     public function testDeleteBucketCors() {
-        try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            sleep(2);
-            $result = $this->cosClient->putBucketCors(array(
-                // Bucket is required
-                'Bucket' => 'testbucket',
-                // CORSRules is required
-                'CORSRules' => array(
-                    array(
-                        'AllowedHeaders' => array('*',),
-                        // AllowedMethods is required
-                        'AllowedMethods' => array('Put', ),
-                        // AllowedOrigins is required
-                        'AllowedOrigins' => array('*', ),
-                        'ExposeHeaders' => array('*', ),
-                        'MaxAgeSeconds' => 1,
-                    ),
-                    // ... repeated
+    try {
+        $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+        sleep(2);
+        $result = $this->cosClient->putBucketCors(array(
+            // Bucket is required
+            'Bucket' => 'testbucket',
+            // CORSRules is required
+            'CORSRules' => array(
+                array(
+                    'AllowedHeaders' => array('*',),
+                    // AllowedMethods is required
+                    'AllowedMethods' => array('Put', ),
+                    // AllowedOrigins is required
+                    'AllowedOrigins' => array('*', ),
+                    'ExposeHeaders' => array('*', ),
+                    'MaxAgeSeconds' => 1,
                 ),
-            ));
-            $result = $this->cosClient->deleteBucketCors(array(
-                'Bucket' => 'testbucket',
-            ));
-            var_dump($result);
-        } catch (\Exception $e) {
-            $this->assertFalse(true, $e);
-        }}
+                // ... repeated
+            ),
+        ));
+        $result = $this->cosClient->deleteBucketCors(array(
+            'Bucket' => 'testbucket',
+        ));
+        var_dump($result);
+    } catch (\Exception $e) {
+        $this->assertFalse(true, $e);
+    }}
 }
