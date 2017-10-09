@@ -1,15 +1,10 @@
-## 开发准备
+## 接口列表
 
-### 获取bucket列表 listbuckets
+### 获取桶列表 listbuckets
 #### 方法原型
 ```php
 public Guzzle\Service\Resource\Model listBucket(array $args = array())
 ```
-#### 成功返回值
-
-|      返回值类型               |        返回值描述        |
-| :-------------:               | :-----------------: |
-| Guzzle\Service\Resource\Model | bucket列表的信息  |
 
 #### 示例
 
@@ -18,6 +13,54 @@ public Guzzle\Service\Resource\Model listBucket(array $args = array())
 $result = $cosClient->listBuckets();
 ```
 
+### 创建桶 createBucket
+
+#### 方法原型
+
+```php
+// 创建桶
+public Guzzle\Service\Resource\Model createBucket(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| Acl      |     string     |  无    | 否           |         ACL权限控制         |
+
+#### 示例
+
+```php
+//创建桶
+$result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
+```
+
+### 删除桶 deleteBucket
+
+#### 方法原型
+
+```php
+// 删除桶
+public Guzzle\Service\Resource\Model deleteBucket(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+
+#### 示例
+
+```php
+//删除桶
+$result = $cosClient->deleteBucket(array('Bucket' => 'testbucket'));
+```
 
 ### 简单文件上传 putobject
 
@@ -36,14 +79,8 @@ $args是包含以下字段的关联数组：
 | Bucket   |     string                |  无    | 是           |               bucket名称               |
 |    Key   |     string                |  无    | 是           |         对象名称         |
 |    Body  |      string\|resource     |  无    | 是           |                 对象的内容                 |
-|    ACL   |      string               |  无    | 否           |                 ACL权限控制                 |
+|    Acl   |      string               |  无    | 否           |                 ACL权限控制                 |
 | Metadata | associative-array<string> |  无    | 否           | 用户的自定义头(x-cos-meta-)和HTTP头(metadata) |
-
-#### 成功返回值
-
-|      返回值类型               |        返回值描述        |
-| :-------------:               | :-----------------: |
-| Guzzle\Service\Resource\Model | 文件上传成功后属性信息, 如ETag, |
 
 #### 示例
 
@@ -126,12 +163,6 @@ $args是包含以下字段的关联数组：
 | Key      |     string     |  无    | 是           |         对象名称         |
 | SaveAs   |     string     |  无    | 否           | 保存到本地的本地文件路径                 |
 
-#### 成功返回值
-
-|      返回值类型               |        返回值描述        |
-| :-------------:               | :-----------------: |
-| Guzzle\Service\Resource\Model | 对象下载成功后返回的属性信息，比如ETag、ContentLength等 |
-
 #### 示例
 
 ```php
@@ -168,12 +199,6 @@ $args是包含以下字段的关联数组：
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
 | Key      |     string     |  无    | 是           |         对象名称         |
 
-#### 成功返回值
-
-|      返回值类型               |        返回值描述        |
-| :-------------:               | :-----------------: |
-| Guzzle\Service\Resource\Model | 包含RequestId等信息 |
-
 #### 示例
 
 ```php
@@ -205,11 +230,6 @@ $args是包含以下字段的关联数组：
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
 | Key      |     string     |  无    | 是           |         对象名称         |
 
-#### 成功返回值
-
-|      返回值类型               |        返回值描述        |
-| :-------------:               | :-----------------: |
-| Guzzle\Service\Resource\Model | 对象的相关属性信息 |
 
 #### 示例
 
@@ -242,18 +262,245 @@ $args是包含以下字段的关联数组：
 | MaxKeys      |     int     |  无    | 否          |         最大对象个数         |
 | Prefix      |     string     |  无    | 否           |         前缀         |
 
-#### 成功返回值
-
-|      返回值类型               |        返回值描述        |
-| :-------------:               | :-----------------: |
-| Guzzle\Service\Resource\Model | 对象列表的结果信息 |
-
 #### 示例
 
 ```php
 // 获取bucket下成员
 $result = $cosClient->listObjects(array('Bucket' => 'testbucket'));
 ```
+###acl相关
+#### 参数说明
+参数说明详见官网文档
+[putobjectacl](https://cloud.tencent.com/document/product/436/7748)  / [getobjectacl](https://cloud.tencent.com/document/product/436/7744) / [putbukectacl](https://cloud.tencent.com/document/product/436/7737) / [getbucketacl](https://cloud.tencent.com/document/product/436/7733)
+
+#### 示例
+
+```php
+#putBucketACL
+try {
+    $result = $cosClient->PutBucketAcl(array(
+        'Bucket' => 'testbucket',
+        'Grants' => array(
+            array(
+                'Grantee' => array(
+                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'Type' => 'CanonicalUser',
+                ),
+                'Permission' => 'FULL_CONTROL',
+            ),
+            // ... repeated
+        ),
+        'Owner' => array(
+            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+        ),));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#getBucketACL
+try {
+    $result = $cosClient->GetBucketAcl(array(
+        'Bucket' => 'testbucket',));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#putObjectACL
+try {
+    $result = $cosClient->PutBucketAcl(array(
+        'Bucket' => 'testbucket',
+        'Grants' => array(
+            array(
+                'Grantee' => array(
+                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'Type' => 'CanonicalUser',
+                ),
+                'Permission' => 'FULL_CONTROL',
+            ),
+            // ... repeated
+        ),
+        'Owner' => array(
+            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+        ),));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#getObjectACL
+try {
+    $result = $cosClient->getObjectAcl(array(
+        'Bucket' => 'testbucket',
+        'Key' => '11'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+###Lifecycle相关
+#### 参数说明
+参数说明详见官网文档
+[putbukectlifecycle](https://cloud.tencent.com/document/product/436/8280) / [getbucketlifecyele](https://cloud.tencent.com/document/product/436/8278) / [deletebucketlifecyele](https://cloud.tencent.com/document/product/436/8284)
+
+#### 示例
+
+```php
+#putBucketLifecycle
+try {
+    $result = $cosClient->putBucketLifecycle(array(
+    // Bucket is required
+    'Bucket' => 'lewzylu02',
+    // Rules is required
+    'Rules' => array(
+        array(
+            'Expiration' => array(
+                'Days' => 1,
+            ),
+            'ID' => 'id1',
+            'Filter' => array(
+                'Prefix' => 'documents/'
+            ),
+            // Status is required
+            'Status' => 'Enabled',
+            'Transition' => array(
+                'Days' => 100,
+                'StorageClass' => 'NEARLINE',
+            ),
+            // ... repeated
+        ),
+    )));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#getBucketLifecycle
+try {
+    $result = $cosClient->getBucketLifecycle(array(
+        // Bucket is required
+        'Bucket' =>'lewzylu02',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#deleteBucketLifecycle
+try {
+    $result = $cosClient->deleteBucketLifecycle(array(
+        // Bucket is required
+        'Bucket' =>'lewzylu02',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+###Cors相关
+#### 参数说明
+参数说明详见官网文档
+[putbukectcors](https://cloud.tencent.com/document/product/436/8279) / [getbucketcors](https://cloud.tencent.com/document/product/436/8274) / [deletebucketcors](https://cloud.tencent.com/document/product/436/8283)
+
+#### 示例
+
+```php
+#putBucketCors
+try {
+    $result = $cosClient->putBucketCors(array(
+        // Bucket is required
+        'Bucket' => 'lewzylu02',
+        // CORSRules is required
+        'CORSRules' => array(
+            array(
+                'AllowedHeaders' => array('*',),
+            // AllowedMethods is required
+            'AllowedMethods' => array('Put', ),
+            // AllowedOrigins is required
+            'AllowedOrigins' => array('*', ),
+            'ExposeHeaders' => array('*', ),
+            'MaxAgeSeconds' => 1,
+        ),
+        // ... repeated
+    ),
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#getBucketCors
+try {
+    $result = $cosClient->getBucketCors(array(
+        // Bucket is required
+        'Bucket' => 'lewzylu02',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+```php
+#deleteBucketCors
+try {
+    $result = $cosClient->deleteBucketCors(array(
+        // Bucket is required
+        'Bucket' => 'lewzylu02',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+
+### 复制对象copyobject
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model copyObject(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| CopySource      |     string     |  无    | 是          |         复制来源         |
+| Key      |     string     |  无    | 是          |         对象名称       |
+
+#### 示例
+
+```php
+#copyobject
+try {
+    $result = $cosClient->copyObject(array(
+        // Bucket is required
+        'Bucket' => 'lewzylu02',
+        // CopySource is required
+        'CopySource' => 'lewzylu03-1252448703.cos.ap-guangzhou.myqcloud.com/tox.ini',
+        // Key is required
+        'Key' => 'string',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+
 
 ### 获得object下载url
 
@@ -282,4 +529,4 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'    => '',
             'secretKey' => '',
             'token' => '')));
-
+```
