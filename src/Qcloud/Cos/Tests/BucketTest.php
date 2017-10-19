@@ -255,6 +255,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             // CORSRules is required
             'CORSRules' => array(
                 array(
+                    'ID' => '1234',
                     'AllowedHeaders' => array('*',),
                     // AllowedMethods is required
                     'AllowedMethods' => array('Put',),
@@ -281,6 +282,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             // CORSRules is required
             'CORSRules' => array(
                 array(
+                    'ID' => '1234',
                     'AllowedHeaders' => array('*',),
                     // AllowedMethods is required
                     'AllowedMethods' => array('Put', ),
@@ -309,6 +311,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             // CORSRules is required
             'CORSRules' => array(
                 array(
+                    'ID' => '1234',
                     'AllowedHeaders' => array('*',),
                     // AllowedMethods is required
                     'AllowedMethods' => array('Put', ),

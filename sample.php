@@ -76,15 +76,15 @@ try {
 //    echo "$e\n";
 //}
 //
-//#headObject
-//try {
-//    $result = $cosClient->headObject(array(
-//        'Bucket' => 'testbucket',
-//        'Key' => 'hello.txt'));
-//    print_r($result);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
+#headObject
+try {
+    $result = $cosClient->headObject(array(
+        'Bucket' => 'testbucket',
+        'Key' => '11'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 //
 //#listObjects
 //try {
@@ -163,15 +163,15 @@ try {
     echo "$e\n";
 }
 
-//#getObjectACL
-//try {
-//    $result = $cosClient->getObjectAcl(array(
-//        'Bucket' => 'testbucket',
-//        'Key' => '11'));
-//    print_r($result);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
+#getObjectACL
+try {
+    $result = $cosClient->getObjectAcl(array(
+        'Bucket' => 'testbucket',
+        'Key' => '11'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 //#putBucketLifecycle
 //try {
 //    $result = $cosClient->putBucketLifecycle(array(
@@ -229,16 +229,17 @@ try {
 //        // CORSRules is required
 //        'CORSRules' => array(
 //            array(
+//                'ID' => '1234',
 //                'AllowedHeaders' => array('*',),
-//            // AllowedMethods is required
-//            'AllowedMethods' => array('Put', ),
-//            // AllowedOrigins is required
-//            'AllowedOrigins' => array('*', ),
-//            'ExposeHeaders' => array('*', ),
-//            'MaxAgeSeconds' => 1,
+//                // AllowedMethods is required
+//                'AllowedMethods' => array('Put', ),
+//                // AllowedOrigins is required
+//                'AllowedOrigins' => array('*', ),
+//                'ExposeHeaders' => array('*', ),
+//                'MaxAgeSeconds' => 1,
+//            ),
+//            // ... repeated
 //        ),
-//        // ... repeated
-//    ),
 //    ));
 //    print_r($result);
 //} catch (\Exception $e) {

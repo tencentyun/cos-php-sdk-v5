@@ -929,6 +929,9 @@ class Service {
                                     'type' => 'object',
                                     'sentAs' => 'CORSRule',
                                     'properties' => array(
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
                                         'AllowedHeaders' => array(
                                             'type' => 'array',
                                             'data' => array(
@@ -1521,6 +1524,8 @@ class Service {
                                     'type' => 'object',
                                     'sentAs' => 'CORSRule',
                                     'properties' => array(
+                                        'ID' => array(
+                                            'type' => 'string'),
                                         'AllowedHeaders' => array(
                                             'type' => 'array',
                                             'sentAs' => 'AllowedHeader',
