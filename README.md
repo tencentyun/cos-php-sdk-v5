@@ -268,7 +268,7 @@ $args是包含以下字段的关联数组：
 // 获取bucket下成员
 $result = $cosClient->listObjects(array('Bucket' => 'testbucket'));
 ```
-###acl相关
+### acl相关
 #### 参数说明
 参数说明详见官网文档
 [putobjectacl](https://cloud.tencent.com/document/product/436/7748)  / [getobjectacl](https://cloud.tencent.com/document/product/436/7744) / [putbukectacl](https://cloud.tencent.com/document/product/436/7737) / [getbucketacl](https://cloud.tencent.com/document/product/436/7733)
@@ -346,7 +346,7 @@ try {
     echo "$e\n";
 }
 ```
-###Lifecycle相关
+### Lifecycle相关
 #### 参数说明
 参数说明详见官网文档
 [putbukectlifecycle](https://cloud.tencent.com/document/product/436/8280) / [getbucketlifecyele](https://cloud.tencent.com/document/product/436/8278) / [deletebucketlifecyele](https://cloud.tencent.com/document/product/436/8284)
@@ -407,7 +407,7 @@ try {
     echo "$e\n";
 }
 ```
-###Cors相关
+### Cors相关
 #### 参数说明
 参数说明详见官网文档
 [putbukectcors](https://cloud.tencent.com/document/product/436/8279) / [getbucketcors](https://cloud.tencent.com/document/product/436/8274) / [deletebucketcors](https://cloud.tencent.com/document/product/436/8283)
