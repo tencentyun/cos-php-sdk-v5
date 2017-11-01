@@ -1,6 +1,6 @@
 ## 接口列表
 
-### 获取桶列表 listbuckets
+### 获取桶列表 listBuckets
 #### 方法原型
 ```php
 public Guzzle\Service\Resource\Model listBucket(array $args = array())
@@ -268,10 +268,27 @@ $args是包含以下字段的关联数组：
 // 获取bucket下成员
 $result = $cosClient->listObjects(array('Bucket' => 'testbucket'));
 ```
-### acl相关
+### putBucketACL
+
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model putBucketACL(array $args = array());
+```
+
 #### 参数说明
-参数说明详见官网文档
-[putobjectacl](https://cloud.tencent.com/document/product/436/7748)  / [getobjectacl](https://cloud.tencent.com/document/product/436/7744) / [putbukectacl](https://cloud.tencent.com/document/product/436/7737) / [getbucketacl](https://cloud.tencent.com/document/product/436/7733)
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| ACL      |     string     |  无    | 否           |         ACL权限控制         |
+| GrantRead |     string     |  无    | 否           |         赋予被授权者读的权限。格式：id=" ",id=" "；当需要给子账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<SubUin>"，当需要给根账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<OwnerUin>"，例如：'id="qcs::cam::uin/123:uin/123", id="qcs::cam::uin/123:uin/456"'         |
+| GrantWrite |     string     |  无    | 否           |         赋予被授权者写的权限。格式：id=" ",id=" "；当需要给子账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<SubUin>"，当需要给根账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<OwnerUin>"，例如：'id="qcs::cam::uin/123:uin/123", id="qcs::cam::uin/123:uin/456"'       |
+| GrantFullControl |     string     |  无    | 否           |          赋予被授权者读写权限。格式：id=" ",id=" "；当需要给子账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<SubUin>"，当需要给根账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<OwnerUin>"，例如：'id="qcs::cam::uin/123:uin/123", id="qcs::cam::uin/123:uin/456"'         |
+
 
 #### 示例
 
@@ -300,6 +317,23 @@ try {
     echo "$e\n";
 }
 ```
+### getBucketACL
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model getBucketACL(array $args = array());
+```
+
+#### 参数说明
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+
+
+
+#### 示例
 ```php
 #getBucketACL
 try {
@@ -310,6 +344,25 @@ try {
     echo "$e\n";
 }
 ```
+### putObjectACL
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model putObjectACL(array $args = array());
+```
+
+#### 参数说明
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| Key |     string     |  无    | 是            |         文件名称         |
+| ACL      |     string     |  无    | 否           |         ACL权限控制         |
+| GrantRead |     string     |  无    | 否           |         赋予被授权者读的权限。格式：id=" ",id=" "；当需要给子账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<SubUin>"，当需要给根账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<OwnerUin>"，例如：'id="qcs::cam::uin/123:uin/123", id="qcs::cam::uin/123:uin/456"'         |
+| GrantWrite |     string     |  无    | 否           |         赋予被授权者写的权限。格式：id=" ",id=" "；当需要给子账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<SubUin>"，当需要给根账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<OwnerUin>"，例如：'id="qcs::cam::uin/123:uin/123", id="qcs::cam::uin/123:uin/456"'       |
+| GrantFullControl |     string     |  无    | 否           |          赋予被授权者读写权限。格式：id=" ",id=" "；当需要给子账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<SubUin>"，当需要给根账户授权时，id="qcs::cam::uin/<OwnerUin>:uin/<OwnerUin>"，例如：'id="qcs::cam::uin/123:uin/123", id="qcs::cam::uin/123:uin/456"'         |
+
+#### 示例
 ```php
 #putObjectACL
 try {
@@ -335,6 +388,22 @@ try {
     echo "$e\n";
 }
 ```
+### getObjectACL
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model getObjectACL(array $args = array());
+```
+
+#### 参数说明
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               | 
+| Key|     string     |  无    | 是           |              文件名称               | 
+
+#### 示例
 ```php
 #getObjectACL
 try {
@@ -346,76 +415,30 @@ try {
     echo "$e\n";
 }
 ```
-### Lifecycle相关
-#### 参数说明
-参数说明详见官网文档
-[putbukectlifecycle](https://cloud.tencent.com/document/product/436/8280) / [getbucketlifecyele](https://cloud.tencent.com/document/product/436/8278) / [deletebucketlifecyele](https://cloud.tencent.com/document/product/436/8284)
 
+### putBucketCors
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model putBucketCors(array $args = array());
+```
+#### 参数说明
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| CORSRules |     array |  无    | 是            |        CORS规则        |
+| AllowedMethods |     array |  无    | 否           |         允许的 HTTP 操作，枚举值：GET，PUT，HEAD，POST，DELETE        |
+| AllowedOrigins |     array |  无    | 否           |         允许的访问来源，支持通配符 * 格式为：协议://域名[:端口]如：http://www.qq.com       |
+| AllowedHeaders |     array |  无    | 否           |          在发送 OPTIONS 请求时告知服务端，接下来的请求可以使用哪些自定义的 HTTP 请求头部，支持通配符 *        |
+| ExposeHeaders |     array |  无    | 否           |         设置浏览器可以接收到的来自服务器端的自定义头部信息       |
+| MaxAgeSeconds |     string     |  无    | 否           |         设置 OPTIONS 请求得到结果的有效期        |
+| ID |     string     |  无    | 否           |         配置规则的 ID       |
 #### 示例
 
 ```php
-#putBucketLifecycle
-try {
-    $result = $cosClient->putBucketLifecycle(array(
-    // Bucket is required
-    'Bucket' => 'lewzylu02',
-    // Rules is required
-    'Rules' => array(
-        array(
-            'Expiration' => array(
-                'Days' => 1,
-            ),
-            'ID' => 'id1',
-            'Filter' => array(
-                'Prefix' => 'documents/'
-            ),
-            // Status is required
-            'Status' => 'Enabled',
-            'Transition' => array(
-                'Days' => 100,
-                'StorageClass' => 'NEARLINE',
-            ),
-            // ... repeated
-        ),
-    )));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-```
-```php
-#getBucketLifecycle
-try {
-    $result = $cosClient->getBucketLifecycle(array(
-        // Bucket is required
-        'Bucket' =>'lewzylu02',
-    ));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-```
-```php
-#deleteBucketLifecycle
-try {
-    $result = $cosClient->deleteBucketLifecycle(array(
-        // Bucket is required
-        'Bucket' =>'lewzylu02',
-    ));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-```
-### Cors相关
-#### 参数说明
-参数说明详见官网文档
-[putbukectcors](https://cloud.tencent.com/document/product/436/8279) / [getbucketcors](https://cloud.tencent.com/document/product/436/8274) / [deletebucketcors](https://cloud.tencent.com/document/product/436/8283)
-
-#### 示例
-
-```php
-#putBucketCors
+###putBucketCors
 try {
     $result = $cosClient->putBucketCors(array(
         // Bucket is required
@@ -439,6 +462,21 @@ try {
     echo "$e\n";
 }
 ```
+### getBucketCors
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model getBucketCors(array $args = array());
+```
+#### 参数说明
+
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               | 
+#### 示例
+
 ```php
 #getBucketCors
 try {
@@ -451,6 +489,19 @@ try {
     echo "$e\n";
 }
 ```
+### deleteBucketCors
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model deleteBucketCors(array $args = array());
+```
+#### 参数说明
+
+* **params** (Object) ： 参数列表
+  * Bucket —— (String) ： Bucket 名称   
+#### 示例
+
 ```php
 #deleteBucketCors
 try {
@@ -500,6 +551,128 @@ try {
     echo "$e\n";
 }
 ```
+
+
+
+### putBucketLifecycle
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model putBucketLifecycle(array $args = array());
+```
+#### 参数说明
+
+| 参数名称   | 参数描述   |类型 | 必填 | 
+| -------------- | -------------- |---------- | ----------- |
+ |  Bucket  | Bucket 名称，由数字和小写字母以及中划线 "-" 构成 | String |   是 | 
+ |  Rule  |  设置对应的规则，包括 ID，Filter，Status，Expiration，Transition，NoncurrentVersionExpiration，NoncurrentVersionTransition，AbortIncompleteMultipartUpload | List |   是 |
+ |  ID  |  设置规则的 ID | String |  否 |
+ |  Filter  | 用于描述规则影响的 Object 集合 | Dict |  是 | 
+ |  Status  | 设置 Rule 是否启用，可选值为 Enabled 或者 Disabled | Dict |  是 | 
+ |  Expiration  |  设置 Object 过期规则，可以指定天数 Days 或者指定日期 Date | Dict |  否 |
+ |  Transition  | 设置 Object 转换存储类型规则，可以指定天数 Days 或者指定日期 Date，StorageClass 可选 Standard_IA， Nearline | Dict |  否 | 
+ |  NoncurrentVersionExpiration  | 设置非当前版本 Object 过期规则，可以指定天数 NoncurrentDays |  Dict |  否 |
+ |  NoncurrentVersionTransition  | 设置非当前版本 Object 转换存储类型规则，可以指定天数 NoncurrentDays，StorageClass 可选 Standard_IA， Nearline | Dict |  否 | 
+ |  AbortIncompleteMultipartUpload  |指明分块上传开始后多少天内必须完成上传 |  Dict |  否 | 
+
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| Rules  |     array |  无    | 是            |      设置对应的规则，包括 ID，Filter，Status，Expiration，Transition，NoncurrentVersionExpiration，NoncurrentVersionTransition，AbortIncompleteMultipartUpload      |
+| ID |     string     |  无    | 否           |         配置规则的 ID       |
+| Filter  |     array |  无    | 是          |         用于描述规则影响的 Object 集合        |
+| Status  |     array |  无    | 是          |         设置 Rule 是否启用，可选值为 Enabled 或者 Disabled     |
+| Expiration  |     array |  无    | 否           |         设置 Object 过期规则，可以指定天数 Days 或者指定日期 Date |
+| Transition  |     array |  无    | 否           |         设置 Object 转换存储类型规则，可以指定天数 Days 或者指定日期 Date，StorageClass 可选 Standard_IA， Nearline       |
+#### 示例
+
+```php
+#putBucketLifecycle
+try {
+    $result = $cosClient->putBucketLifecycle(array(
+    // Bucket is required
+    'Bucket' => 'lewzylu02',
+    // Rules is required
+    'Rules' => array(
+        array(
+            'Expiration' => array(
+                'Days' => 1,
+            ),
+            'ID' => 'id1',
+            'Filter' => array(
+                'Prefix' => 'documents/'
+            ),
+            // Status is required
+            'Status' => 'Enabled',
+            'Transition' => array(
+                'Days' => 100,
+                'StorageClass' => 'NEARLINE',
+            ),
+            // ... repeated
+        ),
+    )));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+### getBucketLifecycle
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model getBucketLifecycle(array $args = array());
+```
+#### 参数说明
+
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               | 
+#### 示例
+
+```php
+#getBucketLifecycle
+try {
+    $result = $cosClient->getBucketLifecycle(array(
+        // Bucket is required
+        'Bucket' =>'lewzylu02',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+### deleteBucketLifecycle
+#### 方法原型
+
+```php
+// 获取文件列表
+public Guzzle\Service\Resource\Model deleteBucketLifecycle(array $args = array());
+```
+#### 参数说明
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               | 
+#### 示例
+
+```php
+#deleteBucketLifecycle
+try {
+    $result = $cosClient->deleteBucketLifecycle(array(
+        // Bucket is required
+        'Bucket' =>'lewzylu02',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+```
+
+
+
 
 
 ### 获得object下载url
