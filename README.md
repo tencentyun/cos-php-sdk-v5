@@ -563,20 +563,6 @@ public Guzzle\Service\Resource\Model putBucketLifecycle(array $args = array());
 ```
 #### 参数说明
 
-| 参数名称   | 参数描述   |类型 | 必填 | 
-| -------------- | -------------- |---------- | ----------- |
- |  Bucket  | Bucket 名称，由数字和小写字母以及中划线 "-" 构成 | String |   是 | 
- |  Rule  |  设置对应的规则，包括 ID，Filter，Status，Expiration，Transition，NoncurrentVersionExpiration，NoncurrentVersionTransition，AbortIncompleteMultipartUpload | List |   是 |
- |  ID  |  设置规则的 ID | String |  否 |
- |  Filter  | 用于描述规则影响的 Object 集合 | Dict |  是 | 
- |  Status  | 设置 Rule 是否启用，可选值为 Enabled 或者 Disabled | Dict |  是 | 
- |  Expiration  |  设置 Object 过期规则，可以指定天数 Days 或者指定日期 Date | Dict |  否 |
- |  Transition  | 设置 Object 转换存储类型规则，可以指定天数 Days 或者指定日期 Date，StorageClass 可选 Standard_IA， Nearline | Dict |  否 | 
- |  NoncurrentVersionExpiration  | 设置非当前版本 Object 过期规则，可以指定天数 NoncurrentDays |  Dict |  否 |
- |  NoncurrentVersionTransition  | 设置非当前版本 Object 转换存储类型规则，可以指定天数 NoncurrentDays，StorageClass 可选 Standard_IA， Nearline | Dict |  否 | 
- |  AbortIncompleteMultipartUpload  |指明分块上传开始后多少天内必须完成上传 |  Dict |  否 | 
-
-
 | 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
 | :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
