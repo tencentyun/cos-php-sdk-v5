@@ -8,6 +8,14 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Change from path style to host style, currently only host style is supported in cos.
  */
+function endWith($haystack, $needle) {
+    $length = strlen($needle);
+    if($length == 0)
+    {
+        return true;
+    }
+    return (substr($haystack, -$length) === $needle);
+}
 class BucketStyleListener implements EventSubscriberInterface {
 
     private $appId;  // string: application id.
@@ -28,6 +36,10 @@ class BucketStyleListener implements EventSubscriberInterface {
         $command = $event['command'];
         $bucket = $command['Bucket'];
         $request = $command->getRequest();
+        if (endWith($bucket,'-'.$this->appId))
+        {
+            $bucket = substr($bucket,0,strlen($bucket)-strlen('-'.$this->appId));
+        }
         if ($command->getName() == 'ListBuckets')
         {
             $request->setHost('service.cos.myqcloud.com');
