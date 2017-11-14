@@ -16,13 +16,13 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //}
 //
 //
-#createBucket
-try {
-    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
-    print_r($result);
-    } catch (\Exception $e) {
-    echo "$e\n";
-}
+//#createBucket
+//try {
+//    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
+//    print_r($result);
+//    } catch (\Exception $e) {
+//    echo "$e\n";
+//}
 
 //#uploadbigfile
 //try {
@@ -76,15 +76,15 @@ try {
 //    echo "$e\n";
 //}
 //
-#headObject
-try {
-    $result = $cosClient->headObject(array(
-        'Bucket' => 'testbucket',
-        'Key' => '11'));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
+//#headObject
+//try {
+//    $result = $cosClient->headObject(array(
+//        'Bucket' => 'testbucket',
+//        'Key' => '11'));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //
 //#listObjects
 //try {
@@ -139,39 +139,39 @@ try {
 //    echo "$e\n";
 //}
 //
-#putObjectACL
-try {
-    $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket',
-        'Grants' => array(
-            array(
-                'Grantee' => array(
-                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
-                    'Type' => 'CanonicalUser',
-                ),
-                'Permission' => 'FULL_CONTROL',
-            ),
-            // ... repeated
-        ),
-        'Owner' => array(
-            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
-            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
-        ),));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-
-#getObjectACL
-try {
-    $result = $cosClient->getObjectAcl(array(
-        'Bucket' => 'testbucket',
-        'Key' => '11'));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
+//#putObjectACL
+//try {
+//    $result = $cosClient->PutBucketAcl(array(
+//        'Bucket' => 'testbucket',
+//        'Grants' => array(
+//            array(
+//                'Grantee' => array(
+//                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+//                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+//                    'Type' => 'CanonicalUser',
+//                ),
+//                'Permission' => 'FULL_CONTROL',
+//            ),
+//            // ... repeated
+//        ),
+//        'Owner' => array(
+//            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+//            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+//        ),));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//
+//#getObjectACL
+//try {
+//    $result = $cosClient->getObjectAcl(array(
+//        'Bucket' => 'testbucket',
+//        'Key' => '11'));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //#putBucketLifecycle
 //try {
 //    $result = $cosClient->putBucketLifecycle(array(

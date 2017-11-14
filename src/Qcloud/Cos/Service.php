@@ -406,108 +406,17 @@ class Service {
                             ),
                         ),
                     ),
-                    'PutBucketAcl' => array(
-                        'httpMethod' => 'PUT',
-                        'uri' => '/{Bucket}?acl',
+                    'DeleteBucketReplication' => array(
+                        'httpMethod' => 'DELETE',
+                        'uri' => '/{Bucket}?replication',
                         'class' => 'Qcloud\\Cos\\Command',
-                        'responseClass' => 'PutBucketAclOutput',
+                        'responseClass' => 'DeleteBucketReplicationOutput',
                         'responseType' => 'model',
-                        'data' => array(
-                            'xmlRoot' => array(
-                                'name' => 'AccessControlPolicy',
-                            ),
-                        ),
                         'parameters' => array(
-                            'ACL' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-acl',
-                            ),
-                            'Grants' => array(
-                                'type' => 'array',
-                                'location' => 'xml',
-                                'sentAs' => 'AccessControlList',
-                                'items' => array(
-                                    'name' => 'Grant',
-                                    'type' => 'object',
-                                    'properties' => array(
-                                        'Grantee' => array(
-                                            'type' => 'object',
-                                            'properties' => array(
-                                                'DisplayName' => array(
-                                                    'type' => 'string',
-                                                ),
-                                                'EmailAddress' => array(
-                                                    'type' => 'string',
-                                                ),
-                                                'ID' => array(
-                                                    'type' => 'string',
-                                                ),
-                                                'Type' => array(
-                                                    'required' => true,
-                                                    'type' => 'string',
-                                                    'sentAs' => 'xsi:type',
-                                                    'data' => array(
-                                                        'xmlAttribute' => true,
-                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance',
-                                                    ),
-                                                ),
-                                                'URI' => array(
-                                                    'type' => 'string',
-                                                ),
-                                            ),
-                                        ),
-                                        'Permission' => array(
-                                            'type' => 'string',
-                                        ),
-                                    ),
-                                ),
-                            ),
-                            'Owner' => array(
-                                'type' => 'object',
-                                'location' => 'xml',
-                                'properties' => array(
-                                    'DisplayName' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'ID' => array(
-                                        'type' => 'string',
-                                    ),
-                                ),
-                            ),
                             'Bucket' => array(
                                 'required' => true,
                                 'type' => 'string',
                                 'location' => 'uri',
-                            ),
-                            'GrantFullControl' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-grant-full-control',
-                            ),
-                            'GrantRead' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-grant-read',
-                            ),
-                            'GrantReadACP' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-grant-read-acp',
-                            ),
-                            'GrantWrite' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-grant-write',
-                            ),
-                            'GrantWriteACP' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-grant-write-acp',
-                            ),
-                            'ACP' => array(
-                                'type' => 'object',
-                                'additionalProperties' => true,
                             ),
                         ),
                     ),
@@ -667,6 +576,42 @@ class Service {
                         'uri' => '/{Bucket}?lifecycle',
                         'class' => 'Qcloud\\Cos\\Command',
                         'responseClass' => 'GetBucketLifecycleOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
+                    'GetBucketVersioning' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?versioning',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'GetBucketVersioningOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
+                    'GetBucketReplication' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?replication',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'GetBucketReplicationOutput',
                         'responseType' => 'model',
                         'parameters' => array(
                             'Bucket' => array(
@@ -899,6 +844,111 @@ class Service {
                             ),
                         ),
                     ),
+                    'PutBucketAcl' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?acl',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketAclOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'AccessControlPolicy',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'ACL' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-acl',
+                            ),
+                            'Grants' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'AccessControlList',
+                                'items' => array(
+                                    'name' => 'Grant',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Grantee' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'DisplayName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'EmailAddress' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'ID' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Type' => array(
+                                                    'required' => true,
+                                                    'type' => 'string',
+                                                    'sentAs' => 'xsi:type',
+                                                    'data' => array(
+                                                        'xmlAttribute' => true,
+                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance',
+                                                    ),
+                                                ),
+                                                'URI' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'Permission' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'Owner' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'DisplayName' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'ID' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'GrantFullControl' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-full-control',
+                            ),
+                            'GrantRead' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-read',
+                            ),
+                            'GrantReadACP' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-read-acp',
+                            ),
+                            'GrantWrite' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-write',
+                            ),
+                            'GrantWriteACP' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-grant-write-acp',
+                            ),
+                            'ACP' => array(
+                                'type' => 'object',
+                                'additionalProperties' => true,
+                            ),
+                        ),
+                    ),
                     'PutBucketCors' => array(
                         'httpMethod' => 'PUT',
                         'uri' => '/{Bucket}?cors',
@@ -1084,6 +1134,102 @@ class Service {
                                             'properties' => array(
                                                 'NoncurrentDays' => array(
                                                     'type' => 'numeric',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                    'PutBucketVersioning' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?versioning',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketVersioningOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'VersioningConfiguration',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'MFA' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-mfa',
+                            ),
+                            'MFADelete' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                                'sentAs' => 'MfaDelete',
+                            ),
+                            'Status' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                        ),
+                    ),
+                    'PutBucketReplication' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?replication',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketReplicationOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'ReplicationConfiguration',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Role' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Rules' => array(
+                                'required' => true,
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'ReplicationRule',
+                                    'type' => 'object',
+                                    'sentAs' => 'Rule',
+                                    'properties' => array(
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Prefix' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Status' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Destination' => array(
+                                            'required' => true,
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Bucket' => array(
+                                                    'required' => true,
+                                                    'type' => 'string',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
                                                 ),
                                             ),
                                         ),
@@ -1326,6 +1472,16 @@ class Service {
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-id'))),
                     'DeleteBucketLifecycleOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'DeleteBucketReplicationOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
                         'properties' => array(
@@ -1664,6 +1820,74 @@ class Service {
                             ),
                         ),
                     ),
+                    'GetBucketVersioningOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Status' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'MFADelete' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                                'sentAs' => 'MfaDelete',
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'GetBucketReplicationOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Role' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Rules' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'Rule',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'ReplicationRule',
+                                    'type' => 'object',
+                                    'sentAs' => 'Rule',
+                                    'properties' => array(
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Prefix' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Status' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Destination' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Bucket' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'UploadPartOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -1719,6 +1943,26 @@ class Service {
                         ),
                     ),
                     'PutBucketLifecycleOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'PutBucketVersioningOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'PutBucketReplicationOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
                         'properties' => array(

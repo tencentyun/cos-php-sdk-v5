@@ -29,7 +29,13 @@ class Client extends GSClient {
                         'cn-north'=>'ap-beijing-1',
                         'cn-south-2'=>'ap-guangzhou-2',
                         'cn-southwest'=>'ap-chengdu',
-                        'sg'=>'ap-singapore');
+                        'sg'=>'ap-singapore',
+                        'tj'=>'ap-beijing-1',
+                        'bj'=>'ap-beijing',
+                        'sh'=>'ap-shanghai',
+                        'gz'=>'ap-guangzhou',
+                        'cd'=>'	ap-chengdu',
+                        'sgp'=>'ap-singapore',);
         if (array_key_exists($this->region,$regionmap))
         {
             $this->region = $regionmap[$this->region];
@@ -47,37 +53,26 @@ class Client extends GSClient {
                 array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
                     )); // show curl verbose or not
 
-$desc = ServiceDescription::factory(Service::getService());
-$this->setDescription($desc);
-$this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
+        $desc = ServiceDescription::factory(Service::getService());
+        $this->setDescription($desc);
+        $this->setUserAgent('cos-php-sdk-v5/' . Client::VERSION, true);
 
-$this->addSubscriber(new ExceptionListener());
-$this->addSubscriber(new Md5Listener($this->signature));
-$this->addSubscriber(new TokenListener($this->token));
-$this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
-$this->addSubscriber(new BucketStyleListener($this->appId));
+        $this->addSubscriber(new ExceptionListener());
+        $this->addSubscriber(new Md5Listener($this->signature));
+        $this->addSubscriber(new TokenListener($this->token));
+        $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
+        $this->addSubscriber(new BucketStyleListener($this->appId));
 
-// Allow for specifying bodies with file paths and file handles
-$this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
-}
+        // Allow for specifying bodies with file paths and file handles
+        $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
+    }
 
-public function __destruct() {
-}
+    public function __destruct() {
+    }
 
     public function __call($method, $args) {
         return parent::__call(ucfirst($method), $args);
     }
-    /**
-     * Create a pre-signed URL for a request
-     *
-     * @param RequestInterface     $request Request to generate the URL for. Use the factory methods of the client to
-     *                                      create this request object
-     * @param int|string|\DateTime $expires The time at which the URL should expire. This can be a Unix timestamp, a
-     *                                      PHP DateTime object, or a string that can be evaluated by strtotime
-     *
-     * @return string
-     * @throws InvalidArgumentException if the request is not associated with this client object
-     */
     public function createPresignedUrl(RequestInterface $request, $expires)
     {
         if ($request->getClient() !== $this) {
