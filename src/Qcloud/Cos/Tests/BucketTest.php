@@ -41,10 +41,10 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     public function testDeleteBucket()
     {
         try {
-            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
+            $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket2'));
             var_dump($result);
             sleep(2);
-            $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
+            $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket2'));
             var_dump($result);
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
@@ -258,7 +258,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ID' => '1234',
                     'AllowedHeaders' => array('*',),
                     // AllowedMethods is required
-                    'AllowedMethods' => array('Put',),
+                    'AllowedMethods' => array('PUT',),
                     // AllowedOrigins is required
                     'AllowedOrigins' => array('*',),
                     'ExposeHeaders' => array('*',),
@@ -285,7 +285,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ID' => '1234',
                     'AllowedHeaders' => array('*',),
                     // AllowedMethods is required
-                    'AllowedMethods' => array('Put', ),
+                    'AllowedMethods' => array('PUT', ),
                     // AllowedOrigins is required
                     'AllowedOrigins' => array('*', ),
                     'ExposeHeaders' => array('*', ),
@@ -314,7 +314,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ID' => '1234',
                     'AllowedHeaders' => array('*',),
                     // AllowedMethods is required
-                    'AllowedMethods' => array('Put', ),
+                    'AllowedMethods' => array('PUT', ),
                     // AllowedOrigins is required
                     'AllowedOrigins' => array('*', ),
                     'ExposeHeaders' => array('*', ),
