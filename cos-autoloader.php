@@ -237,6 +237,7 @@ $mapping = array(
     'Qcloud\Cos\BucketStyleListener' => 'src/Qcloud/Cos/BucketStyleListener.php',
     'Qcloud\Cos\Client' => 'src/Qcloud/Cos/Client.php',
     'Qcloud\Cos\Command' => 'src/Qcloud/Cos/Command.php',
+    'Qcloud\Cos\Copy' => 'src/Qcloud/Cos/Copy.php',
     'Qcloud\Cos\Exception\BucketAlreadyExistsException' => 'src/Qcloud/Cos/Exception/BucketAlreadyExistsException.php',
     'Qcloud\Cos\Exception\BucketNotEmptyException' => 'src/Qcloud/Cos/Exception/BucketNotEmptyException.php',
     'Qcloud\Cos\Exception\CosException' => 'src/Qcloud/Cos/Exception/CosException.php',

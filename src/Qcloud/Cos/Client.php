@@ -98,28 +98,63 @@ class Client extends GSClient {
     public function upload($bucket, $key, $body, $acl = '', $options = array()) {
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
-                    'min_part_size' => MultipartUpload::MIN_PART_SIZE,
-                    'params'        => array()));
+            'min_part_size' => MultipartUpload::MIN_PART_SIZE,
+            'params'        => array()));
 
         if ($body->getSize() < $options['min_part_size']) {
             // Perform a simple PutObject operation
             return $this->putObject(array(
-                        'Bucket' => $bucket,
-                        'Key'    => $key,
-                        'Body'   => $body,
-                        'ACL'    => $acl
-                        ) + $options['params']);
-        }
-
-        $multipartUpload = new MultipartUpload($this, $body, $options['min_part_size'], array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
                     'Body'   => $body,
                     'ACL'    => $acl
-                    ) + $options['params']);
+                ) + $options['params']);
+        }
+
+        $multipartUpload = new MultipartUpload($this, $body, $options['min_part_size'], array(
+                'Bucket' => $bucket,
+                'Key'    => $key,
+                'Body'   => $body,
+                'ACL'    => $acl
+            ) + $options['params']);
 
         return $multipartUpload->performUploading();
     }
+    public function copy($bucket, $key, $copysource, $acl = '', $options = array()) {
+    $options = Collection::fromConfig(array_change_key_case($options), array(
+        'min_part_size' => MultipartUpload::MIN_PART_SIZE,
+        'params'        => array()));
+        $sourcebucket = explode('-',explode('.',$copysource)[0])[0];
+        $sourceappid = explode('-',explode('.',$copysource)[0])[1];
+        $sourceregion = explode('.',$copysource)[2];
+        $sourcekey = substr(strstr($copysource,'/'),1);
+        $cosClient = new Client(array('region' => getenv('COS_REGION'),
+        'credentials'=> array(
+            'appId' => $sourceappid,
+            'secretId'    => $this->secretId,
+            'secretKey' => $this->secretKey)));
+
+    $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
+                            'Key'=>$sourcekey));
+    $contentlength =$rt['ContentLength'];
+    if ($contentlength < $options['min_part_size']) {
+        return $this->UploadPartCopy(array(
+                'Bucket' => $bucket,
+                'Key'    => $key,
+                'CopySource'   => $copysource,
+                'ACL'    => $acl
+            ) + $options['params']);
+    }
+    $copy = new Copy($this, $contentlength, $copysource, $options['min_part_size'], array(
+            'Bucket' => $bucket,
+            'Key'    => $key,
+            'ContentLength' => $contentlength,
+            'CopySource'   => $copysource,
+            'ACL'    => $acl
+        ) + $options['params']);
+
+    return $copy->performUploading();
+}
 
     public static function encodeKey($key) {
         return str_replace('%2F', '/', rawurlencode($key));

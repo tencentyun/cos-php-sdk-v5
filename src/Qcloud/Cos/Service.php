@@ -392,6 +392,68 @@ class Service {
                                 'minLength' => 1,
                                 'filters' => array(
                                     'Qcloud\\Cos\\Client::explodeKey')))),
+                    'DeleteObjects' => array(
+                        'httpMethod' => 'POST',
+                        'uri' => '/{Bucket}?delete',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'DeleteObjectsOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'Delete',
+                            ),
+                            'contentMd5' => true,
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Objects' => array(
+                                'required' => true,
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'ObjectIdentifier',
+                                    'type' => 'object',
+                                    'sentAs' => 'Object',
+                                    'properties' => array(
+                                        'Key' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                            'minLength' => 1,
+                                        ),
+                                        'VersionId' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'Quiet' => array(
+                                'type' => 'boolean',
+                                'format' => 'boolean-string',
+                                'location' => 'xml',
+                            ),
+                            'MFA' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-mfa',
+                            ),
+                            'RequestPayer' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-payer',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
                     'DeleteBucketLifecycle' => array(
                         'httpMethod' => 'DELETE',
                         'uri' => '/{Bucket}?lifecycle',
@@ -1238,6 +1300,102 @@ class Service {
                             ),
                         ),
                     ),
+                    'PutBucketVersioning' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?versioning',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketVersioningOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'VersioningConfiguration',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'MFA' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-mfa',
+                            ),
+                            'MFADelete' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                                'sentAs' => 'MfaDelete',
+                            ),
+                            'Status' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                        ),
+                    ),
+                    'PutBucketReplication' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?replication',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketReplicationOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'ReplicationConfiguration',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Role' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Rules' => array(
+                                'required' => true,
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'ReplicationRule',
+                                    'type' => 'object',
+                                    'sentAs' => 'Rule',
+                                    'properties' => array(
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Prefix' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Status' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Destination' => array(
+                                            'required' => true,
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Bucket' => array(
+                                                    'required' => true,
+                                                    'type' => 'string',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                     'ListParts' => array(
                         'httpMethod' => 'GET',
                         'uri' => '/{Bucket}{/Key*}',
@@ -1344,7 +1502,127 @@ class Service {
                         'errorResponses' => array(
                             array(
                                 'reason' => 'The specified key does not exist.',
-                                'class' => 'NoSuchKeyException')))),
+                                'class' => 'NoSuchKeyException'))),
+                    'UploadPartCopy' => array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UploadPartCopyOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'UploadPartCopyRequest',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'CopySource' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source',
+                ),
+                'CopySourceIfMatch' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-if-match',
+                ),
+                'CopySourceIfModifiedSince' => array(
+                    'type' => array(
+                        'object',
+                        'string',
+                        'integer',
+                    ),
+                    'format' => 'date-time-http',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-if-modified-since',
+                ),
+                'CopySourceIfNoneMatch' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-if-none-match',
+                ),
+                'CopySourceIfUnmodifiedSince' => array(
+                    'type' => array(
+                        'object',
+                        'string',
+                        'integer',
+                    ),
+                    'format' => 'date-time-http',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-if-unmodified-since',
+                ),
+                'CopySourceRange' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-range',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                    'minLength' => 1,
+                    'filters' => array(
+                        'Qcloud\\Cos\\Client::explodeKey',
+                    ),
+                ),
+                'PartNumber' => array(
+                    'required' => true,
+                    'type' => 'numeric',
+                    'location' => 'query',
+                    'sentAs' => 'partNumber',
+                ),
+                'UploadId' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'uploadId',
+                ),
+                'SSECustomerAlgorithm' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
+                ),
+                'SSECustomerKey' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-server-side-encryption-customer-key',
+                ),
+                'SSECustomerKeyMD5' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
+                ),
+                'CopySourceSSECustomerAlgorithm' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-server-side-encryption-customer-algorithm',
+                ),
+                'CopySourceSSECustomerKey' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-server-side-encryption-customer-key',
+                ),
+                'CopySourceSSECustomerKeyMD5' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-copy-source-server-side-encryption-customer-key-MD5',
+                ),
+                'RequestPayer' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-payer',
+                ),
+                'command.expects' => array(
+                    'static' => true,
+                    'default' => 'application/xml',
+                ),
+            ),
+        ),),
                 'models' => array(
                     'AbortMultipartUploadOutput' => array(
                         'type' => 'object',
@@ -1471,6 +1749,73 @@ class Service {
                             'RequestId' => array(
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-id'))),
+                    'DeleteObjectsOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Deleted' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'DeletedObject',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Key' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'VersionId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'DeleteMarker' => array(
+                                            'type' => 'boolean',
+                                        ),
+                                        'DeleteMarkerVersionId' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
+                            'Errors' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'Error',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'Error',
+                                    'type' => 'object',
+                                    'sentAs' => 'Error',
+                                    'properties' => array(
+                                        'Key' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'VersionId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Code' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Message' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'DeleteBucketLifecycleOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -2188,6 +2533,54 @@ class Service {
                                     'sentAs' => 'x-cos-storage-class'),
                             'RequestId' => array(
                                     'location' => 'header',
-                                    'sentAs' => 'x-cos-request-id')))));
+                                    'sentAs' => 'x-cos-request-id'))),
+                    'UploadPartCopyOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'CopySourceVersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-copy-source-version-id',
+                            ),
+                            'ETag' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'LastModified' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'ServerSideEncryption' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption',
+                            ),
+                            'SSECustomerAlgorithm' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
+                            ),
+                            'SSECustomerKeyMD5' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
+                            ),
+                            'SSEKMSKeyId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-cos-kms-key-id',
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),));
     }
 }

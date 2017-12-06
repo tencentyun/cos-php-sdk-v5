@@ -4,7 +4,7 @@ namespace Qcloud\Cos;
 
 use Guzzle\Http\ReadLimitEntityBody;
 
-class MultipartUpload {
+class Copy {
     /**
      * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
      */
@@ -16,38 +16,44 @@ class MultipartUpload {
     private $source;
     private $options;
     private $partSize;
+    private $size;
 
-    public function __construct($client, $source, $minPartSize, $options = array()) {
+    public function __construct($client, $contentlength, $source, $minPartSize, $options = array()) {
         $this->client = $client;
         $this->source = $source;
         $this->options = $options;
+        $this->size = $contentlength;
         $this->partSize = $this->calculatePartSize($minPartSize);
     }
 
     public function performUploading() {
         $uploadId = $this->initiateMultipartUpload();
-
+        $offset = 0;
         $partNumber = 1;
+        $partSize = $this->partSize;
         $parts = array();
         for (;;) {
-            if ($this->source->isConsumed()) {
-                break;
-            }
 
-            $body = new ReadLimitEntityBody($this->source, $this->partSize, $this->source->ftell());
-            if ($body->getContentLength() == 0) {
-                break;
+            if ($offset + $partSize  >= $this->size)
+            {
+                $partSize = $this->size - $offset -1;
             }
-
-            $result = $this->client->uploadPart(array(
+            //echo ('bytes='.( 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
+            $result = $this->client->UploadPartCopy(array(
                         'Bucket' => $this->options['Bucket'],
                         'Key' => $this->options['Key'],
-                        'Body' => $body,
                         'UploadId' => $uploadId,
-                        'PartNumber' => $partNumber));
+                        'PartNumber' => $partNumber,
+                        'CopySource'=> $this->source,
+                        'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
             $part = array('PartNumber' => $partNumber, 'ETag' => $result['ETag']);
             array_push($parts, $part);
             ++$partNumber;
+            $offset += $partSize;
+            if ($this->size == $offset+1)
+            {
+                break;
+            }
         }
 
         return $this->client->completeMultipartUpload(array(
@@ -57,8 +63,9 @@ class MultipartUpload {
                     'Parts' => $parts));
     }
 
-    private function calculatePartSize($minPartSize) {
-        $partSize = intval(ceil(($this->source->getContentLength() / self::MAX_PARTS)));
+    private function calculatePartSize($minPartSize)
+    {
+        $partSize = intval(ceil(($this->size / self::MAX_PARTS)));
         $partSize = max($minPartSize, $partSize);
         $partSize = min($partSize, self::MAX_PART_SIZE);
         $partSize = max($partSize, self::MIN_PART_SIZE);

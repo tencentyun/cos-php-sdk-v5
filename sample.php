@@ -28,44 +28,62 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //try {
 //    $result = $cosClient->upload(
 //                 $bucket='testbucket',
-//                 '111.txt',
-//        str_repeat('a', 5* 1024 * 1024));
-//    print_r($result);1
+//                 $key = '111.txt',
+//                 $body = str_repeat('a', 5* 1024 * 1024));
+//    print_r($result);
 //    } catch (\Exception $e) {
 //    echo "$e\n";
 //}
 //
-//#putObject
-try {
-    $result = $cosClient->putObject(array(
-        'Bucket' => 'testbucket',
-        'Key' => '11',
-        'Body' => 'Hello World!'));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-//
-//#getObject
+#putObject
 //try {
-//    $result = $cosClient->getObject(array(
+//    $result = $cosClient->putObject(array(
 //        'Bucket' => 'testbucket',
-//        'Key' => '111'));
-//    echo($result['Body']);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
-//
-//#deleteObject
-//try {
-//    $result = $cosClient->deleteObject(array(
-//        'Bucket' => 'testbucket',
-//        'Key' => '111'));
+//        'Key' => '11',
+//        'Body' => 'Hello World!'));
 //    print_r($result);
 //} catch (\Exception $e) {
 //    echo "$e\n";
 //}
 //
+//#getObject
+//try {
+//    $result = $cosClient->getObject(array(
+//        'Bucket' => 'lewzylu02',
+//        'Key' => 'tox.ini',
+//        'SaveAs' => 'E:/data.txt'));
+//    echo($result['Body']);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//#deleteObject
+//try {
+//    $result = $cosClient->deleteObject(array(
+//        'Bucket' => 'lewzylu02',
+//        'Key' => '111.txt'));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//#deleteObjects
+//try {
+//    $result = $cosClient->deleteObjects(array(
+//        // Bucket is required
+//        'Bucket' => 'string',
+//        // Objects is required
+//        'Objects' => array(
+//            array(
+//                // Key is required
+//                'Key' => 'string',
+//                'VersionId' => 'string',
+//            ),
+//            // ... repeated
+//        ),
+//    ));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //
 //#deleteBucket
 //try {
@@ -88,12 +106,22 @@ try {
 //
 //#listObjects
 //try {
-//    $result = $cosClient->listObjects(array(
-//        'Bucket' => 'testbucket'));
+//    $result = $cosClient->headObject(array(
+//        'Bucket' => 'testbucket',
+//        'Key' => '11'));
 //    print_r($result);
 //} catch (\Exception $e) {
 //    echo "$e\n";
 //}
+//
+#listObjects
+try {
+    $result = $cosClient->listObjects(array(
+        'Bucket' => 'lewzylu02'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 //#putObjectUrl
 //try {
 //    $bucket =  'testbucket';
@@ -275,6 +303,15 @@ try {
 //        // Key is required
 //        'Key' => 'string',
 //    ));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//Copy
+//try {
+//    $result = $cosClient->Copy($bucket = 'lewzylu02',
+//        $key = 'cmake-3.8.2为.tar.gz',
+//        $copysource = 'lewzylu-1252448703.cos.ap-guangzhou.myqcloud.com/cmake-3.8.2为.tar.gz');
 //    print_r($result);
 //} catch (\Exception $e) {
 //    echo "$e\n";
