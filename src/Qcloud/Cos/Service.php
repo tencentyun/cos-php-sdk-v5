@@ -1300,6 +1300,102 @@ class Service {
                             ),
                         ),
                     ),
+                    'PutBucketVersioning' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?versioning',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketVersioningOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'VersioningConfiguration',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'MFA' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-mfa',
+                            ),
+                            'MFADelete' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                                'sentAs' => 'MfaDelete',
+                            ),
+                            'Status' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                        ),
+                    ),
+                    'PutBucketReplication' => array(
+                        'httpMethod' => 'PUT',
+                        'uri' => '/{Bucket}?replication',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'PutBucketReplicationOutput',
+                        'responseType' => 'model',
+                        'data' => array(
+                            'xmlRoot' => array(
+                                'name' => 'ReplicationConfiguration',
+                            ),
+                        ),
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Role' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Rules' => array(
+                                'required' => true,
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'ReplicationRule',
+                                    'type' => 'object',
+                                    'sentAs' => 'Rule',
+                                    'properties' => array(
+                                        'ID' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Prefix' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Status' => array(
+                                            'required' => true,
+                                            'type' => 'string',
+                                        ),
+                                        'Destination' => array(
+                                            'required' => true,
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Bucket' => array(
+                                                    'required' => true,
+                                                    'type' => 'string',
+                                                ),
+                                                'StorageClass' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                     'ListParts' => array(
                         'httpMethod' => 'GET',
                         'uri' => '/{Bucket}{/Key*}',

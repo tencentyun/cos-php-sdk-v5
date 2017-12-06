@@ -23,6 +23,7 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //    } catch (\Exception $e) {
 //    echo "$e\n";
 //}
+
 //#uploadbigfile
 //try {
 //    $result = $cosClient->upload(
@@ -94,6 +95,16 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //}
 //
 //#headObject
+//try {
+//    $result = $cosClient->headObject(array(
+//        'Bucket' => 'testbucket',
+//        'Key' => '11'));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//
+//#listObjects
 //try {
 //    $result = $cosClient->headObject(array(
 //        'Bucket' => 'testbucket',
