@@ -26,7 +26,6 @@ class MultipartUpload {
 
     public function performUploading() {
         $uploadId = $this->initiateMultipartUpload();
-
         $partNumber = 1;
         $parts = array();
         for (;;) {
