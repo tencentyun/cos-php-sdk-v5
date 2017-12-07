@@ -170,6 +170,7 @@ $args是包含以下字段的关联数组：
 $result = $cosClient->getObject(array(
     'Bucket' => 'testbucket',
     'Key' => 'hello.txt'));
+echo($result['Body'])
 
 // 下载文件到本地
 $result = $cosClient->getObject(array(

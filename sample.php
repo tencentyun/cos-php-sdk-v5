@@ -7,15 +7,15 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
         'appId' => getenv('COS_APPID'),
         'secretId'    => getenv('COS_KEY'),
         'secretKey' => getenv('COS_SECRET'))));
-//#listBuckets
-//try {
-//    $result = $cosClient->listBuckets();
-//    print_r($result);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
-//
-//
+#listBuckets
+try {
+    $result = $cosClient->listBuckets();
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
 #createBucket
 try {
     $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
@@ -24,35 +24,35 @@ try {
     echo "$e\n";
 }
 
-//#uploadbigfile
-//try {
-//    $result = $cosClient->upload(
-//                 $bucket='testbucket',
-//                 $key = '111.txt',
-//                 $body = str_repeat('a', 5* 1024 * 1024));
-//    print_r($result);
-//    } catch (\Exception $e) {
-//    echo "$e\n";
-//}
-//
+#uploadbigfile
+try {
+    $result = $cosClient->upload(
+                 $bucket='testbucket',
+                 $key = '111.txt',
+                 $body = str_repeat('a', 5* 1024 * 1024));
+    print_r($result);
+    } catch (\Exception $e) {
+    echo "$e\n";
+}
+
 #putObject
-//try {
-//    $result = $cosClient->putObject(array(
-//        'Bucket' => 'testbucket',
-//        'Key' => '11',
-//        'Body' => 'Hello World!'));
-//    print_r($result);
-//} catch (\Exception $e) {
-//    echo "$e\n";
-//}
-//
+try {
+    $result = $cosClient->putObject(array(
+        'Bucket' => 'testbucket',
+        'Key' => '11/../11111////11',
+        'Body' => 'Hello World!'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
 //#getObject
 //try {
 //    $result = $cosClient->getObject(array(
 //        'Bucket' => 'lewzylu02',
 //        'Key' => 'tox.ini',
-//        'SaveAs' => 'E:/data.txt'));
-//    echo($result['Body']);
+//        ));
+//    echo(typeof($result));
 //} catch (\Exception $e) {
 //    echo "$e\n";
 //}
@@ -114,14 +114,14 @@ try {
 //    echo "$e\n";
 //}
 //
-#listObjects
-try {
-    $result = $cosClient->listObjects(array(
-        'Bucket' => 'testbucket'));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
+//#listObjects
+//try {
+//    $result = $cosClient->listObjects(array(
+//        'Bucket' => 'testbucket'));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //#putObjectUrl
 //try {
 //    $bucket =  'testbucket';
@@ -249,50 +249,50 @@ try {
 //} catch (\Exception $e) {
 //    echo "$e\n";
 //}
-#putBucketCors
-try {
-    $result = $cosClient->putBucketCors(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
-        // CORSRules is required
-        'CORSRules' => array(
-            array(
-                'ID' => '1234',
-                'AllowedHeaders' => array('*'),
-                // AllowedMethods is required
-                'AllowedMethods' => array('PUT'),
-                // AllowedOrigins is required
-                'AllowedOrigins' => array('http://www.qq.com', ),
-//                'ExposeHeaders' => array('*', ),
-//                'MaxAgeSeconds' => 1,
-            ),
-            // ... repeated
-        ),
-    ));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-#getBucketCors
-try {
-    $result = $cosClient->getBucketCors(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
-    ));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
-#deleteBucketCors
-try {
-    $result = $cosClient->deleteBucketCors(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
-    ));
-    print_r($result);
-} catch (\Exception $e) {
-    echo "$e\n";
-}
+//#putBucketCors
+//try {
+//    $result = $cosClient->putBucketCors(array(
+//        // Bucket is required
+//        'Bucket' => 'lewzylu02',
+//        // CORSRules is required
+//        'CORSRules' => array(
+//            array(
+//                'ID' => '1234',
+//                'AllowedHeaders' => array('*'),
+//                // AllowedMethods is required
+//                'AllowedMethods' => array('PUT'),
+//                // AllowedOrigins is required
+//                'AllowedOrigins' => array('http://www.qq.com', ),
+////                'ExposeHeaders' => array('*', ),
+////                'MaxAgeSeconds' => 1,
+//            ),
+//            // ... repeated
+//        ),
+//    ));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//#getBucketCors
+//try {
+//    $result = $cosClient->getBucketCors(array(
+//        // Bucket is required
+//        'Bucket' => 'lewzylu02',
+//    ));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
+//#deleteBucketCors
+//try {
+//    $result = $cosClient->deleteBucketCors(array(
+//        // Bucket is required
+//        'Bucket' => 'lewzylu02',
+//    ));
+//    print_r($result);
+//} catch (\Exception $e) {
+//    echo "$e\n";
+//}
 //#copyobject
 //try {
 //    $result = $cosClient->copyObject(array(

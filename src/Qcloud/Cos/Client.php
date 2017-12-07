@@ -96,6 +96,7 @@ class Client extends GSClient {
         return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
     }
     public function upload($bucket, $key, $body, $acl = '', $options = array()) {
+        print_r($key);
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
             'min_part_size' => MultipartUpload::MIN_PART_SIZE,
@@ -157,11 +158,14 @@ class Client extends GSClient {
 }
 
     public static function encodeKey($key) {
-        return str_replace('%2F', '/', rawurlencode($key));
+        return $key;
+        //return str_replace('%2F', '/', rawurlencode($key));
     }
 
     public static function explodeKey($key) {
         // Remove a leading slash if one is found
-        return explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
+        //print_r(explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key));
+        //return explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
+        return $key;
     }
 }
