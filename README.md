@@ -35,7 +35,7 @@ $args是包含以下字段的关联数组：
 
 ```php
 //创建桶
-$result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
+$result = $cosClient->createBucket(array('Bucket' => 'testbucket-1250000000'));
 ```
 
 ### 删除桶 deleteBucket
@@ -59,7 +59,7 @@ $args是包含以下字段的关联数组：
 
 ```php
 //删除桶
-$result = $cosClient->deleteBucket(array('Bucket' => 'testbucket'));
+$result = $cosClient->deleteBucket(array('Bucket' => 'testbucket-1250000000'));
 ```
 
 ### 简单文件上传 putobject
@@ -87,13 +87,13 @@ $args是包含以下字段的关联数组：
 ```php
 // 从内存中上传
 $cosClient->putObject(array(
-    'Bucket' => 'testbucket',
+    'Bucket' => 'testbucket-1250000000',
     'Key' => 'hello.txt',
     'Body' => 'Hello World!'));
 
 // 上传本地文件
 $cosClient->putObject(array(
-    'Bucket' => 'testbucket',
+    'Bucket' => 'testbucket-1250000000',
     'Key' => 'hello.txt',
     'Body' => fopen('./hello.txt', 'rb')));
 ```
@@ -135,7 +135,7 @@ public Guzzle\Service\Resource\Model abortMultipartUpload(array $args = array())
 ```php
 //上传文件
 $result = $cosClient->upload(
-                 $bucket = 'testbucket',
+                 $bucket = 'testbucket-1250000000',
                  $key = '111.txt',
                  $body = '131213');
 ```
@@ -168,13 +168,13 @@ $args是包含以下字段的关联数组：
 ```php
 // 下载文件到内存
 $result = $cosClient->getObject(array(
-    'Bucket' => 'testbucket',
+    'Bucket' => 'testbucket-1250000000',
     'Key' => 'hello.txt'));
 echo($result['Body'])
 
 // 下载文件到本地
 $result = $cosClient->getObject(array(
-    'Bucket' => 'testbucket',
+    'Bucket' => 'testbucket-1250000000',
     'Key' => 'hello.txt',
     'SaveAs' => './hello.txt'));
 ```
@@ -205,7 +205,7 @@ $args是包含以下字段的关联数组：
 ```php
 // 删除COS对象
 $result = $cosClient->deleteObject(array(
-    'Bucket' => 'testbucket',
+    'Bucket' => 'testbucket-1250000000',
     'Key' => 'hello.txt'));
 ```
 
@@ -236,7 +236,7 @@ $args是包含以下字段的关联数组：
 
 ```java
 // 获取COS文件属性
-$result $cosClient->headObject(array('Bucket' => 'testbucket', 'Key' => 'hello.txt'));
+$result $cosClient->headObject(array('Bucket' => 'testbucket-1250000000', 'Key' => 'hello.txt'));
 ```
 
 
@@ -267,7 +267,7 @@ $args是包含以下字段的关联数组：
 
 ```php
 // 获取bucket下成员
-$result = $cosClient->listObjects(array('Bucket' => 'testbucket'));
+$result = $cosClient->listObjects(array('Bucket' => 'testbucket-1250000000'));
 ```
 ### putBucketACL
 
@@ -297,7 +297,7 @@ $args是包含以下字段的关联数组：
 #putBucketACL
 try {
     $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket',
+        'Bucket' => 'testbucket-1250000000',
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -339,7 +339,7 @@ public Guzzle\Service\Resource\Model getBucketACL(array $args = array());
 #getBucketACL
 try {
     $result = $cosClient->GetBucketAcl(array(
-        'Bucket' => 'testbucket',));
+        'Bucket' => 'testbucket-1250000000',));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -368,7 +368,7 @@ public Guzzle\Service\Resource\Model putObjectACL(array $args = array());
 #putObjectACL
 try {
     $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket',
+        'Bucket' => 'testbucket-1250000000',
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -409,7 +409,7 @@ public Guzzle\Service\Resource\Model getObjectACL(array $args = array());
 #getObjectACL
 try {
     $result = $cosClient->getObjectAcl(array(
-        'Bucket' => 'testbucket',
+        'Bucket' => 'testbucket-1250000000',
         'Key' => '11'));
     print_r($result);
 } catch (\Exception $e) {
@@ -670,7 +670,7 @@ try {
 
 ```php
 //获得object的下载url
-$bucket =  'testbucket';
+$bucket =  'testbucket-1250000000';
 $key = 'hello.txt';
 $region = 'cn-south';
 $url = "/{$key}";

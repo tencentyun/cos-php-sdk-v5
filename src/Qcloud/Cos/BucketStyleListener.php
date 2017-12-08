@@ -36,9 +36,9 @@ class BucketStyleListener implements EventSubscriberInterface {
         $command = $event['command'];
         $bucket = $command['Bucket'];
         $request = $command->getRequest();
-        if (endWith($bucket,'-'.$this->appId))
+        if ($this->appId != null && endWith($bucket,'-'.$this->appId) == False)
         {
-            $bucket = substr($bucket,0,strlen($bucket)-strlen('-'.$this->appId));
+            $bucket = $bucket.'-'.$this->appId;
         }
         if ($command->getName() == 'ListBuckets')
         {
@@ -56,7 +56,7 @@ class BucketStyleListener implements EventSubscriberInterface {
         $request->getParams()->set('bucket', $bucket)->set('key', $key);
 
         // Switch to virtual hosted bucket
-        $request->setHost($bucket . '-' . $this->appId . '.' . $request->getHost());
+        $request->setHost($bucket. '.' . $request->getHost());
         $request->setPath(preg_replace("#^/{$bucket}#", '', $request->getPath()));
 
         if (!$bucket) {
