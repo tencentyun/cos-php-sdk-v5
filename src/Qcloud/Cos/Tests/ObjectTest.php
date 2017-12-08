@@ -13,6 +13,7 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
 
         $this->cosClient = new Client(array('region' => getenv('COS_REGION'),
                 'credentials'=> array(
+#                    'appId' => getenv('COS_APPID'),
                 'secretId'    => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
     }

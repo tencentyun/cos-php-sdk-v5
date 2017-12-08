@@ -96,7 +96,6 @@ class Client extends GSClient {
         return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
     }
     public function upload($bucket, $key, $body, $acl = '', $options = array()) {
-        print_r($key);
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
             'min_part_size' => MultipartUpload::MIN_PART_SIZE,
