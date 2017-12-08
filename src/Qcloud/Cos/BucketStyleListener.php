@@ -58,6 +58,8 @@ class BucketStyleListener implements EventSubscriberInterface {
         // Set the key and bucket on the request
         $request->getParams()->set('bucket', $bucket)->set('key', $key);
 
+        #echo(str_replace("%2F","/",$request->getPath()));
+        $request->setPath(str_replace("%2F","/",$request->getPath()));
         // Switch to virtual hosted bucket
         $request->setHost($bucket. '.' . $request->getHost());
         if (!$bucket) {

@@ -16,35 +16,35 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 //}
 //
 //
-//#createBucket
-//try {
-//    $result = $cosClient->createBucket(array('Bucket' => 'testbucket-1252448703'));
-//    print_r($result);
-//    } catch (\Exception $e) {
-//    echo "$e\n";
-//}
-
-#uploadbigfile
+#createBucket
 try {
-    $result = $cosClient->upload(
-                 $bucket='testbucket',
-                 $key = '111.txt',
-                 $body = str_repeat('a', 5* 1024 * 1024));
+    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
     print_r($result);
     } catch (\Exception $e) {
     echo "$e\n";
 }
-//
-//#putObject
+
+//#uploadbigfile
 //try {
-//    $result = $cosClient->putObject(array(
-//        'Bucket' => 'testbucket-1252448703',
-//        'Key' => '11',
-//        'Body' => 'Hello World!'));
+//    $result = $cosClient->upload(
+//                 $bucket='testbucket',
+//                 $key = '111.txt',
+//                 $body = str_repeat('a', 5* 1024 * 1024));
 //    print_r($result);
-//} catch (\Exception $e) {
+//    } catch (\Exception $e) {
 //    echo "$e\n";
 //}
+//
+#putObject
+try {
+    $result = $cosClient->putObject(array(
+        'Bucket' => 'testbucket-1252448703',
+        'Key' => '11//32//43',
+        'Body' => 'Hello World!'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 //
 //#getObject
 //try {
