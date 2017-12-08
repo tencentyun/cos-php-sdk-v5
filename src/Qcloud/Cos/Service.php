@@ -1247,6 +1247,7 @@ class Service {
                             'xmlRoot' => array(
                                 'name' => 'ReplicationConfiguration',
                             ),
+                            'contentMd5' => true,
                         ),
                         'parameters' => array(
                             'Bucket' => array(
@@ -1343,6 +1344,7 @@ class Service {
                             'xmlRoot' => array(
                                 'name' => 'ReplicationConfiguration',
                             ),
+                            'contentMd5' => true,
                         ),
                         'parameters' => array(
                             'Bucket' => array(

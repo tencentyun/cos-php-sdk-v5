@@ -36,10 +36,7 @@ class BucketStyleListener implements EventSubscriberInterface {
         $command = $event['command'];
         $bucket = $command['Bucket'];
         $request = $command->getRequest();
-        if ($this->appId != null && endWith($bucket,'-'.$this->appId) == False)
-        {
-            $bucket = $bucket.'-'.$this->appId;
-        }
+
         if ($command->getName() == 'ListBuckets')
         {
             $request->setHost('service.cos.myqcloud.com');
@@ -52,13 +49,19 @@ class BucketStyleListener implements EventSubscriberInterface {
             }
         }
 
+        $request->setPath(preg_replace("#^/{$bucket}#", '', $request->getPath()));
+
+        if ($this->appId != null && endWith($bucket,'-'.$this->appId) == False)
+        {
+            $bucket = $bucket.'-'.$this->appId;
+        }
         // Set the key and bucket on the request
         $request->getParams()->set('bucket', $bucket)->set('key', $key);
 
+        #echo(str_replace("%2F","/",$request->getPath()));
+        $request->setPath(str_replace("%2F","/",$request->getPath()));
         // Switch to virtual hosted bucket
         $request->setHost($bucket. '.' . $request->getHost());
-        $request->setPath(preg_replace("#^/{$bucket}#", '', $request->getPath()));
-
         if (!$bucket) {
             $request->getParams()->set('cos.resource', '/');
         } else {

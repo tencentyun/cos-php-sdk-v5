@@ -4,6 +4,7 @@ require(__DIR__ . DIRECTORY_SEPARATOR . 'cos-autoloader.php');
 
 $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
     'credentials'=> array(
+        'appId' => getenv('COS_APPID'),
         'secretId'    => getenv('COS_KEY'),
         'secretKey' => getenv('COS_SECRET'))));
 #listBuckets
@@ -17,7 +18,7 @@ try {
 
 #createBucket
 try {
-    $result = $cosClient->createBucket(array('Bucket' => 'testbucket-1252448703'));
+    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
     print_r($result);
     } catch (\Exception $e) {
     echo "$e\n";
@@ -26,7 +27,7 @@ try {
 #uploadbigfile
 try {
     $result = $cosClient->upload(
-                 $bucket='testbucket-1252448703',
+                 $bucket='testbucket',
                  $key = '111.txt',
                  $body = str_repeat('a', 5* 1024 * 1024));
     print_r($result);
@@ -38,7 +39,7 @@ try {
 try {
     $result = $cosClient->putObject(array(
         'Bucket' => 'testbucket-1252448703',
-        'Key' => '11',
+        'Key' => '11//32//43',
         'Body' => 'Hello World!'));
     print_r($result);
 } catch (\Exception $e) {
