@@ -41,7 +41,7 @@ class Client extends GSClient {
             $this->region = $regionmap[$this->region];
         }
         $this->credentials = $config['credentials'];
-        $this->appId = $config['credentials']['appId'];
+        $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
         $this->secretId = $config['credentials']['secretId'];
         $this->secretKey = $config['credentials']['secretKey'];
         $this->token = isset($config['credentials']['token']) ? $config['credentials']['token'] : null;
