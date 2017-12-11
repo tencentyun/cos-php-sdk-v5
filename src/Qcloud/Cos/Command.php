@@ -26,10 +26,9 @@ class Command extends OperationCommand {
 
     protected function process() {
         parent::process();
-
         // Set the GetObject URL if using the PutObject operation
         if ($this->result instanceof Model && $this->getName() == 'PutObject') {
-            $request = $this->getRequest();
+            $request = $this->getRequest();;
             $this->result->set('ObjectURL', $request->getUrl());
         }
     }

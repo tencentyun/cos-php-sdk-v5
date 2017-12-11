@@ -18,7 +18,7 @@ try {
 
 #createBucket
 try {
-    $result = $cosClient->createBucket(array('Bucket' => 'testbucket'));
+    $result = $cosClient->createBucket(array('Bucket' => 'testbucket-1252448703'));
     print_r($result);
     } catch (\Exception $e) {
     echo "$e\n";
@@ -27,11 +27,14 @@ try {
 #uploadbigfile
 try {
     $result = $cosClient->upload(
-                 $bucket='testbucket',
-                 $key = '111.txt',
-                 $body = str_repeat('a', 5* 1024 * 1024));
+        $bucket='testbucket-1252448703',
+        $key = '111.txt',
+        $body = str_repeat('a', 5* 1024 * 1024),
+        $options = array(
+            "ACL"=>'private',
+            'CacheControl' => 'private'));
     print_r($result);
-    } catch (\Exception $e) {
+} catch (\Exception $e) {
     echo "$e\n";
 }
 

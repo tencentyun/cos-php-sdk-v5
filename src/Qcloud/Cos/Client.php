@@ -95,19 +95,18 @@ class Client extends GSClient {
 
         return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
     }
-    public function upload($bucket, $key, $body, $acl = '', $options = array()) {
+    public function upload($bucket, $key, $body, $options = array()) {
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
             'min_part_size' => MultipartUpload::MIN_PART_SIZE,
-            'params'        => array()));
-
+            'params'        => $options));
+        print_r($options);
         if ($body->getSize() < $options['min_part_size']) {
             // Perform a simple PutObject operation
             return $this->putObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
                     'Body'   => $body,
-                    'ACL'    => $acl
                 ) + $options['params']);
         }
 
@@ -115,15 +114,14 @@ class Client extends GSClient {
                 'Bucket' => $bucket,
                 'Key'    => $key,
                 'Body'   => $body,
-                'ACL'    => $acl
             ) + $options['params']);
 
         return $multipartUpload->performUploading();
     }
-    public function copy($bucket, $key, $copysource, $acl = '', $options = array()) {
+    public function copy($bucket, $key, $copysource, $options = array()) {
     $options = Collection::fromConfig(array_change_key_case($options), array(
         'min_part_size' => MultipartUpload::MIN_PART_SIZE,
-        'params'        => array()));
+        'params'        => $options));
         $sourcebucket = explode('-',explode('.',$copysource)[0])[0];
         $sourceappid = explode('-',explode('.',$copysource)[0])[1];
         $sourceregion = explode('.',$copysource)[2];
@@ -142,7 +140,6 @@ class Client extends GSClient {
                 'Bucket' => $bucket,
                 'Key'    => $key,
                 'CopySource'   => $copysource,
-                'ACL'    => $acl
             ) + $options['params']);
     }
     $copy = new Copy($this, $contentlength, $copysource, $options['min_part_size'], array(
@@ -150,7 +147,6 @@ class Client extends GSClient {
             'Key'    => $key,
             'ContentLength' => $contentlength,
             'CopySource'   => $copysource,
-            'ACL'    => $acl
         ) + $options['params']);
 
     return $copy->performUploading();
@@ -163,8 +159,8 @@ class Client extends GSClient {
 
     public static function explodeKey($key) {
         // Remove a leading slash if one is found
-        //print_r(explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key));
         //return explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
         return $key;
+        return ltrim($key, "/");
     }
 }
