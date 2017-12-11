@@ -154,7 +154,7 @@ class Client extends GSClient {
 
     public static function encodeKey($key) {
         return $key;
-        //return str_replace('%2F', '/', rawurlencode($key));
+        return str_replace('%2F', '/', rawurlencode($key));
     }
 
     public static function explodeKey($key) {
