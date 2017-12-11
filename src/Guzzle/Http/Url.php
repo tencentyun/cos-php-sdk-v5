@@ -305,7 +305,6 @@ class Url
                 $results[] = $segment;
             }
         }
-
         // Combine the normalized parts and add the leading slash if needed
         $this->path = ($this->path[0] == '/' ? '/' : '') . implode('/', $results);
 

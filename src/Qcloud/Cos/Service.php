@@ -756,6 +756,10 @@ class Service {
                                 'required' => true,
                                 'type' => 'string',
                                 'location' => 'uri'),
+                            'CacheControl' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'Cache-Control'),
                             'ContentDisposition' => array(
                                     'type' => 'string',
                                     'location' => 'header',
