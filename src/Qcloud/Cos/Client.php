@@ -126,7 +126,7 @@ class Client extends GSClient {
         $sourceappid = explode('-',explode('.',$copysource)[0])[1];
         $sourceregion = explode('.',$copysource)[2];
         $sourcekey = substr(strstr($copysource,'/'),1);
-        $cosClient = new Client(array('region' => getenv('COS_REGION'),
+        $cosClient = new Client(array('region' => $sourceregion,
         'credentials'=> array(
             'appId' => $sourceappid,
             'secretId'    => $this->secretId,
