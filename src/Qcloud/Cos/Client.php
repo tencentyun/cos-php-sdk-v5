@@ -119,8 +119,9 @@ class Client extends GSClient {
         return $multipartUpload->performUploading();
     }
     public function copy($bucket, $key, $copysource, $options = array()) {
+
     $options = Collection::fromConfig(array_change_key_case($options), array(
-        'min_part_size' => MultipartUpload::MIN_PART_SIZE,
+        'min_part_size' => Copy::MIN_PART_SIZE,
         'params'        => $options));
         $sourcebucket = explode('-',explode('.',$copysource)[0])[0];
         $sourceappid = explode('-',explode('.',$copysource)[0])[1];
@@ -135,8 +136,9 @@ class Client extends GSClient {
     $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
                             'Key'=>$sourcekey));
     $contentlength =$rt['ContentLength'];
+
     if ($contentlength < $options['min_part_size']) {
-        return $this->UploadPartCopy(array(
+        return $this->copyObject(array(
                 'Bucket' => $bucket,
                 'Key'    => $key,
                 'CopySource'   => $copysource,
