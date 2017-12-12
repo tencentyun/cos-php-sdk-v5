@@ -8,7 +8,7 @@ class Copy {
     /**
      * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
      */
-    const MIN_PART_SIZE = 5242880;
+    const MIN_PART_SIZE = 52428800;
     const MAX_PART_SIZE = 5368709120;
     const MAX_PARTS     = 10000;
 
