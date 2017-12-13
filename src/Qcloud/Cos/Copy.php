@@ -27,6 +27,11 @@ class Copy {
     }
 
     public function performUploading() {
+
+        $commands = array();
+
+
+
         $uploadId = $this->initiateMultipartUpload();
         $offset = 0;
         $partNumber = 1;
@@ -39,21 +44,38 @@ class Copy {
                 $partSize = $this->size - $offset -1;
             }
             //echo ('bytes='.( 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
-            $result = $this->client->UploadPartCopy(array(
-                        'Bucket' => $this->options['Bucket'],
-                        'Key' => $this->options['Key'],
-                        'UploadId' => $uploadId,
-                        'PartNumber' => $partNumber,
-                        'CopySource'=> $this->source,
-                        'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
-            $part = array('PartNumber' => $partNumber, 'ETag' => $result['ETag']);
-            array_push($parts, $part);
+            $commands[] = $this->client->getCommand('UploadPartCopy', array(
+                'Bucket' => $this->options['Bucket'],
+                'Key' => $this->options['Key'],
+                'UploadId' => $uploadId,
+                'PartNumber' => $partNumber,
+                'CopySource'=> $this->source,
+                'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize),
+            ));
+//            $result = $this->client->UploadPartCopy(array(
+//                        'Bucket' => $this->options['Bucket'],
+//                        'Key' => $this->options['Key'],
+//                        'UploadId' => $uploadId,
+//                        'PartNumber' => $partNumber,
+//                        'CopySource'=> $this->source,
+//                        'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
             ++$partNumber;
             $offset += $partSize;
             if ($this->size == $offset+1)
             {
                 break;
             }
+        }
+        $this->client->execute($commands);
+
+
+        $partNumber = 1;
+        foreach ($commands as $command) {
+
+            $result = $command->getResult();
+            $part = array('PartNumber' => $partNumber, 'ETag' => $result['ETag']);
+            array_push($parts, $part);
+            $partNumber++;
         }
 
         return $this->client->completeMultipartUpload(array(
