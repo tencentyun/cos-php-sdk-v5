@@ -555,6 +555,11 @@ class Service {
                                 'format' => 'date-time-http',
                                 'location' => 'query',
                                 'sentAs' => 'response-expires'),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'versionId',
+                            ),
                             'SaveAs' => array(
                                 'location' => 'response_body')),
                         'errorResponses' => array(
@@ -684,6 +689,20 @@ class Service {
                             'command.expects' => array(
                                 'static' => true,
                                 'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
+                    'GetBucketLocation' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?location',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'GetBucketLocationOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
                             ),
                         ),
                     ),
@@ -1305,15 +1324,15 @@ class Service {
                             ),
                         ),
                     ),
-                    'PutBucketVersioning' => array(
-                        'httpMethod' => 'PUT',
-                        'uri' => '/{Bucket}?versioning',
+                    'RestoreObject' => array(
+                        'httpMethod' => 'POST',
+                        'uri' => '/{Bucket}{/Key*}?restore',
                         'class' => 'Qcloud\\Cos\\Command',
-                        'responseClass' => 'PutBucketVersioningOutput',
+                        'responseClass' => 'RestoreObjectOutput',
                         'responseType' => 'model',
                         'data' => array(
                             'xmlRoot' => array(
-                                'name' => 'VersioningConfiguration',
+                                'name' => 'RestoreRequest',
                             ),
                         ),
                         'parameters' => array(
@@ -1322,83 +1341,45 @@ class Service {
                                 'type' => 'string',
                                 'location' => 'uri',
                             ),
-                            'MFA' => array(
-                                'type' => 'string',
-                                'location' => 'header',
-                                'sentAs' => 'x-cos-mfa',
-                            ),
-                            'MFADelete' => array(
-                                'type' => 'string',
-                                'location' => 'xml',
-                                'sentAs' => 'MfaDelete',
-                            ),
-                            'Status' => array(
-                                'type' => 'string',
-                                'location' => 'xml',
-                            ),
-                        ),
-                    ),
-                    'PutBucketReplication' => array(
-                        'httpMethod' => 'PUT',
-                        'uri' => '/{Bucket}?replication',
-                        'class' => 'Qcloud\\Cos\\Command',
-                        'responseClass' => 'PutBucketReplicationOutput',
-                        'responseType' => 'model',
-                        'data' => array(
-                            'xmlRoot' => array(
-                                'name' => 'ReplicationConfiguration',
-                            ),
-                            'contentMd5' => true,
-                        ),
-                        'parameters' => array(
-                            'Bucket' => array(
+                            'Key' => array(
                                 'required' => true,
                                 'type' => 'string',
                                 'location' => 'uri',
-                            ),
-                            'Role' => array(
-                                'required' => true,
-                                'type' => 'string',
-                                'location' => 'xml',
-                            ),
-                            'Rules' => array(
-                                'required' => true,
-                                'type' => 'array',
-                                'location' => 'xml',
-                                'data' => array(
-                                    'xmlFlattened' => true,
+                                'minLength' => 1,
+                                'filters' => array(
+                                    'Qcloud\\Cos\\Client::explodeKey',
                                 ),
-                                'items' => array(
-                                    'name' => 'ReplicationRule',
-                                    'type' => 'object',
-                                    'sentAs' => 'Rule',
-                                    'properties' => array(
-                                        'ID' => array(
-                                            'type' => 'string',
-                                        ),
-                                        'Prefix' => array(
-                                            'required' => true,
-                                            'type' => 'string',
-                                        ),
-                                        'Status' => array(
-                                            'required' => true,
-                                            'type' => 'string',
-                                        ),
-                                        'Destination' => array(
-                                            'required' => true,
-                                            'type' => 'object',
-                                            'properties' => array(
-                                                'Bucket' => array(
-                                                    'required' => true,
-                                                    'type' => 'string',
-                                                ),
-                                                'StorageClass' => array(
-                                                    'type' => 'string',
-                                                ),
-                                            ),
-                                        ),
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'versionId',
+                            ),
+                            'Days' => array(
+                                'required' => true,
+                                'type' => 'numeric',
+                                'location' => 'xml',
+                            ),
+                            'CASJobParameters' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Tier' => array(
+                                        'type' => 'string',
+                                        'required' => true,
                                     ),
                                 ),
+                            ),
+                            'RequestPayer' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-payer',
+                            ),
+                        ),
+                        'errorResponses' => array(
+                            array(
+                                'reason' => 'This operation is not allowed against this storage tier',
+                                'class' => 'ObjectAlreadyInActiveTierErrorException',
                             ),
                         ),
                     ),
@@ -1487,28 +1468,162 @@ class Service {
                             ),
                         ),
                     ),
-                    'HeadObject' => array(
-                        'httpMethod' => 'HEAD',
-                        'uri' => '/{Bucket}{/Key*}',
+                    'ListObjectVersions' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?versions',
                         'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'ListObjectVersionsOutput',
                         'responseType' => 'model',
-                        'responseClass' => 'HeadObjectOutput',
                         'parameters' => array(
                             'Bucket' => array(
                                 'required' => true,
                                 'type' => 'string',
-                                'location' => 'uri'),
+                                'location' => 'uri',
+                            ),
+                            'Delimiter' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'delimiter',
+                            ),
+                            'EncodingType' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'encoding-type',
+                            ),
+                            'KeyMarker' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'key-marker',
+                            ),
+                            'MaxKeys' => array(
+                                'type' => 'numeric',
+                                'location' => 'query',
+                                'sentAs' => 'max-keys',
+                            ),
+                            'Prefix' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'prefix',
+                            ),
+                            'VersionIdMarker' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'version-id-marker',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
+                    'HeadObject' => array(
+                        'httpMethod' => 'HEAD',
+                        'uri' => '/{Bucket}{/Key*}',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'HeadObjectOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'IfMatch' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'If-Match',
+                            ),
+                            'IfModifiedSince' => array(
+                                'type' => array(
+                                    'object',
+                                    'string',
+                                    'integer',
+                                ),
+                                'format' => 'date-time-http',
+                                'location' => 'header',
+                                'sentAs' => 'If-Modified-Since',
+                            ),
+                            'IfNoneMatch' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'If-None-Match',
+                            ),
+                            'IfUnmodifiedSince' => array(
+                                'type' => array(
+                                    'object',
+                                    'string',
+                                    'integer',
+                                ),
+                                'format' => 'date-time-http',
+                                'location' => 'header',
+                                'sentAs' => 'If-Unmodified-Since',
+                            ),
                             'Key' => array(
                                 'required' => true,
                                 'type' => 'string',
                                 'location' => 'uri',
                                 'minLength' => 1,
                                 'filters' => array(
-                                    'Qcloud\\Cos\\Client::explodeKey'))),
+                                    'Qcloud\\Cos\\Client::explodeKey',
+                                ),
+                            ),
+                            'Range' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'versionId',
+                            ),
+                            'SSECustomerAlgorithm' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                            ),
+                            'SSECustomerKey' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-amz-server-side-encryption-customer-key',
+                            ),
+                            'SSECustomerKeyMD5' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                            ),
+                            'RequestPayer' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-amz-request-payer',
+                            ),
+                        ),
                         'errorResponses' => array(
                             array(
                                 'reason' => 'The specified key does not exist.',
-                                'class' => 'NoSuchKeyException'))),
+                                'class' => 'NoSuchKeyException',
+                            ),
+                        ),
+                    ),
+                    'HeadBucket' => array(
+                        'httpMethod' => 'HEAD',
+                        'uri' => '/{Bucket}',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'HeadBucketOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                        ),
+                        'errorResponses' => array(
+                            array(
+                                'reason' => 'The specified bucket does not exist.',
+                                'class' => 'NoSuchBucketException',
+                            ),
+                        ),
+                    ),
                     'UploadPartCopy' => array(
             'httpMethod' => 'PUT',
             'uri' => '/{Bucket}{/Key*}',
@@ -1663,6 +1778,11 @@ class Service {
                             'ETag' => array(
                                 'type' => 'string',
                                 'location' => 'xml'),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-version-id',
+                            ),
                             'RequestId' => array(
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-id'))),
@@ -1849,62 +1969,140 @@ class Service {
                             'Body' => array(
                                 'type' => 'string',
                                 'instanceOf' => 'Guzzle\\Http\\EntityBody',
-                                'location' => 'body'),
+                                'location' => 'body',
+                            ),
+                            'DeleteMarker' => array(
+                                'type' => 'boolean',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-delete-marker',
+                            ),
                             'AcceptRanges' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'accept-ranges'),
+                                'sentAs' => 'accept-ranges',
+                            ),
+                            'Expiration' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-expiration',
+                            ),
+                            'Restore' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-restore',
+                            ),
                             'LastModified' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Last-Modified'),
+                                'sentAs' => 'Last-Modified',
+                            ),
                             'ContentLength' => array(
                                 'type' => 'numeric',
                                 'location' => 'header',
-                                'sentAs' => 'Content-Length'),
+                                'sentAs' => 'Content-Length',
+                            ),
                             'ETag' => array(
                                 'type' => 'string',
-                                'location' => 'header'),
+                                'location' => 'header',
+                            ),
+                            'MissingMeta' => array(
+                                'type' => 'numeric',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-missing-meta',
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-version-id',
+                            ),
                             'CacheControl' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Cache-Control'),
+                                'sentAs' => 'Cache-Control',
+                            ),
                             'ContentDisposition' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Content-Disposition'),
+                                'sentAs' => 'Content-Disposition',
+                            ),
                             'ContentEncoding' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Content-Encoding'),
+                                'sentAs' => 'Content-Encoding',
+                            ),
                             'ContentLanguage' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Content-Language'),
+                                'sentAs' => 'Content-Language',
+                            ),
                             'ContentRange' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Content-Range'),
+                                'sentAs' => 'Content-Range',
+                            ),
                             'ContentType' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'Content-Type'),
+                                'sentAs' => 'Content-Type',
+                            ),
                             'Expires' => array(
                                 'type' => 'string',
-                                'location' => 'header'),
+                                'location' => 'header',
+                            ),
+                            'WebsiteRedirectLocation' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-website-redirect-location',
+                            ),
+                            'ServerSideEncryption' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption',
+                            ),
                             'Metadata' => array(
                                 'type' => 'object',
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-meta-',
                                 'additionalProperties' => array(
-                                    'type' => 'string')),
-                            'StorageClass' => array(
                                     'type' => 'string',
-                                    'location' => 'header',
-                                    'sentAs' => 'x-cos-storage-class'),
+                                ),
+                            ),
+                            'SSECustomerAlgorithm' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
+                            ),
+                            'SSECustomerKeyMD5' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
+                            ),
+                            'SSEKMSKeyId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-aws-kms-key-id',
+                            ),
+                            'StorageClass' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-storage-class',
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
+                            'ReplicationStatus' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-replication-status',
+                            ),
                             'RequestId' => array(
-                                    'location' => 'header',
-                                    'sentAs' => 'x-cos-request-id'))),
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'GetObjectAclOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -2239,6 +2437,21 @@ class Service {
                             ),
                         ),
                     ),
+                    'GetBucketLocationOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Location' => array(
+                                'type' => 'string',
+                                'location' => 'body',
+                                'filters' => array(
+                                    'strval',
+                                    'strip_tags',
+                                    'trim',
+                                ),
+                            ),
+                        ),
+                    ),
                     'UploadPartOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -2260,14 +2473,53 @@ class Service {
                         'type' => 'object',
                         'additionalProperties' => true,
                         'properties' => array(
+                            'Expiration' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-expiration',
+                            ),
                             'ETag' => array(
                                 'type' => 'string',
-                                'location' => 'header'),
+                                'location' => 'header',
+                            ),
+                            'ServerSideEncryption' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption',
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-version-id',
+                            ),
+                            'SSECustomerAlgorithm' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
+                            ),
+                            'SSECustomerKeyMD5' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
+                            ),
+                            'SSEKMSKeyId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-aws-kms-key-id',
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
                             'RequestId' => array(
-                                    'location' => 'header',
-                                    'sentAs' => 'x-cos-request-id'),
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
                             'ObjectURL' => array(
-                                    ))),
+                            ),
+                        ),
+                    ),
                     'PutObjectAclOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -2317,6 +2569,21 @@ class Service {
                         'type' => 'object',
                         'additionalProperties' => true,
                         'properties' => array(
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'RestoreObjectOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
                             'RequestId' => array(
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-id',
@@ -2496,6 +2763,157 @@ class Service {
                             ),
                         ),
                     ),
+                    'ListObjectVersionsOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'IsTruncated' => array(
+                                'type' => 'boolean',
+                                'location' => 'xml',
+                            ),
+                            'KeyMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'VersionIdMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'NextKeyMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'NextVersionIdMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Versions' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'Version',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'ObjectVersion',
+                                    'type' => 'object',
+                                    'sentAs' => 'Version',
+                                    'properties' => array(
+                                        'ETag' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Size' => array(
+                                            'type' => 'numeric',
+                                        ),
+                                        'StorageClass' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Key' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'VersionId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'IsLatest' => array(
+                                            'type' => 'boolean',
+                                        ),
+                                        'LastModified' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Owner' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'DisplayName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'ID' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'DeleteMarkers' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'DeleteMarker',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'DeleteMarkerEntry',
+                                    'type' => 'object',
+                                    'sentAs' => 'DeleteMarker',
+                                    'properties' => array(
+                                        'Owner' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'DisplayName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'ID' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'Key' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'VersionId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'IsLatest' => array(
+                                            'type' => 'boolean',
+                                        ),
+                                        'LastModified' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'Name' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Prefix' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Delimiter' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'MaxKeys' => array(
+                                'type' => 'numeric',
+                                'location' => 'xml',
+                            ),
+                            'CommonPrefixes' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'CommonPrefix',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Prefix' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'EncodingType' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'HeadObjectOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -2537,9 +2955,23 @@ class Service {
                                     'type' => 'string',
                                     'location' => 'header',
                                     'sentAs' => 'x-cos-storage-class'),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-version-id'),
                             'RequestId' => array(
                                     'location' => 'header',
                                     'sentAs' => 'x-cos-request-id'))),
+                    'HeadBucketOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'UploadPartCopyOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,

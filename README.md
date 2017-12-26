@@ -1,6 +1,7 @@
-## 接口列表
+## 基本 API 描述
+> 关于文章中出现的 SecretId、SecretKey、Bucket 等名称的含义和获取方式请参考：[COS 术语信息](https://cloud.tencent.com/document/product/436/7751)
 
-### 获取桶列表 listBuckets
+### 获取Bucket列表
 #### 方法原型
 ```php
 public Guzzle\Service\Resource\Model listBucket(array $args = array())
@@ -13,7 +14,7 @@ public Guzzle\Service\Resource\Model listBucket(array $args = array())
 $result = $cosClient->listBuckets();
 ```
 
-### 创建桶 createBucket
+### 创建Bucket
 
 #### 方法原型
 
@@ -35,10 +36,11 @@ $args是包含以下字段的关联数组：
 
 ```php
 //创建桶
-$result = $cosClient->createBucket(array('Bucket' => 'testbucket-1250000000'));
+//bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+$result = $cosClient->createBucket(array('Bucket' => 'testbucket-125000000'));
 ```
 
-### 删除桶 deleteBucket
+### 删除Bucket
 
 #### 方法原型
 
@@ -59,10 +61,11 @@ $args是包含以下字段的关联数组：
 
 ```php
 //删除桶
-$result = $cosClient->deleteBucket(array('Bucket' => 'testbucket-1250000000'));
+//bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+$result = $cosClient->deleteBucket(array('Bucket' => 'testbucket-125000000'));
 ```
 
-### 简单文件上传 putobject
+### 简单文件上传
 
 #### 方法原型
 
@@ -74,33 +77,87 @@ public Guzzle\Service\Resource\Model putObject(array $args = array())
 
 $args是包含以下字段的关联数组：
 
-| 字段名   |       类型                | 默认值 | 是否必填字段 |                  描述                  |
-| :------: | :------------:            | :--:   | :--------:   | :----------------------------------: |
-| Bucket   |     string                |  无    | 是           |               bucket名称               |
-|    Key   |     string                |  无    | 是           |         对象名称         |
-|    Body  |      string\|resource     |  无    | 是           |                 对象的内容                 |
-|    Acl   |      string               |  无    | 否           |                 ACL权限控制                 |
-| Metadata | associative-array<string> |  无    | 否           | 用户的自定义头(x-cos-meta-)和HTTP头(metadata) |
-
+| 参数名称   | 描述   |类型 | 是否必填字段 | 
+| -------------- | -------------- |---------- | ----------- |
+ |  Bucket  |  Bucket 名称，由数字和小写字母以及中划线 "-" 构成 | string |   是 |
+ |  Body  | 上传文件的内容，可以为文件流或字节流 |  file/string |  是 |
+ |  Key  | 上传文件的路径名，默认从 Bucket 开始 | string |  是 | 
+ |  ACL  | 设置文件的 ACL，如 'private，public-read'，'public-read-write' | string |   否 | 
+ |  GrantFullControl  |赋予指定账户对文件的读写权限 |  string |  否 | 
+ |  GrantRead  |  赋予指定账户对文件读权限 | string |  否 |
+ |  GrantWrite  |  赋予指定账户对文件的写权限 | string |  否 |
+ |  StorageClass  |  设置文件的存储类型，STANDARD,STANDARD_IA，NEARLINE，默认值：STANDARD | String |   否 |
+ |  Expires  | 设置 Content-Expires | string|  否 | 
+ |  CacheControl  |  缓存策略，设置 Cache-Control | string |   否 |
+ |  ContentType  | 内容类型，设置 Content-Type |string |   否 |  
+ |  ContentDisposition  |  文件名称，设置 Content-Disposition | string |   否 |
+ |  ContentEncoding  |  编码格式，设置 Content-Encoding | string |   否 |
+ |  ContentLanguage  |  语言类型，设置 Content-Language | string |   否 |
+ |  ContentLength  | 设置传输长度 | string |   否 | 
+ |  ContentMD5  | 设置上传文件的 MD5 值用于校验 | string |   否 | 
+ |  Metadata | 用户自定义的文件元信息 | array |   否 |
 #### 示例
 
 ```php
 // 从内存中上传
-$cosClient->putObject(array(
-    'Bucket' => 'testbucket-1250000000',
-    'Key' => 'hello.txt',
-    'Body' => 'Hello World!'));
-
+#putObject
+try {
+    $result = $cosClient->putObject(array(
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
+        'Key' => 'string',
+        'Body' => 'Hello World!',
+        'CacheControl' => 'string',
+        'ContentDisposition' => 'string',
+        'ContentEncoding' => 'string',
+        'ContentLanguage' => 'string',
+//        'ContentLength' => integer,
+//        'ContentType' => 'string',
+//        'Expires' => 'mixed type: string (date format)|int (unix timestamp)|\DateTime',
+//        'GrantFullControl' => 'string',
+//        'GrantRead' => 'string',
+//        'GrantWrite' => 'string',
+//        'Metadata' => array(
+//            'string' => 'string',
+//        ),
+//        'StorageClass' => 'string',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 // 上传本地文件
-$cosClient->putObject(array(
-    'Bucket' => 'testbucket-1250000000',
-    'Key' => 'hello.txt',
-    'Body' => fopen('./hello.txt', 'rb')));
+#putObject
+try {
+    $result = $cosClient->putObject(array(
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
+        'Key' => 'string',
+        'Body' => fopen('./hello.txt', 'rb'),
+        'CacheControl' => 'string',
+        'ContentDisposition' => 'string',
+        'ContentEncoding' => 'string',
+        'ContentLanguage' => 'string',
+//        'ContentLength' => integer,
+//        'ContentType' => 'string',
+//        'Expires' => 'mixed type: string (date format)|int (unix timestamp)|\DateTime',
+//        'GrantFullControl' => 'string',
+//        'GrantRead' => 'string',
+//        'GrantWrite' => 'string',
+//        'Metadata' => array(
+//            'string' => 'string',
+//        ),
+//        'StorageClass' => 'string',
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 ```
 
 
 
-### 分块文件上传 multiupload
+### 分块文件上传
 
 分块文件上传是通过将文件拆分成多个小块进行上传，多个小块可以并发上传, 最大支持40TB。
 
@@ -130,19 +187,28 @@ public Guzzle\Service\Resource\Model listParts(array $args = array());
 // 终止分块上传
 public Guzzle\Service\Resource\Model abortMultipartUpload(array $args = array());
 ```
-### 上传文件 upload
+### 上传文件
 #### 示例
 ```php
 //上传文件
-$result = $cosClient->upload(
-                 $bucket = 'testbucket-1250000000',
-                 $key = '111.txt',
-                 $body = '131213');
+try {
+    $result = $cosClient->upload(
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        $bucket='testbucket-1252448703',
+        $key = '111.txt',
+        $body = fopen('./hello.txt', 'rb'),
+        $options = array(
+            "ACL"=>'private',
+            'CacheControl' => 'private'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 ```
 单文件小于5M时，使用单文件上传
 反之使用分片上传
 
-### 下载文件 getobject
+### 下载文件
 
 将文件下载到本地或者下载到内存中.
 
@@ -162,25 +228,29 @@ $args是包含以下字段的关联数组：
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
 | Key      |     string     |  无    | 是           |         对象名称         |
 | SaveAs   |     string     |  无    | 否           | 保存到本地的本地文件路径                 |
+| VersionId      |     string     |  无    | 否           |         对象版本号        |
+
 
 #### 示例
 
 ```php
 // 下载文件到内存
 $result = $cosClient->getObject(array(
-    'Bucket' => 'testbucket-1250000000',
+    //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+    'Bucket' => 'testbucket-125000000',
     'Key' => 'hello.txt'));
 echo($result['Body'])
 
 // 下载文件到本地
 $result = $cosClient->getObject(array(
-    'Bucket' => 'testbucket-1250000000',
+    //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+    'Bucket' => 'testbucket-125000000',
     'Key' => 'hello.txt',
     'SaveAs' => './hello.txt'));
 ```
 
 
-### 删除文件 deleteobject
+### 删除文件
 
 删除COS上的对象.
 
@@ -199,19 +269,21 @@ $args是包含以下字段的关联数组：
 | :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
 | Key      |     string     |  无    | 是           |         对象名称         |
+| VersionId      |     string     |  无    | 否           |         对象版本号        |
 
 #### 示例
 
 ```php
 // 删除COS对象
 $result = $cosClient->deleteObject(array(
-    'Bucket' => 'testbucket-1250000000',
+    //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+    'Bucket' => 'testbucket-125000000',
     'Key' => 'hello.txt'));
 ```
 
 
 
-### 获取对象属性 headobject
+### 获取对象属性
 
 查询获取COS上的对象属性
 
@@ -230,17 +302,20 @@ $args是包含以下字段的关联数组：
 | :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
 | Bucket   |     string     |  无    | 是           |               bucket名称               |
 | Key      |     string     |  无    | 是           |         对象名称         |
+| VersionId      |     string     |  无    | 否           |         对象版本号        |
+
 
 
 #### 示例
 
-```java
+```php
 // 获取COS文件属性
-$result $cosClient->headObject(array('Bucket' => 'testbucket-1250000000', 'Key' => 'hello.txt'));
+ //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+$result $cosClient->headObject(array('Bucket' => 'testbucket-125000000', 'Key' => 'hello.txt'));
 ```
 
 
-### 获取文件列表 listbucket
+### 获取文件列表
 
 查询获取COS上的文件列表
 
@@ -267,7 +342,8 @@ $args是包含以下字段的关联数组：
 
 ```php
 // 获取bucket下成员
-$result = $cosClient->listObjects(array('Bucket' => 'testbucket-1250000000'));
+//bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+$result = $cosClient->listObjects(array('Bucket' => 'testbucket-125000000'));
 ```
 ### putBucketACL
 
@@ -297,7 +373,8 @@ $args是包含以下字段的关联数组：
 #putBucketACL
 try {
     $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket-1250000000',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -339,7 +416,8 @@ public Guzzle\Service\Resource\Model getBucketACL(array $args = array());
 #getBucketACL
 try {
     $result = $cosClient->GetBucketAcl(array(
-        'Bucket' => 'testbucket-1250000000',));
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -368,7 +446,8 @@ public Guzzle\Service\Resource\Model putObjectACL(array $args = array());
 #putObjectACL
 try {
     $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket-1250000000',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -409,7 +488,8 @@ public Guzzle\Service\Resource\Model getObjectACL(array $args = array());
 #getObjectACL
 try {
     $result = $cosClient->getObjectAcl(array(
-        'Bucket' => 'testbucket-1250000000',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
         'Key' => '11'));
     print_r($result);
 } catch (\Exception $e) {
@@ -442,8 +522,8 @@ public Guzzle\Service\Resource\Model putBucketCors(array $args = array());
 ###putBucketCors
 try {
     $result = $cosClient->putBucketCors(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
         // CORSRules is required
         'CORSRules' => array(
             array(
@@ -482,8 +562,8 @@ public Guzzle\Service\Resource\Model getBucketCors(array $args = array());
 #getBucketCors
 try {
     $result = $cosClient->getBucketCors(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -507,8 +587,8 @@ public Guzzle\Service\Resource\Model deleteBucketCors(array $args = array());
 #deleteBucketCors
 try {
     $result = $cosClient->deleteBucketCors(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -516,7 +596,7 @@ try {
 }
 ```
 
-### 复制对象copyobject
+### 复制对象
 #### 方法原型
 
 ```php
@@ -540,8 +620,8 @@ $args是包含以下字段的关联数组：
 #copyobject
 try {
     $result = $cosClient->copyObject(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' => 'testbucket-125000000',
         // CopySource is required
         'CopySource' => 'lewzylu03-1252448703.cos.ap-guangzhou.myqcloud.com/tox.ini',
         // Key is required
@@ -553,7 +633,16 @@ try {
 }
 ```
 
-
+#Copy
+try {
+    $result = $cosClient->Copy($bucket = 'lewzylu01-1252448703',
+        $key = 'string',
+        $copysource = 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G',
+        $options = array('VersionId'=>'MTg0NDY3NDI1NTk0MzUwNDQ1OTg'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
 
 ### putBucketLifecycle
 #### 方法原型
@@ -579,8 +668,8 @@ public Guzzle\Service\Resource\Model putBucketLifecycle(array $args = array());
 #putBucketLifecycle
 try {
     $result = $cosClient->putBucketLifecycle(array(
-    // Bucket is required
-    'Bucket' => 'lewzylu02',
+    //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+    'Bucket' => 'testbucket-125000000',
     // Rules is required
     'Rules' => array(
         array(
@@ -624,8 +713,8 @@ public Guzzle\Service\Resource\Model getBucketLifecycle(array $args = array());
 #getBucketLifecycle
 try {
     $result = $cosClient->getBucketLifecycle(array(
-        // Bucket is required
-        'Bucket' =>'lewzylu02',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' =>'testbucket-125000000',
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -649,8 +738,8 @@ public Guzzle\Service\Resource\Model deleteBucketLifecycle(array $args = array()
 #deleteBucketLifecycle
 try {
     $result = $cosClient->deleteBucketLifecycle(array(
-        // Bucket is required
-        'Bucket' =>'lewzylu02',
+        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+        'Bucket' =>'testbucket-125000000',
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -670,7 +759,8 @@ try {
 
 ```php
 //获得object的下载url
-$bucket =  'testbucket-1250000000';
+//bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+$bucket =  'testbucket-125000000';
 $key = 'hello.txt';
 $region = 'cn-south';
 $url = "/{$key}";
@@ -689,4 +779,146 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'    => '',
             'secretKey' => '',
             'token' => '')));
+```
+### 恢复归档文件
+
+#### 方法原型
+
+```php
+//  恢复归档文件
+public Guzzle\Service\Resource\Model deleteObject(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| Key      |     string     |  无    | 是           |         对象名称         |
+| Days      |     integer |  无    | 是          |         保存时间        |
+| Tier   |     string |  standard    | 否          |         恢复类型        |
+
+#### 示例
+
+```php
+  try {
+    $result = $cosClient->restoreObject(array(
+        // Bucket is required
+        'Bucket' => 'lewzylu02',
+        // Objects is required
+        'Key' => '11',
+        'Days' => 7,
+        'CASJobParameters' => array(
+            'Tier' =>'Bulk'
+        )
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}```
+
+### 开启多版本
+
+#### 方法原型
+
+```php
+// 开启多版本
+public Guzzle\Service\Resource\Model putBucketVersioning(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| Status   |     string     |  无    | 是           |               多版本状态              |
+
+#### 示例
+
+```php
+#putBucketVersioning
+try {
+    $result = $cosClient->putBucketVersioning(
+    array('Bucket' => 'lewzylu02',
+    'Status' => 'Enabled')
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
+```
+
+```
+### 获取bucket版本
+
+#### 方法原型
+
+```php
+// 获取bucket版本
+public Guzzle\Service\Resource\Model getBucketVersioning(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+
+#### 示例
+
+```php
+try {
+    $result = $cosClient->getBucketVersioning(
+        array('Bucket' => 'lewzylu02',)
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+```
+
+```
+### 打印各个版本的文件列表
+
+#### 方法原型
+
+```php
+// 打印各个版本的文件列表
+public Guzzle\Service\Resource\Model listObjectVersions(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |               bucket名称               |
+| Delimiter      |     string     |  无    | 否          |         分隔符         |
+| Marker      |     string     |  无    | 否          |         标记        |
+| MaxKeys      |     int     |  无    | 否          |         最大对象个数         |
+| Prefix      |     string     |  无    | 否           |         前缀         |
+
+#### 示例
+
+```php
+try {
+    $result = $cosClient->listObjectVersions(
+        array('Bucket' => 'lewzylu02',
+            'Prefix'=>'test1G')
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
 ```

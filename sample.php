@@ -24,6 +24,7 @@ try {
     echo "$e\n";
 }
 
+
 #uploadbigfile
 try {
     $result = $cosClient->upload(
@@ -38,6 +39,7 @@ try {
     echo "$e\n";
 }
 
+
 #putObject
 try {
     $result = $cosClient->putObject(array(
@@ -49,15 +51,40 @@ try {
     echo "$e\n";
 }
 
+
+#putBucketVersioning
+try {
+    $result = $cosClient->putBucketVersioning(
+    array('Bucket' => 'lewzylu02',
+    'Status' => 'Enabled')
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
 #getObject
 try {
     $result = $cosClient->getObject(array(
         'Bucket' => 'testbucket-1252448703',
         'Key' => '11',
+        'VersionId' =>'111'
         ));
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+#getBucketLocation
+try {
+    $result = $cosClient->getBucketLocation(array(
+    'Bucket' => 'lewzylu02',
+    ));
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+;
+
 #deleteObject
 try {
     $result = $cosClient->deleteObject(array(
@@ -67,6 +94,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #deleteObjects
 try {
     $result = $cosClient->deleteObjects(array(
@@ -87,6 +116,7 @@ try {
     echo "$e\n";
 }
 
+
 #deleteBucket
 try {
     $result = $cosClient->deleteBucket(array(
@@ -96,15 +126,18 @@ try {
     echo "$e\n";
 }
 
+
 #headObject
 try {
     $result = $cosClient->headObject(array(
         'Bucket' => 'testbucket-1252448703',
-        'Key' => '11'));
+        'Key' => '11',
+        'VersionId' =>'111'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
 
 #listObjects
 try {
@@ -115,6 +148,18 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+#ListObjectVersions
+try {
+    $result = $cosClient->ListObjectVersions(
+        array('Bucket' => 'lewzylu02',
+            'Prefix'=>'test1G')
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
 
 #listObjects
 try {
@@ -124,7 +169,19 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
-#putObjectUrl
+
+#getBucketVersioning
+try {
+    $result = $cosClient->getBucketVersioning(
+        array('Bucket' => 'lewzylu02',)
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
+#getObjectUrl
 try {
     $bucket =  'testbucket-1252448703';
     $key = 'hello.txt';
@@ -137,6 +194,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #putBucketACL
 try {
     $result = $cosClient->PutBucketAcl(array(
@@ -160,6 +219,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #getBucketACL
 try {
     $result = $cosClient->GetBucketAcl(array(
@@ -168,6 +229,7 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
 
 #putObjectACL
 try {
@@ -193,6 +255,7 @@ try {
     echo "$e\n";
 }
 
+
 #getObjectACL
 try {
     $result = $cosClient->getObjectAcl(array(
@@ -202,6 +265,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #putBucketLifecycle
 try {
     $result = $cosClient->putBucketLifecycle(array(
@@ -230,6 +295,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #getBucketLifecycle
 try {
     $result = $cosClient->getBucketLifecycle(array(
@@ -241,6 +308,7 @@ try {
     echo "$e\n";
 }
 
+
 #deleteBucketLifecycle
 try {
     $result = $cosClient->deleteBucketLifecycle(array(
@@ -251,6 +319,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #putBucketCors
 try {
     $result = $cosClient->putBucketCors(array(
@@ -273,6 +343,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #getBucketCors
 try {
     $result = $cosClient->getBucketCors(array(
@@ -283,6 +355,8 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #deleteBucketCors
 try {
     $result = $cosClient->deleteBucketCors(array(
@@ -293,13 +367,15 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #copyobject
 try {
     $result = $cosClient->copyObject(array(
         // Bucket is required
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => 'lewzylu01-1252448703',
         // CopySource is required
-        'CopySource' => 'lewzylu03-1252448703.cos.ap-guangzhou.myqcloud.com/tox.ini',
+        'CopySource' => 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G?versionId=MTg0NDY3NDI1NTk0MzUwNDQ1OTg',
         // Key is required
         'Key' => 'string',
     ));
@@ -307,12 +383,32 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
 #Copy
 try {
-    $result = $cosClient->Copy($bucket = 'testbucket-1252448703',
-        $key = 'cmake-3.8.2为.tar.gz',
-        $copysource = 'lewzylu-1252448703.cos.ap-guangzhou.myqcloud.com/cmake-3.8.2为.tar.gz');
+    $result = $cosClient->Copy($bucket = 'lewzylu01-1252448703',
+        $key = 'string',
+        $copysource = 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G',
+        $options = array('VersionId'=>'MTg0NDY3NDI1NTk0MzUwNDQ1OTg'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
 }
+#restoreObject
+try {
+    $result = $cosClient->restoreObject(array(
+        // Bucket is required
+        'Bucket' => 'lewzylu02',
+        // Objects is required
+        'Key' => '11',
+        'Days' => 7,
+        'CASJobParameters' => array(
+            'Tier' =>'Bulk'
+        )
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
