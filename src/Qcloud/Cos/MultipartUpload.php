@@ -3,7 +3,7 @@
 namespace Qcloud\Cos;
 
 use Guzzle\Http\ReadLimitEntityBody;
-
+use Qcloud\Cos\Exception\CosException;
 class MultipartUpload {
     /**
      * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
@@ -44,6 +44,11 @@ class MultipartUpload {
                         'Body' => $body,
                         'UploadId' => $uploadId,
                         'PartNumber' => $partNumber));
+//            echo(md5($body));
+//            echo(substr($result['ETag'], 1, -1));
+            if (md5($body) != substr($result['ETag'], 1, -1)){
+                throw new CosException("ETag check inconsistency");
+            }
             $part = array('PartNumber' => $partNumber, 'ETag' => $result['ETag']);
             array_push($parts, $part);
             ++$partNumber;
