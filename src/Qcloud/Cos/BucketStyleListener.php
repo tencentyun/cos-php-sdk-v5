@@ -48,7 +48,7 @@ class BucketStyleListener implements EventSubscriberInterface {
                 $command['Key'] = $key = implode('/', $key);
             }
         }
-
+        $request->setHeader('Date', gmdate('D, d M Y H:i:s T'));
         $request->setPath(preg_replace("#^/{$bucket}#", '', $request->getPath()));
 
         if ($this->appId != null && endWith($bucket,'-'.$this->appId) == False)

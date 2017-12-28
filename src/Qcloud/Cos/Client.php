@@ -100,7 +100,6 @@ class Client extends GSClient {
         $options = Collection::fromConfig(array_change_key_case($options), array(
             'min_part_size' => MultipartUpload::MIN_PART_SIZE,
             'params'        => $options));
-        print_r($options);
         if ($body->getSize() < $options['min_part_size']) {
             // Perform a simple PutObject operation
             return $this->putObject(array(
@@ -132,28 +131,68 @@ class Client extends GSClient {
             'appId' => $sourceappid,
             'secretId'    => $this->secretId,
             'secretKey' => $this->secretKey)));
-
     $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
-                            'Key'=>$sourcekey));
+                            'Key'=>$sourcekey,
+                            'VersionId'=>$options['params']['VersionId']));
     $contentlength =$rt['ContentLength'];
 
     if ($contentlength < $options['min_part_size']) {
         return $this->copyObject(array(
                 'Bucket' => $bucket,
                 'Key'    => $key,
-                'CopySource'   => $copysource,
+                'CopySource'   => $copysource."?versionId=".$options['params']['VersionId'],
             ) + $options['params']);
     }
     $copy = new Copy($this, $contentlength, $copysource, $options['min_part_size'], array(
             'Bucket' => $bucket,
             'Key'    => $key,
             'ContentLength' => $contentlength,
-            'CopySource'   => $copysource,
+            'CopySource'   => $copysource."?versionId=".$options['params']['VersionId'],
         ) + $options['params']);
 
-    return $copy->performUploading();
-}
+        return $copy->performUploading();
+    }
 
+    /**
+     * Determines whether or not a bucket exists by name
+     *
+     * @param string $bucket    The name of the bucket
+     * @param bool   $accept403 Set to true if 403s are acceptable
+     * @param array  $options   Additional options to add to the executed command
+     *
+     * @return bool
+     */
+    public function doesBucketExist($bucket, $accept403 = true, array $options = array())
+    {
+        try {
+            $this->HeadBucket(array(
+                'Bucket' => $bucket));
+            return True;
+        }catch (\Exception $e){
+            return False;
+        }
+    }
+
+    /**
+     * Determines whether or not an object exists by name
+     *
+     * @param string $bucket  The name of the bucket
+     * @param string $key     The key of the object
+     * @param array  $options Additional options to add to the executed command
+     *
+     * @return bool
+     */
+    public function doesObjectExist($bucket, $key, array $options = array())
+    {
+        try {
+            $this->HeadObject(array(
+                'Bucket' => $bucket,
+                'Key' => $key));
+            return True;
+        }catch (\Exception $e){
+            return False;
+        }
+    }
     public static function encodeKey($key) {
         return $key;
         return str_replace('%2F', '/', rawurlencode($key));
