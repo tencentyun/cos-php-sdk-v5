@@ -64,7 +64,7 @@ class ExceptionParser {
         } elseif ($method === 'HEAD' && $status === 404) {
             $path   = explode('/', trim($request->getPath(), '/'));
             $host   = explode('.', $request->getHost());
-            $bucket = (count($host) === 4) ? $host[0] : array_shift($path);
+            $bucket = (count($host) >= 4) ? $host[0] : array_shift($path);
             $object = array_shift($path);
 
             if ($bucket && $object) {
