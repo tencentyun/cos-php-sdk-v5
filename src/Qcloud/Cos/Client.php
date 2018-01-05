@@ -2,6 +2,7 @@
 
 namespace Qcloud\Cos;
 
+use Guzzle\Service\Description\Parameter;
 use Guzzle\Service\Description\ServiceDescription;
 use Guzzle\Service\Client as GSClient;
 use Guzzle\Common\Collection;
@@ -126,28 +127,35 @@ class Client extends GSClient {
         $sourceappid = explode('-',explode('.',$copysource)[0])[1];
         $sourceregion = explode('.',$copysource)[2];
         $sourcekey = substr(strstr($copysource,'/'),1);
+        $sourceversion = "";
         $cosClient = new Client(array('region' => $sourceregion,
         'credentials'=> array(
             'appId' => $sourceappid,
             'secretId'    => $this->secretId,
             'secretKey' => $this->secretKey)));
-    $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
+        if (!key_exists('VersionId',$options['params'])) {
+            $sourceversion = "";
+        }
+        else{
+            $sourceversion = $options['params']['VersionId'];
+        }
+        $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
                             'Key'=>$sourcekey,
-                            'VersionId'=>$options['params']['VersionId']));
+                            'VersionId'=>$sourceversion));
     $contentlength =$rt['ContentLength'];
 
     if ($contentlength < $options['min_part_size']) {
         return $this->copyObject(array(
                 'Bucket' => $bucket,
                 'Key'    => $key,
-                'CopySource'   => $copysource."?versionId=".$options['params']['VersionId'],
+                'CopySource'   => $copysource."?versionId=".$sourceversion,
             ) + $options['params']);
     }
     $copy = new Copy($this, $contentlength, $copysource, $options['min_part_size'], array(
             'Bucket' => $bucket,
             'Key'    => $key,
             'ContentLength' => $contentlength,
-            'CopySource'   => $copysource."?versionId=".$options['params']['VersionId'],
+            'CopySource'   => $copysource."?versionId=".$sourceversion,
         ) + $options['params']);
 
         return $copy->performUploading();

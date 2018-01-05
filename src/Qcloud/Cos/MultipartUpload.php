@@ -53,7 +53,6 @@ class MultipartUpload {
             array_push($parts, $part);
             ++$partNumber;
         }
-
         return $this->client->completeMultipartUpload(array(
                     'Bucket' => $this->options['Bucket'],
                     'Key' => $this->options['Key'],
