@@ -1887,9 +1887,27 @@ class Service {
                         'type' => 'object',
                         'additionalProperties' => true,
                         'properties' => array(
+                            'DeleteMarker' => array(
+                                'type' => 'boolean',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-delete-marker',
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-version-id',
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
                             'RequestId' => array(
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-request-id'))),
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'DeleteObjectsOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
