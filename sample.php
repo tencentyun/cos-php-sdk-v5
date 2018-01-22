@@ -138,6 +138,15 @@ try {
     echo "$e\n";
 }
 
+#headBucket
+try {
+    $result = $cosClient->headBucket(array(
+        'Bucket' => 'testbucket-1252448703'));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
 
 #listObjects
 try {
