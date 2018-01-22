@@ -314,6 +314,35 @@ $args是包含以下字段的关联数组：
 $result $cosClient->headObject(array('Bucket' => 'testbucket-125000000', 'Key' => 'hello.txt'));
 ```
 
+### 查询Bucket是否存在
+
+查询获取COS上的Bucket是否存在
+
+#### 方法原型
+
+```php
+// 获取文件属性
+public Guzzle\Service\Resource\Model headBucket(array $args = array());
+```
+
+#### 参数说明
+
+$args是包含以下字段的关联数组：
+
+| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
+| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
+| Bucket   |     string     |  无    | 是           |         对象版本号        |
+
+
+
+#### 示例
+
+```php
+// 获取COS文件属性
+ //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
+$result $cosClient->headBucket(array('Bucket' => 'testbucket-125000000'));
+```
+
 
 ### 获取文件列表
 
