@@ -89,7 +89,8 @@ try {
 try {
     $result = $cosClient->deleteObject(array(
         'Bucket' => 'testbucket-1252448703',
-        'Key' => '111.txt'));
+        'Key' => '111.txt',
+        'VersionId' => 'string'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";

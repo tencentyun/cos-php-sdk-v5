@@ -391,7 +391,22 @@ class Service {
                                 'location' => 'uri',
                                 'minLength' => 1,
                                 'filters' => array(
-                                    'Qcloud\\Cos\\Client::explodeKey')))),
+                                    'Qcloud\\Cos\\Client::explodeKey')),
+                            'MFA' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-mfa',
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'versionId',
+                            ),
+                            'RequestPayer' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-payer',
+                            ),)),
                     'DeleteObjects' => array(
                         'httpMethod' => 'POST',
                         'uri' => '/{Bucket}?delete',
@@ -1579,22 +1594,22 @@ class Service {
                             'SSECustomerAlgorithm' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-amz-server-side-encryption-customer-algorithm',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
                             ),
                             'SSECustomerKey' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-amz-server-side-encryption-customer-key',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-key',
                             ),
                             'SSECustomerKeyMD5' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-amz-server-side-encryption-customer-key-MD5',
+                                'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
                             ),
                             'RequestPayer' => array(
                                 'type' => 'string',
                                 'location' => 'header',
-                                'sentAs' => 'x-amz-request-payer',
+                                'sentAs' => 'x-cos-request-payer',
                             ),
                         ),
                         'errorResponses' => array(
