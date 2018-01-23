@@ -151,11 +151,9 @@ class Client extends GSClient {
                 'CopySource'   => $copysource."?versionId=".$sourceversion,
             ) + $options['params']);
     }
-    $copy = new Copy($this, $contentlength, $copysource, $options['min_part_size'], array(
+    $copy = new Copy($this, $contentlength, $copysource."?versionId=".$sourceversion, $options['min_part_size'], array(
             'Bucket' => $bucket,
-            'Key'    => $key,
-            'ContentLength' => $contentlength,
-            'CopySource'   => $copysource."?versionId=".$sourceversion,
+            'Key'    => $key
         ) + $options['params']);
 
         return $copy->performUploading();

@@ -399,7 +399,7 @@ try {
 try {
     $result = $cosClient->Copy($bucket = 'lewzylu01-1252448703',
         $key = 'string',
-        $copysource = 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G',
+        $copysource = 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G?versionId=MTg0NDY3NDI1NTk0MzUwNDQ1OTg',
         $options = array('VersionId'=>'MTg0NDY3NDI1NTk0MzUwNDQ1OTg'));
     print_r($result);
 } catch (\Exception $e) {

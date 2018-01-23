@@ -1199,25 +1199,32 @@ class Service {
                                             'required' => true,
                                             'type' => 'string',
                                         ),
-                                        'Transition' => array(
-                                            'type' => 'object',
-                                            'properties' => array(
-                                                'Date' => array(
-                                                    'type' => array(
-                                                        'object',
-                                                        'string',
-                                                        'integer',
-                                                    ),
-                                                    'format' => 'date-time',
-                                                ),
-                                                'Days' => array(
-                                                    'type' => 'numeric',
-                                                ),
-                                                'StorageClass' => array(
-                                                    'type' => 'string',
-                                                ),
+                                        'Transitions' => array(
+                                            'required' => true,
+                                            'type' => 'array',
+                                            'location' => 'xml',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
                                             ),
-                                        ),
+                                            'items' => array(
+                                                'name' => 'Transition',
+                                                'type' => 'object',
+                                                'sentAs' => 'Transition',
+                                                'properties' => array(
+                                                    'Date' => array(
+                                                        'type' => array(
+                                                            'object',
+                                                            'string',
+                                                            'integer',
+                                                        ),
+                                                        'format' => 'date-time',
+                                                    ),
+                                                    'Days' => array(
+                                                        'type' => 'numeric',
+                                                    ),
+                                                    'StorageClass' => array(
+                                                        'type' => 'string',
+                                                    )))),
                                         'NoncurrentVersionTransition' => array(
                                             'type' => 'object',
                                             'properties' => array(

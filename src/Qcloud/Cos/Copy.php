@@ -8,7 +8,7 @@ class Copy {
     /**
      * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
      */
-    const MIN_PART_SIZE = 52428800;
+    const MIN_PART_SIZE = 5242880;
     const MAX_PART_SIZE = 5368709120;
     const MAX_PARTS     = 10000;
 
@@ -52,13 +52,6 @@ class Copy {
                 'CopySource'=> $this->source,
                 'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize),
             ));
-//            $result = $this->client->UploadPartCopy(array(
-//                        'Bucket' => $this->options['Bucket'],
-//                        'Key' => $this->options['Key'],
-//                        'UploadId' => $uploadId,
-//                        'PartNumber' => $partNumber,
-//                        'CopySource'=> $this->source,
-//                        'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
             ++$partNumber;
             $offset += $partSize;
             if ($this->size == $offset+1)
