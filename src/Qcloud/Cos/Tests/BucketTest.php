@@ -142,12 +142,12 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         sleep(2);
         $result = $this->cosClient->putBucketLifecycle(array(
             // Bucket is required
-            'Bucket' => 'testbucket',
+            'Bucket' => 'testbucket-1252448703',
             // Rules is required
             'Rules' => array(
                 array(
                     'Expiration' => array(
-                        'Days' => 1,
+                        'Days' => 1000,
                     ),
                     'ID' => 'id1',
                     'Filter' => array(
@@ -155,9 +155,10 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     ),
                     // Status is required
                     'Status' => 'Enabled',
-                    'Transition' => array(
-                        'Days' => 100,
-                        'StorageClass' => 'NEARLINE',
+                    'Transitions' => array(
+                        array(
+                            'Days' => 100,
+                            'StorageClass' => 'Standard_IA'),
                     ),
                     // ... repeated
                 ),
@@ -175,12 +176,12 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         sleep(2);
         $result = $this->cosClient->putBucketLifecycle(array(
             // Bucket is required
-            'Bucket' => 'testbucket',
+            'Bucket' => 'testbucket-1252448703',
             // Rules is required
             'Rules' => array(
                 array(
                     'Expiration' => array(
-                        'Days' => 1,
+                        'Days' => 1000,
                     ),
                     'ID' => 'id1',
                     'Filter' => array(
@@ -188,9 +189,10 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     ),
                     // Status is required
                     'Status' => 'Enabled',
-                    'Transition' => array(
-                        'Days' => 100,
-                        'StorageClass' => 'NEARLINE',
+                    'Transitions' => array(
+                        array(
+                            'Days' => 100,
+                            'StorageClass' => 'Standard_IA'),
                     ),
                     // ... repeated
                 ),
@@ -213,12 +215,12 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         sleep(2);
         $result = $this->cosClient->putBucketLifecycle(array(
             // Bucket is required
-            'Bucket' => 'testbucket',
+            'Bucket' => 'testbucket-1252448703',
             // Rules is required
             'Rules' => array(
                 array(
                     'Expiration' => array(
-                        'Days' => 1,
+                        'Days' => 1000,
                     ),
                     'ID' => 'id1',
                     'Filter' => array(
@@ -226,9 +228,10 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     ),
                     // Status is required
                     'Status' => 'Enabled',
-                    'Transition' => array(
-                        'Days' => 100,
-                        'StorageClass' => 'NEARLINE',
+                    'Transitions' => array(
+                        array(
+                            'Days' => 100,
+                            'StorageClass' => 'Standard_IA'),
                     ),
                     // ... repeated
                 ),
