@@ -280,27 +280,28 @@ try {
 #putBucketLifecycle
 try {
     $result = $cosClient->putBucketLifecycle(array(
-    // Bucket is required
-    'Bucket' => 'testbucket-1252448703',
-    // Rules is required
-    'Rules' => array(
-        array(
-            'Expiration' => array(
-                'Days' => 1,
+        // Bucket is required
+        'Bucket' => 'lewzylu06-1252448703',
+        // Rules is required
+        'Rules' => array(
+            array(
+                'Expiration' => array(
+                    'Days' => 1000,
+                ),
+                'ID' => 'id1',
+                'Filter' => array(
+                    'Prefix' => 'documents/'
+                ),
+                // Status is required
+                'Status' => 'Enabled',
+                'Transitions' => array(
+                    array(
+                        'Days' => 200,
+                        'StorageClass' => 'NEARLINE'),
+                ),
+                // ... repeated
             ),
-            'ID' => 'id1',
-            'Filter' => array(
-                'Prefix' => 'documents/'
-            ),
-            // Status is required
-            'Status' => 'Enabled',
-            'Transition' => array(
-                'Days' => 100,
-                'StorageClass' => 'NEARLINE',
-            ),
-            // ... repeated
-        ),
-    )));
+        )));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
