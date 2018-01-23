@@ -711,10 +711,10 @@ try {
             ),
             // Status is required
             'Status' => 'Enabled',
-            'Transition' => array(
-                'Days' => 100,
-                'StorageClass' => 'NEARLINE',
-            ),
+            'Transitions' => array(
+                array(
+                    'Days' => 200,
+                    'StorageClass' => 'NEARLINE')),
             // ... repeated
         ),
     )));
