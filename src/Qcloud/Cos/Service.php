@@ -1199,25 +1199,32 @@ class Service {
                                             'required' => true,
                                             'type' => 'string',
                                         ),
-                                        'Transition' => array(
-                                            'type' => 'object',
-                                            'properties' => array(
-                                                'Date' => array(
-                                                    'type' => array(
-                                                        'object',
-                                                        'string',
-                                                        'integer',
-                                                    ),
-                                                    'format' => 'date-time',
-                                                ),
-                                                'Days' => array(
-                                                    'type' => 'numeric',
-                                                ),
-                                                'StorageClass' => array(
-                                                    'type' => 'string',
-                                                ),
+                                        'Transitions' => array(
+                                            'required' => true,
+                                            'type' => 'array',
+                                            'location' => 'xml',
+                                            'data' => array(
+                                                'xmlFlattened' => true,
                                             ),
-                                        ),
+                                            'items' => array(
+                                                'name' => 'Transition',
+                                                'type' => 'object',
+                                                'sentAs' => 'Transition',
+                                                'properties' => array(
+                                                    'Date' => array(
+                                                        'type' => array(
+                                                            'object',
+                                                            'string',
+                                                            'integer',
+                                                        ),
+                                                        'format' => 'date-time',
+                                                    ),
+                                                    'Days' => array(
+                                                        'type' => 'numeric',
+                                                    ),
+                                                    'StorageClass' => array(
+                                                        'type' => 'string',
+                                                    )))),
                                         'NoncurrentVersionTransition' => array(
                                             'type' => 'object',
                                             'properties' => array(
@@ -1887,9 +1894,27 @@ class Service {
                         'type' => 'object',
                         'additionalProperties' => true,
                         'properties' => array(
+                            'DeleteMarker' => array(
+                                'type' => 'boolean',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-delete-marker',
+                            ),
+                            'VersionId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-version-id',
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
                             'RequestId' => array(
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-request-id'))),
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'DeleteObjectsOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,

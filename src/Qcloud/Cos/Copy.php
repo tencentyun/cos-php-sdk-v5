@@ -52,13 +52,6 @@ class Copy {
                 'CopySource'=> $this->source,
                 'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize),
             ));
-//            $result = $this->client->UploadPartCopy(array(
-//                        'Bucket' => $this->options['Bucket'],
-//                        'Key' => $this->options['Key'],
-//                        'UploadId' => $uploadId,
-//                        'PartNumber' => $partNumber,
-//                        'CopySource'=> $this->source,
-//                        'CopySourceRange' => 'bytes='.((string)$offset).'-'.(string)($offset+$partSize)));
             ++$partNumber;
             $offset += $partSize;
             if ($this->size == $offset+1)
