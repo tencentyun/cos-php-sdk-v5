@@ -195,7 +195,6 @@ try {
 try {
     $bucket =  'testbucket-1252448703';
     $key = 'hello.txt';
-    $region = 'cn-south';
     $url = "/{$key}";
     $request = $cosClient->get($url);
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
