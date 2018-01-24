@@ -30,7 +30,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            var_dump($result);
             sleep(2);
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
@@ -42,10 +41,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => 'testbucket'));
-            var_dump($result);
             sleep(2);
             $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
-            var_dump($result);
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
@@ -55,7 +52,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     {
         try {
             $result = $this->cosClient->deleteBucket(array('Bucket' => 'testbucket'));
-            var_dump($result);
             sleep(2);
         } catch (CosException $e) {
             $this->assertTrue($e->getExceptionCode() === 'NoSuchBucket');
@@ -163,7 +159,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     // ... repeated
                 ),
             )));
-        var_dump($result);
     } catch (\Exception $e) {
         $this->assertFalse(true, $e);
     }
@@ -202,7 +197,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             // Bucket is required
             'Bucket' => 'testbucket',
         ));
-        var_dump($result);
     } catch (\Exception $e) {
         $this->assertFalse(true, $e);
     }
@@ -241,7 +235,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             // Bucket is required
             'Bucket' => 'testbucket',
         ));
-        var_dump($result);
     } catch (\Exception $e) {
         $this->assertFalse(true, $e);
     }
@@ -270,7 +263,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 // ... repeated
             ),
         ));
-        var_dump($result);
     } catch (\Exception $e) {
         $this->assertFalse(true, $e);
     }
@@ -300,7 +292,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $result = $this->cosClient->getBucketCors(array(
             'Bucket' => 'testbucket',
         ));
-        var_dump($result);
     } catch (\Exception $e) {
         $this->assertFalse(true, $e);
     }}
@@ -329,7 +320,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         $result = $this->cosClient->deleteBucketCors(array(
             'Bucket' => 'testbucket',
         ));
-        var_dump($result);
     } catch (\Exception $e) {
         $this->assertFalse(true, $e);
     }}
