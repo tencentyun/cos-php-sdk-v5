@@ -58,7 +58,6 @@ class MultipartUpload {
                     'Key' => $this->options['Key'],
                     'UploadId' => $uploadId,
                     'Parts' => $parts));
-        print_r($rt);
         return $rt;
     }
 
