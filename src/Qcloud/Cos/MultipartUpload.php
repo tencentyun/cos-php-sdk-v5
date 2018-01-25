@@ -53,11 +53,13 @@ class MultipartUpload {
             array_push($parts, $part);
             ++$partNumber;
         }
-        return $this->client->completeMultipartUpload(array(
+        $rt = $this->client->completeMultipartUpload(array(
                     'Bucket' => $this->options['Bucket'],
                     'Key' => $this->options['Key'],
                     'UploadId' => $uploadId,
                     'Parts' => $parts));
+        print_r($rt);
+        return $rt;
     }
 
     private function calculatePartSize($minPartSize) {

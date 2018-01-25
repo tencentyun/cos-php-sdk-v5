@@ -1790,24 +1790,51 @@ class Service {
                         'properties' => array(
                             'Location' => array(
                                 'type' => 'string',
-                                'location' => 'xml'),
+                                'location' => 'xml',
+                            ),
                             'Bucket' => array(
                                 'type' => 'string',
-                                'location' => 'xml'),
+                                'location' => 'xml',
+                            ),
                             'Key' => array(
                                 'type' => 'string',
-                                'location' => 'xml'),
+                                'location' => 'xml',
+                            ),
+                            'Expiration' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-expiration',
+                            ),
                             'ETag' => array(
                                 'type' => 'string',
-                                'location' => 'xml'),
+                                'location' => 'xml',
+                            ),
+                            'ServerSideEncryption' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption',
+                            ),
                             'VersionId' => array(
                                 'type' => 'string',
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-version-id',
                             ),
+                            'SSEKMSKeyId' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-server-side-encryption-aws-kms-key-id',
+                            ),
+                            'RequestCharged' => array(
+                                'type' => 'string',
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-charged',
+                            ),
                             'RequestId' => array(
                                 'location' => 'header',
-                                'sentAs' => 'x-cos-request-id'))),
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
                     'CreateMultipartUploadOutput' => array(
                         'type' => 'object',
                         'additionalProperties' => true,
@@ -2555,8 +2582,6 @@ class Service {
                             'RequestId' => array(
                                 'location' => 'header',
                                 'sentAs' => 'x-cos-request-id',
-                            ),
-                            'ObjectURL' => array(
                             ),
                         ),
                     ),

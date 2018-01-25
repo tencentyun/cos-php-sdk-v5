@@ -103,20 +103,27 @@ class Client extends GSClient {
             'params'        => $options));
         if ($body->getSize() < $options['min_part_size']) {
             // Perform a simple PutObject operation
-            return $this->putObject(array(
+            $rt = $this->putObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
                     'Body'   => $body,
                 ) + $options['params']);
+
+            $rt['Location'] = $rt['ObjectURL'];
+            unset($rt['ObjectURL']);
         }
+        else {
+            $multipartUpload = new MultipartUpload($this, $body, $options['min_part_size'], array(
+                    'Bucket' => $bucket,
+                    'Key' => $key,
+                    'Body' => $body,
+                ) + $options['params']);
 
-        $multipartUpload = new MultipartUpload($this, $body, $options['min_part_size'], array(
-                'Bucket' => $bucket,
-                'Key'    => $key,
-                'Body'   => $body,
-            ) + $options['params']);
+            $rt = $multipartUpload->performUploading();
 
-        return $multipartUpload->performUploading();
+        }
+        return $rt;
+
     }
     public function copy($bucket, $key, $copysource, $options = array()) {
 
