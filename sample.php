@@ -33,7 +33,8 @@ try {
         $body = str_repeat('a', 5* 1024 * 1024),
         $options = array(
             "ACL"=>'private',
-            'CacheControl' => 'private'));
+            'CacheControl' => 'private',
+            'ServerSideEncryption' => 'AES256'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -45,7 +46,8 @@ try {
     $result = $cosClient->putObject(array(
         'Bucket' => 'testbucket-1252448703',
         'Key' => '11//32//43',
-        'Body' => 'Hello World!'));
+        'Body' => 'Hello World!',
+        'ServerSideEncryption' => 'AES256'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -69,8 +71,7 @@ try {
     $result = $cosClient->getObject(array(
         'Bucket' => 'testbucket-1252448703',
         'Key' => '11',
-        'VersionId' =>'111'
-        ));
+        'VersionId' =>'111'));
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -133,7 +134,8 @@ try {
     $result = $cosClient->headObject(array(
         'Bucket' => 'testbucket-1252448703',
         'Key' => '11',
-        'VersionId' =>'111'));
+        'VersionId' =>'111',
+        'ServerSideEncryption' => 'AES256'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -388,6 +390,7 @@ try {
         'CopySource' => 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G?versionId=MTg0NDY3NDI1NTk0MzUwNDQ1OTg',
         // Key is required
         'Key' => 'string',
+        'ServerSideEncryption' => 'AES256'
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -400,7 +403,8 @@ try {
     $result = $cosClient->Copy($bucket = 'lewzylu01-1252448703',
         $key = 'string',
         $copysource = 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G',
-        $options = array('VersionId'=>'MTg0NDY3NDI1NTk0MzUwNDQ1OTg'));
+        $options = array('VersionId'=>'MTg0NDY3NDI1NTk0MzUwNDQ1OTg',
+            'ServerSideEncryption' => 'AES256'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
