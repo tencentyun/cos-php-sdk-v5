@@ -30,7 +30,10 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
             $this->cosClient->createBucket(array('Bucket' => 'testbucket-1252448703'));
             sleep(2);
             $this->cosClient->putObject(array(
-                        'Bucket' => 'testbucket-1252448703', 'Key' => 'hello.txt', 'Body' => 'Hello World'));
+                'Bucket' => 'testbucket-1252448703',
+                'Key' => 'hello.txt',
+                'Body' => 'Hello World',
+                'ServerSideEncryption' => 'AES256'));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
@@ -70,7 +73,14 @@ class ObjectTest extends \PHPUnit_Framework_TestCase {
         try {
             $this->cosClient->createBucket(array('Bucket' => 'testbucket-1252448703'));
             sleep(5);
-            $this->cosClient->upload('testbucket-1252448703', 'hello.txt', str_repeat('a', 20 * 1024 * 1024));
+            $this->cosClient->upload(
+                $bucket='testbucket-1252448703',
+                $key = '111.txt',
+                $body = str_repeat('a', 5* 1024 * 1024),
+                $options = array(
+                    "ACL"=>'private',
+                    'CacheControl' => 'private',
+                    'ServerSideEncryption' => 'AES256'));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
