@@ -96,6 +96,7 @@ $args是包含以下字段的关联数组：
  |  ContentLength  | 设置传输长度 | string |   否 | 
  |  ContentMD5  | 设置上传文件的 MD5 值用于校验 | string |   否 | 
  |  Metadata | 用户自定义的文件元信息 | array |   否 |
+ |  ServerSideEncryption | 服务端加密方法 | string |   否 |
 #### 示例
 
 ```php
@@ -636,13 +637,26 @@ public Guzzle\Service\Resource\Model copyObject(array $args = array());
 #### 参数说明
 
 $args是包含以下字段的关联数组：
-
-| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
-| :------: | :------------: | :--:   | :--------:   | :----------------------------------: |
-| Bucket   |     string     |  无    | 是           |               bucket名称               |
-| CopySource      |     string     |  无    | 是          |         复制来源         |
-| Key      |     string     |  无    | 是          |         对象名称       |
-
+| 参数名称   | 描述   |类型 | 是否必填字段 | 
+| -------------- | -------------- |---------- | ----------- |
+|  Bucket  |  Bucket 名称，由数字和小写字母以及中划线 "-" 构成 | string |   是 |
+|  CopySource  | 复制来源     |  string |  是 |
+|  Key  | 上传文件的路径名，默认从 Bucket 开始 | string |  是 | 
+|  ACL  | 设置文件的 ACL，如 'private，public-read'，'public-read-write' | string |   否 | 
+|  GrantFullControl  |赋予指定账户对文件的读写权限 |  string |  否 | 
+|  GrantRead  |  赋予指定账户对文件读权限 | string |  否 |
+|  GrantWrite  |  赋予指定账户对文件的写权限 | string |  否 |
+|  StorageClass  |  设置文件的存储类型，STANDARD,STANDARD_IA，NEARLINE，默认值：STANDARD | String |   否 |
+|  Expires  | 设置 Content-Expires | string|  否 | 
+|  CacheControl  |  缓存策略，设置 Cache-Control | string |   否 |
+|  ContentType  | 内容类型，设置 Content-Type |string |   否 |  
+|  ContentDisposition  |  文件名称，设置 Content-Disposition | string |   否 |
+|  ContentEncoding  |  编码格式，设置 Content-Encoding | string |   否 |
+|  ContentLanguage  |  语言类型，设置 Content-Language | string |   否 |
+|  ContentLength  | 设置传输长度 | string |   否 | 
+|  ContentMD5  | 设置上传文件的 MD5 值用于校验 | string |   否 | 
+|  Metadata | 用户自定义的文件元信息 | array |   否 |
+|  ServerSideEncryption | 服务端加密方法 | string |   否 |
 #### 示例
 
 ```php
@@ -681,16 +695,17 @@ try {
 public Guzzle\Service\Resource\Model putBucketLifecycle(array $args = array());
 ```
 #### 参数说明
+| 参数名称   | 描述   |类型 | 是否必填字段 | 
+| -------------- | -------------- |---------- | ----------- |
+|  Bucket  |  Bucket 名称，由数字和小写字母以及中划线 "-" 构成 | string |   是 |
+|  Rules  | 设置对应的规则，包括 ID，Filter，Status，Expiration，Transition，NoncurrentVersionExpiration，NoncurrentVersionTransition，AbortIncompleteMultipartUpload       |  array |  是 |
+|  ID     | 配置规则的 ID  | string |  否 | 
+|  Filter  | 用于描述规则影响的 Object 集合 | array |   是 | 
+|  Status  |设置 Rule 是否启用，可选值为 Enabled 或者 Disabled |  string |  是 | 
+|  Expiration  |  设置 Object 过期规则，可以指定天数 Days 或者指定日期 Date | array |  否 |
+|  Transition  |  设置 Object 转换存储类型规则，可以指定天数 Days 或者指定日期 Date，StorageClass 可选 Standard_IA， Nearline | array |  否 |
 
-| 字段名   |       类型     | 默认值 | 是否必填字段 |                  描述                  |
-| :------: |    :------------: | :--:   | :--------:   | :----------------------------------: |
-| Bucket   |     string     |  无    | 是           |               bucket名称               |
-| Rules  |     array |  无    | 是            |      设置对应的规则，包括 ID，Filter，Status，Expiration，Transition，NoncurrentVersionExpiration，NoncurrentVersionTransition，AbortIncompleteMultipartUpload      |
-| ID |     string     |  无    | 否           |         配置规则的 ID       |
-| Filter  |     array |  无    | 是          |         用于描述规则影响的 Object 集合        |
-| Status  |     array |  无    | 是          |         设置 Rule 是否启用，可选值为 Enabled 或者 Disabled     |
-| Expiration  |     array |  无    | 否           |         设置 Object 过期规则，可以指定天数 Days 或者指定日期 Date |
-| Transition  |     array |  无    | 否           |         设置 Object 转换存储类型规则，可以指定天数 Days 或者指定日期 Date，StorageClass 可选 Standard_IA， Nearline       |
+
 #### 示例
 
 ```php
