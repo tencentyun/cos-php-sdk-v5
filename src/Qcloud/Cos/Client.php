@@ -130,9 +130,11 @@ class Client extends GSClient {
     $options = Collection::fromConfig(array_change_key_case($options), array(
         'min_part_size' => Copy::MIN_PART_SIZE,
         'params'        => $options));
-        $sourcebucket = explode('-',explode('.',$copysource)[0])[0];
-        $sourceappid = explode('-',explode('.',$copysource)[0])[1];
-        $sourceregion = explode('.',$copysource)[2];
+        $sourcelistdot  =  explode('.',$copysource);
+        $sourcelistline = explode('-',$sourcelistdot[0]);
+        $sourcebucket = $sourcelistline[0];
+        $sourceappid = $sourcelistline[1];
+        $sourceregion = $sourcelistdot[2];
         $sourcekey = substr(strstr($copysource,'/'),1);
         $sourceversion = "";
         $cosClient = new Client(array('region' => $sourceregion,
