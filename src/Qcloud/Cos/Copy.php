@@ -63,10 +63,13 @@ class Copy {
 
 
         $partNumber = 1;
-        foreach ($commands as $command) {
+        $rt = $this->client->listParts(array(
+            'Bucket' => $this->options['Bucket'],
+            'Key' => $this->options['Key'],
+            'UploadId' => $uploadId));
+        foreach ($rt['Parts'] as $part) {
 
-            $result = $command->getResult();
-            $part = array('PartNumber' => $partNumber, 'ETag' => $result['ETag']);
+            $part = array('PartNumber' => $partNumber, 'ETag' => $part['ETag']);
             array_push($parts, $part);
             $partNumber++;
         }
