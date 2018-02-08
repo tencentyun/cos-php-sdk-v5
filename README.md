@@ -1028,8 +1028,6 @@ public Guzzle\Service\Resource\Model copyObject(array $args = array());
 ```
 
 #### 请求参数
-
-$args是包含以下字段的关联数组：
 | 参数名称   | 描述   |类型 | 是否必填字段 | 
 | -------------- | -------------- |---------- | ----------- |
 |  Bucket  |  Bucket 名称，由数字和小写字母以及中划线 "-" 构成 | string |   是 |
