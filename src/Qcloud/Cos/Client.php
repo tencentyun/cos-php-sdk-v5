@@ -35,7 +35,7 @@ class Client extends GSClient {
                         'bj'=>'ap-beijing',
                         'sh'=>'ap-shanghai',
                         'gz'=>'ap-guangzhou',
-                        'cd'=>'	ap-chengdu',
+                        'cd'=>'ap-chengdu',
                         'sgp'=>'ap-singapore',);
         if (array_key_exists($this->region,$regionmap))
         {
