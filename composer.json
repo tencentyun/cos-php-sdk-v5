@@ -19,7 +19,7 @@
       "psr-0": {
         "Qcloud\\Cos\\": "src/"
      }
-    }
+    },
     "require": {
         "php": ">=5.3.0"
     }
