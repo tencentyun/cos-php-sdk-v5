@@ -83,8 +83,7 @@ try {
     ));
 } catch (\Exception $e) {
     echo "$e\n";
-}
-;
+};
 
 #deleteObject
 try {
@@ -242,7 +241,7 @@ try {
 }
 
 
-#putObjectACL
+#putBucketACL
 try {
     $result = $cosClient->PutBucketAcl(array(
         'Bucket' => 'testbucket-1252448703',
