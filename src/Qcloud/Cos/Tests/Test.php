@@ -72,7 +72,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ACL'=>'private'
                 ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -89,7 +89,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ACL'=>'public-read'
                 ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -126,7 +126,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ACL'=>'private'
                 ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -145,7 +145,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ACL'=>'public-read'
                 ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -179,7 +179,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantRead' => 'id="qcs::cam::uin/1030872851:uin/1030872851"'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -195,7 +195,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantWrite' => 'id="qcs::cam::uin/1030872851:uin/1030872851"'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -211,7 +211,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantFullControl' => 'id="qcs::cam::uin/1030872851:uin/1030872851"'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -227,7 +227,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225",id="qcs::cam::uin/1030872851:uin/1030872851",id="qcs::cam::uin/327874225:uin/327874225"'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -243,7 +243,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -261,7 +261,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/327874225"',
                 'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"',));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -308,7 +308,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                 )));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -338,7 +338,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                 )));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -377,7 +377,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/327874225"'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -392,7 +392,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->HeadBucket(array(
                 'Bucket' =>  $this->bucket));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -424,7 +424,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->ListObjects(array(
                 'Bucket' =>  $this->bucket));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -484,7 +484,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 // Bucket is required
                 'Bucket' => $this->bucket,));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -529,7 +529,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 // Bucket is required
                 'Bucket' => $this->bucket,));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -606,7 +606,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
             ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -646,7 +646,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
             ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -694,7 +694,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket.'-12345'));
             $this->cosClient->deleteBucket(array('Bucket' => $this->bucket.'-12345'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -708,7 +708,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket.'-12333-4445'));
             $this->cosClient->deleteBucket(array('Bucket' => $this->bucket.'-12333-4445'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -723,9 +723,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => '-12333-4445'.$this->bucket));
             $this->cosClient->deleteBucket(array('Bucket' => '-12333-4445'.$this->bucket));
         } catch (\Exception $e) {
-//                        echo($e->getExceptionCode());
-//                        echo($e->getStatusCode());
-            $this->assertTrue($e->getExceptionCode() === 'InvalidBucketName' && $e->getStatusCode() === 400);
+            $this->assertFalse(false, $e);
         }
     }
 
@@ -739,7 +737,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->getBucketLocation(array('Bucket' => $this->bucket));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -777,7 +775,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Body' => 'Hello World!',
                 'ServerSideEncryption' => 'AES256'));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -795,7 +793,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         } catch (\Exception $e) {
 //            echo($e->getExceptionCode());
 //            echo($e->getStatusCode());
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -814,7 +812,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'ServerSideEncryption' => 'AES256'
             ));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -843,7 +841,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->upload($this->bucket, '你好.txt', 'Hello World');
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -856,7 +854,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->upload($this->bucket, '你好.txt', '123');
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -870,7 +868,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->upload($this->bucket, '你好.txt', '1234124');
             $this->cosClient->upload($this->bucket, '你好.txt', '请二位qwe');
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -889,7 +887,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                      'lew' => str_repeat('a', 1 * 1024),
             )));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -924,7 +922,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $result = $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->upload($this->bucket, '→↓←→↖↗↙↘! \"#$%&\'()*+,-./0123456789:;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~', 'Hello World');
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -937,7 +935,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->upload($this->bucket, 'hello.txt', str_repeat('a', 9 * 1024 * 1024));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -953,7 +951,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
                 'Key' => '你好.txt',));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -966,7 +964,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->getObjectUrl($this->bucket, 'hello.txt', '+10 minutes');
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
@@ -997,7 +995,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                     'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                 )));
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
 
     }
@@ -1032,7 +1030,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 )));
 
         } catch (\Exception $e) {
-            $this->assertTrue($e->getStatusCode() === 200);
+            $this->assertFalse(true, $e);
         }
     }
 
