@@ -177,7 +177,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantRead' => 'id="qcs::cam::uin/1030872851:uin/1030872851"'));
+                'GrantRead' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
@@ -193,7 +193,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantWrite' => 'id="qcs::cam::uin/1030872851:uin/1030872851"'));
+                'GrantWrite' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
@@ -209,7 +209,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/1030872851:uin/1030872851"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
@@ -225,7 +225,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225",id="qcs::cam::uin/1030872851:uin/1030872851",id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225",id="qcs::cam::uin/327874225:uin/327874225",id="qcs::cam::uin/327874225:uin/327874225"'));
         } catch (\Exception $e) {
             $this->assertFalse(true, $e);
         }
