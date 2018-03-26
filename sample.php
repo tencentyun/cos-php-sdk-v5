@@ -57,9 +57,8 @@ try {
 #putBucketVersioning
 try {
     $result = $cosClient->putBucketVersioning(
-    array('Bucket' => 'lewzylu02',
-    'Status' => 'Enabled')
-    );
+    array('Bucket' => 'testbucket-1252448703',
+    'Status' => 'Enabled'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -152,7 +151,7 @@ try {
 
 #listObjects
 try {
-    $result = $cosClient->headObject(array(
+    $result = $cosClient->listObjects(array(
         'Bucket' => 'testbucket-1252448703',
         'Key' => '11'));
     print_r($result);
@@ -184,8 +183,7 @@ try {
 #getBucketVersioning
 try {
     $result = $cosClient->getBucketVersioning(
-        array('Bucket' => 'lewzylu02',)
-    );
+        array('Bucket' => 'lewzylu02-1252448703'));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -210,6 +208,42 @@ try {
 try {
     $result = $cosClient->PutBucketAcl(array(
         'Bucket' => 'testbucket-1252448703',
+        'Grants' => array(
+            array(
+                'Grantee' => array(
+                    'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                    'Type' => 'CanonicalUser',
+                ),
+                'Permission' => 'FULL_CONTROL',
+            ),
+            // ... repeated
+        ),
+        'Owner' => array(
+            'DisplayName' => 'qcs::cam::uin/3210232098:uin/3210232098',
+            'ID' => 'qcs::cam::uin/3210232098:uin/3210232098',
+        ),));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
+#getBucketACL
+try {
+    $result = $cosClient->GetBucketAcl(array(
+        'Bucket' => 'testbucket-1252448703',));
+    print_r($result);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
+#putObjectACL
+try {
+    $result = $cosClient->putObjectACL(array(
+        'Bucket' => 'testbucket-1252448703',
+        'Key' => '111',
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -360,7 +394,6 @@ try {
 try {
     $result = $cosClient->getBucketCors(array(
         // Bucket is required
-        'Bucket' => 'testbucket-1252448703',
     ));
     print_r($result);
 } catch (\Exception $e) {
