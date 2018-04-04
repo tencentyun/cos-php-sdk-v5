@@ -12,7 +12,7 @@ use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
-    const VERSION = '1.1.4';
+    const VERSION = '1.1.5';
 
     private $region;       // string: region.
     private $credentials;
