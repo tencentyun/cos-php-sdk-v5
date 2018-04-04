@@ -46,7 +46,7 @@ try {
     $result = $cosClient->putObject(array(
         'Bucket' => 'testbucket-1252448703',
         'Key' => '11//32//43',
-        'Body' => 'Hello World!',
+        'Body' => 'Hello Wo rld!',
         'ServerSideEncryption' => 'AES256'));
     print_r($result);
 } catch (\Exception $e) {
