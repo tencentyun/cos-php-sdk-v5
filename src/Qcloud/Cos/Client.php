@@ -12,7 +12,7 @@ use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
-    const VERSION = '1.1.3';
+    const VERSION = '1.1.4';
 
     private $region;       // string: region.
     private $credentials;
@@ -35,7 +35,7 @@ class Client extends GSClient {
                         'bj'=>'ap-beijing',
                         'sh'=>'ap-shanghai',
                         'gz'=>'ap-guangzhou',
-                        'cd'=>'	ap-chengdu',
+                        'cd'=>'ap-chengdu',
                         'sgp'=>'ap-singapore',);
         if (array_key_exists($this->region,$regionmap))
         {

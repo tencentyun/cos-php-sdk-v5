@@ -1,23 +1,26 @@
 {
-  "name": "qcloud/cos-sdk-v5",
-  "description": "COS SDK for PHP",
-  "type": "library",
-  "authors": [
-    {
-      "name": "lewzylu"
+    "name": "qcloud/cos-sdk-v5",
+    "description": "PHP SDK for QCloud COS",
+    "keywords": [
+        "qcloud", "cos", "php"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yaozongyou",
+            "email": "yaozongyou@vip.qq.com"
+        },
+        {
+            "name": "lewzylu",
+            "email": "327874225@qq.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Qcloud\\Cos\\": "src/"
+     }
+    },
+    "require": {
+        "php": ">=5.3.0"
     }
-  ],
-  "support": {
-    "forum": "",
-    "issues": "https://github.com/tencentyun/cos-php-sdk-v5/issues"
-  },
-  "require": {
-    "php": ">=5.3.3",
-    "guzzle/guzzle": "~3.7"
-  },
-  "autoload": {
-    "psr-0": {
-      "Qcloud\\Cos\\": "src/"
-    }
-  }
 }
