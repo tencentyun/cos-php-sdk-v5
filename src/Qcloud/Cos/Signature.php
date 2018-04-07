@@ -36,7 +36,7 @@ class Signature {
         RequestInterface $request,
         $expires = ""
     ) {
-        $signTime = (string)(time() - 60) . ';' . (string)(time() + 3600);
+        $signTime = (string)(time() - 60) . ';' . (string)(strtotime($expires) ?: (time() + 3600));
         $httpString = strtolower($request->getMethod()) . "\n" . urldecode($request->getPath()) .
             "\n\nhost=" . $request->getHost() . "\n";
         $sha1edHttpString = sha1($httpString);
