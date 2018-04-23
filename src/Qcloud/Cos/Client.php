@@ -96,7 +96,7 @@ class Client extends GSClient {
 
         return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
     }
-    public function upload($bucket, $key, $body, $options = array()) {
+    public function Upload($bucket, $key, $body, $options = array()) {
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
             'min_part_size' => MultipartUpload::MIN_PART_SIZE,
@@ -120,12 +120,27 @@ class Client extends GSClient {
                 ) + $options['params']);
 
             $rt = $multipartUpload->performUploading();
-
         }
         return $rt;
-
     }
-    public function copy($bucket, $key, $copysource, $options = array()) {
+
+    public function resumeUpload($bucket, $key, $body, $uploadId, $options = array()) {
+        $body = EntityBody::factory($body);
+        $options = Collection::fromConfig(array_change_key_case($options), array(
+            'min_part_size' => MultipartUpload::MIN_PART_SIZE,
+            'params'        => $options));
+        $multipartUpload = new MultipartUpload($this, $body, $options['min_part_size'], array(
+                'Bucket' => $bucket,
+                'Key' => $key,
+                'Body' => $body,
+                'UploadId' => $uploadId,
+            ) + $options['params']);
+
+        $rt = $multipartUpload->resumeUploading();
+        return $rt;
+    }
+
+    public function Copy($bucket, $key, $copysource, $options = array()) {
 
     $options = Collection::fromConfig(array_change_key_case($options), array(
         'min_part_size' => Copy::MIN_PART_SIZE,

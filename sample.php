@@ -7,6 +7,9 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
         'appId' => getenv('COS_APPID'),
         'secretId'    => getenv('COS_KEY'),
         'secretKey' => getenv('COS_SECRET'))));
+
+$bucket = 'lewzylu02-1252448703';
+
 #listBuckets
 try {
     $result = $cosClient->listBuckets();
@@ -18,7 +21,7 @@ try {
 
 #createBucket
 try {
-    $result = $cosClient->createBucket(array('Bucket' => 'testbucket-1252448703'));
+    $result = $cosClient->createBucket(array('Bucket' => $bucket));
     print_r($result);
     } catch (\Exception $e) {
     echo "$e\n";
@@ -28,13 +31,9 @@ try {
 #uploadbigfile
 try {
     $result = $cosClient->upload(
-        $bucket='testbucket-1252448703',
+        $bucket=$bucket,
         $key = '111.txt',
-        $body = str_repeat('a', 5* 1024 * 1024),
-        $options = array(
-            "ACL"=>'private',
-            'CacheControl' => 'private',
-            'ServerSideEncryption' => 'AES256'));
+        $body = str_repeat('a', 5* 1024 * 1024));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -44,7 +43,7 @@ try {
 #putObject
 try {
     $result = $cosClient->putObject(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '11//32//43',
         'Body' => 'Hello Wo rld!',
         'ServerSideEncryption' => 'AES256'));
@@ -57,7 +56,7 @@ try {
 #putBucketVersioning
 try {
     $result = $cosClient->putBucketVersioning(
-    array('Bucket' => 'testbucket-1252448703',
+    array('Bucket' => $bucket,
     'Status' => 'Enabled'));
     print_r($result);
 } catch (\Exception $e) {
@@ -68,7 +67,7 @@ try {
 #getObject
 try {
     $result = $cosClient->getObject(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '11',
         'VersionId' =>'111'));
 } catch (\Exception $e) {
@@ -87,7 +86,7 @@ try {
 #deleteObject
 try {
     $result = $cosClient->deleteObject(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '111.txt',
         'VersionId' => 'string'));
     print_r($result);
@@ -120,7 +119,7 @@ try {
 #deleteBucket
 try {
     $result = $cosClient->deleteBucket(array(
-        'Bucket' => 'testbucket-1252448703'));
+        'Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -130,7 +129,7 @@ try {
 #headObject
 try {
     $result = $cosClient->headObject(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '11',
         'VersionId' =>'111',
         'ServerSideEncryption' => 'AES256'));
@@ -142,7 +141,7 @@ try {
 #headBucket
 try {
     $result = $cosClient->headBucket(array(
-        'Bucket' => 'testbucket-1252448703'));
+        'Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -152,7 +151,7 @@ try {
 #listObjects
 try {
     $result = $cosClient->listObjects(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '11'));
     print_r($result);
 } catch (\Exception $e) {
@@ -174,7 +173,7 @@ try {
 #listObjects
 try {
     $result = $cosClient->listObjects(array(
-        'Bucket' => 'testbucket-1252448703'));
+        'Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -192,7 +191,7 @@ try {
 
 #getObjectUrl
 try {
-    $bucket =  'testbucket-1252448703';
+    $bucket =  $bucket;
     $key = 'hello.txt';
     $url = "/{$key}";
     $request = $cosClient->get($url);
@@ -207,7 +206,7 @@ try {
 #putBucketACL
 try {
     $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -232,7 +231,7 @@ try {
 #getBucketACL
 try {
     $result = $cosClient->GetBucketAcl(array(
-        'Bucket' => 'testbucket-1252448703',));
+        'Bucket' => $bucket,));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -242,7 +241,7 @@ try {
 #putObjectACL
 try {
     $result = $cosClient->putObjectACL(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '111',
         'Grants' => array(
             array(
@@ -268,7 +267,7 @@ try {
 #getBucketACL
 try {
     $result = $cosClient->GetBucketAcl(array(
-        'Bucket' => 'testbucket-1252448703',));
+        'Bucket' => $bucket,));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
@@ -278,7 +277,7 @@ try {
 #putBucketACL
 try {
     $result = $cosClient->PutBucketAcl(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Grants' => array(
             array(
                 'Grantee' => array(
@@ -303,7 +302,7 @@ try {
 #getObjectACL
 try {
     $result = $cosClient->getObjectAcl(array(
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         'Key' => '11'));
     print_r($result);
 } catch (\Exception $e) {
@@ -346,7 +345,7 @@ try {
 try {
     $result = $cosClient->getBucketLifecycle(array(
         // Bucket is required
-        'Bucket' =>'testbucket-1252448703',
+        'Bucket' =>$bucket,
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -358,7 +357,7 @@ try {
 try {
     $result = $cosClient->deleteBucketLifecycle(array(
         // Bucket is required
-        'Bucket' =>'testbucket-1252448703',
+        'Bucket' =>$bucket,
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -370,7 +369,7 @@ try {
 try {
     $result = $cosClient->putBucketCors(array(
         // Bucket is required
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
         // CORSRules is required
         'CORSRules' => array(
             array(
@@ -405,7 +404,7 @@ try {
 try {
     $result = $cosClient->deleteBucketCors(array(
         // Bucket is required
-        'Bucket' => 'testbucket-1252448703',
+        'Bucket' => $bucket,
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -417,7 +416,7 @@ try {
 try {
     $result = $cosClient->copyObject(array(
         // Bucket is required
-        'Bucket' => 'lewzylu01-1252448703',
+        'Bucket' => $bucket,
         // CopySource is required
         'CopySource' => 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G?versionId=MTg0NDY3NDI1NTk0MzUwNDQ1OTg',
         // Key is required
@@ -432,7 +431,7 @@ try {
 
 #Copy
 try {
-    $result = $cosClient->Copy($bucket = 'lewzylu01-1252448703',
+    $result = $cosClient->Copy($bucket = $bucket,
         $key = 'string',
         $copysource = 'lewzylu02-1252448703.cos.ap-guangzhou.myqcloud.com/test1G',
         $options = array('VersionId'=>'MTg0NDY3NDI1NTk0MzUwNDQ1OTg',
@@ -444,9 +443,7 @@ try {
 #restoreObject
 try {
     $result = $cosClient->restoreObject(array(
-        // Bucket is required
-        'Bucket' => 'lewzylu02',
-        // Objects is required
+        'Bucket' => $bucket,
         'Key' => '11',
         'Days' => 7,
         'CASJobParameters' => array(
@@ -458,3 +455,28 @@ try {
     echo "$e\n";
 }
 
+# Abort all MultipartUploads
+# 删除所有因上传失败而产生的分块
+try {
+    $result = $cosClient->ListMultipartUploads(
+        array('Bucket' => $bucket,
+            'Prefix' => ''));
+    if (count($result['Uploads']) == 0) {
+        print_r("There is no MultipartUploads");
+    }
+    else {
+        foreach ($result['Uploads'] as $upload) {
+            try {
+                $rt = $cosClient->AbortMultipartUpload(
+                    array('Bucket' => $bucket,
+                        'Key' => $upload['Key'],
+                        'UploadId' => $upload['UploadId']));
+                print_r($rt);
+            } catch (\Exception $e) {
+                print_r($e);
+            }
+        }
+    }
+} catch (\Exception $e) {
+    echo "$e\n";
+}
