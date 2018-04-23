@@ -479,7 +479,7 @@ class Service {
                         ),
                         'errorResponses' => array(
                             array(
-                                'reason' => 'The source object of the COPY operation is not in the active tier and is only stored in Amazon Glacier.',
+                                'reason' => 'The source object of the COPY operation is not in the active tier.',
                                 'class' => 'ObjectNotInActiveTierErrorException',
                             ),
                         ),
@@ -2246,6 +2246,54 @@ class Service {
                             ),
                         ),
                     ),
+                    'ListMultipartUploads' => array(
+                        'httpMethod' => 'GET',
+                        'uri' => '/{Bucket}?uploads',
+                        'class' => 'Qcloud\\Cos\\Command',
+                        'responseClass' => 'ListMultipartUploadsOutput',
+                        'responseType' => 'model',
+                        'parameters' => array(
+                            'Bucket' => array(
+                                'required' => true,
+                                'type' => 'string',
+                                'location' => 'uri',
+                            ),
+                            'Delimiter' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'delimiter',
+                            ),
+                            'EncodingType' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'encoding-type',
+                            ),
+                            'KeyMarker' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'key-marker',
+                            ),
+                            'MaxUploads' => array(
+                                'type' => 'numeric',
+                                'location' => 'query',
+                                'sentAs' => 'max-uploads',
+                            ),
+                            'Prefix' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'prefix',
+                            ),
+                            'UploadIdMarker' => array(
+                                'type' => 'string',
+                                'location' => 'query',
+                                'sentAs' => 'upload-id-marker',
+                            ),
+                            'command.expects' => array(
+                                'static' => true,
+                                'default' => 'application/xml',
+                            ),
+                        ),
+                    ),
                     'HeadObject' => array(
                         'httpMethod' => 'HEAD',
                         'uri' => '/{Bucket}{/Key*}',
@@ -3779,6 +3827,121 @@ class Service {
                             'MaxKeys' => array(
                                 'type' => 'numeric',
                                 'location' => 'xml',
+                            ),
+                            'CommonPrefixes' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'CommonPrefix',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Prefix' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'EncodingType' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'RequestId' => array(
+                                'location' => 'header',
+                                'sentAs' => 'x-cos-request-id',
+                            ),
+                        ),
+                    ),
+                    'ListMultipartUploadsOutput' => array(
+                        'type' => 'object',
+                        'additionalProperties' => true,
+                        'properties' => array(
+                            'Bucket' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'KeyMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'UploadIdMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'NextKeyMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Prefix' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'Delimiter' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'NextUploadIdMarker' => array(
+                                'type' => 'string',
+                                'location' => 'xml',
+                            ),
+                            'MaxUploads' => array(
+                                'type' => 'numeric',
+                                'location' => 'xml',
+                            ),
+                            'IsTruncated' => array(
+                                'type' => 'boolean',
+                                'location' => 'xml',
+                            ),
+                            'Uploads' => array(
+                                'type' => 'array',
+                                'location' => 'xml',
+                                'sentAs' => 'Upload',
+                                'data' => array(
+                                    'xmlFlattened' => true,
+                                ),
+                                'items' => array(
+                                    'name' => 'MultipartUpload',
+                                    'type' => 'object',
+                                    'sentAs' => 'Upload',
+                                    'properties' => array(
+                                        'UploadId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Key' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Initiated' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'StorageClass' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Owner' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'DisplayName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'ID' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                        'Initiator' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'ID' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'DisplayName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
                             ),
                             'CommonPrefixes' => array(
                                 'type' => 'array',
