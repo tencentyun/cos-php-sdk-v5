@@ -69,10 +69,12 @@ class MultipartUpload {
             array('UploadId' => $uploadId,
                 'Bucket'=>$this->options['Bucket'],
                 'Key'=>$this->options['Key']));
-        $parts = array();
+                $parts = array();
         $offset = $this->partSize;
-        foreach($rt['Parts'] as $part){
-            $parts[$part['PartNumber']-1] = array('PartNumber' => $part['PartNumber'], 'ETag' => $part['ETag']);
+        if (count($rt['Parts']) > 0) {
+            foreach ($rt['Parts'] as $part) {
+                $parts[$part['PartNumber'] - 1] = array('PartNumber' => $part['PartNumber'], 'ETag' => $part['ETag']);
+            }
         }
         for ($partNumber = 1;;++$partNumber,$offset+=$body->getContentLength()) {
             if ($this->source->isConsumed()) {
