@@ -424,21 +424,30 @@ try {
         'Bucket' => $bucket,
         'Rules' => array(
             array(
-                'Expiration' => array(
-                    'Days' => 1000,
-                ),
-                'ID' => 'id1',
-                'Filter' => array(
-                    'Prefix' => 'documents/'
-                ),
                 'Status' => 'Enabled',
+                'Filter' => array(
+                    'Tag' => array(
+                        'Key' => 'datalevel',
+                        'Value' => 'backup'
+                    )
+                ),
                 'Transitions' => array(
                     array(
-                        'Days' => 200,
-                        'StorageClass' => 'NEARLINE'),
+                        # 30天后转换为Standard_IA
+                        'Days' => 30,
+                        'StorageClass' => 'Standard_IA'),
+                    array(
+                        # 365天后转换为Archive
+                        'Days' => 365,
+                        'StorageClass' => 'Archive')
                 ),
-            ),
-        )));
+                'Expiration' => array(
+                    # 3650天后过期删除
+                    'Days' => 3650,
+                )
+            )
+        )
+    ));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";

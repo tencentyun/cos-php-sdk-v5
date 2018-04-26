@@ -579,28 +579,33 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $result = $this->cosClient->putBucketLifecycle(array(
-                // Bucket is required
-                'Bucket' => $this->bucket,
-                // Rules is required
-                'Rules' => array(
-                    array(
-                        'Expiration' => array(
-                            'Days' => 1000,
-                        ),
-                        'ID' => 'id1',
-                        'Filter' => array(
-                            'Prefix' => 'documents/'
-                        ),
-                        // Status is required
-                        'Status' => 'Enabled',
-                        'Transitions' => array(
-                            array(
-                                'Days' => 100,
-                                'StorageClass' => 'Standard_IA'),
-                        ),
-                        // ... repeated
-                    ),
-                )));
+                    'Bucket' => $this->bucket,
+                    'Rules' => array(
+                        array(
+                            'Status' => 'Enabled',
+                            'Filter' => array(
+                                'Tag' => array(
+                                    'Key' => 'datalevel',
+                                    'Value' => 'backup'
+                                )
+                            ),
+                            'Transitions' => array(
+                                array(
+                                    # 30天后转换为Standard_IA
+                                    'Days' => 30,
+                                    'StorageClass' => 'Standard_IA'),
+                                array(
+                                    # 365天后转换为Archive
+                                    'Days' => 365,
+                                    'StorageClass' => 'Archive')
+                            ),
+                            'Expiration' => array(
+                                # 3650天后过期删除
+                                'Days' => 3650,
+                            )
+                        )
+                    )
+                ));
             $result = $this->cosClient->getBucketLifecycle(array(
                 // Bucket is required
                 'Bucket' => $this->bucket,
@@ -619,28 +624,33 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         try {
             $result = $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $result = $this->cosClient->putBucketLifecycle(array(
-                // Bucket is required
                 'Bucket' => $this->bucket,
-                // Rules is required
                 'Rules' => array(
                     array(
-                        'Expiration' => array(
-                            'Days' => 1000,
-                        ),
-                        'ID' => 'id1',
-                        'Filter' => array(
-                            'Prefix' => 'documents/'
-                        ),
-                        // Status is required
                         'Status' => 'Enabled',
+                        'Filter' => array(
+                            'Tag' => array(
+                                'Key' => 'datalevel',
+                                'Value' => 'backup'
+                            )
+                        ),
                         'Transitions' => array(
                             array(
-                                'Days' => 100,
+                                # 30天后转换为Standard_IA
+                                'Days' => 30,
                                 'StorageClass' => 'Standard_IA'),
+                            array(
+                                # 365天后转换为Archive
+                                'Days' => 365,
+                                'StorageClass' => 'Archive')
                         ),
-                        // ... repeated
-                    ),
-                )));
+                        'Expiration' => array(
+                            # 3650天后过期删除
+                            'Days' => 3650,
+                        )
+                    )
+                )
+            ));
             $result = $this->cosClient->deleteBucketLifecycle(array(
                 // Bucket is required
                 'Bucket' => $this->bucket,
