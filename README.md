@@ -32,8 +32,10 @@ composer install
 ```
 ### 配置文件
 ```php
-#这里请填写cos-autoloader.php该文件所在的相对路径
-require(__DIR__ . DIRECTORY_SEPARATOR . 'cos-autoloader.php');
+#这里请填写根路径下cos-autoloader.php文件所在的相对路径
+require('/path/to/cos-autoloader.php');
+#如果使用composer安装,则可以填写composer生成的autoload.php文件的相对路径
+#require('/path/to/autoload.php')
 
 $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
     'credentials'=> array(
