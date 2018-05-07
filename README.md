@@ -45,8 +45,8 @@ $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
 ### 上传文件
 * 使用putObject接口上传文件(最大5G)
 * 使用Upload接口分块上传文件
-```php
 
+```php
 # 上传文件
 ## putObject(上传接口，最大支持上传5G文件)
 ### 上传内存中的字符串
@@ -146,12 +146,40 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
-```
 
-### 下载文件
-* 使用getObject接口下载文件
-* 使用getObjectUrl接口获取文件下载URL
-```php
+## 预签名上传createPresignedUrl
+## 获取带有签名的url
+### 简单上传预签名
+try {
+    #此处可以替换为其他上传接口
+    $command = $cosClient->getCommand('putObject', array(
+        'Bucket' => $bucket,
+        'Key' => $key,
+        'Body' => '' //Body可以任意
+    ));
+    $signedUrl = $command->createPresignedUrl('+10 minutes');
+    echo ($signedUrl);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+### 分块上传预签名
+try {
+    #此处可以替换为其他上传接口
+    $command = $cosClient->getCommand('uploadPart', array(
+        'Bucket' => $bucket,
+        'Key' => $key,
+        'UploadId' => $uploadId,
+        'PartNumber' => '1',
+        'Body' => '' //Body可以任意
+    ));
+    $signedUrl = $command->createPresignedUrl('+10 minutes');
+    echo ($signedUrl);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+
 # 下载文件
 ## getObject(下载文件)
 ### 下载到内存
@@ -206,13 +234,11 @@ try {
 
 ## getObjectUrl(获取文件UrL)
 try {
-    $url = "/{$key}";
-    $request = $cosClient->get($url);
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
     echo ($signedUrl);
-
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
 
 ```
