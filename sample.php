@@ -113,6 +113,38 @@ try {
     echo "$e\n";
 }
 
+## 预签名上传createPresignedUrl
+## 获取带有签名的url
+### 简单上传预签名
+try {
+    #此处可以替换为其他上传接口
+    $command = $cosClient->getCommand('putObject', array(
+        'Bucket' => $bucket,
+        'Key' => $key,
+        'Body' => '' //Body可以任意
+    ));
+    $signedUrl = $command->createPresignedUrl('+10 minutes');
+    echo ($signedUrl);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
+### 分块上传预签名
+try {
+    #此处可以替换为其他上传接口
+    $command = $cosClient->getCommand('uploadPart', array(
+        'Bucket' => $bucket,
+        'Key' => $key,
+        'UploadId' => $uploadId,
+        'PartNumber' => '1',
+        'Body' => '' //Body可以任意
+    ));
+    $signedUrl = $command->createPresignedUrl('+10 minutes');
+    echo ($signedUrl);
+} catch (\Exception $e) {
+    echo "$e\n";
+}
+
 
 # 下载文件
 ## getObject(下载文件)
@@ -168,11 +200,8 @@ try {
 
 ## getObjectUrl(获取文件UrL)
 try {
-    $url = "/{$key}";
-    $request = $cosClient->get($url);
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
     echo ($signedUrl);
-
 } catch (\Exception $e) {
     echo "$e\n";
 }
@@ -242,7 +271,7 @@ try {
 try {
     $result = $cosClient->createBucket(array('Bucket' => $bucket));
     print_r($result);
-    } catch (\Exception $e) {
+} catch (\Exception $e) {
     echo "$e\n";
 }
 
@@ -305,7 +334,7 @@ try {
 ## getBucketLocation
 try {
     $result = $cosClient->getBucketLocation(array(
-    'Bucket' => 'lewzylu02',
+        'Bucket' => 'lewzylu02',
     ));
 } catch (\Exception $e) {
     echo "$e\n";
@@ -424,30 +453,21 @@ try {
         'Bucket' => $bucket,
         'Rules' => array(
             array(
-                'Status' => 'Enabled',
-                'Filter' => array(
-                    'Tag' => array(
-                        'Key' => 'datalevel',
-                        'Value' => 'backup'
-                    )
+                'Expiration' => array(
+                    'Days' => 1000,
                 ),
+                'ID' => 'id1',
+                'Filter' => array(
+                    'Prefix' => 'documents/'
+                ),
+                'Status' => 'Enabled',
                 'Transitions' => array(
                     array(
-                        # 30天后转换为Standard_IA
-                        'Days' => 30,
-                        'StorageClass' => 'Standard_IA'),
-                    array(
-                        # 365天后转换为Archive
-                        'Days' => 365,
-                        'StorageClass' => 'Archive')
+                        'Days' => 200,
+                        'StorageClass' => 'NEARLINE'),
                 ),
-                'Expiration' => array(
-                    # 3650天后过期删除
-                    'Days' => 3650,
-                )
-            )
-        )
-    ));
+            ),
+        )));
     print_r($result);
 } catch (\Exception $e) {
     echo "$e\n";
