@@ -20,6 +20,26 @@ class TestHelper {
                 }
             }
             $cosClient->deleteBucket(array('Bucket' => $bucket));
+
+            while(True){
+                $result = $cosClient->ListMultipartUploads(
+                    array('Bucket' => $bucket,
+                        'Prefix' => ''));
+                if (count($result['Uploads']) == 0){
+                    break;
+                }
+                foreach ($result['Uploads'] as $upload) {
+                    try {
+                        $rt = $cosClient->AbortMultipartUpload(
+                            array('Bucket' => $bucket,
+                                'Key' => $upload['Key'],
+                                'UploadId' => $upload['UploadId']));
+                        print_r($rt);
+                    } catch (\Exception $e) {
+                        print_r($e);
+                    }
+                }
+            }
         } catch (\Exception $e) {
             //echo "$e\n";
             // Ignore
