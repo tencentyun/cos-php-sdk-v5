@@ -81,7 +81,7 @@ class Client extends GSClient {
                 . '$client->get(), $client->head(), $client->post(), $client->put(), etc. methods when passing in a '
                 . 'request object');
         }
-        return $this->signature->createPresignedUrl($request, $this->credentials, $expires);
+        return $this->signature->createPresignedUrl($request, $expires);
     }
     public function getObjectUrl($bucket, $key, $expires = null, array $args = array())
     {
