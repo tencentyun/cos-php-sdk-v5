@@ -34,9 +34,9 @@ class Signature {
 
     public function createPresignedUrl(
         RequestInterface $request,
-        $expires = 3600
+        $expires = "10 minutes"
     ) {
-        $signTime = (string)(time() - 60) . ';' . (string)(time() + (int)$expires);
+        $signTime = (string)(time() - 60) . ';' . (string)(strtotime($expires));
         $httpString = strtolower($request->getMethod()) . "\n" . urldecode($request->getPath()) .
             "\n\nhost=" . $request->getHost() . "\n";
         $sha1edHttpString = sha1($httpString);

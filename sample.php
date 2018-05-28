@@ -655,3 +655,34 @@ try {
 } catch (\Exception $e) {
     echo "$e\n";
 }
+
+
+## 删除某些前缀的空bucket
+function startsWith($haystack, $needle)
+{
+    $length = strlen($needle);
+    return (substr($haystack, 0, $length) === $needle);
+}
+
+try {
+    $result = $cosClient->listBuckets();
+    foreach ($result['Buckets'] as $bucket){
+        $region = $bucket['Location'];
+        $name = $bucket['Name'];
+        if (startsWith($name,'lewzylu')){
+            try {
+                $cosClient2 = new Qcloud\Cos\Client(array('region' => $region,
+                    'credentials'=> array(
+                        'secretId'    => getenv('COS_KEY'),
+                        'secretKey' => getenv('COS_SECRET'))));
+                $rt = $cosClient2->deleteBucket(array('Bucket' => $name));
+                print_r($rt);
+            }catch (\Exception $e) {
+            }
+        }
+
+
+    }
+} catch (\Exception $e) {
+    echo "$e\n";
+}
