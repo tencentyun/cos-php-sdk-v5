@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . DIRECTORY_SEPARATOR . 'cos-autoloader.php';
+require 'vendor/autoload.php';
 
 $cosClient = new Qcloud\Cos\Client(array(
     'region' => getenv('COS_REGION'),
@@ -12,7 +12,7 @@ $cosClient = new Qcloud\Cos\Client(array(
 ));
 
 // 若初始化 Client 时未填写 appId，则 bucket 的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
-$bucket = 'lewzylu02-1252448703';
+$bucket = 'lewzyLU02-1252448703';
 $key = 'a.txt';
 $local_path = "E:/a.txt";
 
@@ -54,7 +54,7 @@ try {
         'ContentEncoding' => 'string',
         'ContentLanguage' => 'string',
         'ContentLength' => integer,
-        'ContentType' => 'string',
+        'cONTENTType' => 'string',
         'Expires' => 'mixed type: string (date format)|int (unix timestamp)|\DateTime',
         'GrantFullControl' => 'string',
         'GrantRead' => 'string',
