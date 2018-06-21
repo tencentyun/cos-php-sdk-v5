@@ -3,6 +3,7 @@
 
 [![Total Downloads](https://img.shields.io/packagist/dt/qcloud/cos-sdk-v5.svg?style=flat)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 [![Build Status](https://travis-ci.org/tencentyun/cos-php-sdk-v5.svg?branch=master)](https://travis-ci.org/tencentyun/cos-php-sdk-v5)
+
 ## 环境准备
 *   PHP 5.3+
     您可以通过`php -v`命令查看当前的PHP版本。
@@ -58,7 +59,7 @@ phar方式安装SDK的步骤如下：
 
 2.  在代码中引入phar文件：
 ```
-require  '/path/to/cos.phar';
+require  '/path/to/cos-sdk-v5.phar';
 ```
 
 #### 3、源码方式
