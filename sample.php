@@ -155,6 +155,21 @@ try {
     print_r($e);
 }
 
+### 获取签名
+try {
+    #此处可以替换为其他上传接口
+    $command = $cosClient->getCommand('putObject', array(
+        'Bucket' => $bucket,
+        'Key' => $key,
+        'Body' => '', //Body可以任意
+    ));
+    $signedUrl = $command->createAuthorization('+10 minutes');
+    echo ($signedUrl);
+} catch (\Exception $e) {
+    print_r($e);
+}
+
+
 # 下载文件
 ## getObject(下载文件)
 ### 下载到内存
@@ -565,7 +580,7 @@ try {
         $key = $key,
         $copysource = '{bucket}.cos.{region}.myqcloud.com/{cos_path}',
         $options = array('VersionId' => '{versionId}'
-    ));
+        ));
     print_r($result);
 } catch (\Exception $e) {
     print_r($e);
