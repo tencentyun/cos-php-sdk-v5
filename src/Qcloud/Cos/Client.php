@@ -156,8 +156,8 @@ class Client extends GSClient {
             'params'        => $options));
         $sourcelistdot  =  explode('.',$copysource);
         $sourcelistline = explode('-',$sourcelistdot[0]);
-        $sourcebucket = $sourcelistline[0];
-        $sourceappid = $sourcelistline[1];
+        $sourceappid = array_pop($sourcelistline);
+        $sourcebucket = implode('-', $sourcelistline);
         $sourceregion = $sourcelistdot[2];
         $sourcekey = substr(strstr($copysource,'/'),1);
         $sourceversion = "";
