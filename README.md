@@ -246,13 +246,9 @@ try {
 
 ## getObjectUrl(获取文件UrL)
 try {
-    $url = "/{$key}";
-    $request = $cosClient->get($url);
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
-    echo ($signedUrl);
-
+    echo $signedUrl;
 } catch (\Exception $e) {
-    echo "$e\n";
+    print_r($e);
 }
-
 ```
