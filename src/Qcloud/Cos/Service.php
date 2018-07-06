@@ -1827,7 +1827,6 @@ class Service {
                                         'type' => 'string',
                                     ),
                                     'Transitions' => array(
-                                        'required' => true,
                                         'type' => 'array',
                                         'location' => 'xml',
                                         'data' => array(
