@@ -27,7 +27,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 上传文件流
@@ -39,7 +39,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 设置header和meta
@@ -66,7 +66,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## Upload(高级上传接口，默认使用分块上传最大支持50T)
@@ -79,7 +79,7 @@ try {
     );
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 上传文件流
@@ -91,7 +91,7 @@ try {
     );
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 设置header和meta
@@ -120,7 +120,7 @@ try {
     );
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## 预签名上传createPresignedUrl
@@ -136,7 +136,7 @@ try {
     $signedUrl = $command->createPresignedUrl('+10 minutes');
     echo ($signedUrl);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 分块上传预签名
@@ -152,7 +152,7 @@ try {
     $signedUrl = $command->createPresignedUrl('+10 minutes');
     echo ($signedUrl);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 获取签名
@@ -166,7 +166,7 @@ try {
     $signedUrl = $command->createAuthorization('+10 minutes');
     echo ($signedUrl);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 
@@ -180,7 +180,7 @@ try {
     ));
     echo $result['Body'];
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 下载到本地
@@ -191,7 +191,7 @@ try {
         'SaveAs' => $local_path
     ));
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 指定下载范围
@@ -206,7 +206,7 @@ try {
         'SaveAs' => $local_path
     ));
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 设置返回header
@@ -223,7 +223,7 @@ try {
         'SaveAs' => $local_path
     ));
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## getObjectUrl(获取文件UrL)
@@ -231,7 +231,7 @@ try {
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
     echo $signedUrl;
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 删除object
@@ -244,7 +244,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 删除多个object
@@ -262,7 +262,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 获取object信息
@@ -279,7 +279,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 获取bucket列表
@@ -288,7 +288,7 @@ try {
     $result = $cosClient->listBuckets();
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 创建bucket
@@ -297,7 +297,7 @@ try {
     $result = $cosClient->createBucket(array('Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 删除bucket
@@ -308,7 +308,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 获取bucket信息
@@ -322,7 +322,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 列出bucket下的object
@@ -339,7 +339,7 @@ try {
         print_r($rt);
     }
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ### 列出带有前缀的object
@@ -352,7 +352,7 @@ try {
         print_r($rt);
     }
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 获取bucket地域
@@ -362,7 +362,7 @@ try {
         'Bucket' => 'lewzylu02',
     ));
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 };
 
 # 多版本相关
@@ -374,7 +374,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## ListObjectVersions(列出多版本object)
@@ -388,7 +388,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## getBucketVersioning(获取某个bucket多版本属性)
@@ -397,7 +397,7 @@ try {
         array('Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # ACL相关
@@ -422,7 +422,7 @@ try {
         )));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## getBucketACL(获取bucketACL)
@@ -431,7 +431,7 @@ try {
         'Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## putObjectACL(设置objectACL)
@@ -456,7 +456,7 @@ try {
         )));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## getObjectACL(获取objectACL)
@@ -466,7 +466,7 @@ try {
         'Key' => $key));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 生命周期相关
@@ -493,7 +493,7 @@ try {
         )));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## getBucketLifecycle(获取bucket生命周期)
@@ -503,7 +503,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## deleteBucketLifecycle(删除bucket生命周期)
@@ -513,7 +513,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 跨域相关
@@ -532,7 +532,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## getBucketCors(获取bucket跨域信息)
@@ -540,7 +540,7 @@ try {
     $result = $cosClient->getBucketCors(array());
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## deleteBucketCors(删除bucket跨域)
@@ -551,7 +551,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 复制
@@ -567,7 +567,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## Copy(分块并发复制)
@@ -583,7 +583,7 @@ try {
         ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 恢复归档文件
@@ -599,7 +599,7 @@ try {
     ));
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 # 其他服务
@@ -624,7 +624,7 @@ try {
             //         'Key' => $rt['Key']));
             //     print_r($result);
             // } catch (\Exception $e) {
-            //     print_r($e);
+            //     echo($e);
             // }
         }
         $marker = $result['NextMarker'];
@@ -633,7 +633,7 @@ try {
         }
     }
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## 删除所有因上传失败而产生的分块
@@ -657,12 +657,12 @@ try {
                 ));
                 print_r($rt);
             } catch (\Exception $e) {
-                print_r($e);
+                echo($e);
             }
         }
     }
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## 分块上传断点重传
@@ -679,7 +679,7 @@ try {
     );
     print_r($result);
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
 
 ## 删除某些前缀的空bucket
@@ -709,5 +709,5 @@ try {
         }
     }
 } catch (\Exception $e) {
-    print_r($e);
+    echo($e);
 }
