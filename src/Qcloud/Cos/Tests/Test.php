@@ -177,7 +177,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantRead' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantRead' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -193,7 +193,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantWrite' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -209,7 +209,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -225,7 +225,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225",id="qcs::cam::uin/327874225:uin/327874225",id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970",id="qcs::cam::uin/2779643970:uin/2779643970",id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -241,7 +241,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -258,8 +258,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
                 'GrantRead' => 'id="qcs::cam::uin/123:uin/123"',
-                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/327874225"',
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"',));
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -276,7 +276,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::camuin/321023:uin/327874225"',));
+                'GrantFullControl' => 'id="qcs::camuin/321023:uin/2779643970"',));
         } catch (ServiceResponseException $e) {
             $this->assertTrue($e->getExceptionCode() === 'InvalidArgument' && $e->getStatusCode() === 400);
         }
@@ -295,8 +295,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'DisplayName' => 'qcs::cam::uin/2779643970:uin/2779643970',
+                            'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                             'Type' => 'CanonicalUser',
                         ),
                         'Permission' => 'FULL_CONTROL',
@@ -352,7 +352,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         try {
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/321023:uin/327874225"',));
+                'GrantFullControl' => 'id="qcs::cam::uin/321023:uin/2779643970"',));
         } catch (ServiceResponseException $e) {
 //            echo($e->getExceptionCode());
 //            echo($e->getStatusCode());
@@ -370,12 +370,12 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"',
-                'GrantRead' => 'id="qcs::cam::uin/2779643970:uin/327874225"',
-                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+                'GrantRead' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
             $this->cosClient->PutBucketAcl(array(
                 'Bucket' =>  $this->bucket,
-                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/327874225"'));
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1054,8 +1054,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'DisplayName' => 'qcs::cam::uin/2779643970:uin/2779643970',
+                            'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                             'Type' => 'CanonicalUser',
                         ),
                         'Permission' => 'FULL_CONTROL',
@@ -1088,8 +1088,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'DisplayName' => 'qcs::cam::uin/2779643970:uin/2779643970',
+                            'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                             'Type' => 'CanonicalUser',
                         ),
                         'Permission' => 'FULL_CONTROL',
@@ -1181,7 +1181,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutObjectAcl(array(
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
-                'GrantRead' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantRead' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1199,7 +1199,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutObjectAcl(array(
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
-                'GrantWrite' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1217,7 +1217,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutObjectAcl(array(
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
-                'GrantFullControl' => 'id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1235,7 +1235,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutObjectAcl(array(
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225",id="qcs::cam::uin/327874225:uin/327874225",id="qcs::cam::uin/327874225:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970",id="qcs::cam::uin/2779643970:uin/2779643970",id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1253,7 +1253,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutObjectAcl(array(
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"'));
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1272,8 +1272,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
                 'GrantRead' => 'id="qcs::cam::uin/123:uin/123"',
-                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/327874225"',
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/327874225"',));
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
         }
@@ -1292,7 +1292,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->PutObjectAcl(array(
                 'Bucket' =>  $this->bucket,
                 'Key' => '你好.txt',
-                'GrantFullControl' => 'id="qcs::camuin/321023:uin/327874225"',));
+                'GrantFullControl' => 'id="qcs::camuin/321023:uin/2779643970"',));
         } catch (ServiceResponseException $e) {
             $this->assertTrue($e->getExceptionCode() === 'InvalidArgument' && $e->getStatusCode() === 400);
         }
@@ -1313,8 +1313,8 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'Grants' => array(
                     array(
                         'Grantee' => array(
-                            'DisplayName' => 'qcs::cam::uin/327874225:uin/327874225',
-                            'ID' => 'qcs::cam::uin/327874225:uin/327874225',
+                            'DisplayName' => 'qcs::cam::uin/2779643970:uin/2779643970',
+                            'ID' => 'qcs::cam::uin/2779643970:uin/2779643970',
                             'Type' => 'CanonicalUser',
                         ),
                         'Permission' => 'FULL_CONTROL',
