@@ -5,7 +5,6 @@ require 'vendor/autoload.php';
 $cosClient = new Qcloud\Cos\Client(array(
     'region' => getenv('COS_REGION'),
     'credentials' => array(
-        'appId' => getenv('COS_APPID'),
         'secretId' => getenv('COS_KEY'),
         'secretKey' => getenv('COS_SECRET'),
     ),
@@ -26,6 +25,8 @@ try {
         'Body' => 'Hello World!'
     ));
     print_r($result);
+    # 可以直接通过$result读出返回结果
+    echo ($result['ETag']);
 } catch (\Exception $e) {
     echo($e);
 }
