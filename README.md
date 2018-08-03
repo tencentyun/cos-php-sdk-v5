@@ -75,6 +75,8 @@ require '/path/to/sdk/vendor/autoload.php';
 
 ## 快速入门 
 可参照Demo程序，详见 [sample.php](https://github.com/tencentyun/cos-php-sdk-v5/blob/master/sample.php)
+## 接口文档
+php sdk 接口文档，详见https://cloud.tencent.com/document/product/436/12267
 ### 配置文件
 ```php
 $cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
