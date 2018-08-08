@@ -3,10 +3,10 @@
 require 'vendor/autoload.php';
 
 $cosClient = new Qcloud\Cos\Client(array(
-    'region' => getenv('COS_REGION'),
+    'region' => 'COS_REGION', #地域，如ap-guangzhou,ap-beijing-1
     'credentials' => array(
-        'secretId' => getenv('COS_KEY'),
-        'secretKey' => getenv('COS_SECRET'),
+        'secretId' => 'COS_KEY',
+        'secretKey' => 'COS_SECRET',
     ),
 ));
 
@@ -549,6 +549,51 @@ try {
     $result = $cosClient->deleteBucketCors(array(
         // Bucket is required
         'Bucket' => $bucket,
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo($e);
+}
+
+# 跨区域复制相关
+## PutBucketReplication(设置bucket跨区域复制)
+### 注意：目标bucket和源bucket都需要开启多版本
+try {
+    $result = $cosClient->PutBucketReplication(array(
+        'Bucket' => $bucket,
+        'Role' => 'qcs::cam::uin/327874225:uin/327874225',
+        'Rules'=>array(
+            array(
+                'Status' => 'Enabled',
+                'ID' => 'string',
+                'Prefix' => 'string',
+                'Destination' => array(
+                    'Bucket' => 'qcs::cos:ap-guangzhou::lewzylu01-1252448703',
+                    'StorageClass' => 'standard',
+                ),
+                // ...repeated
+            ),
+        ),
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo($e);
+}
+
+## GetBucketReplication(获取bucket跨区域复制信息)
+try {
+    $result = $cosClient->GetBucketReplication(array(
+        'Bucket' => $bucket
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo($e);
+}
+
+## DeleteBucketReplication(删除bucket跨区域复制信息)
+try {
+    $result = $cosClient->DeleteBucketReplication(array(
+        'Bucket' => $bucket
     ));
     print_r($result);
 } catch (\Exception $e) {
