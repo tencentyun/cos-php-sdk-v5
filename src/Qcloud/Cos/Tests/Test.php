@@ -17,7 +17,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'appId' => getenv('COS_APPID'),
                 'secretId' => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
-        sleep(5);
+        sleep(8);
     }
 
     protected function tearDown()
