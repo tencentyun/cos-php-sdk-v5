@@ -12,7 +12,7 @@ use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
-    const VERSION = '1.2.4';
+    const VERSION = '1.2.5';
 
     private $region;       // string: region.
     private $credentials;
@@ -56,7 +56,7 @@ class Client extends GSClient {
 
         $desc = ServiceDescription::factory(Service::getService());
         $this->setDescription($desc);
-        $this->setUserAgent('cos-php-sdk-v5./' . Client::VERSION, true);
+        $this->setUserAgent('cos-php-sdk-v5.' . Client::VERSION, true);
 
         $this->addSubscriber(new ExceptionListener());
         $this->addSubscriber(new Md5Listener($this->signature));
