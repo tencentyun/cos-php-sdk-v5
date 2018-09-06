@@ -1120,6 +1120,42 @@ class Service {
                         ),
                     ),
                 ),
+                'GetBucketNotification' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?notification',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'NotificationConfigurationDeprecated',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'command.expects' => array(
+                            'static' => true,
+                            'default' => 'application/xml',
+                        ),
+                    ),
+                ),
+                'GetBucketNotificationConfiguration' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?notification',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'NotificationConfiguration',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'command.expects' => array(
+                            'static' => true,
+                            'default' => 'application/xml',
+                        ),
+                    ),
+                ),
                 'UploadPart' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}',
@@ -1998,6 +2034,318 @@ class Service {
                                             ),
                                             'StorageClass' => array(
                                                 'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                /**
+                设置存储桶（Bucket） 的回调设置的方法.
+                 */
+                'PutBucketNotification' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?notification',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketNotificationOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'NotificationConfiguration',
+                            ),
+                        'xmlAllowEmpty' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'TopicConfiguration' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Id' => array(
+                                    'type' => 'string',
+                                ),
+                                'Events' => array(
+                                    'type' => 'array',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Event',
+                                        'type' => 'string',
+                                    ),
+                                ),
+                                'Event' => array(
+                                    'type' => 'string',
+                                ),
+                                'Topic' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'QueueConfiguration' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Id' => array(
+                                    'type' => 'string',
+                                ),
+                                'Event' => array(
+                                    'type' => 'string',
+                                ),
+                                'Events' => array(
+                                    'type' => 'array',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Event',
+                                        'type' => 'string',
+                                    ),
+                                ),
+                                'Queue' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'CloudFunctionConfiguration' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Id' => array(
+                                    'type' => 'string',
+                                ),
+                                'Event' => array(
+                                    'type' => 'string',
+                                ),
+                                'Events' => array(
+                                    'type' => 'array',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Event',
+                                        'type' => 'string',
+                                    ),
+                                ),
+                                'CloudFunction' => array(
+                                    'type' => 'string',
+                                ),
+                                'InvocationRole' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'PutBucketNotificationConfiguration' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?notification',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketNotificationConfigurationOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'NotificationConfiguration',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'TopicConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'TopicConfiguration',
+                                'type' => 'object',
+                                'sentAs' => 'TopicConfiguration',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'TopicArn' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                        'sentAs' => 'Topic',
+                                    ),
+                                    'Events' => array(
+                                        'required' => true,
+                                        'type' => 'array',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'Event',
+                                            'type' => 'string',
+                                            'sentAs' => 'Event',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'name' => 'FilterRule',
+                                                            'type' => 'object',
+                                                            'sentAs' => 'FilterRule',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'QueueConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'QueueConfiguration',
+                                'type' => 'object',
+                                'sentAs' => 'QueueConfiguration',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'QueueArn' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                        'sentAs' => 'Queue',
+                                    ),
+                                    'Events' => array(
+                                        'required' => true,
+                                        'type' => 'array',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'Event',
+                                            'type' => 'string',
+                                            'sentAs' => 'Event',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'name' => 'FilterRule',
+                                                            'type' => 'object',
+                                                            'sentAs' => 'FilterRule',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'LambdaFunctionConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'LambdaFunctionConfiguration',
+                                'type' => 'object',
+                                'sentAs' => 'CloudFunctionConfiguration',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'LambdaFunctionArn' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                        'sentAs' => 'CloudFunction',
+                                    ),
+                                    'Events' => array(
+                                        'required' => true,
+                                        'type' => 'array',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'Event',
+                                            'type' => 'string',
+                                            'sentAs' => 'Event',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'name' => 'FilterRule',
+                                                            'type' => 'object',
+                                                            'sentAs' => 'FilterRule',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
                                             ),
                                         ),
                                     ),
@@ -3542,6 +3890,26 @@ class Service {
                         ),
                     ),
                 ),
+                'PutBucketNotificationOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketNotificationConfigurationOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
                 'RestoreObjectOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -4134,6 +4502,305 @@ class Service {
                             'sentAs' => 'x-cos-request-id',
                         ),
                     ),
-                ),));
+                ),
+                'NotificationConfigurationDeprecated' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'TopicConfiguration' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Id' => array(
+                                    'type' => 'string',
+                                ),
+                                'Events' => array(
+                                    'type' => 'array',
+                                    'sentAs' => 'Event',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Event',
+                                        'type' => 'string',
+                                        'sentAs' => 'Event',
+                                    ),
+                                ),
+                                'Event' => array(
+                                    'type' => 'string',
+                                ),
+                                'Topic' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'QueueConfiguration' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Id' => array(
+                                    'type' => 'string',
+                                ),
+                                'Event' => array(
+                                    'type' => 'string',
+                                ),
+                                'Events' => array(
+                                    'type' => 'array',
+                                    'sentAs' => 'Event',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Event',
+                                        'type' => 'string',
+                                        'sentAs' => 'Event',
+                                    ),
+                                ),
+                                'Queue' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'CloudFunctionConfiguration' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Id' => array(
+                                    'type' => 'string',
+                                ),
+                                'Event' => array(
+                                    'type' => 'string',
+                                ),
+                                'Events' => array(
+                                    'type' => 'array',
+                                    'sentAs' => 'Event',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Event',
+                                        'type' => 'string',
+                                        'sentAs' => 'Event',
+                                    ),
+                                ),
+                                'CloudFunction' => array(
+                                    'type' => 'string',
+                                ),
+                                'InvocationRole' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'NotificationConfiguration' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'TopicConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'TopicConfiguration',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'TopicConfiguration',
+                                'type' => 'object',
+                                'sentAs' => 'TopicConfiguration',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'TopicArn' => array(
+                                        'type' => 'string',
+                                        'sentAs' => 'Topic',
+                                    ),
+                                    'Events' => array(
+                                        'type' => 'array',
+                                        'sentAs' => 'Event',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'Event',
+                                            'type' => 'string',
+                                            'sentAs' => 'Event',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'sentAs' => 'FilterRule',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'name' => 'FilterRule',
+                                                            'type' => 'object',
+                                                            'sentAs' => 'FilterRule',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'QueueConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'QueueConfiguration',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'QueueConfiguration',
+                                'type' => 'object',
+                                'sentAs' => 'QueueConfiguration',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'QueueArn' => array(
+                                        'type' => 'string',
+                                        'sentAs' => 'Queue',
+                                    ),
+                                    'Events' => array(
+                                        'type' => 'array',
+                                        'sentAs' => 'Event',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'Event',
+                                            'type' => 'string',
+                                            'sentAs' => 'Event',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'sentAs' => 'FilterRule',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'name' => 'FilterRule',
+                                                            'type' => 'object',
+                                                            'sentAs' => 'FilterRule',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'LambdaFunctionConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'CloudFunctionConfiguration',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'LambdaFunctionConfiguration',
+                                'type' => 'object',
+                                'sentAs' => 'CloudFunctionConfiguration',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'LambdaFunctionArn' => array(
+                                        'type' => 'string',
+                                        'sentAs' => 'CloudFunction',
+                                    ),
+                                    'Events' => array(
+                                        'type' => 'array',
+                                        'sentAs' => 'Event',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'Event',
+                                            'type' => 'string',
+                                            'sentAs' => 'Event',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'sentAs' => 'FilterRule',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'name' => 'FilterRule',
+                                                            'type' => 'object',
+                                                            'sentAs' => 'FilterRule',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                )));
     }
 }
