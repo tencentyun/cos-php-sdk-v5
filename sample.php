@@ -603,7 +603,7 @@ try {
 # 回调相关
 ## PutBucketNotification
 try {
-    $result = $cosClient->PutBucketNotification(array(
+    $result = $cosClient->putBucketNotification(array(
             "Bucket" => $bucket,
             "CloudFunctionConfigurations"=> array(
                 array(
@@ -616,13 +616,13 @@ try {
                                     "Value" => "111"
                                 ),
                                 array(
-                                    "Name" => "Sufix",
+                                    "Name" => "Suffix",
                                     "Value" => "111"
                                 ),
                             ),
                         )
                     ),
-                    "CloudFunction" => "qcs:0:video:sh:appid/123456788:video/10010",
+                    "CloudFunction" => "qcs:0:video:sh:appid/1253125191:video/10010",
                     "Events" => array(
                         'Event' => "cos:ObjectCreated:*"
                     )
@@ -633,17 +633,17 @@ try {
                         "Key" => array(
                             "FilterRules" => array(
                                 array(
-                                    "Name" => "1111",
+                                    "Name" => "Prefix",
                                     "Value" => "111"
                                 ),
                                 array(
-                                    "Name" => "2222",
+                                    "Name" => "Suffix",
                                     "Value" => "111"
                                 ),
                             ),
                         )
                     ),
-                    "CloudFunction" => "qcs:0:video:sh:appid/123456788:video/10010",
+                    "CloudFunction" => "qcs:0:video:sh:appid/1253125191:video/10010",
                     "Events" => array(
                         'Event' => "cos:ObjectRemove:*"
                     )
@@ -654,7 +654,6 @@ try {
 } catch (\Exception $e) {
     echo($e);
 }
-
 
 ## GetBucketNotification
 try {
