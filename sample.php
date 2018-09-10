@@ -600,6 +600,72 @@ try {
     echo($e);
 }
 
+# 回调相关
+## PutBucketNotification
+try {
+    $result = $cosClient->PutBucketNotification(array(
+            "Bucket" => $bucket,
+            "CloudFunctionConfigurations"=> array(
+                array(
+                    "Id" => "test-1",
+                    "Filter" => array(
+                        "Key" => array(
+                            "FilterRules" => array(
+                                array(
+                                    "Name" => "Prefix",
+                                    "Value" => "111"
+                                ),
+                                array(
+                                    "Name" => "Sufix",
+                                    "Value" => "111"
+                                ),
+                            ),
+                        )
+                    ),
+                    "CloudFunction" => "qcs:0:video:sh:appid/123456788:video/10010",
+                    "Events" => array(
+                        'Event' => "cos:ObjectCreated:*"
+                    )
+                ),
+                array(
+                    "Id" => "test-2",
+                    "Filter" => array(
+                        "Key" => array(
+                            "FilterRules" => array(
+                                array(
+                                    "Name" => "1111",
+                                    "Value" => "111"
+                                ),
+                                array(
+                                    "Name" => "2222",
+                                    "Value" => "111"
+                                ),
+                            ),
+                        )
+                    ),
+                    "CloudFunction" => "qcs:0:video:sh:appid/123456788:video/10010",
+                    "Events" => array(
+                        'Event' => "cos:ObjectRemove:*"
+                    )
+                ),
+            ))
+    );
+    print_r($result);
+} catch (\Exception $e) {
+    echo($e);
+}
+
+
+## GetBucketNotification
+try {
+    $result = $cosClient->GetBucketNotification(array(
+        'Bucket' => $bucket
+    ));
+    print_r($result);
+} catch (\Exception $e) {
+    echo($e);
+}
+
 # 复制
 ## copyobject(简单复制)
 /*
