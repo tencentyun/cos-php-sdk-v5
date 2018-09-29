@@ -4256,7 +4256,7 @@ class Service {
                         'CloudFunctionConfigurations' => array(
                             'type' => 'array',
                             'location' => 'xml',
-                            'sentAs' => 'CloudFunctionConfigurations',
+                            'sentAs' => 'CloudFunctionConfiguration',
                             'data' => array(
                                 'xmlFlattened' => true,
                             ),

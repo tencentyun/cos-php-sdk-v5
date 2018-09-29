@@ -402,7 +402,7 @@ try {
 }
 
 # ACL相关
-## putBucketACL(设置bucketACL)
+## PutBucketAcl(设置bucketACL)
 try {
     $result = $cosClient->PutBucketAcl(array(
         'Bucket' => $bucket,
@@ -426,7 +426,7 @@ try {
     echo($e);
 }
 
-## getBucketACL(获取bucketACL)
+## getBucketAcl(获取bucketACL)
 try {
     $result = $cosClient->GetBucketAcl(array(
         'Bucket' => $bucket));
@@ -435,9 +435,9 @@ try {
     echo($e);
 }
 
-## putObjectACL(设置objectACL)
+## putObjectAcl(设置objectACL)
 try {
-    $result = $cosClient->putObjectACL(array(
+    $result = $cosClient->putObjectAcl(array(
         'Bucket' => $bucket,
         'Key' => $key,
         'Grants' => array(
@@ -460,7 +460,7 @@ try {
     echo($e);
 }
 
-## getObjectACL(获取objectACL)
+## GetObjectAcl(获取objectACL)
 try {
     $result = $cosClient->GetObjectAcl(array(
         'Bucket' => $bucket,

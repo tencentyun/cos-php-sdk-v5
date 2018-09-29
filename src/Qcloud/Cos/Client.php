@@ -24,7 +24,7 @@ class Client extends GSClient {
     private $signature;
 
     public function __construct($config) {
-        $this->region = isset($config['region']) ? $config['region'] : '';
+        $this->region = $config['region'];
         $regionmap = array('cn-east'=>'ap-shanghai',
             'cn-sorth'=>'ap-guangzhou',
             'cn-north'=>'ap-beijing-1',
@@ -37,7 +37,7 @@ class Client extends GSClient {
             'gz'=>'ap-guangzhou',
             'cd'=>'ap-chengdu',
             'sgp'=>'ap-singapore',);
-        if (array_key_exists($this->region,$regionmap))
+        if (key_exists($this->region,$regionmap))
         {
             $this->region = $regionmap[$this->region];
         }
