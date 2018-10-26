@@ -79,19 +79,19 @@ require '/path/to/sdk/vendor/autoload.php';
 php sdk 接口文档，详见https://cloud.tencent.com/document/product/436/12267
 ### 配置文件
 ```php
-$cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
+$cosClient = new Qcloud\Cos\Client(array('region' => 'COS_REGION',
     'credentials'=> array(
-        'secretId'    => getenv('COS_KEY'),
-        'secretKey' => getenv('COS_SECRET'))));
+        'secretId'    => 'COS_KEY',
+        'secretKey' => 'COS_SECRET')));
 ```
 ### 上传文件
 * 使用putObject接口上传文件(最大5G)
 * 使用Upload接口分块上传文件
 ```php
-
 # 上传文件
 ## putObject(上传接口，最大支持上传5G文件)
 ### 上传内存中的字符串
+//bucket 的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
 try {
     $result = $cosClient->putObject(array(
         'Bucket' => $bucket,
@@ -197,6 +197,7 @@ try {
 # 下载文件
 ## getObject(下载文件)
 ### 下载到内存
+//bucket 的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
 try {
     $result = $cosClient->getObject(array(
         'Bucket' => $bucket,
