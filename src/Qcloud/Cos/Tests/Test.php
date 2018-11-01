@@ -795,7 +795,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
 //            $this->assertFalse(true, $e);
 //        }
 //    }
-1
+
 
     /*
      * 上传文件Bucket不存在
