@@ -67,7 +67,37 @@ class Client extends GSClient {
         // Allow for specifying bodies with file paths and file handles
         $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
     }
-
+    public function set_config($config) {
+        $this->region = $config['region'];
+        $regionmap = array('cn-east'=>'ap-shanghai',
+            'cn-sorth'=>'ap-guangzhou',
+            'cn-north'=>'ap-beijing-1',
+            'cn-south-2'=>'ap-guangzhou-2',
+            'cn-southwest'=>'ap-chengdu',
+            'sg'=>'ap-singapore',
+            'tj'=>'ap-beijing-1',
+            'bj'=>'ap-beijing',
+            'sh'=>'ap-shanghai',
+            'gz'=>'ap-guangzhou',
+            'cd'=>'ap-chengdu',
+            'sgp'=>'ap-singapore',);
+        if (key_exists($this->region,$regionmap))
+        {
+            $this->region = $regionmap[$this->region];
+        }
+        $this->credentials = $config['credentials'];
+        $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
+        $this->secretId = $config['credentials']['secretId'];
+        $this->secretKey = $config['credentials']['secretKey'];
+        $this->token = isset($config['credentials']['token']) ? $config['credentials']['token'] : null;
+        $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3600;
+        $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
+        $this->signature = new signature($this->secretId, $this->secretKey);
+        parent::__construct(
+            'http://cos.' . $this->region . '.myqcloud.com/',    // base url
+            array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
+            )); // show curl verbose or not
+    }
     public function __destruct() {
     }
 

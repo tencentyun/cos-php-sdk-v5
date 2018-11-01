@@ -778,24 +778,24 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /*
-     * Copy大文件
-     * 200
-     */
-    public function testCopyBigFile()
-    {
-        try {
-            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
-            $this->cosClient->Copy($bucket = $this->bucket,
-                $key = 'test10G',
-                $copysource = 'lewzylu01-1252448703.cos.ap-guangzhou.myqcloud.com/test10g');
-        } catch (ServiceResponseException $e) {
-//            echo($e->getExceptionCode());
-//            echo($e->getStatusCode());
-            $this->assertFalse(true, $e);
-        }
-    }
-
+//    /*
+//     * Copy大文件
+//     * 200
+//     */
+//    public function testCopyBigFile()
+//    {
+//        try {
+//            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
+//            $this->cosClient->Copy($bucket = $this->bucket,
+//                $key = 'test10G',
+//                $copysource = 'lewzylu01-1252448703.cos.ap-guangzhou.myqcloud.com/test10g');
+//        } catch (ServiceResponseException $e) {
+////            echo($e->getExceptionCode());
+////            echo($e->getStatusCode());
+//            $this->assertFalse(true, $e);
+//        }
+//    }
+1
 
     /*
      * 上传文件Bucket不存在
