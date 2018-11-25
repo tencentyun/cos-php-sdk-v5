@@ -164,7 +164,7 @@ try {
 
 ### 设置header和meta
 try {
-    $result = $cosClient->upload(
+    $result = $cosClient->Upload(
         $bucket= $bucket,
         $key = $key,
         $body = fopen($local_path, 'rb'),
