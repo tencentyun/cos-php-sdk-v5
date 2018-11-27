@@ -92,10 +92,12 @@ class Copy {
                     'PartNumberMarker' => $marker,
                     'MaxParts' => 1000,
                     'UploadId' => $uploadId));
-                foreach ($rt['Parts'] as $part) {
-                    $part = array('PartNumber' => $finishedNum, 'ETag' => $part['ETag']);
-                    $this->parts[$finishedNum] = $part;
-                    $finishedNum++;
+                if (!empty($rt['Parts'])) {
+                    foreach ($rt['Parts'] as $part) {
+                        $part = array('PartNumber' => $finishedNum, 'ETag' => $part['ETag']);
+                        $this->parts[$finishedNum] = $part;
+                        $finishedNum++;
+                    }
                 }
                 $marker = $rt['NextPartNumberMarker'];
                 if (!$rt['IsTruncated']) {

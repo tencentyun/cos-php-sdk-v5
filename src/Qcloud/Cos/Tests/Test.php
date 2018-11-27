@@ -17,7 +17,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 'appId' => getenv('COS_APPID'),
                 'secretId' => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
-        sleep(10);
+        sleep(5);
     }
 
     protected function tearDown()
@@ -789,9 +789,9 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->Copy($bucket = $this->bucket,
                 $key = 'test10G',
                 $copysource = 'lewzylu01-1251668577.cos.ap-guangzhou.myqcloud.com/test10G');
-            $rt = $this->cosClient->headObject($bucket = $this->bucket,
-                $key = 'test10G');
-            assertTrue(true, $rt['ContentLength'] == 1024 * 1024 * 1024);
+            $rt = $this->cosClient->headObject(array('Bucket' => $this->$bucket,
+                'Key' => 'test10G'));
+            assertTrue(true, $rt['ContentLength'] == 10485760000);
 
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true, $e);
