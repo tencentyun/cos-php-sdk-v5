@@ -788,7 +788,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => $this->bucket));
             $this->cosClient->Copy($bucket = $this->bucket,
                 $key = 'test10G',
-                $copysource = 'lewzylu01-1252448703.cos.ap-guangzhou.myqcloud.com/test10g');
+                $copysource = 'lewzylu01-1251668577.cos.ap-guangzhou.myqcloud.com/test10G');
             $rt = $this->cosClient->headObject($bucket = $this->bucket,
                 $key = 'test10G');
             assertTrue(true, $rt['ContentLength'] == 1024 * 1024 * 1024);
