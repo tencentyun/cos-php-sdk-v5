@@ -9,7 +9,7 @@ class Copy {
     /**
      * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
      */
-    const MIN_PART_SIZE = 1073741824;
+    const MIN_PART_SIZE = 5242880;
     const MAX_PART_SIZE = 5368709120;
     const MAX_PARTS     = 10000;
 
@@ -25,7 +25,7 @@ class Copy {
         $this->options = $options;
         $this->size = $contentlength;
         $this->partSize = $this->calculatePartSize($minPartSize);
-        $this->concurrency = isset($options['concurrency']) ? $options['concurrency'] : 5;
+        $this->concurrency = isset($options['concurrency']) ? $options['concurrency'] : 10;
         $this->retry = isset($options['retry']) ? $options['retry'] : 5;
     }
     public function copy() {
