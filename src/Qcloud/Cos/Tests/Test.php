@@ -778,23 +778,25 @@ class BucketTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-//    /*
-//     * Copy大文件
-//     * 200
-//     */
-//    public function testCopyBigFile()
-//    {
-//        try {
-//            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
-//            $this->cosClient->Copy($bucket = $this->bucket,
-//                $key = 'test10G',
-//                $copysource = 'lewzylu01-1252448703.cos.ap-guangzhou.myqcloud.com/test10g');
-//        } catch (ServiceResponseException $e) {
-////            echo($e->getExceptionCode());
-////            echo($e->getStatusCode());
-//            $this->assertFalse(true, $e);
-//        }
-//    }
+    /*
+     * Copy大文件
+     * 200
+     */
+    public function testCopyBigFile()
+    {
+        try {
+            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
+            $this->cosClient->Copy($bucket = $this->bucket,
+                $key = 'test10G',
+                $copysource = 'lewzylu01-1252448703.cos.ap-guangzhou.myqcloud.com/test10g');
+            $rt = $this->cosClient->headObject($bucket = $this->bucket,
+                $key = 'test10G');
+            assertTrue(true, $rt['ContentLength'] == 1024 * 1024 * 1024);
+
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true, $e);
+        }
+    }
 
 
     /*
@@ -1191,19 +1193,19 @@ class BucketTest extends \PHPUnit_Framework_TestCase
      * put object acl，设置object账号权限为grant-write
      * 200
      */
-    public function testPutObjectAclWriteToUser()
-    {
-        try {
-            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => '你好.txt', 'Body' => '123'));
-            $this->cosClient->PutObjectAcl(array(
-                'Bucket' =>  $this->bucket,
-                'Key' => '你好.txt',
-                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
-        } catch (ServiceResponseException $e) {
-            $this->assertFalse(true, $e);
-        }
-    }
+//    public function testPutObjectAclWriteToUser()
+//    {
+//        try {
+//            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
+//            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => '你好.txt', 'Body' => '123'));
+//            $this->cosClient->PutObjectAcl(array(
+//                'Bucket' =>  $this->bucket,
+//                'Key' => '你好.txt',
+//                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
+//        } catch (ServiceResponseException $e) {
+//            $this->assertFalse(true, $e);
+//        }
+//    }
 
     /*
      * put object acl，设置object账号权限为grant-full-control
@@ -1263,21 +1265,21 @@ class BucketTest extends \PHPUnit_Framework_TestCase
      * put object acl，设置object账号权限，同时指定read、write和fullcontrol
      * 200
      */
-    public function testPutObjectAclReadWriteFull()
-    {
-        try {
-            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => '你好.txt', 'Body' => '123'));
-            $this->cosClient->PutObjectAcl(array(
-                'Bucket' =>  $this->bucket,
-                'Key' => '你好.txt',
-                'GrantRead' => 'id="qcs::cam::uin/123:uin/123"',
-                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
-                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',));
-        } catch (ServiceResponseException $e) {
-            $this->assertFalse(true, $e);
-        }
-    }
+//    public function testPutObjectAclReadWriteFull()
+//    {
+//        try {
+//            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
+//            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => '你好.txt', 'Body' => '123'));
+//            $this->cosClient->PutObjectAcl(array(
+//                'Bucket' =>  $this->bucket,
+//                'Key' => '你好.txt',
+//                'GrantRead' => 'id="qcs::cam::uin/123:uin/123"',
+//                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+//                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',));
+//        } catch (ServiceResponseException $e) {
+//            $this->assertFalse(true, $e);
+//        }
+//    }
 
     /*
      * put object acl，设置object账号权限，grant值非法

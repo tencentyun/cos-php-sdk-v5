@@ -11,7 +11,7 @@ $cosClient = new Qcloud\Cos\Client(array(
 ));
 
 // 若初始化 Client 时未填写 appId，则 bucket 的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
-$bucket = 'lewzyLU02-1252448703';
+$bucket = 'test2-1252448703';
 $key = 'a.txt';
 $local_path = "E:/a.txt";
 
@@ -73,7 +73,7 @@ try {
 ## Upload(高级上传接口，默认使用分块上传最大支持50T)
 ### 上传内存中的字符串
 try {
-    $result = $cosClient->Upload(
+    $result = $cosClient->upload(
         $bucket = $bucket,
         $key = $key,
         $body = 'Hello World!'
@@ -85,7 +85,7 @@ try {
 
 ### 上传文件流
 try {
-    $result = $cosClient->Upload(
+    $result = $cosClient->upload(
         $bucket = $bucket,
         $key = $key,
         $body = fopen($local_path, 'rb')
@@ -146,7 +146,7 @@ try {
     $command = $cosClient->getCommand('uploadPart', array(
         'Bucket' => $bucket,
         'Key' => $key,
-        'UploadId' => $uploadId,
+        'UploadId' => '',
         'PartNumber' => '1',
         'Body' => '', //Body可以任意
     ));
@@ -276,7 +276,6 @@ try {
         'Bucket' => $bucket,
         'Key' => '11',
         'VersionId' => '111',
-        'ServerSideEncryption' => 'AES256'
     ));
     print_r($result);
 } catch (\Exception $e) {
@@ -383,7 +382,7 @@ try {
  * 同名文件会出现多个版本
  */
 try {
-    $result = $cosClient->ListObjectVersions(array(
+    $result = $cosClient->listObjectVersions(array(
         'Bucket' => $bucket,
         'Prefix' => 'string'
     ));
@@ -404,7 +403,7 @@ try {
 # ACL相关
 ## PutBucketAcl(设置bucketACL)
 try {
-    $result = $cosClient->PutBucketAcl(array(
+    $result = $cosClient->putBucketAcl(array(
         'Bucket' => $bucket,
         'Grants' => array(
             array(
@@ -428,7 +427,7 @@ try {
 
 ## getBucketAcl(获取bucketACL)
 try {
-    $result = $cosClient->GetBucketAcl(array(
+    $result = $cosClient->getBucketAcl(array(
         'Bucket' => $bucket));
     print_r($result);
 } catch (\Exception $e) {
@@ -462,7 +461,7 @@ try {
 
 ## GetObjectAcl(获取objectACL)
 try {
-    $result = $cosClient->GetObjectAcl(array(
+    $result = $cosClient->getObjectAcl(array(
         'Bucket' => $bucket,
         'Key' => $key));
     print_r($result);
@@ -559,7 +558,7 @@ try {
 ## PutBucketReplication(设置bucket跨区域复制)
 ### 注意：目标bucket和源bucket都需要开启多版本
 try {
-    $result = $cosClient->PutBucketReplication(array(
+    $result = $cosClient->putBucketReplication(array(
         'Bucket' => $bucket,
         'Role' => 'qcs::cam::uin/327874225:uin/327874225',
         'Rules'=>array(
@@ -582,7 +581,7 @@ try {
 
 ## GetBucketReplication(获取bucket跨区域复制信息)
 try {
-    $result = $cosClient->GetBucketReplication(array(
+    $result = $cosClient->getBucketReplication(array(
         'Bucket' => $bucket
     ));
     print_r($result);
@@ -592,7 +591,7 @@ try {
 
 ## DeleteBucketReplication(删除bucket跨区域复制信息)
 try {
-    $result = $cosClient->DeleteBucketReplication(array(
+    $result = $cosClient->deleteBucketReplication(array(
         'Bucket' => $bucket
     ));
     print_r($result);
@@ -657,7 +656,7 @@ try {
 
 ## GetBucketNotification
 try {
-    $result = $cosClient->GetBucketNotification(array(
+    $result = $cosClient->getBucketNotification(array(
         'Bucket' => $bucket
     ));
     print_r($result);
@@ -686,7 +685,7 @@ try {
  * 将{bucket},{region},{cos_path},{versionId}替换成复制源的真实信息
  */
 try {
-    $result = $cosClient->Copy(
+    $result = $cosClient->copy(
         $bucket = $bucket,
         $key = $key,
         $copysource = '{bucket}.cos.{region}.myqcloud.com/{cos_path}',
@@ -719,7 +718,7 @@ try {
     $prefix = '';
     $marker = '';
     while (true) {
-        $result = $cosClient->ListObjects(array(
+        $result = $cosClient->listObjects(array(
             'Bucket' => $bucket,
             'Marker' => $marker,
             'MaxKeys' => 1000
@@ -753,7 +752,7 @@ try {
  */
 try {
     while (true) {
-        $result = $cosClient->ListMultipartUploads(
+        $result = $cosClient->listMultipartUploads(
             array('Bucket' => $bucket,
                 'Prefix' => ''));
         if (count($result['Uploads']) == 0) {
@@ -761,7 +760,7 @@ try {
         }
         foreach ($result['Uploads'] as $upload) {
             try {
-                $rt = $cosClient->AbortMultipartUpload(array(
+                $rt = $cosClient->abortMultipartUpload(array(
                     'Bucket' => $bucket,
                     'Key' => $upload['Key'],
                     'UploadId' => $upload['UploadId']
@@ -810,6 +809,7 @@ try {
                 $cosClient2 = new Qcloud\Cos\Client(array(
                     'region' => $region,
                     'credentials' => array(
+                        //getenv为获取本地环境变量，请替换为真实密钥
                         'secretId' => getenv('COS_KEY'),
                         'secretKey' => getenv('COS_SECRET'))
                 ));

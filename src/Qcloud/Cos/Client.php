@@ -12,7 +12,7 @@ use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
-    const VERSION = '1.2.5';
+    const VERSION = '1.3.0';
 
     private $region;       // string: region.
     private $credentials;
@@ -37,10 +37,7 @@ class Client extends GSClient {
             'gz'=>'ap-guangzhou',
             'cd'=>'ap-chengdu',
             'sgp'=>'ap-singapore',);
-        if (key_exists($this->region,$regionmap))
-        {
-            $this->region = $regionmap[$this->region];
-        }
+        $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
         $this->credentials = $config['credentials'];
         $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
         $this->secretId = $config['credentials']['secretId'];
@@ -81,10 +78,7 @@ class Client extends GSClient {
             'gz'=>'ap-guangzhou',
             'cd'=>'ap-chengdu',
             'sgp'=>'ap-singapore',);
-        if (key_exists($this->region,$regionmap))
-        {
-            $this->region = $regionmap[$this->region];
-        }
+        $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
         $this->credentials = $config['credentials'];
         $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
         $this->secretId = $config['credentials']['secretId'];
@@ -219,7 +213,7 @@ class Client extends GSClient {
                 'Key'    => $key
             ) + $options['params']);
 
-        return $copy->performUploading();
+        return $copy->copy();
     }
 
     /**
