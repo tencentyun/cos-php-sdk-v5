@@ -791,6 +791,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
                 $copysource = 'lewzylu01-1251668577.cos.ap-guangzhou.myqcloud.com/test10G');
             $rt = $this->cosClient->headObject(array('Bucket' => $this->$bucket,
                 'Key' => 'test10G'));
+            sleep(10);
             assertTrue(true, $rt['ContentLength'] == 10485760000);
 
         } catch (ServiceResponseException $e) {
