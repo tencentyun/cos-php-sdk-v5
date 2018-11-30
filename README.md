@@ -36,7 +36,7 @@ curl -sS https://getcomposer.org/installer | php
 ```
 {
     "require": {
-        "qcloud/cos-sdk-v5": "1.*"
+        "qcloud/cos-sdk-v5": ">=1.3"
     }
 }
 ```
@@ -83,7 +83,7 @@ $cosClient = new Qcloud\Cos\Client(array('region' => 'COS_REGION',
     'credentials'=> array(
         'secretId'    => 'COS_KEY',
         'secretKey' => 'COS_SECRET')));
-```
+```  
 ### 上传文件
 * 使用putObject接口上传文件(最大5G)
 * 使用Upload接口分块上传文件
