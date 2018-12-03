@@ -26,7 +26,7 @@ class Client extends GSClient {
     public function __construct($config) {
         $this->region = $config['region'];
         $regionmap = array('cn-east'=>'ap-shanghai',
-            'cn-sorth'=>'ap-guangzhou',
+            'cn-south'=>'ap-guangzhou',
             'cn-north'=>'ap-beijing-1',
             'cn-south-2'=>'ap-guangzhou-2',
             'cn-southwest'=>'ap-chengdu',
@@ -67,7 +67,7 @@ class Client extends GSClient {
     public function set_config($config) {
         $this->region = $config['region'];
         $regionmap = array('cn-east'=>'ap-shanghai',
-            'cn-sorth'=>'ap-guangzhou',
+            'cn-south'=>'ap-guangzhou',
             'cn-north'=>'ap-beijing-1',
             'cn-south-2'=>'ap-guangzhou-2',
             'cn-southwest'=>'ap-chengdu',
