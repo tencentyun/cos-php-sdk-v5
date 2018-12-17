@@ -12,7 +12,7 @@ use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
-    const VERSION = '1.3.0';
+    const VERSION = '1.3.1';
 
     private $region;       // string: region.
     private $credentials;
@@ -22,6 +22,8 @@ class Client extends GSClient {
     private $timeout;      // int: timeout
     private $connect_timeout; // int: connect_timeout
     private $signature;
+    private $schema;
+
 
     public function __construct($config) {
         $this->region = $config['region'];
@@ -37,6 +39,7 @@ class Client extends GSClient {
             'gz'=>'ap-guangzhou',
             'cd'=>'ap-chengdu',
             'sgp'=>'ap-singapore',);
+        $this->schema = isset($config['schema']) ? $config['schema'] : 'http';
         $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
         $this->credentials = $config['credentials'];
         $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
@@ -47,57 +50,28 @@ class Client extends GSClient {
         $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
         $this->signature = new signature($this->secretId, $this->secretKey);
         parent::__construct(
-            'http://cos.' . $this->region . '.myqcloud.com/',    // base url
+            $this->schema.'://cos.' . $this->region . '.myqcloud.com/',    // base url
             array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
             )); // show curl verbose or not
-
         $desc = ServiceDescription::factory(Service::getService());
         $this->setDescription($desc);
         $this->setUserAgent('cos-php-sdk-v5.' . Client::VERSION, true);
-
         $this->addSubscriber(new ExceptionListener());
         $this->addSubscriber(new Md5Listener($this->signature));
         $this->addSubscriber(new TokenListener($this->token));
         $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
         $this->addSubscriber(new BucketStyleListener($this->appId));
-
         // Allow for specifying bodies with file paths and file handles
         $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
     }
-    public function set_config($config) {
-        $this->region = $config['region'];
-        $regionmap = array('cn-east'=>'ap-shanghai',
-            'cn-south'=>'ap-guangzhou',
-            'cn-north'=>'ap-beijing-1',
-            'cn-south-2'=>'ap-guangzhou-2',
-            'cn-southwest'=>'ap-chengdu',
-            'sg'=>'ap-singapore',
-            'tj'=>'ap-beijing-1',
-            'bj'=>'ap-beijing',
-            'sh'=>'ap-shanghai',
-            'gz'=>'ap-guangzhou',
-            'cd'=>'ap-chengdu',
-            'sgp'=>'ap-singapore',);
-        $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
-        $this->credentials = $config['credentials'];
-        $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
-        $this->secretId = $config['credentials']['secretId'];
-        $this->secretKey = $config['credentials']['secretKey'];
-        $this->token = isset($config['credentials']['token']) ? $config['credentials']['token'] : null;
-        $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3600;
-        $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
-        $this->signature = new signature($this->secretId, $this->secretKey);
-        parent::__construct(
-            'http://cos.' . $this->region . '.myqcloud.com/',    // base url
-            array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
-            )); // show curl verbose or not
-    }
+
     public function __destruct() {
     }
 
     public function __call($method, $args) {
         return parent::__call(ucfirst($method), $args);
     }
+
     public function createAuthorization(RequestInterface $request, $expires)
     {
         if ($request->getClient() !== $this) {
