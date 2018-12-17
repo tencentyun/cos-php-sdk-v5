@@ -779,23 +779,6 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     }
 
     /*
-     * Copy大文件
-     * 200
-     */
-    public function testCopyBigFile()
-    {
-        try {
-            $this->cosClient->createBucket(array('Bucket' => $this->bucket));
-            $this->cosClient->Copy($bucket = $this->bucket,
-                $key = 'test10G',
-                $copysource = 'lewzylu01-1251668577.cos.ap-guangzhou.myqcloud.com/test10G');
-        } catch (ServiceResponseException $e) {
-            $this->assertFalse(true, $e);
-        }
-    }
-
-
-    /*
      * 上传文件Bucket不存在
      * NoSuchBucket
      * 404
