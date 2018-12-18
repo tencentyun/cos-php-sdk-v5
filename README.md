@@ -79,7 +79,7 @@ php sdk 接口文档，详见https://cloud.tencent.com/document/product/436/1226
 
 ### 配置文件
 ```php
-$cosClient = new Qcloud\Cos\Client(array('region' =>  '<Region>',
+$cosClient = new Qcloud\Cos\Client(array('region' => '<Region>',
     'credentials'=> array(
         'secretId'    => '<SecretId>',
         'secretKey' => '<SecretKey>')));
@@ -88,7 +88,7 @@ $cosClient = new Qcloud\Cos\Client(array('region' =>  '<Region>',
 若您使用 [临时密钥](https://cloud.tencent.com/document/product/436/14048) 初始化，请用下面方式创建实例。
 
 ```
-$cosClient = new Qcloud\Cos\Client(array('region' => getenv('COS_REGION'),
+$cosClient = new Qcloud\Cos\Client(array('region' => '<Region>',
     'credentials'=> array(
         'secretId'    => '<SecretId>',
         'secretKey' => '<SecretKey>',
