@@ -23,6 +23,8 @@ class Client extends GSClient {
     private $connect_timeout; // int: connect_timeout
     private $signature;
     private $schema;
+    private $ip;
+    private $port;
 
 
     public function __construct($config) {
@@ -40,6 +42,8 @@ class Client extends GSClient {
             'cd'=>'ap-chengdu',
             'sgp'=>'ap-singapore',);
         $this->schema = isset($config['schema']) ? $config['schema'] : 'http';
+        $this->ip = isset($config['ip']) ? $config['ip'] : null;
+        $this->port = isset($config['port']) ? $config['port'] : null;
         $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
         $this->credentials = $config['credentials'];
         $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
@@ -60,7 +64,7 @@ class Client extends GSClient {
         $this->addSubscriber(new Md5Listener($this->signature));
         $this->addSubscriber(new TokenListener($this->token));
         $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
-        $this->addSubscriber(new BucketStyleListener($this->appId));
+        $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port));
         // Allow for specifying bodies with file paths and file handles
         $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
     }
@@ -167,7 +171,7 @@ class Client extends GSClient {
         if (!key_exists('VersionId',$options['params'])) {
             $sourceversion = "";
         }
-        else{
+        else {
             $sourceversion = $options['params']['VersionId'];
         }
         $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
