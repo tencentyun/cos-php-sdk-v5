@@ -235,14 +235,14 @@ class Client extends GSClient {
         }
     }
     public static function encodeKey($key) {
-        return $key;
+//        return $key;
         return str_replace('%2F', '/', rawurlencode($key));
     }
 
     public static function explodeKey($key) {
         // Remove a leading slash if one is found
-        //return explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
-        return $key;
-        return ltrim($key, "/");
+        return explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
+//        return $key;
+//        return ltrim($key, "/");
     }
 }

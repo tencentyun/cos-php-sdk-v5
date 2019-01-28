@@ -73,7 +73,7 @@ class BucketStyleListener implements EventSubscriberInterface {
         {
             $bucket = $bucket.'-'.$this->appId;
         }
-        $request->setPath(urldecode($request->getPath()));
+//        $request->setPath(urldecode($request->getPath()));
         $request->getParams()->set('bucket', $bucket)->set('key', $key);
 
         $realHost = $bucket. '.' . $request->getHost();
