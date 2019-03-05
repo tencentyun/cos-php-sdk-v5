@@ -25,8 +25,6 @@ class Client extends GSClient {
     private $schema;
     private $ip;
     private $port;
-
-
     public function __construct($config) {
         $this->region = $config['region'];
         $regionmap = array('cn-east'=>'ap-shanghai',
@@ -44,6 +42,7 @@ class Client extends GSClient {
         $this->schema = isset($config['schema']) ? $config['schema'] : 'http';
         $this->ip = isset($config['ip']) ? $config['ip'] : null;
         $this->port = isset($config['port']) ? $config['port'] : null;
+        $this->endpoint = isset($config['endpoint']) ? $config['endpoint'] : null;
         $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
         $this->credentials = $config['credentials'];
         $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
@@ -64,7 +63,7 @@ class Client extends GSClient {
         $this->addSubscriber(new Md5Listener($this->signature));
         $this->addSubscriber(new TokenListener($this->token));
         $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
-        $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port));
+        $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port, $this->endpoint));
         // Allow for specifying bodies with file paths and file handles
         $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
     }
