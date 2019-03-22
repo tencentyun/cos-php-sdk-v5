@@ -27,7 +27,7 @@ class ExceptionParser {
         }
 
         try {
-            $xml = new \SimpleXMLElement($body);
+            $xml = new \SimpleXMLElement(utf8_encode($body));
             $this->parseBody($xml, $data);
             return $data;
         } catch (\Exception $e) {
