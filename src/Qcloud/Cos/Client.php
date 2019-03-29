@@ -25,7 +25,9 @@ class Client extends GSClient {
     private $schema;
     private $ip;
     private $port;
+    private $config;
     public function __construct($config) {
+        $this->config = $config;
         $this->region = $config['region'];
         $regionmap = array('cn-east'=>'ap-shanghai',
             'cn-south'=>'ap-guangzhou',
@@ -162,11 +164,10 @@ class Client extends GSClient {
         $sourceregion = $sourcelistdot[2];
         $sourcekey = substr(strstr($copysource,'/'),1);
         $sourceversion = "";
-        $cosClient = new Client(array('region' => $sourceregion,
-            'credentials'=> array(
-                'appId' => $sourceappid,
-                'secretId'    => $this->secretId,
-                'secretKey' => $this->secretKey)));
+        $sourceconfig = $this->config;
+        $sourceconfig['region'] = $sourceregion;
+        $sourceconfig['credentials']['appId'] = $sourceappid;
+        $cosClient = new Client($sourceconfig);
         if (!key_exists('VersionId',$options['params'])) {
             $sourceversion = "";
         }

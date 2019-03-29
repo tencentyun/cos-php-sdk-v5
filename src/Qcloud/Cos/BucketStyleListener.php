@@ -56,7 +56,11 @@ class BucketStyleListener implements EventSubscriberInterface {
             if ($this->ipport != null) {
                 $request->setHost($this->ipport);
                 $request->setHeader('Host', 'service.cos.myqcloud.com');
-            } else {
+            } else if ($this->endpoint != null) {
+                $request->setHost($this->endpoint);
+                $request->setHeader('Host', 'service.cos.myqcloud.com');
+            }
+            else {
 
                 $request->setHost('service.cos.myqcloud.com');
             }
