@@ -31,9 +31,6 @@ class ExceptionParser {
             $this->parseBody($xml, $data);
             return $data;
         } catch (\Exception $e) {
-            // Gracefully handle parse errors. This could happen when the
-            // server responds with a non-XML response (e.g., private beta
-            // services).
             $data['code'] = 'PhpInternalXmlParseError';
             $data['message'] = 'A non-XML response was received';
             return $data;
