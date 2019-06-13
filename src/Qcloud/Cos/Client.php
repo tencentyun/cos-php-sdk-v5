@@ -66,7 +66,6 @@ class Client extends GSClient {
         $this->addSubscriber(new TokenListener($this->token));
         $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
         $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port, $this->endpoint));
-        // Allow for specifying bodies with file paths and file handles
         $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
     }
 
