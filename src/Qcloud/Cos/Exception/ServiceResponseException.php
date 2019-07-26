@@ -145,9 +145,9 @@ class ServiceResponseException extends \RuntimeException {
             . 'Cos Error Message: ' . $this->getMessage();
 
         // Add the User-Agent if available
-        // if ($this->request) {
-            // $message .= ', ' . 'User-Agent: ' . $this->request->getHeader('User-Agent');
-        // }
+        if ($this->request) {
+            $message .= ', ' . 'User-Agent: ' . $this->request->getHeader('User-Agent')[0];
+        }
 
         return $message;
     }

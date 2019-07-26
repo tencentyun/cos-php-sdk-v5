@@ -103,9 +103,7 @@ class Service {
                             'data' => array(
                                 'xmlFlattened' => true),
                             'items' => array(
-                                'name' => 'CompletedPart',
                                 'type' => 'object',
-                                'sentAs' => 'Part',
                                 'properties' => array(
                                     'ETag' => array(
                                         'type' => 'string'),
@@ -578,9 +576,7 @@ class Service {
                                 'xmlFlattened' => true,
                             ),
                             'items' => array(
-                                'name' => 'ObjectIdentifier',
                                 'type' => 'object',
-                                'sentAs' => 'Object',
                                 'properties' => array(
                                     'Key' => array(
                                         'required' => true,
@@ -2566,6 +2562,7 @@ class Service {
                         'Deleted' => array(
                             'type' => 'array',
                             'location' => 'xml',
+                            'sentAs' => 'Deleted',
                             'data' => array(
                                 'xmlFlattened' => true,
                             ),
@@ -2601,7 +2598,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Error',
                                 'properties' => array(
                                     'Key' => array(
                                         'type' => 'string',
@@ -2807,29 +2803,14 @@ class Service {
                             'sentAs' => 'AccessControlList',
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Grant',
                                 'properties' => array(
                                     'Grantee' => array(
                                         'type' => 'object',
                                         'properties' => array(
                                             'DisplayName' => array(
                                                 'type' => 'string'),
-                                            /*
-                                                'EmailAddress' => array(
-                                                    'type' => 'string'),
-                                                */
                                             'ID' => array(
-                                                'type' => 'string'),
-                                            /*
-                                                'Type' => array(
-                                                    'type' => 'string',
-                                                    'sentAs' => 'xsi:type',
-                                                    'data' => array(
-                                                        'xmlAttribute' => true,
-                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance')),
-                                                */
-                                            /*'URI' => array(
-                                                    'type' => 'string') */)),
+                                                'type' => 'string'))),
                                     'Permission' => array(
                                         'type' => 'string',
                                     ),
@@ -2865,29 +2846,14 @@ class Service {
                             'sentAs' => 'AccessControlList',
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Grant',
                                 'properties' => array(
                                     'Grantee' => array(
                                         'type' => 'object',
                                         'properties' => array(
                                             'DisplayName' => array(
                                                 'type' => 'string'),
-                                            /*
-                                                'EmailAddress' => array(
-                                                    'type' => 'string'),
-                                                */
                                             'ID' => array(
-                                                'type' => 'string'),
-                                            /*
-                                                'Type' => array(
-                                                    'type' => 'string',
-                                                    'sentAs' => 'xsi:type',
-                                                    'data' => array(
-                                                        'xmlAttribute' => true,
-                                                        'xmlNamespace' => 'http://www.w3.org/2001/XMLSchema-instance')),
-                                                */
-                                            /*'URI' => array(
-                                                    'type' => 'string') */)),
+                                                'type' => 'string'))),
                                     'Permission' => array(
                                         'type' => 'string')))),
                         'RequestId' => array(
@@ -2906,7 +2872,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'CORSRule',
                                 'properties' => array(
                                     'ID' => array(
                                         'type' => 'string'),
@@ -2916,10 +2881,9 @@ class Service {
                                         'data' => array(
                                             'xmlFlattened' => true,
                                         ),
-                                        'items' => array(
+                                        'items' => [
                                             'type' => 'string',
-                                            'sentAs' => 'AllowedHeader',
-                                        ),
+                                        ]
                                     ),
                                     'AllowedMethods' => array(
                                         'type' => 'array',
@@ -2929,7 +2893,6 @@ class Service {
                                         ),
                                         'items' => array(
                                             'type' => 'string',
-                                            'sentAs' => 'AllowedMethod',
                                         ),
                                     ),
                                     'AllowedOrigins' => array(
@@ -2940,7 +2903,6 @@ class Service {
                                         ),
                                         'items' => array(
                                             'type' => 'string',
-                                            'sentAs' => 'AllowedOrigin',
                                         ),
                                     ),
                                     'ExposeHeaders' => array(
@@ -2951,7 +2913,6 @@ class Service {
                                         ),
                                         'items' => array(
                                             'type' => 'string',
-                                            'sentAs' => 'ExposeHeader',
                                         ),
                                     ),
                                     'MaxAgeSeconds' => array(
@@ -2979,7 +2940,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Rule',
                                 'properties' => array(
                                     'Expiration' => array(
                                         'type' => 'object',
@@ -3095,7 +3055,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Rule',
                                 'properties' => array(
                                     'ID' => array(
                                         'type' => 'string',
@@ -3392,12 +3351,11 @@ class Service {
                         'Parts' => array(
                             'type' => 'array',
                             'location' => 'xml',
-                            'sentAs' => 'Part',
+                            'sentAs' => 'Parts',
                             'data' => array(
                                 'xmlFlattened' => true),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Part',
                                 'properties' => array(
                                     'PartNumber' => array(
                                         'type' => 'numeric'),
@@ -3451,7 +3409,7 @@ class Service {
                                 'type' => 'object',
                                 'properties' => array(
                                     'Key' => array(
-                                        'type' => 'string',),
+                                        'type' => 'string'),
                                     'LastModified' => array(
                                         'type' => 'string'),
                                     'ETag' => array(
@@ -3504,7 +3462,6 @@ class Service {
                             'location' => 'xml',
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Bucket',
                                 'properties' => array(
                                     'Name' => array(
                                         'type' => 'string',
@@ -3560,13 +3517,12 @@ class Service {
                         'Versions' => array(
                             'type' => 'array',
                             'location' => 'xml',
-                            'sentAs' => 'Version',
+                            'sentAs' => 'Versions',
                             'data' => array(
                                 'xmlFlattened' => true,
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Version',
                                 'properties' => array(
                                     'ETag' => array(
                                         'type' => 'string',
@@ -3612,7 +3568,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'DeleteMarker',
                                 'properties' => array(
                                     'Owner' => array(
                                         'type' => 'object',
@@ -3730,7 +3685,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'Upload',
                                 'properties' => array(
                                     'UploadId' => array(
                                         'type' => 'string',
@@ -3946,7 +3900,6 @@ class Service {
                             ),
                             'items' => array(
                                 'type' => 'object',
-                                'sentAs' => 'CloudFunctionConfiguration',
                                 'properties' => array(
                                     'Id' => array(
                                         'type' => 'string',
@@ -3963,7 +3916,6 @@ class Service {
                                         ),
                                         'items' => array(
                                             'type' => 'string',
-                                            'sentAs' => 'Event',
                                         ),
                                     ),
                                     'Filter' => array(
@@ -3981,7 +3933,6 @@ class Service {
                                                         ),
                                                         'items' => array(
                                                             'type' => 'object',
-                                                            'sentAs' => 'FilterRule',
                                                             'properties' => array(
                                                                 'Name' => array(
                                                                     'type' => 'string',

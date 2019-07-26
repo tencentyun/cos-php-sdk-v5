@@ -10,6 +10,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Guzzle\Serializer;
+use GuzzleHttp\Command\Guzzle\Deserializer;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Exception\RequestException;
@@ -75,7 +77,7 @@ class Client extends GuzzleClient {
 
     public function responseToResultTransformer(ResponseInterface $response, RequestInterface $request, CommandInterface $command)
     {
-        $deseri = new \GuzzleHttp\Command\Guzzle\Deserializer($this->desc, true);
+        $deseri = new Deserializer($this->desc, true);
         $response = $deseri($response, $request, $command);
         return $response;
     }
