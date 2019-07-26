@@ -2,8 +2,6 @@
 
 namespace Qcloud\Cos;
 
-use Qcloud\Cos\Exception\CosException;
-
 class Copy {
     /**
      * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
@@ -104,7 +102,7 @@ class Copy {
                 }
             }
         } catch (\Exception $e) {
-            echo($e);
+            throw $e;
         }
         if ($finishedNum == $partNumber) {
             return 0;
