@@ -14,8 +14,8 @@ class TestHelper {
                         'secretId'    => getenv('COS_KEY'),
                         'secretKey' => getenv('COS_SECRET'))));
             $result = $cosClient->listObjects(array('Bucket' => $bucket));
-            if ($result->get('Contents')) {
-                foreach ($result ->get('Contents') as $content) {
+            if (isset($result['Contents'])) {
+                foreach ($result['Contents'] as $content) {
                     $cosClient->deleteObject(array('Bucket' => $bucket, 'Key' => $content['Key']));
                 }
             }
@@ -46,3 +46,6 @@ class TestHelper {
         }
     }
 }
+
+$nuke = new TestHelper();
+$nuke->nuke(getenv('COS_BUCKET'));

@@ -2,8 +2,7 @@
 
 namespace Qcloud\Cos;
 
-use Guzzle\Http\ReadLimitEntityBody;
-
+use Qcloud\Cos\Exception\CosException;
 
 class Copy {
     /**
