@@ -1,7 +1,7 @@
 <?php
 
 namespace Qcloud\Cos;
-use GuzzleHttp\Command\Command as GuzzleCommand;
+use GuzzleHttp\Command\Command as CommandInterface;
 
 class Command extends GuzzleCommand {
     /**

@@ -40,6 +40,8 @@ class MultipartUpload {
                         'Body' => $body,
                         'UploadId' => $uploadId,
                         'PartNumber' => $partNumber));
+            print_r($result);
+            echo(strlen($body));
             if (md5($body) != substr($result['ETag'], 1, -1)){
                 throw new CosException("ETag check inconsistency");
             }
