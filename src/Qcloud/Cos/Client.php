@@ -87,11 +87,13 @@ class Client extends GuzzleClient {
         try {
             return parent::__call(ucfirst($method), $args);
 		} catch (CommandException $e) {
-			$previous = $e->getPrevious();
+            $previous = $e->getPrevious();
 			if ($previous !== null) {
 				throw $previous;
-			}
-        } 
+			} else {
+                throw $e;
+            }
+        }
     }
 
     public function getApi() {

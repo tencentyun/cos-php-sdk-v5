@@ -962,8 +962,7 @@ class Service {
                     'parameters' => array(
                         'Body' => array(
                             'type' => array(
-                                'string',
-                                'object'),
+                                'any'),
                             'location' => 'body'),
                         'Bucket' => array(
                             'required' => true,
@@ -1038,8 +1037,7 @@ class Service {
                         'Body' => array(
                             'required' => true,
                             'type' => array(
-                                'string',
-                                'object'),
+                                'any'),
                             'location' => 'body'),
                         'Bucket' => array(
                             'required' => true,
