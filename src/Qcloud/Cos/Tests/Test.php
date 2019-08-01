@@ -65,7 +65,7 @@ class BucketTest extends \PHPUnit_Framework_TestCase
     public function testCreatePrivateBucket()
     {
         try {
-            $this->cosClient->createBucket(
+            $rt = $this->cosClient->createBucket(
                 array(
                     'Bucket' => $this->bucket,
                     'ACL'=>'private'
