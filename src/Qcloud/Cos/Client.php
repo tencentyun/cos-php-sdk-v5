@@ -19,7 +19,7 @@ use GuzzleHttp\Psr7;
 
 
 class Client extends GuzzleClient {
-    const VERSION = '1.3.2';
+    const VERSION = '2.0.0';
 
     private $httpCilent;
     private $api;
@@ -42,7 +42,7 @@ class Client extends GuzzleClient {
         $service = Service::getService();
         $handler = HandlerStack::create();
 		$handler->push(Middleware::mapRequest(function (RequestInterface $request) {
-			return $request->withHeader('X-Foo', 'Bar');
+			return $request->withHeader('User-Agent', 'cos-php-sdk-v5.'. Client::VERSION);
 		}));
 		$handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey']));
         $handler->push($this::handleErrors());
@@ -221,7 +221,7 @@ class Client extends GuzzleClient {
         }
     }
     
-    function explodeKey($key) {
+    public static function explodeKey($key) {
         // Remove a leading slash if one is found
         $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
         // Remove empty element
