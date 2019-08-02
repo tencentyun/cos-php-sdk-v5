@@ -6,7 +6,7 @@ use Qcloud\Cos\Client;
 use Qcloud\Cos\Exception\ServiceResponseException;
 class BucketTest extends \PHPUnit_Framework_TestCase
 {
-    const SYNC_TIME = 1;
+    const SYNC_TIME = 7;
     private $cosClient;
     private $bucket;
     protected function setUp()
