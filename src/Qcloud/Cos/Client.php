@@ -121,6 +121,7 @@ class Client extends GSClient {
                 ) + $options['params']);
 
             $rt['Location'] = $rt['ObjectURL'];
+            $rt['Location'] = ltrim($rt['Location'], $this->schema. "://");
             unset($rt['ObjectURL']);
         }
         else {
@@ -131,6 +132,8 @@ class Client extends GSClient {
                 ) + $options['params']);
 
             $rt = $multipartUpload->performUploading();
+            unset($rt['Bucket']);
+            unset($rt['Key']);
         }
         return $rt;
     }
