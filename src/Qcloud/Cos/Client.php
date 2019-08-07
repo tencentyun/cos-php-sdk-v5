@@ -139,6 +139,9 @@ class Client extends GuzzleClient {
                 ) + $options);
 
             $rt = $multipartUpload->performUploading();
+            unset($rt['Bucket']);
+            unset($rt['Key']);
+            unset($rt['Location']);
         }
         return $rt;
     }

@@ -34,6 +34,9 @@ class MultipartUpload {
                 break;
             }
             $body = $this->body->read($this->partSize);
+            if (empty($body)) {
+                break;
+            }
             $result = $this->client->uploadPart(array(
                         'Bucket' => $this->options['Bucket'],
                         'Key' => $this->options['Key'],
