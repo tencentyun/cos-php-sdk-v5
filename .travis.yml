@@ -6,7 +6,6 @@ notifications:
     recipients:
       - wjielai@tencent.com
       - fysntian@tencent.com
-      - burningzhan@tencent.com 
 script: 
   - composer install
   - phpunit -v
