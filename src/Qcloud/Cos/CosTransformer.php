@@ -7,7 +7,6 @@ use Guzzle\Service\Description\ServiceDescription;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Qcloud\Cos\Common;
 use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 use GuzzleHttp\Command\Guzzle\Description;
@@ -18,14 +17,6 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Uri;
 
-function endWith($haystack, $needle) {
-    $length = strlen($needle);
-    if($length == 0)
-    {
-        return true;
-    }
-    return (substr($haystack, -$length) === $needle);
-}
 
 class CosTransformer {
     private $config;
@@ -60,8 +51,8 @@ class CosTransformer {
             $uri = str_replace("{Bucket}", '', $uri);
         }   
         if (isset($operation['parameters']['Key']) && $command->hasParam('Key')) {
-            $uri = str_replace("{/Key*}", $command['Key'], $uri);
-        } 
+            $uri = str_replace("{/Key*}", encodeKey($command['Key']), $uri);
+        }
         $host = $bucketname. '.cos.' . $this->config['region'] .'.myqcloud.com';
         $path = $this->config['schema'].'://'. $host . $uri;
         $uri = new Uri($path);

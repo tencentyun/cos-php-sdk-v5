@@ -2,6 +2,8 @@
 
 namespace Qcloud\Cos;
 
+include("Common.php");
+
 use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 use GuzzleHttp\Client as HttpClient;
@@ -28,8 +30,6 @@ class Client extends GuzzleClient {
 
     public function __construct($cosConfig) {
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
-        $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
-        $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
         $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : null;
         $this->cosConfig['region'] =  isset($regionmap[$cosConfig['region']]) ? region_map($cosConfig['region']) : $cosConfig['region'];
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
@@ -38,6 +38,11 @@ class Client extends GuzzleClient {
         $this->cosConfig['token'] = isset($cosConfig['credentials']['token']) ? $cosConfig['credentials']['token'] : null;
         $this->cosConfig['timeout'] = isset($cosConfig['timeout']) ? $cosConfig['timeout'] : 3600;
         $this->cosConfig['connect_timeout'] = isset($cosConfig['connect_timeout']) ? $cosConfig['connect_timeout'] : 3600;
+
+        $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
+        $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
+        $this->cosConfig['host'] = isset($cosConfig['host']) ? $cosConfig['host'] : null;
+        $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
         
         $service = Service::getService();
         $handler = HandlerStack::create();
@@ -56,9 +61,6 @@ class Client extends GuzzleClient {
         parent::__construct($this->httpClient, $this->desc, [$this,
         'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
         null);
-        // parent::__construct($this->httpClient, $this->desc, new Serializer($this->desc, []));
-		// $stack = $this->getHandlerStack();
-		// $stack->push(new BucketStyleHandler($this), 'bucket_style');
     }
 
     public function commandToRequestTransformer(CommandInterface $command)
@@ -76,6 +78,14 @@ class Client extends GuzzleClient {
 
     public function responseToResultTransformer(ResponseInterface $response, RequestInterface $request, CommandInterface $command)
     {
+        $action = $command->getName();
+        if ($action == "GetObject") {
+            if (isset($command['SaveAs'])) {
+                $fp = fopen($command['SaveAs'], "wb");
+                fwrite($fp, $response->getBody());
+                fclose($fp);
+            }
+        }
         $deseri = new Deserializer($this->desc, true);
         $response = $deseri($response, $request, $command);
         return $response;
@@ -125,7 +135,6 @@ class Client extends GuzzleClient {
         $options = array_change_key_case($options);
         $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : MultipartUpload::MIN_PART_SIZE;
         if ($body->getSize() < $options['min_part_size']) {
-            // Perform a simple PutObject operation
             $rt = $this->putObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
