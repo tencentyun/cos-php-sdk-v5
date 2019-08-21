@@ -897,7 +897,7 @@ class Service {
                         ),
                         'ContentLength' => array(
                             'type' => 'numeric',
-                            'minLength'=> 0,
+                            'minimum'=> 0,
                             'location' => 'header',
                             'sentAs' => 'Content-Length'
                         ),
@@ -1007,7 +1007,7 @@ class Service {
                         ),
                         'ContentLength' => array(
                             'type' => 'numeric',
-                            'minLength'=> 0,
+                            'minimum'=> 0,
                             'location' => 'header',
                             'sentAs' => 'Content-Length'
                         ),
@@ -2643,7 +2643,7 @@ class Service {
                         ),
                         'ContentLength' => array(
                             'type' => 'numeric',
-                            'minLength'=> 0,
+                            'minimum'=> 0,
                             'location' => 'header',
                             'sentAs' => 'Content-Length',
                         ),
@@ -3957,7 +3957,7 @@ class Service {
                         ),
                         'ContentLength' => array(
                             'type' => 'numeric',
-                            'minLength'=> 0,
+                            'minimum'=> 0,
                             'location' => 'header',
                             'sentAs' => 'Content-Length',
                         ),

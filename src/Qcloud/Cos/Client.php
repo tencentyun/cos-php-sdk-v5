@@ -18,6 +18,7 @@ use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
+use GuzzleHttp\Pool;
 
 
 class Client extends GuzzleClient {
@@ -27,14 +28,16 @@ class Client extends GuzzleClient {
     private $api;
     private $cosConfig;
     private $signature;
+    private $rawCosConfig;
 
     public function __construct($cosConfig) {
+        $this->rawCosConfig = $cosConfig;
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
         $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : null;
         $this->cosConfig['region'] =  isset($regionmap[$cosConfig['region']]) ? region_map($cosConfig['region']) : $cosConfig['region'];
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
-        $this->cosConfig['secretId'] = $cosConfig['credentials']['secretId'];
-        $this->cosConfig['secretKey'] = $cosConfig['credentials']['secretKey'];
+        $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
+        $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : "";
         $this->cosConfig['token'] = isset($cosConfig['credentials']['token']) ? $cosConfig['credentials']['token'] : null;
         $this->cosConfig['timeout'] = isset($cosConfig['timeout']) ? $cosConfig['timeout'] : 3600;
         $this->cosConfig['connect_timeout'] = isset($cosConfig['connect_timeout']) ? $cosConfig['connect_timeout'] : 3600;
@@ -118,16 +121,16 @@ class Client extends GuzzleClient {
         return $this->signature->createPresignedUrl($request, $expires);
     }
 
-    public function getPresignetUrl($method, $args) {
+    public function getPresignetUrl($method, $args, $expires = null) {
         $command = $this->getCommand($method, $args);
         $request = $this->commandToRequestTransformer($command);
-        return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
+        return ($expires == null) ? $this->createPresignedUrl($request, $expires) : $request->getUri();
     }
 
     public function getObjectUrl($bucket, $key, $expires = null, array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
         $request = $this->commandToRequestTransformer($command);
-        return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
+        return ($expires == null) ? $this->createPresignedUrl($request, $expires) : $request->getUri();
     }
 
     public function upload($bucket, $key, $body, $options = array()) {
@@ -168,55 +171,56 @@ class Client extends GuzzleClient {
         return $rt;
     }
 
-    public function copy($bucket, $key, $copysource, $options = array()) {
+    public function copy($bucket, $key, $copySource, $options = array()) {
 
-        $options = Collection::fromConfig(array_change_key_case($options), array(
-            'min_part_size' => Copy::MIN_PART_SIZE,
-            'params'        => $options));
-        $sourcelistdot  =  explode('.',$copysource);
-        $sourcelistline = explode('-',$sourcelistdot[0]);
-        $sourceappid = array_pop($sourcelistline);
-        $sourcebucket = implode('-', $sourcelistline);
-        $sourceregion = $sourcelistdot[2];
-        $sourcekey = substr(strstr($copysource,'/'),1);
-        $sourceversion = "";
-        $sourceconfig = $this->cosConfig;
-        $sourceconfig['region'] = $sourceregion;
-        $sourceconfig['credentials']['appId'] = $sourceappid;
-        $cosClient = new Client($sourceconfig);
-        if (!key_exists('VersionId',$options['params'])) {
-            $sourceversion = "";
-        }
-        else {
-            $sourceversion = $options['params']['VersionId'];
-        }
-        $rt = $cosClient->headObject(array('Bucket'=>$sourcebucket,
-            'Key'=>$sourcekey,
-            'VersionId'=>$sourceversion));
-        $contentlength =$rt['ContentLength'];
+        $options = array_change_key_case($options);
+        $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : Copy::MIN_PART_SIZE;
 
-        if ($contentlength < $options['min_part_size']) {
-            return $this->copyObject(array(
+        // set copysource client
+        $sourceConfig = $this->rawCosConfig;
+        $sourceConfig['region'] = $copySource['Region'];
+        $cosSourceClient = new Client($sourceConfig);
+        $copySource['VersionId'] = isset($copySource['VersionId']) ? $copySource['VersionId'] : "";
+        try {
+            $rt = $cosSourceClient->headObject(
+                array('Bucket'=>$copySource['Bucket'],
+                    'Key'=>$copySource['Key'],
+                    'VersionId'=>$copySource['VersionId'],
+                )
+            );
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        $contentLength =$rt['ContentLength'];
+        // sample copy
+        if ($contentLength < $options['min_part_size']) {
+            $rt = $this->copyObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
-                    'CopySource'   => $copysource."?versionId=".$sourceversion,
-                ) + $options['params']);
+                    'CopySource'   => $copysource['Bucket']. '.cos.'. $copySource['Region'].
+                                      ".myqcloud.com/". $copySource['Key']. "?versionId=". $copySource['VersionId'],
+                ) + $options
+            );
+            return $rt;
         }
-        $copy = new Copy($this, $contentlength, $copysource."?versionId=".$sourceversion, $options['min_part_size'], array(
+        // multi part copy
+        $copySource['ContentLength'] = $contentLength;
+        $copy = new Copy($this, $copySource, array(
                 'Bucket' => $bucket,
                 'Key'    => $key
-            ) + $options['params']);
-
+            ) + $options
+        );
         return $copy->copy();
     }
 
-    public function doesBucketExist($bucket, $accept403 = true, array $options = array())
+    public function doesBucketExist($bucket, array $options = array())
     {
         try {
             $this->HeadBucket(array(
                 'Bucket' => $bucket));
             return True;
-        }catch (\Exception $e){
+        } catch (\Exception $e){
             return False;
         }
     }
@@ -228,7 +232,7 @@ class Client extends GuzzleClient {
                 'Bucket' => $bucket,
                 'Key' => $key));
             return True;
-        }catch (\Exception $e){
+        } catch (\Exception $e){
             return False;
         }
     }

@@ -62,8 +62,9 @@ class CosTransformer {
 
     // format upload body
     public function uploadBodyTransformer(CommandInterface $command, $request, $bodyParameter = 'Body', $sourceParameter = 'SourceFile') {
+        
         $operation = $this->operation;
-        if (!isset($operation['Body'])) {
+        if (!isset($operation['parameters']['Body'])) {
             return $request;
         }
         $source = isset($command[$sourceParameter]) ? $command[$sourceParameter] : null;
