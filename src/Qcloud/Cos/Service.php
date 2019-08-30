@@ -1392,7 +1392,7 @@ class Service {
                 // 设置存储桶（Bucket） 的Domain信息的方法.
                 'PutBucketDomain' => array(
                     'httpMethod' => 'PUT',
-                    'uri' => '/{Bucket}?domain ',
+                    'uri' => '/{Bucket}?domain',
                     'class' => 'Qcloud\\Cos\\Command',
                     'responseClass' => 'PutBucketDomainOutput',
                     'responseType' => 'model',
@@ -1625,13 +1625,13 @@ class Service {
                             'location' => 'xml',
                             'properties' => array(
                                 'Key' => array(
-                                    'required' => true,
                                     'type' => 'string',
                                     'minLength' => 1,
                                 ),
                             ),
                         ),
                         'IndexDocument' => array(
+                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
@@ -1646,7 +1646,6 @@ class Service {
                             'location' => 'xml',
                             'properties' => array(
                                 'HostName' => array(
-                                    'required' => true,
                                     'type' => 'string',
                                 ),
                                 'Protocol' => array(
@@ -1673,7 +1672,6 @@ class Service {
                                         ),
                                     ),
                                     'Redirect' => array(
-                                        'required' => true,
                                         'type' => 'object',
                                         'properties' => array(
                                             'HostName' => array(
