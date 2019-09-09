@@ -11,7 +11,7 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 
-class SignatureMiddleware {
+class UploadBodyMiddleware {
     private $nextHandler;
     protected $signature;
 
