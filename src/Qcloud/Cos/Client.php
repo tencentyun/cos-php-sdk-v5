@@ -198,7 +198,7 @@ class Client extends GuzzleClient {
             $rt = $this->copyObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
-                    'CopySource'   => $copysource['Bucket']. '.cos.'. $copySource['Region'].
+                    'CopySource'   => $copySource['Bucket']. '.cos.'. $copySource['Region'].
                                       ".myqcloud.com/". $copySource['Key']. "?versionId=". $copySource['VersionId'],
                 ) + $options
             );
