@@ -1,12 +1,12 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
 
-1.3.3 to 2.0.0
+1.3 to 2.0
 ----------
 cos-php-sdk-v5 now uses [GuzzleHttp] for HTTP message.
 Due to fact, it depending on PHP >= 5.6.
 
-- Use the `Qcloud\Cos\Client\createPresignedUrl()` method instead of the `Qcloud\Cos\Client\createPresignedUrl()`
+- Use the `Qcloud\Cos\Client\createPresignedUrl()` method instead of the `Qcloud\Cos\Command\createPresignedUrl()`
 - `$copSource` parameters of the `Qcloud\Cos\Client\Copy` interface are no longer compatible with older versions.
 
 v2:
@@ -31,3 +31,5 @@ $result = $cosClient->Copy(
     $copysource = '<sourceBucket>.cos.<sourceRegion>.myqcloud.com/<sourceKey>'
 );
 ```
+- Now when uploading files with using `open()` to upload stream, if the local file does not exist, a 0 byte file will be uploaded without throwing an exception, only a warning.
+

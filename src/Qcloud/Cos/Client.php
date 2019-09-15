@@ -38,26 +38,37 @@ class Client extends GuzzleClient {
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
         $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
         $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : "";
+        $this->cosConfig['anonymous'] = isset($cosConfig['credentials']['anonymous']) ? $cosConfig['anonymous']['anonymous'] : false;
         $this->cosConfig['token'] = isset($cosConfig['credentials']['token']) ? $cosConfig['credentials']['token'] : null;
         $this->cosConfig['timeout'] = isset($cosConfig['timeout']) ? $cosConfig['timeout'] : 3600;
         $this->cosConfig['connect_timeout'] = isset($cosConfig['connect_timeout']) ? $cosConfig['connect_timeout'] : 3600;
-
         $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
         $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
-        $this->cosConfig['host'] = isset($cosConfig['host']) ? $cosConfig['host'] : null;
+        $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : 'myqcloud.com';
         $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
+        $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
+        $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
+        
         
         $service = Service::getService();
         $handler = HandlerStack::create();
 		$handler->push(Middleware::mapRequest(function (RequestInterface $request) {
-			return $request->withHeader('User-Agent', 'cos-php-sdk-v5.'. Client::VERSION);
-		}));
-		$handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey']));
+			return $request->withHeader('User-Agent', $this->cosConfig['userAgent']);
+        }));
+        if ($this->cosConfig['anonymous'] != true) {
+            $handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey']));
+        }
+        if ($this->cosConfig['token'] != null) {
+            $handler->push(Middleware::mapRequest(function (RequestInterface $request) {
+                return $request->withHeader('x-cos-security-token', $this->cosConfig['token']);
+            }));
+        }
         $handler->push($this::handleErrors());
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey']);
         $this->httpClient = new HttpClient([
             'base_uri' => $this->cosConfig['schema'].'://cos.' . $this->cosConfig['region'] . '.myqcloud.com/',
-			'handler' => $handler,
+            'handler' => $handler,
+            'proxy' => $this->cosConfig['proxy']
         ]);
         $this->desc = new Description($service);
         $this->api = (array)($this->desc->getOperations());

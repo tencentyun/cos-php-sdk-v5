@@ -6,8 +6,9 @@
 [![Build Status](https://travis-ci.org/tencentyun/cos-php-sdk-v5.svg?branch=master)](https://travis-ci.org/tencentyun/cos-php-sdk-v5)
 
 ## 环境准备
-*   PHP 5.3+
+*   PHP 5.6+
     您可以通过`php -v`命令查看当前的 PHP 版本。
+>- 如果您的php版本 `>=5.3`  且 `<5.6` , 请使用 [ v1.3 ](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
 *   cURL 扩展
     您可以通过`php -m`命令查看 cURL 扩展是否已经安装好。
 
@@ -40,7 +41,7 @@ curl -sS https://getcomposer.org/installer | php
 ```
 {
     "require": {
-        "qcloud/cos-sdk-v5": "1.*"
+        "qcloud/cos-sdk-v5": "2.*"
     }
 }
 ```
