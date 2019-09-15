@@ -91,6 +91,14 @@ class Client extends GuzzleClient {
         }
         $deseri = new Deserializer($this->desc, true);
         $response = $deseri($response, $request, $command);
+        if ($command['Key'] != null && $response['Key'] == null) {
+            $response['Key'] = $command['Key'];
+        }
+        if ($command['Bucket'] != null && $response['Bucket'] == null) {
+            $response['Bucket'] = $command['Bucket'];
+        }
+        $response['Location'] = $request->getUri()->getHost() .  $request->getUri()->getPath();
+
         return $response;
     }
     public function __destruct() {
@@ -151,9 +159,6 @@ class Client extends GuzzleClient {
                 ) + $options);
 
             $rt = $multipartUpload->performUploading();
-            unset($rt['Bucket']);
-            unset($rt['Key']);
-            unset($rt['Location']);
         }
         return $rt;
     }

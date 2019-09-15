@@ -42,7 +42,7 @@ class CosTransformer {
         {
             $bucketname = $bucketname.'-'.$appId;
         }
-
+        $command['Bucket'] = $bucketname;
         $path = ''; 
         $http_method = $operation['httpMethod'];
         $uri = $operation['uri'];
