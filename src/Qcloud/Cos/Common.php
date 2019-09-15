@@ -16,7 +16,10 @@ $regionmap = array('cn-east'=>'ap-shanghai',
             'sgp'=>'ap-singapore',);
 
 function region_map($region) {
-    return regionmap[$region];
+    if (array_key_exists($region, regionmap)) {
+        return regionmap[$region];
+    }
+    return $region;
 }
 
 function encodeKey($key) {
