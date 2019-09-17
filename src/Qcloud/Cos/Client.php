@@ -154,7 +154,6 @@ class Client extends GuzzleClient {
 
     public function upload($bucket, $key, $body, $options = array()) {
         $body = Psr7\stream_for($body);
-        $options = array_change_key_case($options);
         $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : MultipartUpload::MIN_PART_SIZE;
         if ($body->getSize() < $options['min_part_size']) {
             $rt = $this->putObject(array(
@@ -176,7 +175,6 @@ class Client extends GuzzleClient {
 
     public function resumeUpload($bucket, $key, $body, $uploadId, $options = array()) {
         $body = Psr7\stream_for($body);
-        $options = array_change_key_case($options);
         $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : MultipartUpload::MIN_PART_SIZE;
         $multipartUpload = new MultipartUpload($this, $body, array(
                 'Bucket' => $bucket,
@@ -189,7 +187,6 @@ class Client extends GuzzleClient {
 
     public function copy($bucket, $key, $copySource, $options = array()) {
 
-        $options = array_change_key_case($options);
         $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : Copy::MIN_PART_SIZE;
 
         // set copysource client
