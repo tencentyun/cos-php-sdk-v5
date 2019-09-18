@@ -115,7 +115,7 @@ class Client extends GuzzleClient {
     public function __destruct() {
     }
 
-    public function __call($method, $args) {
+    public function __call($method, array $args) {
         try {
             return parent::__call(ucfirst($method), $args);
 		} catch (CommandException $e) {
