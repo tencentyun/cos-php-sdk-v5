@@ -29,7 +29,7 @@ class COSTest extends \PHPUnit_Framework_TestCase
     protected function tearDown() {
     }
     
-    protected function  createBucket() {
+    protected function createBucket() {
         $this->cosClient->createBucket(['Bucket' => $this->bucket]);
     }
 
@@ -45,7 +45,7 @@ class COSTest extends \PHPUnit_Framework_TestCase
     public function testCreateExistingBucket()
     {
         try {
-            $this->createbucket();
+            $this->cosClient->createBucket(['Bucket' => $this->bucket]);
         } catch (ServiceResponseException $e) {
             $this->assertTrue($e->getExceptionCode() === 'BucketAlreadyOwnedByYou' && $e->getStatusCode() === 409);
         }
