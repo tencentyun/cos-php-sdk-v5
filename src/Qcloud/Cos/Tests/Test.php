@@ -21,16 +21,12 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'secretId' => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
         try {
-            $this->createBucket();
+            $this->cosClient->createBucket(['Bucket' => $this->bucket]);
         } catch(\Exception $e) {
         }
     }
 
     protected function tearDown() {
-    }
-    
-    protected function createBucket() {
-        $this->cosClient->createBucket(['Bucket' => $this->bucket]);
     }
 
     /**********************************
