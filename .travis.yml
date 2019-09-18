@@ -4,8 +4,15 @@ php:
 notifications:
   email:
     recipients:
+      - lewzylu@tencent.com
       - wjielai@tencent.com
       - fysntian@tencent.com
+
+before_script:
+  - composer install --prefer-dist --dev --no-interaction
+
 script: 
-  - composer install
   - phpunit -v
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
