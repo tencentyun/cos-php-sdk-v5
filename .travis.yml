@@ -12,7 +12,7 @@ before_script:
   - composer install --prefer-dist --dev --no-interaction
 
 script: 
-  - phpunit -v
+  - phpunit -v --coverage-clover=coverage.xml
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
