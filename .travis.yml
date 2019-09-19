@@ -4,7 +4,6 @@ php:
 notifications:
   email:
     recipients:
-      - lewzylu@tencent.com
       - wjielai@tencent.com
       - fysntian@tencent.com
 
