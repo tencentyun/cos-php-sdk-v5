@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/qcloud/cos-sdk-v5/v/stable)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 [![Total Downloads](https://img.shields.io/packagist/dt/qcloud/cos-sdk-v5.svg?style=flat)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 [![Build Status](https://travis-ci.org/tencentyun/cos-php-sdk-v5.svg?branch=master)](https://travis-ci.org/tencentyun/cos-php-sdk-v5)
-
+[![codecov](https://codecov.io/gh/tencentyun/cos-php-sdk-v5/branch/master/graph/badge.svg)](https://codecov.io/gh/tencentyun/cos-php-sdk-v5)
 ## 环境准备
 *   PHP 5.6+
     您可以通过`php -v`命令查看当前的 PHP 版本。
