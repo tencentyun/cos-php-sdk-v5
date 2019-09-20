@@ -32,8 +32,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
     /**********************************
      * TestBucket
      **********************************/
-
-    /*
+    
+     /*
      * put bucket,bucket已经存在
      * BucketAlreadyOwnedByYou
      * 409
@@ -44,6 +44,62 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(['Bucket' => $this->bucket]);
         } catch (ServiceResponseException $e) {
             $this->assertTrue($e->getExceptionCode() === 'BucketAlreadyOwnedByYou' && $e->getStatusCode() === 409);
+        }
+    }
+
+    /*
+     * put bucket, 创建所有region的bucket
+     * 409
+     */
+    public function testValidRegionBucket()
+    {
+        $regionlist = array('cn-east','ap-shanghai',
+        'cn-south','ap-guangzhou',
+        'cn-north','ap-beijing-1',
+        'cn-south-2','ap-guangzhou-2',
+        'cn-southwest','ap-chengdu',
+        'sg','ap-singapore',
+        'tj','ap-beijing-1',
+        'bj','ap-beijing',
+        'sh','ap-shanghai',
+        'gz','ap-guangzhou',
+        'cd','ap-chengdu',
+        'sgp','ap-singapore');
+        foreach ($regionlist as$region) {
+            try {
+
+                $this->cosClient = new Client(array('region' => $region,
+                    'credentials' => array(
+                        'appId' => getenv('COS_APPID'),
+                        'secretId' => getenv('COS_KEY'),
+                        'secretKey' => getenv('COS_SECRET'))));
+                $this->cosClient->createBucket(['Bucket' => $this->bucket]);
+            } catch (ServiceResponseException $e) {
+                $this->assertEquals([$e->getStatusCode()], [409]);
+            }
+        }
+    }
+
+    /*
+     * put bucket, 不合法的region名
+     * 409
+     */
+    public function testInvalidRegionBucket()
+    {
+        $regionlist = array('cn-east-2','ap-shanghai-3');
+        foreach ($regionlist as$region) {
+            try {
+                $this->cosClient = new Client(array('region' => $region,
+                    'credentials' => array(
+                        'appId' => getenv('COS_APPID'),
+                        'secretId' => getenv('COS_KEY'),
+                        'secretKey' => getenv('COS_SECRET'))));
+                $this->cosClient->createBucket(['Bucket' => $this->bucket]);
+            } catch (ServiceResponseException $e) {
+                $this->assertFalse(TRUE);
+            } catch (\GuzzleHttp\Exception\ConnectException $e) {
+                $this->assertTrue(TRUE);
+            }
         }
     }
 
