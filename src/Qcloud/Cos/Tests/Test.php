@@ -9,15 +9,16 @@ class COSTest extends \PHPUnit_Framework_TestCase
     const SYNC_TIME = 5;
     private $cosClient;
     private $bucket;
+    private $region;
     private $message;
     private $ass;
     protected function setUp()
     {
         $this->bucket = getenv('COS_BUCKET');
+        $this->region = getenv('COS_REGION');
         $this->bucket2 = "tmp".$this->bucket;
-        $this->cosClient = new Client(array('region' => getenv('COS_REGION'),
+        $this->cosClient = new Client(array('region' => $this->region,
             'credentials' => array(
-                'appId' => getenv('COS_APPID'),
                 'secretId' => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
         try {
@@ -111,8 +112,9 @@ class COSTest extends \PHPUnit_Framework_TestCase
     public function testCreateInvalidBucket()
     {
         try {
-            $this->cosClient->createBucket(array('Bucket' => 'qwe_213'));
+            $this->cosClient->createBucket(array('Bucket' => 'qwe_123' . $this->bucket));
         } catch (ServiceResponseException $e) {
+            print $e;
             $this->assertTrue($e->getExceptionCode() === 'InvalidBucketName' && $e->getStatusCode() === 400);
         }
     }
@@ -132,8 +134,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
             sleep(COSTest::SYNC_TIME);
             TestHelper::nuke($this->bucket2);
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -155,8 +157,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
             sleep(COSTest::SYNC_TIME);
             TestHelper::nuke($this->bucket2);
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -197,8 +199,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -216,8 +218,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -254,8 +256,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -273,8 +275,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -292,8 +294,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -311,8 +313,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -330,8 +332,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -351,8 +353,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -402,8 +404,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -434,8 +436,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -476,8 +478,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Bucket' =>  $this->bucket,
                 'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -491,8 +493,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->HeadBucket(array(
                 'Bucket' =>  $this->bucket));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -525,8 +527,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->ListObjects(array(
                 'Bucket' =>  $this->bucket));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -582,8 +584,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -624,8 +626,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -688,8 +690,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
             ));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -735,8 +737,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
             ));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -786,8 +788,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->createBucket(array('Bucket' => '12345-'.$this->bucket));
             $this->cosClient->deleteBucket(array('Bucket' => '12345-'.$this->bucket));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -798,11 +800,11 @@ class COSTest extends \PHPUnit_Framework_TestCase
     public function testPutBucket3()
     {
         try {
-            $this->cosClient->createBucket(array('Bucket' => $this->bucket.'-12333-4445'));
-            $this->cosClient->deleteBucket(array('Bucket' => $this->bucket.'-12333-4445'));
+            $this->cosClient->createBucket(array('Bucket' => '12-333-4445' . $this->bucket));
+            $this->cosClient->deleteBucket(array('Bucket' => '12-333-4445' . $this->bucket));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -815,8 +817,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try {
             $this->cosClient->getBucketLocation(array('Bucket' => $this->bucket));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -858,8 +860,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -892,8 +894,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try {
             $this->cosClient->upload($this->bucket, '你好.txt', 'Hello World');
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -905,8 +907,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try {
             $this->cosClient->upload($this->bucket, '你好.txt', '123');
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -919,8 +921,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->upload($this->bucket, '你好.txt', '1234124');
             $this->cosClient->upload($this->bucket, '你好.txt', '请二位qwe');
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -938,8 +940,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                      'lew' => str_repeat('a', 1 * 1024),
             )));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -974,8 +976,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try {
             $this->cosClient->upload($this->bucket, '→↓←→↖↗↙↘! \"#$%&\'()*+,-./0123456789:;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~', 'Hello World');
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -987,8 +989,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try {
             $this->cosClient->upload($this->bucket, 'hello.txt', str_repeat('a', 9 * 1024 * 1024));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1003,8 +1005,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
                 'Key' => '你好.txt',));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1019,8 +1021,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Bucket' => $this->bucket,
                 'Key' => '你好<>!@#^%^&*&(&^!@#@!.txt',));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1036,8 +1038,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Key' => '你好.txt',
                 'IfMatch' => '"b10a8db164e0754105b7a99be72e3fe5"'));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1075,8 +1077,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'Key' => '你好.txt',
                 'IfNoneMatch' => '"b10a8db164e0754105b7a99be72e3fe5"'));
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1095,6 +1097,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 'IfNoneMatch' => '""'));
 
         } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1106,8 +1110,44 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try{
             $this->cosClient->getObjectUrl($this->bucket, 'hello.txt', '+10 minutes');
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
+     * 复制小文件
+     * 200
+     */
+    public function testCopySmallObject() {
+        try{
+            $this->cosClient->upload($this->bucket, '你好.txt', 'Hello World');
+            $this->cosClient->copy($bucket=$this->bucket,
+                                   $key='hi.txt', 
+                                   $copySource = ['Bucket'=>$this->bucket,
+                                                  'Region'=>$this->region,
+                                                  'Key'=>'你好.txt']);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
+     * 复制大文件
+     * 200
+     */
+    public function testCopyBigObject() {
+        try{
+            $this->cosClient->upload($this->bucket, '你好.txt', str_repeat('a', 9 * 1024 * 1024));
+            $this->cosClient->copy($bucket=$this->bucket,
+                                   $key='hi.txt', 
+                                   $copySource = ['Bucket'=>$this->bucket,
+                                                  'Region'=>$this->region,
+                                                  'Key'=>'你好.txt']);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1140,8 +1180,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
 
     }
@@ -1176,8 +1216,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1197,8 +1237,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1218,8 +1258,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1260,8 +1300,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1281,8 +1321,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1302,8 +1342,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1323,8 +1363,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1379,8 +1419,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -1414,8 +1454,8 @@ class COSTest extends \PHPUnit_Framework_TestCase
                 )
             );
         } catch (ServiceResponseException $e) {
-            $this->assertFalse(TRUE);
             print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
