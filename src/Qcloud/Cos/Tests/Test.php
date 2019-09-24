@@ -1180,7 +1180,7 @@ class COSTest extends \PHPUnit_Framework_TestCase
         try{
             $src_key = '你好.txt';
             $dst_key = 'hi.txt';
-            $body = $this->generateRandomString(3*1024*1024+1023);
+            $body = $this->generateRandomString(3*1024*1024+333);
             $md5 = base64_encode(md5($body, true));
             $this->cosClient->upload($bucket=$this->bucket,
                                      $key=$src_key,
