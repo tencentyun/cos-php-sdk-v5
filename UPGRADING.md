@@ -6,7 +6,25 @@ cos-php-sdk-v5 Upgrade Guide
 cos-php-sdk-v5 now uses [GuzzleHttp] for HTTP message.
 Due to fact, it depending on PHP >= 5.6.
 
-- Use the `Qcloud\Cos\Client\createPresignedUrl()` method instead of the `Qcloud\Cos\Command\createPresignedUrl()`
+- Use the `Qcloud\Cos\Client\getPresignetUrl()` method instead of the `Qcloud\Cos\Command\createPresignedUrl()`
+
+v2:
+```php
+$signedUrl = $cosClient->getPresignetUrl($method='putObject',
+                                         $args=['Bucket'=>'examplebucket-1250000000', 'Key'=>'exampleobject', 'Body'=>''],
+                                         $expires='+30 minutes');
+```
+
+v1:
+```php
+$command = $cosClient->getCommand('putObject', array(
+    'Bucket' => "examplebucket-1250000000",
+    'Key' => "exampleobject",
+    'Body' => '', 
+));
+$signedUrl = $command->createPresignedUrl('+30 minutes');
+```
+
 - `$copSource` parameters of the `Qcloud\Cos\Client\Copy` interface are no longer compatible with older versions.
 
 v2:
