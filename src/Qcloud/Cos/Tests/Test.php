@@ -1178,19 +1178,19 @@ class COSTest extends \PHPUnit_Framework_TestCase
      */
     public function testCopyLargeObject() {
         try{
-            $key = '你好.txt';
+            $src_key = '你好.txt';
             $dst_key = 'hi.txt';
             $body = $this->generateRandomString(3*1024*1024+1023);
             $md5 = base64_encode(md5($body, true));
             $this->cosClient->upload($bucket=$this->bucket,
-                                     $key=$key,
+                                     $key=$src_key,
                                      $body=$body,
                                      $options=['PartSize'=>1024 * 1024 + 1]);
             $this->cosClient->copy($bucket=$this->bucket,
                                    $key=$dst_key, 
                                    $copySource = ['Bucket'=>$this->bucket,
                                                   'Region'=>$this->region,
-                                                  'Key'=>$key],
+                                                  'Key'=>$src_key],
                                    $options=['PartSize'=>1024 * 1024 + 1]);
             
             $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$dst_key]);
