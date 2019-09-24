@@ -143,19 +143,19 @@ class Client extends GuzzleClient {
     public function getPresignetUrl($method, $args, $expires = null) {
         $command = $this->getCommand($method, $args);
         $request = $this->commandToRequestTransformer($command);
-        return ($expires == null) ? $this->createPresignedUrl($request, $expires) : $request->getUri();
+        return $this->createPresignedUrl($request, $expires);
     }
 
     public function getObjectUrl($bucket, $key, $expires = null, array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
         $request = $this->commandToRequestTransformer($command);
-        return ($expires == null) ? $this->createPresignedUrl($request, $expires) : $request->getUri();
+        return $this->createPresignedUrl($request, $expires);
     }
 
     public function upload($bucket, $key, $body, $options = array()) {
         $body = Psr7\stream_for($body);
-        $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : MultipartUpload::MIN_PART_SIZE;
-        if ($body->getSize() < $options['min_part_size']) {
+        $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::MIN_PART_SIZE;
+        if ($body->getSize() < $options['PartSize']) {
             $rt = $this->putObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
@@ -175,7 +175,7 @@ class Client extends GuzzleClient {
 
     public function resumeUpload($bucket, $key, $body, $uploadId, $options = array()) {
         $body = Psr7\stream_for($body);
-        $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : MultipartUpload::MIN_PART_SIZE;
+        $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         $multipartUpload = new MultipartUpload($this, $body, array(
                 'Bucket' => $bucket,
                 'Key' => $key,
@@ -187,7 +187,7 @@ class Client extends GuzzleClient {
 
     public function copy($bucket, $key, $copySource, $options = array()) {
 
-        $options['min_part_size'] = isset($options['min_part_size']) ? $options['min_part_size'] : Copy::MIN_PART_SIZE;
+        $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : Copy::DEFAULT_PART_SIZE;
 
         // set copysource client
         $sourceConfig = $this->rawCosConfig;
@@ -207,7 +207,7 @@ class Client extends GuzzleClient {
 
         $contentLength =$rt['ContentLength'];
         // sample copy
-        if ($contentLength < $options['min_part_size']) {
+        if ($contentLength < $options['PartSize']) {
             $rt = $this->copyObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,

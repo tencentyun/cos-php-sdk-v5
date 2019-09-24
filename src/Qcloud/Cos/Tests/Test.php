@@ -105,6 +105,20 @@ class COSTest extends \PHPUnit_Framework_TestCase
     }
 
     /*
+     * get Service
+     * 200
+     */
+    public function testGetService()
+    {
+        try {
+            $this->cosClient->ListBuckets();
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
      * put bucket,bucket名称非法
      * InvalidBucketName
      * 400
@@ -511,8 +525,6 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $this->cosClient->HeadBucket(array(
                 'Bucket' =>  $this->bucket2));
         } catch (ServiceResponseException $e) {
-//            echo($e->getExceptionCode());
-//            echo($e->getStatusCode());
             $this->assertTrue($e->getExceptionCode() === 'NoSuchBucket' && $e->getStatusCode() === 404);
         }
     }
@@ -987,7 +999,10 @@ class COSTest extends \PHPUnit_Framework_TestCase
      */
     public function testUploadLargeObject() {
         try {
-            $this->cosClient->upload($this->bucket, 'hello.txt', str_repeat('a', 9 * 1024 * 1024));
+            $this->cosClient->upload($bucket=$this->bucket,
+                                     $key='你好.txt',
+                                     $body=str_repeat('a', 3 * 1024 * 1024 + 1),
+                                     $options=['PartSize'=>1024 * 1024 + 1]);
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
@@ -1137,14 +1152,18 @@ class COSTest extends \PHPUnit_Framework_TestCase
      * 复制大文件
      * 200
      */
-    public function testCopyBigObject() {
+    public function testCopyLargeObject() {
         try{
-            $this->cosClient->upload($this->bucket, '你好.txt', str_repeat('a', 9 * 1024 * 1024));
+            $this->cosClient->upload($bucket=$this->bucket,
+                                     $key='你好.txt',
+                                     $body=str_repeat('a', 3 * 1024 * 1024 + 1),
+                                     $options=['PartSize'=>1024 * 1024 + 1]);
             $this->cosClient->copy($bucket=$this->bucket,
                                    $key='hi.txt', 
                                    $copySource = ['Bucket'=>$this->bucket,
                                                   'Region'=>$this->region,
-                                                  'Key'=>'你好.txt']);
+                                                  'Key'=>'你好.txt'],
+                                   $options=['PartSize'=>1024 * 1024 + 1]);
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);

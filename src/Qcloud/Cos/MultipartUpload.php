@@ -6,10 +6,11 @@ use Qcloud\Cos\Exception\CosException;
 
 class MultipartUpload {
     /**
-     * const var: part size from 5MB to 5GB, and max parts of 10000 are allowed for each upload.
+     * const var: part size from 1MB to 5GB, and max parts of 10000 are allowed for each upload.
      */
-    const MIN_PART_SIZE = 5242880;
+    const MIN_PART_SIZE = 1048576;
     const MAX_PART_SIZE = 5368709120;
+    const DEFAULT_PART_SIZE = 52428800;
     const MAX_PARTS     = 10000;
 
     private $client;
@@ -21,7 +22,8 @@ class MultipartUpload {
         $this->client = $client;
         $this->body = $body;
         $this->options = $options;
-        $this->partSize = $this->calculatePartSize($options['min_part_size']);
+        $this->partSize = $this->calculatePartSize($options['PartSize']);
+        unset($options['PartSize']);
     }
 
     public function performUploading() {
