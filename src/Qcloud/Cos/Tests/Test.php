@@ -30,6 +30,19 @@ class COSTest extends \PHPUnit_Framework_TestCase
     protected function tearDown() {
     }
 
+    function generateRandomString($length = 10) { 
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+        $randomString = ''; 
+        for ($i = 0; $i < $length; $i++) { 
+            $randomString .= $characters[rand(0, strlen($characters) - 1)]; 
+        } 
+        return $randomString; 
+    }
+
+    function generateRandomFile($size = 10, $filename = 'random-file') { 
+        exec("dd if=/dev/urandom of=". $filename. " bs=1 count=". (string)$size);
+    }
+    
     /**********************************
      * TestBucket
      **********************************/
@@ -917,7 +930,7 @@ class COSTest extends \PHPUnit_Framework_TestCase
      */
     public function testPutObjectEmpty() {
         try {
-            $this->cosClient->upload($this->bucket, '你好.txt', '123');
+            $this->cosClient->upload($this->bucket, '你好.txt', '');
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
@@ -986,7 +999,12 @@ class COSTest extends \PHPUnit_Framework_TestCase
      */
     public function testUploadComplexObject() {
         try {
-            $this->cosClient->upload($this->bucket, '→↓←→↖↗↙↘! \"#$%&\'()*+,-./0123456789:;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~', 'Hello World');
+            $key = '→↓←→↖↗↙↘! \"#$%&\'()*+,-./0123456789:;<=>@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~';
+            $this->cosClient->upload($this->bucket, $key, 'Hello World');
+            $this->cosClient->headObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $key
+            ));
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
@@ -999,10 +1017,16 @@ class COSTest extends \PHPUnit_Framework_TestCase
      */
     public function testUploadLargeObject() {
         try {
+            $key = '你好.txt';
+            $body = $this->generateRandomString(3*1024*1024+1023);
+            $md5 = base64_encode(md5($body, true));
             $this->cosClient->upload($bucket=$this->bucket,
-                                     $key='你好.txt',
-                                     $body=str_repeat('a', 3 * 1024 * 1024 + 1),
+                                     $key=$key,
+                                     $body=$body,
                                      $options=['PartSize'=>1024 * 1024 + 1]);
+            $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$key]);
+            $download_md5 = base64_encode(md5($rt['Body'], true));
+            $this->assertEquals($md5, $download_md5);
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
@@ -1154,16 +1178,24 @@ class COSTest extends \PHPUnit_Framework_TestCase
      */
     public function testCopyLargeObject() {
         try{
+            $key = '你好.txt';
+            $dst_key = 'hi.txt';
+            $body = $this->generateRandomString(3*1024*1024+1023);
+            $md5 = base64_encode(md5($body, true));
             $this->cosClient->upload($bucket=$this->bucket,
-                                     $key='你好.txt',
-                                     $body=str_repeat('a', 3 * 1024 * 1024 + 1),
+                                     $key=$key,
+                                     $body=$body,
                                      $options=['PartSize'=>1024 * 1024 + 1]);
             $this->cosClient->copy($bucket=$this->bucket,
-                                   $key='hi.txt', 
+                                   $key=$dst_key, 
                                    $copySource = ['Bucket'=>$this->bucket,
                                                   'Region'=>$this->region,
-                                                  'Key'=>'你好.txt'],
+                                                  'Key'=>$key],
                                    $options=['PartSize'=>1024 * 1024 + 1]);
+            
+            $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$dst_key]);
+            $download_md5 = base64_encode(md5($rt['Body'], true));
+            $this->assertEquals($md5, $download_md5);
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
