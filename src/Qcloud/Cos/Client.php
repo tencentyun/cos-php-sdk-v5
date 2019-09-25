@@ -179,6 +179,7 @@ class Client extends GuzzleClient {
         $multipartUpload = new MultipartUpload($this, $body, array(
                 'Bucket' => $bucket,
                 'Key' => $key,
+                'UploadId' => $uploadId,
             ) + $options);
 
         $rt = $multipartUpload->resumeUploading();

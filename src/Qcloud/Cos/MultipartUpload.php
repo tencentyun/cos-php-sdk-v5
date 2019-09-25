@@ -71,13 +71,12 @@ class MultipartUpload {
                 'Bucket'=>$this->options['Bucket'],
                 'Key'=>$this->options['Key']));
                 $parts = array();
-        $offset = $this->partSize;
         if (count($rt['Parts']) > 0) {
             foreach ($rt['Parts'] as $part) {
                 $parts[$part['PartNumber'] - 1] = array('PartNumber' => $part['PartNumber'], 'ETag' => $part['ETag']);
             }
         }
-        for ($partNumber = 1;;++$partNumber,$offset+=$body->getSize()) {
+        for ($partNumber = 1;;++$partNumber) {
             if ($this->body->eof()) {
                 break;
             }
@@ -88,7 +87,6 @@ class MultipartUpload {
                 if (md5($body) != substr($parts[$partNumber-1]['ETag'], 1, -1)){
                     throw new CosException("ETag check inconsistency");
                 }
-                $body->setOffset($offset);
                 continue;
             }
 

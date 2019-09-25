@@ -10,8 +10,6 @@ class COSTest extends \PHPUnit_Framework_TestCase
     private $cosClient;
     private $bucket;
     private $region;
-    private $message;
-    private $ass;
     protected function setUp()
     {
         $this->bucket = getenv('COS_BUCKET');
@@ -1024,6 +1022,38 @@ class COSTest extends \PHPUnit_Framework_TestCase
                                      $key=$key,
                                      $body=$body,
                                      $options=['PartSize'=>1024 * 1024 + 1]);
+            $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$key]);
+            $download_md5 = base64_encode(md5($rt['Body'], true));
+            $this->assertEquals($md5, $download_md5);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
+     * 断点重传
+     * 200
+     */
+    public function testResumeUpload() {
+        try {
+            $key = '你好.txt';
+            $body = $this->generateRandomString(3*1024*1024+1023);
+            $partSize = 1024 * 1024 + 1;
+            $md5 = base64_encode(md5($body, true));
+            $rt = $this->cosClient->CreateMultipartUpload(['Bucket' => $this->bucket,
+                                                           'Key' => $key]);
+            $uploadId = $rt['UploadId'];
+            $this->cosClient->uploadPart(['Bucket' => $this->bucket,
+                                          'Key' => $key,
+                                          'Body' => substr($body, 0, $partSize),
+                                          'UploadId' => $uploadId,
+                                          'PartNumber' => 1]);
+            $this->cosClient->resumeUpload($bucket=$this->bucket,
+                                           $key=$key,
+                                           $body=$body,
+                                           $uploadId=$uploadId,
+                                           $options=['PartSize'=>$partSize]);
             $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$key]);
             $download_md5 = base64_encode(md5($rt['Body'], true));
             $this->assertEquals($md5, $download_md5);
