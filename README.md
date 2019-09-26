@@ -74,7 +74,7 @@ require '/path/to/sdk/vendor/autoload.php';
 ```
 
 ## 快速入门 
-可参照 Demo 程序，详见 [sample.php](https://github.com/tencentyun/cos-php-sdk-v5/blob/master/sample.php)。
+可参照 Demo 程序，详见 [sample目录](https://github.com/tencentyun/cos-php-sdk-v5/tree/master/sample)。
 
 ## 接口文档
 php sdk 接口文档，详见https://cloud.tencent.com/document/product/436/12267
