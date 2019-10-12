@@ -465,6 +465,42 @@ class Service {
                         ),
                     ),
                 ),
+                // 删除存储桶标签信息的方法
+                'DeleteBucketTagging' => array(
+                    'httpMethod' => 'DELETE',
+                    'uri' => '/{Bucket}?tagging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DeleteBucketTaggingOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
+                // 删除存储桶标清单任务的方法
+                'DeleteBucketInventory' => array(
+                    'httpMethod' => 'Delete',
+                    'uri' => '/{Bucket}?inventory',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DeleteBucketInventoryOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Id' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'id',
+                        )
+                    ),
+                ),
                 // 删除 COS 上单个对象的方法.
                 'DeleteObject' => array(
                     'httpMethod' => 'DELETE',
@@ -878,6 +914,57 @@ class Service {
                     'uri' => '/{Bucket}?notification',
                     'class' => 'Qcloud\\Cos\\Command',
                     'responseClass' => 'GetBucketNotificationOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        )
+                    ),
+                ),
+                // 获取存储桶（Bucket) 日志信息的方法.
+                'GetBucketLogging' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?logging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketLoggingOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        )
+                    ),
+                ),
+                // 获取存储桶（Bucket) 清单信息的方法.
+                'GetBucketInventory' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?inventory',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketInventoryOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Id' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'id',
+                        )
+                    ),
+                ),
+                // 获取存储桶（Bucket) 标签信息的方法.
+                'GetBucketTagging' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?tagging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketTaggingOutput',
                     'responseType' => 'model',
                     'parameters' => array(
                         'Bucket' => array(
@@ -1867,6 +1954,181 @@ class Service {
                         ),
                     ),
                 ),
+                // 配置存储桶（Bucket) 标签的方法.
+                'PutBucketTagging' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?tagging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketTaggingOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'Tagging',
+                        ),
+                        'contentMd5' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'TagSet' => array(
+                            'required' => true,
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'name' => 'TagRule',
+                                'type' => 'object',
+                                'sentAs' => 'Tag',
+                                'properties' => array(
+                                    'Key' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                    ),
+                                    'Value' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                //开启存储桶（Bucket) 日志服务的方法.
+                'PutBucketLogging' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?logging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketLoggingOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'BucketLoggingStatus',
+                        ),
+                        'contentMd5' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'LoggingEnabled' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TargetBucket' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'TargetPrefix' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                            )
+                        ),
+                    ),
+                ),
+                // 配置存储桶（Bucket) 清单的方法.
+                'PutBucketInventory' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?inventory',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketInventoryOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'InventoryConfiguration',
+                        ),
+                        'contentMd5' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Id' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'IsEnabled' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Destination' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'COSBucketDestination'=> array(
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Format' => array(
+                                            'type' => 'string',
+                                            'require' => true,
+                                        ),
+                                        'AccountId' => array(
+                                            'type' => 'string',
+                                            'require' => true,
+                                        ),
+                                        'Bucket' => array(
+                                            'type' => 'string',
+                                            'require' => true,
+                                        ),
+                                        'Prefix' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Encryption' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'SSE-COS' => array(
+                                                    'type' => 'string',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'Schedule' => array(
+                            'required' => true,
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Frequency' => array(
+                                    'type' => 'string',
+                                    'require' => true,
+                                ),
+                            )
+                        ),
+                        'Filter' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Prefix' => array(
+                                    'type' => 'string',
+                                ),
+                            )
+                        ),
+                        'IncludedObjectVersions' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'OptionalFields' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'name' => 'Fields',
+                                'type' => 'string',
+                                'sentAs' => 'Field',
+                            ),
+                        ),
+                    ),
+                ),
                 // 回热归档对象的方法.
                 'RestoreObject' => array(
                     'httpMethod' => 'POST',
@@ -2097,6 +2359,26 @@ class Service {
                             'location' => 'query',
                             'sentAs' => 'upload-id-marker',
                         )
+                    ),
+                ),
+                // 获取清单列表的方法.
+                'ListBucketInventoryConfigurations' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?inventory',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'ListBucketInventoryConfigurationsOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri'
+                        ),
+                        'ContinuationToken' => array(
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'continuation-token',
+                        ),
                     ),
                 ),
                 // 获取对象的meta信息的方法
@@ -2496,6 +2778,26 @@ class Service {
                     )
                 ),
                 'DeleteBucketCorsOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'DeleteBucketTaggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'DeleteBucketInventoryOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
                     'properties' => array(
@@ -3218,6 +3520,205 @@ class Service {
                         ),
                     ),
                 ),
+                'GetBucketInventoryOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Destination' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'COSBucketDestination' => array(
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Format' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'AccountId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Bucket' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Prefix' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Encryption' => array(
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'SSE-COS' => array(
+                                                    'type' => 'string',
+                                                )
+                                            )
+                                        ),
+                                        
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'Schedule' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Frequency' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'OptionalFields' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Key' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'OptionalFields' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'name' => 'Field',
+                                'type' => 'string',
+                                'sentAs' => 'Field',
+                            ),
+                        ),
+                        'IsEnabled' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Id' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'IncludedObjectVersions' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'GetBucketTaggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'TagSet' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'sentAs' => 'Tag',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Key' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'Value' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'GetBucketNotificationOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'CloudFunctionConfigurations' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'CloudFunctionConfiguration',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Id' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'CloudFunction' => array(
+                                        'type' => 'string',
+                                        'sentAs' => 'CloudFunction',
+                                    ),
+                                    'Events' => array(
+                                        'type' => 'array',
+                                        'sentAs' => 'Event',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                    'Filter' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'object',
+                                                'sentAs' => 'Key',
+                                                'properties' => array(
+                                                    'FilterRules' => array(
+                                                        'type' => 'array',
+                                                        'sentAs' => 'FilterRule',
+                                                        'data' => array(
+                                                            'xmlFlattened' => true,
+                                                        ),
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'properties' => array(
+                                                                'Name' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                                'Value' => array(
+                                                                    'type' => 'string',
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'GetBucketLoggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'LoggingEnabled' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TargetBucket' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'TargetPrefix' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
                 'UploadPartOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -3440,6 +3941,36 @@ class Service {
                     ),
                 ),
                 'PutBucketWebsiteOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketLoggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketInventoryOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketTaggingOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
                     'properties' => array(
@@ -4086,75 +4617,6 @@ class Service {
                         ),
                     ),
                 ),
-                'GetBucketNotificationOutput' => array(
-                    'type' => 'object',
-                    'additionalProperties' => true,
-                    'properties' => array(
-                        'CloudFunctionConfigurations' => array(
-                            'type' => 'array',
-                            'location' => 'xml',
-                            'sentAs' => 'CloudFunctionConfiguration',
-                            'data' => array(
-                                'xmlFlattened' => true,
-                            ),
-                            'items' => array(
-                                'type' => 'object',
-                                'properties' => array(
-                                    'Id' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'CloudFunction' => array(
-                                        'type' => 'string',
-                                        'sentAs' => 'CloudFunction',
-                                    ),
-                                    'Events' => array(
-                                        'type' => 'array',
-                                        'sentAs' => 'Event',
-                                        'data' => array(
-                                            'xmlFlattened' => true,
-                                        ),
-                                        'items' => array(
-                                            'type' => 'string',
-                                        ),
-                                    ),
-                                    'Filter' => array(
-                                        'type' => 'object',
-                                        'properties' => array(
-                                            'Key' => array(
-                                                'type' => 'object',
-                                                'sentAs' => 'Key',
-                                                'properties' => array(
-                                                    'FilterRules' => array(
-                                                        'type' => 'array',
-                                                        'sentAs' => 'FilterRule',
-                                                        'data' => array(
-                                                            'xmlFlattened' => true,
-                                                        ),
-                                                        'items' => array(
-                                                            'type' => 'object',
-                                                            'properties' => array(
-                                                                'Name' => array(
-                                                                    'type' => 'string',
-                                                                ),
-                                                                'Value' => array(
-                                                                    'type' => 'string',
-                                                                ),
-                                                            ),
-                                                        ),
-                                                    ),
-                                                ),
-                                            ),
-                                        ),
-                                    ),
-                                ),
-                            ),
-                        ),
-                        'RequestId' => array(
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-request-id',
-                        ),
-                    ),
-                )
             )
         );
     }
