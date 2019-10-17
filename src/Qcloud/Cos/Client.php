@@ -22,7 +22,7 @@ use GuzzleHttp\Pool;
 
 
 class Client extends GuzzleClient {
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.1';
 
     private $httpCilent;
     private $api;
