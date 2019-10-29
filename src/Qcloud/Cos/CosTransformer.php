@@ -66,7 +66,11 @@ class CosTransformer {
         }
         $path = $this->config['schema'].'://'. $host . $uri;
         $uri = new Uri($path);
-        $uri = $uri->withQuery($request->getUri()->getQuery());
+        $query = $request->getUri()->getQuery();
+        if ($uri->getQuery() != $query && $uri->getQuery() != "") {
+            $query =   $uri->getQuery() . "&" . $request->getUri()->getQuery();
+        }
+        $uri = $uri->withQuery($query);
         return $request->withUri($uri);
     }
 
@@ -84,8 +88,8 @@ class CosTransformer {
             $body = fopen($source, 'rb');
         }
         // Prepare the body parameter and remove the source file parameter
-        if (null !== $body) { 
-            return $request->withBody(Psr7\stream_for($body));
+        if (null !== $body) {
+            return $request;
         } else {
             throw new Exception\InvalidArgumentException(
                 "You must specify a non-null value for the {$bodyParameter} or {$sourceParameter} parameters.");
@@ -115,6 +119,19 @@ class CosTransformer {
         if ($body && $body->getSize() > 0) {
             $md5 = base64_encode(md5($body, true));
             return $request->withHeader('Content-MD5', $md5);
+        }
+        return $request;
+    }
+
+    // count md5
+    public function specialParamTransformer(CommandInterface $command, $request) {
+        $action = $command->getName();
+        if ($action == 'PutBucketInventory') {
+            $id = $command['Id'];
+            $uri = $request->getUri();
+            $query = $uri->getQuery();
+            $uri = $uri->withQuery($query . "&Id=".$id);
+            return $request->withUri($uri);
         }
         return $request;
     }

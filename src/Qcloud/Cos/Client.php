@@ -22,7 +22,7 @@ use GuzzleHttp\Pool;
 
 
 class Client extends GuzzleClient {
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.1';
 
     private $httpCilent;
     private $api;
@@ -67,8 +67,9 @@ class Client extends GuzzleClient {
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey']);
         $this->httpClient = new HttpClient([
             'base_uri' => $this->cosConfig['schema'].'://cos.' . $this->cosConfig['region'] . '.myqcloud.com/',
+            'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
-            'proxy' => $this->cosConfig['proxy']
+            'proxy' => $this->cosConfig['proxy'],
         ]);
         $this->desc = new Description($service);
         $this->api = (array)($this->desc->getOperations());
@@ -87,6 +88,7 @@ class Client extends GuzzleClient {
         $request = $transformer->bucketStyleTransformer($command, $request);
         $request = $transformer->uploadBodyTransformer($command, $request);
         $request = $transformer->md5Transformer($command, $request);
+        $request = $transformer->specialParamTransformer($command, $request);
         return $request;
     }
 

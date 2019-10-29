@@ -868,6 +868,57 @@ class COSTest extends \PHPUnit_Framework_TestCase
      **********************************/
 
     /*
+     * put object, 从本地上传文件
+     * 200
+     */
+    public function testPutObjectLocalObject() {
+        try {
+            $key = '你好.txt';
+            $body = $this->generateRandomString(1024+1023);
+            $md5 = base64_encode(md5($body, true));
+            $local_test_key = "local_test_file";
+            $f = fopen($local_test_key, "wb");
+            fwrite($f, $body);
+            fclose($f);
+            $this->cosClient->putObject(['Bucket' => $this->bucket,
+                                         'Key' => $key,
+                                         'Body' => fopen($local_test_key, "rb")]);
+            $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$key]);
+            $download_md5 = base64_encode(md5($rt['Body'], true));
+            $this->assertEquals($md5, $download_md5);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
+     * upload, 从本地上传
+     * 200
+     */
+    public function testUploadLocalObject() {
+        try {
+            $key = '你好.txt';
+            $body = $this->generateRandomString(1024+1023);
+            $md5 = base64_encode(md5($body, true));
+            $local_test_key = "local_test_file";
+            $f = fopen($local_test_key, "wb");
+            fwrite($f, $body);
+            fclose($f);
+            $this->cosClient->upload($bucket=$this->bucket,
+                                     $key=$key,
+                                     $body=fopen($local_test_key, "rb"),
+                                     $options=['PartSize'=>1024 * 1024 + 1]);
+            $rt = $this->cosClient->getObject(['Bucket'=>$this->bucket, 'Key'=>$key]);
+            $download_md5 = base64_encode(md5($rt['Body'], true));
+            $this->assertEquals($md5, $download_md5);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
      * put object,请求头部携带服务端加密参数
      * 200
      */
