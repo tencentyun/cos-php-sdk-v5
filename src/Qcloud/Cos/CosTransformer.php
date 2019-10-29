@@ -88,8 +88,8 @@ class CosTransformer {
             $body = fopen($source, 'rb');
         }
         // Prepare the body parameter and remove the source file parameter
-        if (null !== $body) { 
-            return $request->withBody(Psr7\stream_for($body));
+        if (null !== $body) {
+            return $request;
         } else {
             throw new Exception\InvalidArgumentException(
                 "You must specify a non-null value for the {$bodyParameter} or {$sourceParameter} parameters.");
