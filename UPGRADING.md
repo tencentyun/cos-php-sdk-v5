@@ -2,14 +2,14 @@ cos-php-sdk-v5 Upgrade Guide
 ====================
 2.0.1 to 2.0.2
 ----------
-1.Fix bug of `putObject` with `fopen`
-2.Add ut
+1. Fix bug of `putObject` with `fopen`
+2. Add ut
 
 
 2.0.0 to 2.0.1
 ----------
-1.Add interface of inventory/tagging/logging
-2.Fix bug of some interface with query string
+1. Add interface of inventory/tagging/logging
+2. Fix bug of some interface with query string
 
 
 1.3 to 2.0
