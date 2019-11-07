@@ -1,5 +1,9 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.0.2 to 2.0.3
+----------
+1. Fix path parse bug with /0/
+
 2.0.1 to 2.0.2
 ----------
 1. Fix bug of `putObject` with `fopen`
