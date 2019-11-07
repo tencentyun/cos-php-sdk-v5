@@ -22,7 +22,7 @@ use GuzzleHttp\Pool;
 
 
 class Client extends GuzzleClient {
-    const VERSION = '2.0.2';
+    const VERSION = '2.0.3';
 
     private $httpCilent;
     private $api;
@@ -252,12 +252,16 @@ class Client extends GuzzleClient {
             return False;
         }
     }
-    
+
     public static function explodeKey($key) {
+
         // Remove a leading slash if one is found
         $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
         // Remove empty element
-        $split_key = array_filter($split_key);
+
+        $split_key = array_filter($split_key, function($var) {
+            return !($var == '' || $var == null);
+        });
         return implode("/", $split_key);
     }
 
