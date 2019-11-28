@@ -110,7 +110,7 @@ class Client extends GuzzleClient {
         if ($command['Bucket'] != null && $response['Bucket'] == null) {
             $response['Bucket'] = $command['Bucket'];
         }
-        $response['Location'] = $request->getUri()->getHost() .  $request->getUri()->getPath();
+        $response['Location'] = $request->getHeader("Host")[0] .  $request->getUri()->getPath();
 
         return $response;
     }
