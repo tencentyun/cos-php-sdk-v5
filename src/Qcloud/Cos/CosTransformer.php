@@ -57,13 +57,16 @@ class CosTransformer {
             }
         }
         
-        $host = $bucketname. '.cos.' . $this->config['region'] . '.' . $this->config['endpoint'];
+        $origin_host = $bucketname. '.cos.' . $this->config['region'] . '.' . $this->config['endpoint'];
+        $host = $origin_host;
         if ($this->config['ip'] != null) {
             $host = $this->config['ip'];
             if ($this->config['port'] != null) {
                 $host = $this->config['ip'] . ":" . $this->config['port'];
             }
         }
+
+
         $path = $this->config['schema'].'://'. $host . $uri;
         $uri = new Uri($path);
         $query = $request->getUri()->getQuery();
@@ -71,7 +74,9 @@ class CosTransformer {
             $query =   $uri->getQuery() . "&" . $request->getUri()->getQuery();
         }
         $uri = $uri->withQuery($query);
-        return $request->withUri($uri);
+        $request = $request->withUri($uri);
+        $request = $request->withHeader('Host', $origin_host);
+        return $request;
     }
 
     // format upload body
