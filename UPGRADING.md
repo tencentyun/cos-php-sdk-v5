@@ -1,5 +1,10 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+
+2.0.3 to 2.0.4
+----------
+1. Fix bug when using ip-port
+
 2.0.2 to 2.0.3
 ----------
 1. Fix path parse bug with /0/
