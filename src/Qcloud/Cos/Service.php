@@ -107,6 +107,11 @@ class Service {
                             'type' => 'string',
                             'location' => 'query',
                             'sentAs' => 'uploadId',
+                        ),
+                        'PicOperations' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Pic-Operations',
                         )
                     )
                 ),
