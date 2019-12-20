@@ -107,6 +107,11 @@ class Service {
                             'type' => 'string',
                             'location' => 'query',
                             'sentAs' => 'uploadId',
+                        ),
+                        'PicOperations' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Pic-Operations',
                         )
                     )
                 ),
@@ -247,6 +252,11 @@ class Service {
                         'ACP' => array(
                             'type' => 'object',
                             'additionalProperties' => true,
+                        ),
+                        'PicOperations' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Pic-Operations',
                         )
                     )
                 ),
@@ -824,6 +834,21 @@ class Service {
                     'uri' => '/{Bucket}?domain',
                     'class' => 'Qcloud\\Cos\\Command',
                     'responseClass' => 'GetBucketDomainOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        )
+                    ),
+                ),
+                // 查询存储桶（Bucket) Accelerate配置信息的方法.
+                'GetBucketAccelerate' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?accelerate',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketAccelerateOutput',
                     'responseType' => 'model',
                     'parameters' => array(
                         'Bucket' => array(
@@ -1703,6 +1728,37 @@ class Service {
                             'sentAs' => 'MfaDelete',
                         ),
                         'Status' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                    ),
+                ),
+                // 配置存储桶（Bucket) Accelerate的方法.
+                'PutBucketAccelerate' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?accelerate',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketAccelerateOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'AccelerateConfiguration',
+                        ),
+                        'xmlAllowEmpty' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Status' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Type' => array(
+                            'required' => true,
                             'type' => 'string',
                             'location' => 'xml',
                         ),
@@ -3438,6 +3494,24 @@ class Service {
                         ),
                     ),
                 ),
+                'GetBucketAccelerateOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Status' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Type' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
                 'GetBucketWebsiteOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -3941,6 +4015,16 @@ class Service {
                     ),
                 ),
                 'PutBucketWebsiteOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header', 
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketAccelerateOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
                     'properties' => array(
