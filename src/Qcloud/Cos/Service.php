@@ -201,14 +201,6 @@ class Service {
                                 'Qcloud\\Cos\\Client::explodeKey'
                             )
                         ),
-                        'Metadata' => array(
-                            'type' => 'object',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-meta-',
-                            'additionalProperties' => array(
-                                'type' => 'string',
-                            ),
-                        ),
                         'ServerSideEncryption' => array(
                             'type' => 'string',
                             'location' => 'header',
@@ -380,14 +372,6 @@ class Service {
                             'minLength' => 1,
                             'filters' => array(
                                 'Qcloud\\Cos\\Client::explodeKey')
-                        ),
-                        'Metadata' => array(
-                            'type' => 'object',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-meta-',
-                            'additionalProperties' => array(
-                                'type' => 'string',
-                            ),
                         ),
                         'MetadataDirective' => array(
                             'type' => 'string',
@@ -1158,14 +1142,6 @@ class Service {
                             'minLength' => 1,
                             'filters' => array(
                                 'Qcloud\\Cos\\Client::explodeKey'
-                            )
-                        ),
-                        'Metadata' => array(
-                            'type' => 'object',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-meta-',
-                            'additionalProperties' => array(
-                                'type' => 'string'
                             )
                         ),
                         'ServerSideEncryption' => array(
@@ -3081,14 +3057,6 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-server-side-encryption',
                         ),
-                        'Metadata' => array(
-                            'type' => 'object',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-meta-',
-                            'additionalProperties' => array(
-                                'type' => 'string',
-                            ),
-                        ),
                         'SSECustomerAlgorithm' => array(
                             'type' => 'string',
                             'location' => 'header',
@@ -4646,14 +4614,6 @@ class Service {
                             'type' => 'string',
                             'location' => 'header',
                             'sentAs' => 'x-cos-server-side-encryption',
-                        ),
-                        'Metadata' => array(
-                            'type' => 'object',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-meta-',
-                            'additionalProperties' => array(
-                                'type' => 'string',
-                            ),
                         ),
                         'SSECustomerAlgorithm' => array(
                             'type' => 'string',

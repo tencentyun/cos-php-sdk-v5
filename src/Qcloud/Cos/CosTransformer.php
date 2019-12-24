@@ -118,6 +118,18 @@ class CosTransformer {
         return $request;
     }
 
+    // add meta
+    public function metadataTransformer(CommandInterface $command, $request) {
+        $operation = $this->operation;
+        if (isset($command['Metadata'])) {
+            $meta = $command['Metadata'];
+            foreach ($meta as $key => $value) {
+                $request = $request->withHeader('x-cos-meta-' . $key, $value);
+            }
+        }
+        return $request;
+    }
+
     // count md5
     private function addMd5($request) {
         $body = $request->getBody();
@@ -128,7 +140,7 @@ class CosTransformer {
         return $request;
     }
 
-    // count md5
+    // inventoryId
     public function specialParamTransformer(CommandInterface $command, $request) {
         $action = $command->getName();
         if ($action == 'PutBucketInventory') {
