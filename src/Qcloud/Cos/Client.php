@@ -5,7 +5,6 @@ namespace Qcloud\Cos;
 include("Common.php");
 
 use Qcloud\Cos\Signature;
-use Qcloud\Cos\TokenListener;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\RequestInterface;
@@ -24,8 +23,9 @@ use GuzzleHttp\Pool;
 class Client extends GuzzleClient {
     const VERSION = '2.0.5';
 
-    private $httpCilent;
+    private $httpClient;
     private $api;
+    private $desc;
     private $cosConfig;
     private $signature;
     private $rawCosConfig;
@@ -33,7 +33,6 @@ class Client extends GuzzleClient {
     public function __construct($cosConfig) {
         $this->rawCosConfig = $cosConfig;
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
-        $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : null;
         $this->cosConfig['region'] =  region_map($cosConfig['region']);
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
         $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
