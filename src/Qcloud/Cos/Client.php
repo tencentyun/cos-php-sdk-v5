@@ -265,26 +265,28 @@ class Client extends GuzzleClient {
     }
 
     public static function explodeKey($key) {
-
         // Remove a leading slash if one is found
         $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
         // Remove empty element
-
         $split_key = array_filter($split_key, function($var) {
             return !($var == '' || $var == null);
         });
-        return implode("/", $split_key);
+        $final_key = implode("/", $split_key);
+        if (substr($key, -1)  == '/') {
+            $final_key = $final_key . '/';
+        }
+        return $final_key;
     }
 
-	public static function handleSignature($secretId, $secretKey) {
-		return function (callable $handler) use ($secretId, $secretKey) {
-			return new SignatureMiddleware($handler, $secretId, $secretKey);
-		};
-	}
+    public static function handleSignature($secretId, $secretKey) {
+            return function (callable $handler) use ($secretId, $secretKey) {
+                    return new SignatureMiddleware($handler, $secretId, $secretKey);
+            };
+    }
 
-	public static function handleErrors() {
-		return function (callable $handler) {
-			return new ExceptionMiddleware($handler);
-		};
-	}
+    public static function handleErrors() {
+            return function (callable $handler) {
+                    return new ExceptionMiddleware($handler);
+            };
+    }
 }
