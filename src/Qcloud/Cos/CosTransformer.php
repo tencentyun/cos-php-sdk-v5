@@ -56,7 +56,6 @@ class CosTransformer {
                 $uri = str_replace("{/Key*}", encodeKey($command['Key']), $uri);
             }
         }
-        
         $origin_host = $bucketname. '.cos.' . $this->config['region'] . '.' . $this->config['endpoint'];
         $host = $origin_host;
         if ($this->config['ip'] != null) {
