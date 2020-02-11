@@ -747,6 +747,11 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
                         ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
+                        )
                     )
                 ),
                 // 获取 COS 对象的访问权限信息（Access Control List, ACL）的方法.
@@ -1063,6 +1068,11 @@ class Service {
                             'type' => 'string',
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-payer',
+                        ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
                         )
                     )
                 ),
@@ -1192,6 +1202,11 @@ class Service {
                             'type' => 'string',
                             'location' => 'header',
                             'sentAs' => 'Pic-Operations',
+                        ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
                         )
                     )
                 ),
