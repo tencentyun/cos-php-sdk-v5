@@ -23,7 +23,8 @@ use GuzzleHttp\Pool;
 class Client extends GuzzleClient {
     const VERSION = '2.0.5';
 
-    private $httpClient;
+    public $httpClient;
+    
     private $api;
     private $desc;
     private $cosConfig;
