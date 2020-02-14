@@ -44,6 +44,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
         $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
         $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : 'myqcloud.com';
+        $this->cosConfig['domain'] = isset($cosConfig['domain']) ? $cosConfig['domain'] : null;
         $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
@@ -161,7 +162,7 @@ class Client extends GuzzleClient {
     public function getObjectUrl($bucket, $key, $expires = null, array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
         $request = $this->commandToRequestTransformer($command);
-        return $this->createPresignedUrl($request, $expires);
+        return $this->createPresignedUrl($request, $expires)->__toString();
     }
 
     public function upload($bucket, $key, $body, $options = array()) {
