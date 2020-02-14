@@ -59,7 +59,7 @@ class CosTransformer {
         $origin_host = $bucketname. '.cos.' . $this->config['region'] . '.' . $this->config['endpoint'];
         // domain
         if ($this->config['domain'] != null) {
-            origin_host = $this->config['domain']
+            $origin_host = $this->config['domain'];
         }
         $host = $origin_host;
         if ($this->config['ip'] != null) {

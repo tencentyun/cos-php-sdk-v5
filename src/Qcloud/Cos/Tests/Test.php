@@ -809,6 +809,7 @@ class COSTest extends \PHPUnit_Framework_TestCase
             } catch (\Exception $e) {
             }
             $this->cosClient->createBucket(array('Bucket' => '12345-'.$this->bucket));
+            sleep(COSTest::SYNC_TIME);
             $this->cosClient->deleteBucket(array('Bucket' => '12345-'.$this->bucket));
         } catch (ServiceResponseException $e) {
             print $e;
