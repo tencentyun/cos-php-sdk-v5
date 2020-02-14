@@ -21,7 +21,7 @@ use GuzzleHttp\Pool;
 
 
 class Client extends GuzzleClient {
-    const VERSION = '2.0.5';
+    const VERSION = '2.0.6';
 
     public $httpClient;
     
