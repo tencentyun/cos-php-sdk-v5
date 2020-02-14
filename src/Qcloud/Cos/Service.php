@@ -747,6 +747,11 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
                         ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
+                        )
                     )
                 ),
                 // 获取 COS 对象的访问权限信息（Access Control List, ACL）的方法.
@@ -1063,6 +1068,11 @@ class Service {
                             'type' => 'string',
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-payer',
+                        ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
                         )
                     )
                 ),
@@ -1192,6 +1202,11 @@ class Service {
                             'type' => 'string',
                             'location' => 'header',
                             'sentAs' => 'Pic-Operations',
+                        ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
                         )
                     )
                 ),
@@ -2625,7 +2640,153 @@ class Service {
                             'sentAs' => 'x-cos-request-payer',
                         )
                     ),
-                )
+                ),
+                'SelectObjectContent' => array(
+                    'httpMethod' => 'Post',
+                    'uri' => '/{/Key*}?select&select-type=2',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'SelectObjectContentOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'SelectRequest',
+                        ),
+                        'contentMd5' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey')
+                        ),
+                        'Expression' => array(
+                            'type' => 'string',
+                            'location' => 'xml'
+                        ),
+                        'ExpressionType' => array(
+                            'type' => 'string',
+                            'location' => 'xml'
+                        ),
+                        'InputSerialization' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'CompressionType' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'CSV' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'FileHeaderInfo' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'RecordDelimiter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'FieldDelimiter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'QuoteCharacter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'QuoteEscapeCharacter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'Comments' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'AllowQuotedRecordDelimiter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                    )
+                                ),
+                                'JSON' => array(
+                                    'type' => 'string',
+                                    'location' => 'object',
+                                    'properties' => array(
+                                        'Type' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        )
+                                    )
+                                ),
+                            )
+                        ),
+                        'OutputSerialization' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'CompressionType' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'CSV' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'QuoteFields' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'RecordDelimiter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'FieldDelimiter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'QuoteCharacter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                        'QuoteEscapeCharacter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        ),
+                                    )
+                                ),
+                                'JSON' => array(
+                                    'type' => 'string',
+                                    'location' => 'object',
+                                    'properties' => array(
+                                        'RecordDelimiter' => array(
+                                            'type' => 'string',
+                                            'location' => 'xml',
+                                        )
+                                    )
+                                ),
+                            )
+                        ),
+                        'RequestProgress' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Enabled' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                            )
+                        ),
+                    ),
+                ),
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -4658,6 +4819,18 @@ class Service {
                         'RequestId' => array(
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                
+                'SelectObjectContentOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Data' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
                         ),
                     ),
                 ),
