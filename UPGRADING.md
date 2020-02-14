@@ -1,5 +1,12 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.0.5 to 2.0.6
+----------
+- Support Domain
+- Add Select Object Content Interface
+- Add Traffic Limit
+- Fix bug of object endswith /
+
 2.0.4 to 2.0.5
 ----------
 - Fix bug when upload object with metadata
