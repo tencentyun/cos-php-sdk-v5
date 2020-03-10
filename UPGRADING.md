@@ -1,5 +1,9 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.0.6 to 2.0.7
+----------
+- Fix response of `ListParts`
+
 2.0.5 to 2.0.6
 ----------
 - Support Domain
