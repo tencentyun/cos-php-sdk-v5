@@ -1132,6 +1132,10 @@ class COSTest extends \PHPUnit_Framework_TestCase
                                           'Body' => substr($body, 0, $partSize),
                                           'UploadId' => $uploadId,
                                           'PartNumber' => 1]);
+            $rt = $this->cosClient->ListParts(['Bucket' => $this->bucket,
+                                          'Key' => $key,
+                                          'UploadId' => $uploadId]);
+            $this->assertEquals(count($rt['Parts']), 1);
             $this->cosClient->resumeUpload($bucket=$this->bucket,
                                            $key=$key,
                                            $body=$body,

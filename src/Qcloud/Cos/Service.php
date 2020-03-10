@@ -4243,7 +4243,7 @@ class Service {
                         'Parts' => array(
                             'type' => 'array',
                             'location' => 'xml',
-                            'sentAs' => 'Parts',
+                            'sentAs' => 'Part',
                             'data' => array(
                                 'xmlFlattened' => true
                             ),
