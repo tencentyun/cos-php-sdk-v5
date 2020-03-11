@@ -9,11 +9,11 @@
 
 ## 环境准备
 
-- PHP 5.6+
-  您可以通过`php -v`命令查看当前的 PHP 版本。
-  > - 如果您的 php 版本 `>=5.3` 且 `<5.6` , 请使用 [v1.3](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
-- cURL 扩展
-  您可以通过`php -m`命令查看 cURL 扩展是否已经安装好。
+- PHP 5.6+ 您可以通过`php -v`命令查看当前的 PHP 版本。
+
+> - 如果您的 php 版本 `>=5.3` 且 `<5.6` , 请使用 [v1.3](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
+
+- cURL 扩展 您可以通过`php -m`命令查看 cURL 扩展是否已经安装好。
 
 > - Ubuntu 系统中，您可以使用 apt-get 包管理器安装 PHP 的 cURL 扩展，安装命令如下。
 
@@ -46,7 +46,7 @@ SDK 安装有三种方式：
 1. 打开终端。
 2. 下载 Composer，执行以下命令。
 
-```bash
+```
 curl -sS https://getcomposer.org/installer | php
 ```
 
@@ -62,7 +62,7 @@ curl -sS https://getcomposer.org/installer | php
 
 4. 使用 Composer 安装，执行以下命令。
 
-```bash
+```
 php composer.phar install
 ```
 
@@ -92,7 +92,7 @@ require '/path/to/cos-sdk-v5.phar';
 源码方式安装 SDK 的步骤如下：
 
 1.  在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 cos-sdk-v5.tar.gz 文件。
-2.  解压通过 autoload.php 脚本加载 SDK：
+2.  解压后通过 autoload.php 脚本加载 SDK：
 
 ```php
 require '/path/to/cos-php-sdk-v5/vendor/autoload.php';
@@ -104,7 +104,7 @@ require '/path/to/cos-php-sdk-v5/vendor/autoload.php';
 
 ## 接口文档
 
-php sdk 接口文档，详见[https://cloud.tencent.com/document/product/436/12267](https://cloud.tencent.com/document/product/436/12267)
+PHP SDK 接口文档，详见 [https://cloud.tencent.com/document/product/436/12267](https://cloud.tencent.com/document/product/436/12267)
 
 ### 配置文件
 
