@@ -4243,7 +4243,7 @@ class Service {
                         'Parts' => array(
                             'type' => 'array',
                             'location' => 'xml',
-                            'sentAs' => 'Parts',
+                            'sentAs' => 'Part',
                             'data' => array(
                                 'xmlFlattened' => true
                             ),
@@ -4827,7 +4827,7 @@ class Service {
                     'type' => 'object',
                     'additionalProperties' => true,
                     'properties' => array(
-                        'Data' => array(
+                        'RawData' => array(
                             'type' => 'string',
                             'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
                             'location' => 'body',
