@@ -27,6 +27,8 @@ class Client extends GuzzleClient {
     
     private $api;
     private $desc;
+    private $action;
+    private $operation;
     private $cosConfig;
     private $signature;
     private $rawCosConfig;
@@ -81,9 +83,9 @@ class Client extends GuzzleClient {
 
     public function commandToRequestTransformer(CommandInterface $command)
     {
-        $action = $command->GetName();
-        $opreation = $this->api[$action];
-        $transformer = new CosTransformer($this->cosConfig, $opreation); 
+        $this->action = $command->GetName();
+        $this->operation = $this->api[$this->action];
+        $transformer = new CommandToRequestTransformer($this->cosConfig, $this->operation); 
         $seri = new Serializer($this->desc);
         $request = $seri($command);
         $request = $transformer->bucketStyleTransformer($command, $request);
@@ -96,36 +98,17 @@ class Client extends GuzzleClient {
 
     public function responseToResultTransformer(ResponseInterface $response, RequestInterface $request, CommandInterface $command)
     {
-        $action = $command->getName();
-        if ($action == "GetObject") {
-            if (isset($command['SaveAs'])) {
-                $fp = fopen($command['SaveAs'], "wb");
-                fwrite($fp, $response->getBody());
-                fclose($fp);
-            }
-        }
+        $transformer = new ResultTransformer($this->cosConfig, $this->operation); 
+        $transformer->writeDataToLocal($command, $request, $response);
         $deseri = new Deserializer($this->desc, true);
-        $rsp = $deseri($response, $request, $command);
+        $result = $deseri($response, $request, $command);
 
-        $headers = $response->getHeaders();
-        $metadata = array();
-        foreach ($headers as $key => $value) {
-            if (strpos($key, "x-cos-meta-") === 0) {
-                $metadata[substr($key, 11)] = $value[0];
-            }
-        }
-        if (!empty($metadata)) {
-            $rsp['Metadata'] = $metadata;
-        }
-        if ($command['Key'] != null && $rsp['Key'] == null) {
-            $rsp['Key'] = $command['Key'];
-        }
-        if ($command['Bucket'] != null && $rsp['Bucket'] == null) {
-            $rsp['Bucket'] = $command['Bucket'];
-        }
-        $rsp['Location'] = $request->getHeader("Host")[0] .  $request->getUri()->getPath();
-        return $rsp;
+        $result = $transformer->metaDataTransformer($command, $response, $result);
+        $result = $transformer->extraHeadersTransformer($command, $request, $result);
+        $result = $transformer->selectContentTransformer($command, $result);
+        return $result;
     }
+    
     public function __destruct() {
     }
 
@@ -264,7 +247,7 @@ class Client extends GuzzleClient {
             return False;
         }
     }
-
+    
     public static function explodeKey($key) {
         // Remove a leading slash if one is found
         $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
