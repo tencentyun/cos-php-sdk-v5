@@ -7,9 +7,10 @@ use Psr\Http\Message\RequestInterface;
 class Signature {
     private $accessKey;           // string: access key.
     private $secretKey;           // string: secret key.
-    public function __construct($accessKey, $secretKey) {
+    public function __construct($accessKey, $secretKey, $token=null) {
         $this->accessKey = $accessKey;
         $this->secretKey = $secretKey;
+        $this->token = $token;
         date_default_timezone_set("PRC");
     }
     public function __destruct() {
@@ -34,7 +35,11 @@ class Signature {
     public function createPresignedUrl(RequestInterface $request, $expires = "+30 minutes") {
         $authorization = $this->createAuthorization($request, $expires);
         $uri = $request->getUri();
-        $uri = $uri->withQuery("sign=".urlencode($authorization));
+        $query = "sign=".urlencode($authorization);
+        if ($this->token != null) {
+            $query = $query."&x-cos-security-token=".$this->token;
+        }
+        $uri = $uri->withQuery($query);
         return $uri;
     }
 }

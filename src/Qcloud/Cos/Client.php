@@ -67,7 +67,7 @@ class Client extends GuzzleClient {
             }));
         }
         $handler->push($this::handleErrors());
-        $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey']);
+        $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig['token']);
         $this->httpClient = new HttpClient([
             'base_uri' => $this->cosConfig['schema'].'://cos.' . $this->cosConfig['region'] . '.myqcloud.com/',
             'timeout' => $this->cosConfig['timeout'],
