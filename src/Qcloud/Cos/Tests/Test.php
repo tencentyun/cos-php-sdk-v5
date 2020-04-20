@@ -1132,6 +1132,10 @@ class COSTest extends \PHPUnit_Framework_TestCase
                                           'Body' => substr($body, 0, $partSize),
                                           'UploadId' => $uploadId,
                                           'PartNumber' => 1]);
+            $rt = $this->cosClient->ListParts(['Bucket' => $this->bucket,
+                                          'Key' => $key,
+                                          'UploadId' => $uploadId]);
+            $this->assertEquals(count($rt['Parts']), 1);
             $this->cosClient->resumeUpload($bucket=$this->bucket,
                                            $key=$key,
                                            $body=$body,
@@ -1619,6 +1623,59 @@ class COSTest extends \PHPUnit_Framework_TestCase
             );
         } catch (ServiceResponseException $e) {
             print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
+    * selectobject，select检索数据
+    * 200
+    */
+    public function testSelectObjectContent()
+    {
+        $key = '你好.txt';
+        try {
+            $body = "appid,bucket,region
+12500001,22weqwe,sh
+12500002,we2qwe,sh
+12500003,weq3we,sh
+12500004,weqw4e,sh
+3278522,azxc,gz
+4343,ewqew,tj";
+            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $key, 'Body' => $body));
+            $result = $this->cosClient->selectObjectContent(array(
+                        'Bucket' => $this->bucket, //格式：BucketName-APPID
+                        'Key' => $key,
+                        'Expression' => 'Select * from COSObject s',
+                        'ExpressionType' => 'SQL',
+                        'InputSerialization' => array(
+                            'CompressionType' => 'None',
+                            'CSV' => array(
+                                'FileHeaderInfo' => 'USE',
+                                'RecordDelimiter' => '\n',
+                                'FieldDelimiter' => ',',
+                                'QuoteEscapeCharacter' => '"',
+                                'Comments' => '#',
+                                'AllowQuotedRecordDelimiter' => 'FALSE'
+                                )   
+                            ),  
+                        'OutputSerialization' => array(
+                            'CSV' => array(
+                                'QuoteField' => 'ASNEEDED',
+                                'RecordDelimiter' => '\n',
+                                'FieldDelimiter' => ',',
+                                'QuoteCharacter' => '"',
+                                'QuoteEscapeCharacter' => '"' 
+                                )   
+                            ),  
+                        'RequestProgress' => array(
+                                'Enabled' => 'FALSE'
+                                )   
+                            )); 
+            foreach ($result['Data'] as $data) {
+            }
+        } catch (\Exception $e) {
+            print ($e);
             $this->assertFalse(TRUE);
         }
     }
