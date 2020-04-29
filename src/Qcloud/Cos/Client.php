@@ -54,8 +54,9 @@ class Client extends GSClient {
         $this->timeout = isset($config['timeout']) ? $config['timeout'] : 3600;
         $this->connect_timeout = isset($config['connect_timeout']) ? $config['connect_timeout'] : 3600;
         $this->signature = new signature($this->secretId, $this->secretKey);
+        $this->domain = isset($config['domain']) ? $config['domain'] : 'myqcloud.com';
         parent::__construct(
-            $this->schema.'://cos.' . $this->region . '.myqcloud.com/',    // base url
+            $this->schema.'://cos.' . $this->region . '.' . $this->domain . '/',   // base url
             array('request.options' => array('timeout' => $this->timeout, 'connect_timeout' => $this->connect_timeout),
             )); // show curl verbose or not
         $desc = ServiceDescription::factory(Service::getService());
