@@ -70,7 +70,7 @@ class CosTransformer {
         }
 
 
-        $path = $this->config['schema'].'://'. $host . $uri;
+        $path = $this->config['scheme'].'://'. $host . $uri;
         $uri = new Uri($path);
         $query = $request->getUri()->getQuery();
         if ($uri->getQuery() != $query && $uri->getQuery() != "") {
