@@ -35,7 +35,7 @@ class Client extends GuzzleClient {
 
     public function __construct($cosConfig) {
         $this->rawCosConfig = $cosConfig;
-        $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
+        $this->cosConfig['scheme'] = isset($cosConfig['scheme']) ? $cosConfig['scheme'] : 'http';
         $this->cosConfig['region'] =  region_map($cosConfig['region']);
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
         $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
@@ -69,7 +69,7 @@ class Client extends GuzzleClient {
         $handler->push($this::handleErrors());
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig['token']);
         $this->httpClient = new HttpClient([
-            'base_uri' => $this->cosConfig['schema'].'://cos.' . $this->cosConfig['region'] . '.myqcloud.com/',
+            'base_uri' => $this->cosConfig['scheme'].'://cos.' . $this->cosConfig['region'] . '.myqcloud.com/',
             'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
             'proxy' => $this->cosConfig['proxy'],
