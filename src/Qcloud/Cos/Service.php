@@ -4454,10 +4454,9 @@ class Service {
                             'type' => 'string',
                             'location' => 'xml',
                         ),
-                        'Versions' => array(
+                        'Version' => array(
                             'type' => 'array',
                             'location' => 'xml',
-                            'sentAs' => 'Versions',
                             'data' => array(
                                 'xmlFlattened' => true,
                             ),
