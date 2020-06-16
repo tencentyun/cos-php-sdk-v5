@@ -1,6 +1,12 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
-2.0.6 to 2.0.7
+
+2.0.8 to 2.0.9
+----------
+- Fix bug of `listObjectVersions`
+- Update `getObject` with param of `saveas`
+
+2.0.7 to 2.0.8
 ----------
 - Fix presigned url when using tmpSecretId/tmpSecretKey/Token
 
