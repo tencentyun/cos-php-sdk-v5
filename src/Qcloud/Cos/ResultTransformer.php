@@ -33,7 +33,15 @@ class ResultTransformer {
         if ($action == "GetObject") {
             if (isset($command['SaveAs'])) {
                 $fp = fopen($command['SaveAs'], "wb");
-                fwrite($fp, $response->getBody());
+                $stream = $response->getBody();
+                $offset = 0;
+                $partsize = 8192;
+                while (!$stream->eof()) {
+                    $output = $stream->read($partsize);
+                    fseek($fp, $offset);
+                    fwrite($fp, $output);
+                    $offset += $partsize;
+                }
                 fclose($fp);
             }
         }
