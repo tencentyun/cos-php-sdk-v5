@@ -137,13 +137,13 @@ class Client extends GuzzleClient {
         return $this->signature->createPresignedUrl($request, $expires);
     }
 
-    public function getPresignetUrl($method, $args, $expires = null) {
+    public function getPresignetUrl($method, $args, $expires = "+30 minutes") {
         $command = $this->getCommand($method, $args);
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires);
     }
 
-    public function getObjectUrl($bucket, $key, $expires = null, array $args = array()) {
+    public function getObjectUrl($bucket, $key, $expires = "+30 minutes", array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires)->__toString();
