@@ -3430,13 +3430,17 @@ class Service {
                                 'type' => 'object',
                                 'properties' => array(
                                     'Status' => array(
-                                        'type' => 'string'),
+                                        'type' => 'string'
+                                    ),
                                     'Name' => array(
-                                        'type' => 'string'),
+                                        'type' => 'string'
+                                    ),
                                     'Type' => array(
-                                        'type' => 'string'),
+                                        'type' => 'string'
+                                    ),
                                     'ForcedReplacement' => array(
-                                        'type' => 'string'),
+                                        'type' => 'string'
+                                    ),
                                 ),
                             ),
                         ),

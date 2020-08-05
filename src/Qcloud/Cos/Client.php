@@ -151,7 +151,7 @@ class Client extends GuzzleClient {
 
     public function upload($bucket, $key, $body, $options = array()) {
         $body = Psr7\stream_for($body);
-        $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::MIN_PART_SIZE;
+        $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         if ($body->getSize() < $options['PartSize']) {
             $rt = $this->putObject(array(
                     'Bucket' => $bucket,
