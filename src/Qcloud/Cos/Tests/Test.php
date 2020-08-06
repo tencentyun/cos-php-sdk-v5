@@ -68,7 +68,6 @@ class COSTest extends \PHPUnit_Framework_TestCase
         $regionlist = array('cn-east','ap-shanghai',
         'cn-south','ap-guangzhou',
         'cn-north','ap-beijing-1',
-        'cn-south-2','ap-guangzhou-2',
         'cn-southwest','ap-chengdu',
         'sg','ap-singapore',
         'tj','ap-beijing-1',
