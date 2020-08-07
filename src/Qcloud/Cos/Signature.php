@@ -20,6 +20,9 @@ class Signature {
         return $request->withHeader('Authorization', $authorization);
     }
     public function createAuthorization(RequestInterface $request, $expires = "+30 minutes") {
+        if (is_null($expires)) {
+            $expires = "+30 minutes";
+        }
         $signTime = (string)(time() - 60) . ';' . (string)(strtotime($expires));
         $httpString = strtolower($request->getMethod()) . "\n" . urldecode($request->getUri()->getPath()) .
             "\n\nhost=" . $request->getHeader("Host")[0]. "\n";
