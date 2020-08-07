@@ -130,6 +130,7 @@ class CommandToRequestTransformer {
                 $request = $request->withHeader('x-cos-meta-' . $key, $value);
             }
         }
+        $request = headersMap($command, $request);  
         return $request;
     }
 

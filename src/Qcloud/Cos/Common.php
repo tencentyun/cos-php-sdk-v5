@@ -33,3 +33,16 @@ function endWith($haystack, $needle) {
     }
     return (substr($haystack, -$length) === $needle);
 }
+
+function headersMap($command, $request) {
+    $headermap = array(
+            'TransferEncoding'=>'Transfer-Encoding',
+            'ChannelId'=>'x-cos-channel-id'
+    );
+    foreach ($headermap as $key => $value) {
+        if (isset($command[$key])) {
+            $request = $request->withHeader($value, $command[$key]);
+        }
+    }
+    return $request;
+}
