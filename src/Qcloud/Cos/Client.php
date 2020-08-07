@@ -49,6 +49,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : 'myqcloud.com';
         $this->cosConfig['domain'] = isset($cosConfig['domain']) ? $cosConfig['domain'] : null;
         $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
+        $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
         
@@ -113,14 +114,20 @@ class Client extends GuzzleClient {
     }
 
     public function __call($method, array $args) {
-        try {
-            return parent::__call(ucfirst($method), $args);
-		} catch (CommandException $e) {
-            $previous = $e->getPrevious();
-			if ($previous !== null) {
-				throw $previous;
-			} else {
-                throw $e;
+        for ($i = 1; $i <= $this->cosConfig['retry']; $i++) {
+            try {
+                return parent::__call(ucfirst($method), $args);
+            } catch (CommandException $e) {
+                if ($i != $this->cosConfig['retry']) {
+                    sleep(1 << ($i-1));
+                    continue;
+                }
+                $previous = $e->getPrevious();
+                if ($previous !== null) {
+                    throw $previous;
+                } else {
+                    throw $e;
+                }
             }
         }
     }
