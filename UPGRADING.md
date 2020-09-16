@@ -1,6 +1,14 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
 
+2.0.9 to 2.1.0
+----------
+- `upload` support upload with multithread
+- Add `retry` params for interface retry
+- Support add customer header
+- Signature will restrict part of the header and all parameters
+- fix `listBuckets` with `doamin`
+
 2.0.8 to 2.0.9
 ----------
 - Fix bug of `listObjectVersions`

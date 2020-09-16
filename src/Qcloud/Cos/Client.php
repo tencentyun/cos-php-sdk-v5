@@ -18,7 +18,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
 
 class Client extends GuzzleClient {
-    const VERSION = '2.0.9';
+    const VERSION = '2.1.0';
 
     public $httpClient;
     
