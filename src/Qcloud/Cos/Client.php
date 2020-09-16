@@ -14,11 +14,8 @@ use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Deserializer;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Exception\CommandException;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
-use GuzzleHttp\Pool;
-
 
 class Client extends GuzzleClient {
     const VERSION = '2.0.9';
@@ -46,7 +43,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['connect_timeout'] = isset($cosConfig['connect_timeout']) ? $cosConfig['connect_timeout'] : 3600;
         $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
         $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
-        $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : 'myqcloud.com';
+        $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : null;
         $this->cosConfig['domain'] = isset($cosConfig['domain']) ? $cosConfig['domain'] : null;
         $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
         $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
