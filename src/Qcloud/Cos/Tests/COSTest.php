@@ -555,6 +555,23 @@ class COSTest extends \PHPUnit_Framework_TestCase
     }
 
     /*
+     * get bucket, prefix为中文
+     * 200
+     */
+    public function testGetBucketWithChinese()
+    {
+        try {
+            $this->cosClient->ListObjects(array(
+                'Bucket' =>  $this->bucket,
+                'Prefix' => '中文',
+                'Delimiter' => '/'));
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
      * get bucket，bucket不存在
      * NoSuchBucket
      * 404
@@ -1009,7 +1026,7 @@ class COSTest extends \PHPUnit_Framework_TestCase
             $key = '你好.txt';
             $meta = array(
                 'test' => str_repeat('a', 1 * 1024),
-                'test-meta' => 'qwe-23ds-ad-xcz.asd.*qweqw'
+                'test-meta' => '中文qwe-23ds-ad-xcz.asd.*qweqw'
             );
             $this->cosClient->putObject(array(
                 'Bucket' => $this->bucket,

@@ -54,9 +54,9 @@ class Signature {
         foreach ( explode( '&', $request->getUri()->getQuery() ) as $query ) {
             if (!empty($query)) {
                 $tmpquery = explode( '=', $query );
-                $key = strtolower( urlencode( $tmpquery[0] ) );
+                $key = strtolower( $tmpquery[0] );
                 if (count($tmpquery) >= 2) {
-                    $value = urlencode( $tmpquery[1] );
+                    $value = $tmpquery[1];
                 } else {
                     $value = "";
                 }
