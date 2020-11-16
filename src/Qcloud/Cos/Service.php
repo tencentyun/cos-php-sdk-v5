@@ -2787,6 +2787,59 @@ class Service {
                         ),
                     ),
                 ),
+                // 存储桶（Bucket）开启智能分层
+                'PutBucketIntelligentTiering' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?intelligenttiering',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketIntelligentTieringOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'IntelligentTieringConfiguration',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Status' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Transition' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Days' => array(
+                                    'type' => 'integer',
+                                    'location' => 'xml',
+                                ),
+                                'RequestFrequent' => array(
+                                    'type' => 'integer',
+                                    'location' => 'xml',
+                                ),
+                            )
+                        ),
+                    ),
+                ),
+                // 查询存储桶（Bucket）智能分层
+                'GetBucketIntelligentTiering' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?intelligenttiering',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketIntelligentTieringOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -4825,7 +4878,6 @@ class Service {
                         ),
                     ),
                 ),
-                
                 'SelectObjectContentOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -4834,6 +4886,42 @@ class Service {
                             'type' => 'string',
                             'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
                             'location' => 'body',
+                        ),
+                    ),
+                ),
+                'GetBucketIntelligentTieringOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Status' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Transition' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Days' => array(
+                                    'type' => 'string',
+                                ),
+                                'RequestFrequent' => array(
+                                    'type' => 'string',
+                                ),
+                            )
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketIntelligentTieringOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
                         ),
                     ),
                 ),
