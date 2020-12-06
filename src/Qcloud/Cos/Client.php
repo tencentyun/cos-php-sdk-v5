@@ -89,6 +89,7 @@ class Client extends GuzzleClient {
         $request = $transformer->bucketStyleTransformer($command, $request);
         $request = $transformer->uploadBodyTransformer($command, $request);
         $request = $transformer->metadataTransformer($command, $request);
+        $request = $transformer->queryStringTransformer($command, $request);
         $request = $transformer->md5Transformer($command, $request);
         $request = $transformer->specialParamTransformer($command, $request);
         return $request;

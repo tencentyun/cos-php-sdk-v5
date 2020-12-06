@@ -130,6 +130,23 @@ class CommandToRequestTransformer {
             return $request;
         }
 
+        // add Query string
+
+        public function queryStringTransformer( CommandInterface $command, $request ) {
+            $operation = $this->operation;
+            if ( isset( $command['Params'] ) ) {
+                $params = $command['Params'];
+                foreach ( $params as $key => $value ) {
+                    $uri = $request->getUri();
+                    $query = $uri->getQuery();
+                    $uri = $uri->withQuery($query. "&" . $key . "=" . $value );
+                    $request = $request->withUri( $uri );
+                }
+            }
+
+            return $request;
+        }
+
         // add meta
 
         public function metadataTransformer( CommandInterface $command, $request ) {
