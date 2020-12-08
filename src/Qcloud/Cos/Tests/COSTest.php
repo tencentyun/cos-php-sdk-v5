@@ -1738,7 +1738,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
                         'Expression' => 'Select * from COSObject s',
                         'ExpressionType' => 'SQL',
                         'InputSerialization' => array(
-                            'CompressionType' => 'None',
+                            'CompressionType' => 'NONE',
                             'CSV' => array(
                                 'FileHeaderInfo' => 'USE',
                                 'RecordDelimiter' => '\n',
