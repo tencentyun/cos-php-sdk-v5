@@ -591,6 +591,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
                 'Bucket' =>  $this->bucket,
                 'Prefix' => '中文',
                 'Delimiter' => '/'));
+            $this->assertTrue(TRUE);
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
