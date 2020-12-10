@@ -591,6 +591,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
                 'Bucket' =>  $this->bucket,
                 'Prefix' => '中文',
                 'Delimiter' => '/'));
+            $this->assertTrue(TRUE);
         } catch (ServiceResponseException $e) {
             print $e;
             $this->assertFalse(TRUE);
@@ -1738,7 +1739,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
                         'Expression' => 'Select * from COSObject s',
                         'ExpressionType' => 'SQL',
                         'InputSerialization' => array(
-                            'CompressionType' => 'NONE',
+                            'CompressionType' => 'None',
                             'CSV' => array(
                                 'FileHeaderInfo' => 'USE',
                                 'RecordDelimiter' => '\n',
