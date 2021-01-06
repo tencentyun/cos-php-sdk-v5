@@ -75,7 +75,7 @@ use GuzzleHttp\Psr7;
  * @method object SelectObjectContent (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.1.1';
+    const VERSION = '2.1.2';
 
     public $httpClient;
     

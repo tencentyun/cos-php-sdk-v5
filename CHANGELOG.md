@@ -1,5 +1,9 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.1.1 to 2.1.2
+----------
+- The interface supports custom parameters
+- Fix `ListBucketInventoryConfigurations`
 
 2.1.0 to 2.1.1
 ----------

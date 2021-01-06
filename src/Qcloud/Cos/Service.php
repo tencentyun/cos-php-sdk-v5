@@ -4630,7 +4630,7 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
-                    ),
+                    ), 
                 ),
                 'ListMultipartUploadsOutput' => array(
                     'type' => 'object',
@@ -4741,6 +4741,97 @@ class Service {
                         'RequestId' => array(
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'ListBucketInventoryConfigurationsOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'InventoryConfiguration' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'sentAs' => 'InventoryConfiguration',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Destination' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'COSBucketDestination' => array(
+                                                'type' => 'object',
+                                                'properties' => array(
+                                                    'Format' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'AccountId' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'Bucket' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'Prefix' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'Encryption' => array(
+                                                        'type' => 'object',
+                                                        'properties' => array(
+                                                            'SSE-COS' => array(
+                                                                'type' => 'string',
+                                                            )
+                                                        )
+                                                    ),
+                                                    
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'Schedule' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Frequency' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'OptionalFields' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'OptionalFields' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'name' => 'Field',
+                                            'type' => 'string',
+                                            'sentAs' => 'Field',
+                                        ),
+                                    ),
+                                    'IsEnabled' => array(
+                                        'type' => 'string',
+                                        'location' => 'xml',
+                                    ),
+                                    'Id' => array(
+                                        'type' => 'string',
+                                        'location' => 'xml',
+                                    ),
+                                    'IncludedObjectVersions' => array(
+                                        'type' => 'string',
+                                        'location' => 'xml',
+                                    ),
+                                    'RequestId' => array(
+                                        'location' => 'header',
+                                        'sentAs' => 'x-cos-request-id',
+                                    ),
+                                ),
+                            ),
                         ),
                     ),
                 ),
