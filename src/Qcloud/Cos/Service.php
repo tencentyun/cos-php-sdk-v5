@@ -4630,7 +4630,7 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
-                    ), 
+                    ),
                 ),
                 'ListMultipartUploadsOutput' => array(
                     'type' => 'object',
