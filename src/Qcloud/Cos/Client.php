@@ -106,7 +106,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
-        
+                  
         
         $service = Service::getService();
         $handler = HandlerStack::create();
@@ -135,7 +135,6 @@ class Client extends GuzzleClient {
         'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
         null);
     }
-
     public function commandToRequestTransformer(CommandInterface $command)
     {
         $this->action = $command->GetName();
@@ -169,12 +168,13 @@ class Client extends GuzzleClient {
     }
 
     public function __call($method, array $args) {
-        for ($i = 1; $i <= $this->cosConfig['retry']; $i++) {
+        for ($i = 0; $i <= $this->cosConfig['retry']; $i++) {
             try {
-                return parent::__call(ucfirst($method), $args);
-            } catch (CommandException $e) {
+                $rt = parent::__call(ucfirst($method), $args);
+                return $rt;
+            } catch (\Exception $e) {
                 if ($i != $this->cosConfig['retry']) {
-                    sleep(1 << ($i-1));
+                    sleep(1 << ($i));
                     continue;
                 }
                 $previous = $e->getPrevious();
@@ -213,6 +213,7 @@ class Client extends GuzzleClient {
 
     public function upload($bucket, $key, $body, $options = array()) {
         $body = Psr7\stream_for($body);
+        $options['Retry'] = $this->cosConfig['retry'];
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         if ($body->getSize() < $options['PartSize']) {
             $rt = $this->putObject(array(
@@ -228,6 +229,38 @@ class Client extends GuzzleClient {
                 ) + $options);
 
             $rt = $multipartUpload->performUploading();
+        }
+        return $rt;
+    }
+
+    public function download($bucket, $key, $saveAs, $options = array()) {
+        $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : RangeDownload::DEFAULT_PART_SIZE;
+        $contentLength = 0;
+        $versionId = isset($options['VersionId']) ? $options['VersionId'] : "";
+        try {
+            $rt = $this->headObject(array(
+                    'Bucket'=>$bucket,
+                    'Key'=>$key,
+                    'VersionId'=>$versionId,
+                )
+            );
+            $contentLength = $rt['ContentLength'];
+        } catch (\Exception $e) {
+            throw ($e);
+        }
+        if ($contentLength < $options['PartSize']) {
+            $rt = $this->getObject(array(
+                    'Bucket' => $bucket,
+                    'Key'    => $key,
+                    'SaveAs'   => $saveAs,
+                ) + $options);
+        } else {
+            $rangeDownload = new RangeDownload($this, $contentLength, $saveAs, array(
+                    'Bucket' => $bucket,
+                    'Key' => $key,
+                ) + $options);
+
+            $rt = $rangeDownload->performDownloading();
         }
         return $rt;
     }
