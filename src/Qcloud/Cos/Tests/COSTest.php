@@ -10,7 +10,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     private $cosClient;
     private $bucket;
     private $region;
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->bucket = getenv('COS_BUCKET');
         $this->region = getenv('COS_REGION');
@@ -25,7 +25,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-    protected function tearDown() {
+    protected function tearDown(): void {
     }
 
     function generateRandomString($length = 10) { 

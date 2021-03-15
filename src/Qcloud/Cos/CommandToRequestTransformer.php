@@ -122,7 +122,7 @@ class CommandToRequestTransformer {
             if ( isset( $operation['parameters']['ContentMD5'] ) &&
             isset( $command['ContentMD5'] ) ) {
                 $value = $command['ContentMD5'];
-                if ( $value === true ) {
+                if ( $value != false ) {
                     $request = $this->addMd5( $request );
                 }
             }
