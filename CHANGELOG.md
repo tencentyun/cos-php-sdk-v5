@@ -1,5 +1,11 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.1.2 to 2.1.3
+----------
+- Add `download` interface, which is used for concurrent block download.
+- Add callback of `upload` and `download` progress
+- Fix request retry
+
 2.1.1 to 2.1.2
 ----------
 - The interface supports custom parameters
