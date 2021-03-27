@@ -112,6 +112,7 @@ class MultipartUpload {
            
             'rejected' => function ($reason, $index) {
                 printf("part [%d] upload failed, reason: %s\n", $index, $reason);
+                throw($reason);
             }
         ]);
         $promise = $pool->promise();

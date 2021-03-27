@@ -12,8 +12,10 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Deserializer;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Command\Exception\CommandException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
 
@@ -75,7 +77,7 @@ use GuzzleHttp\Psr7;
  * @method object SelectObjectContent (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.1.2';
+    const VERSION = '2.1.3';
 
     public $httpClient;
     
@@ -110,6 +112,7 @@ class Client extends GuzzleClient {
         
         $service = Service::getService();
         $handler = HandlerStack::create();
+        $handler->push(Middleware::retry($this->retryDecide(), $this->retryDelay()));
 		$handler->push(Middleware::mapRequest(function (RequestInterface $request) {
 			return $request->withHeader('User-Agent', $this->cosConfig['userAgent']);
         }));
@@ -134,6 +137,38 @@ class Client extends GuzzleClient {
         parent::__construct($this->httpClient, $this->desc, [$this,
         'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
         null);
+    }
+    public function retryDecide() {
+      return function (
+        $retries,
+        RequestInterface $request,
+        ResponseInterface $response = null,
+        \Exception $exception = null
+      ) {
+        if ($retries >= $this->cosConfig['retry']) {
+          return false;
+        }
+        if ($response != null && $response->getStatusCode() >= 400 ) {
+            return true;
+        }
+        if ($exception instanceof \Qcloud\Cos\Exception\ServiceResponseException) {
+            if ($exception->getStatusCode() >= 400) {
+                return true;
+            }
+        }
+  
+        if ($exception instanceof ConnectException) {
+          return true;
+        }
+  
+        return false;
+      };
+    }
+
+    public function retryDelay() {
+        return function ($numberOfRetries) {
+        return 1000 * $numberOfRetries;
+        };
     }
     public function commandToRequestTransformer(CommandInterface $command)
     {
@@ -168,21 +203,15 @@ class Client extends GuzzleClient {
     }
 
     public function __call($method, array $args) {
-        for ($i = 0; $i <= $this->cosConfig['retry']; $i++) {
-            try {
-                $rt = parent::__call(ucfirst($method), $args);
-                return $rt;
-            } catch (\Exception $e) {
-                if ($i != $this->cosConfig['retry']) {
-                    sleep(1 << ($i));
-                    continue;
-                }
-                $previous = $e->getPrevious();
-                if ($previous !== null) {
-                    throw $previous;
-                } else {
-                    throw $e;
-                }
+        try {
+            $rt = parent::__call(ucfirst($method), $args);
+            return $rt;
+        } catch (\Exception $e) {
+            $previous = $e->getPrevious();
+            if ($previous !== null) {
+                throw $previous;
+            } else {
+                throw $e;
             }
         }
     }
