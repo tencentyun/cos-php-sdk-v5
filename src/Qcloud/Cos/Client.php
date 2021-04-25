@@ -2,8 +2,6 @@
 
 namespace Qcloud\Cos;
 
-include("Common.php");
-
 use Qcloud\Cos\Signature;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
@@ -75,6 +73,8 @@ use GuzzleHttp\Psr7;
  * @method object HeadBucket (array $arg)
  * @method object UploadPartCopy (array $arg)
  * @method object SelectObjectContent (array $arg)
+ * @method object PutBucketIntelligentTiering (array $arg)
+ * @method object GetBucketIntelligentTiering (array $arg)
  */
 class Client extends GuzzleClient {
     const VERSION = '2.1.3';
@@ -92,7 +92,7 @@ class Client extends GuzzleClient {
     public function __construct($cosConfig) {
         $this->rawCosConfig = $cosConfig;
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
-        $this->cosConfig['region'] =  region_map($cosConfig['region']);
+        $this->cosConfig['region'] = region_map($cosConfig['region']);
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
         $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
         $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : "";
