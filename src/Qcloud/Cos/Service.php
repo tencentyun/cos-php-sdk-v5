@@ -2840,6 +2840,318 @@ class Service {
                         ),
                     ),
                 ),
+                //万象-获取图片基本信息
+                'ImageInfo' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?imageInfo',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'ImageInfoOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                    )
+                ),
+                //万象-获取图片EXIF信息
+                'ImageExif' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?exif',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'ImageExifOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                    )
+                ),
+                //万象-获取图片主色调信息
+                'ImageAve' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?imageAve',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'ImageAveOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                    ),
+                ),
+                //万象-云上数据处理
+                'ImageProcess' => array(
+                    'httpMethod' => 'POST',
+                    'uri' => '/{Bucket}{/Key*}?image_process',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'ImageProcessOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'PicOperations' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Pic-Operations',
+                        ),
+                    ),
+                ),
+                //万象-二维码下载时识别
+                'Qrcode' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?ci-process=QRcode',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'QrcodeOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'Cover' => array(
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'cover'
+                        ),
+                    ),
+                ),
+                //万象-二维码生成
+                'QrcodeGenerate' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?ci-process=qrcode-generate',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'QrcodeGenerateOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'QrcodeContent' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'qrcode-content'
+                        ),
+                        'QrcodeMode' => array(
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'mode'
+                        ),
+                        'QrcodeWidth' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'width'
+                        ),
+                    ),
+                ),
+                //万象-图片标签
+                'DetectLabel' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?ci-process=detect-label',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DetectLabelOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                    ),
+                ),
+                //万象-增加样式
+                'PutBucketImageStyle' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?style',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketImageStyleOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'AddStyle',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'StyleName' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'StyleBody' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
+                //万象-查询样式
+                'GetBucketImageStyle' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?style',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketImageStyleOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'GetStyle',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'StyleName' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                    ),
+                ),
+                //万象-删除样式
+                'DeleteBucketImageStyle' => array(
+                    'httpMethod' => 'Delete',
+                    'uri' => '/{Bucket}?style',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DeleteBucketImageStyleOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'DeleteStyle',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'StyleName' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
+                //万象-开通Guetzli压缩
+                'PutBucketGuetzli' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?guetzli',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketGuetzliOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
+                //万象-查询Guetzli状态
+                'GetBucketGuetzli' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?guetzli',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketGuetzliOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
+                //万象-关闭Guetzli压缩
+                'DeleteBucketGuetzli' => array(
+                    'httpMethod' => 'Delete',
+                    'uri' => '/{Bucket}?guetzli',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DeleteBucketGuetzliOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                    ),
+                ),
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -2914,6 +3226,71 @@ class Service {
                         'RequestId' => array(
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ImageInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Format' => array(
+                                    'type' => 'string',
+                                ),
+                                'Width' => array(
+                                    'type' => 'string',
+                                ),
+                                'Height' => array(
+                                    'type' => 'string',
+                                ),
+                                'Quality' => array(
+                                    'type' => 'string',
+                                ),
+                                'Ave' => array(
+                                    'type' => 'string',
+                                ),
+                                'Orientation' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'ProcessResults' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Object' => array(
+                                    'type' => 'array',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Location' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Format' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Width' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Height' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Size' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Quality' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'ETag' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'WatermarkStatus' => array(
+                                                'type' => 'integer',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
                         ),
                     ),
                 ),
@@ -4123,6 +4500,17 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'Body' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
+                        ),
                     ),
                 ),
                 'PutObjectAclOutput' => array(
@@ -5007,6 +5395,334 @@ class Service {
                     ),
                 ),
                 'PutBucketIntelligentTieringOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'ImageInfoOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Body' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                    ),
+                ),
+                'ImageExifOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Body' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                    ),
+                ),
+                'ImageAveOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Body' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                    ),
+                ),
+                'ImageProcessOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'OriginalInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Key' => array(
+                                    'type' => 'string',
+                                ),
+                                'Location' => array(
+                                    'type' => 'string',
+                                ),
+                                'ETag' => array(
+                                    'type' => 'string',
+                                ),
+                                'ImageInfo' => array(
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Format' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Width' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Height' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Quality' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Ave' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Orientation' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'ProcessResults' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Object' => array(
+                                    'type' => 'array',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'Key' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Location' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Format' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Width' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Height' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Size' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Quality' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'ETag' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'WatermarkStatus' => array(
+                                                'type' => 'integer',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'QrcodeOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'CodeStatus' => array(
+                            'type' => 'integer',
+                            'location' => 'xml',
+                        ),
+                        'QRcodeInfo' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'CodeUrl' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'Point' => array(
+                                        'type' => 'array',
+                                        'items' => array(
+                                            'type' => 'string',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'ResultImage' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                    ),
+                ),
+                'QrcodeGenerateOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ResultImage' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                    ),
+                ),
+                'DetectLabelOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'Labels' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Confidence' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Name' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'PutBucketImageStyleOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'GetBucketImageStyleOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'StyleRule' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'StyleName' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'StyleBody' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'DeleteBucketImageStyleOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'PutBucketGuetzliOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                'GetBucketGuetzliOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'Body' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
+                        ),
+                    ),
+                ),
+                'DeleteBucketGuetzliOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
                     'properties' => array(

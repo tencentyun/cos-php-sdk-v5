@@ -61,10 +61,18 @@ class CommandToRequestTransformer {
                 $uri = str_replace( '{/Key*}', encodeKey( $command['Key'] ), $uri );
             }
         }
+
         if ($this->config['endpoint'] == null) {
             $this->config['endpoint'] = "myqcloud.com";
-        }   
-        $origin_host = $bucketname. '.cos.' . $this->config['region'] . '.' . $this->config['endpoint'];
+        }
+
+        $domain_type = '.cos.';
+        if ($action == 'PutBucketImageStyle' || $action == 'GetBucketImageStyle' || $action == 'DeleteBucketImageStyle'
+            || $action == 'PutBucketGuetzli' || $action == 'GetBucketGuetzli' || $action == 'DeleteBucketGuetzli') {
+            $domain_type = '.pic.';
+        }
+
+        $origin_host = $bucketname . $domain_type . $this->config['region'] . '.' . $this->config['endpoint'];
         // domain
         if ( $this->config['domain'] != null ) {
             $origin_host = $this->config['domain'];
@@ -183,6 +191,24 @@ class CommandToRequestTransformer {
                 $query = $uri->getQuery();
                 $uri = $uri->withQuery( $query . '&Id='.$id );
                 return $request->withUri( $uri );
+            }
+            return $request;
+        }
+
+        public function ciParamTransformer( CommandInterface $command, $request ) {
+            $action = $command->getName();
+            if ( $action == 'GetObject' ) {
+                if(isset($command['ImageHandleParam']) && $command['ImageHandleParam']){
+                    $uri = $request->getUri();
+                    $query = $uri->getQuery();
+                    if($query){
+                        $query .= "&" . urlencode($command['ImageHandleParam']);
+                    }else{
+                        $query .= urlencode($command['ImageHandleParam']);
+                    }
+                    $uri = $uri->withQuery($query);
+                    $request = $request->withUri( $uri );
+                }
             }
             return $request;
         }
