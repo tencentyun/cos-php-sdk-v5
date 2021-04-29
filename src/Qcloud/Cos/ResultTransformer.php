@@ -80,6 +80,50 @@ class ResultTransformer {
         return $result;
     }
 
+    public function ciContentInfoTransformer(CommandInterface $command, Result $result) {
+        $action = $command->getName();
+        if ($action == "ImageInfo" || $action == "ImageExif" || $action == "ImageAve") {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $result['Data'] = $this->geCiContentInfo($result, $length);
+            }
+        }
+
+        if ($action == "PutObject" && isset($command["PicOperations"]) &&  $command["PicOperations"]) {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $result['Data'] = json_decode(json_encode($obj),true);
+            }
+        }
+
+        if ($action == "GetBucketGuetzli" ) {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $arr = json_decode(json_encode($obj),true);
+                $result['GuetzliStatus'] = isset($arr[0]) ? $arr[0] : '';
+            }
+        }
+
+        return $result;
+    }
+
+    public function geCiContentInfo($result, $length) {
+        $f = $result['Body'];
+        $data = "";
+        while (!$f->eof()) {
+            $tmp = $f->read($length);
+            if (empty($tmp)) {
+                break;
+            }
+            $data .= $tmp;
+        }
+        return $data;
+    }
+
     public function getSelectContents($result) {
         $f = $result['RawData'];
         while (!$f->eof()) {
