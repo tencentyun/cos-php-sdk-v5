@@ -1239,6 +1239,32 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
+     * range下载大文件
+     * 200
+     */
+    public function testDownloadLargeObject() {
+        try {
+            $key = '你好.txt';
+            $local_path = "test_tmp_file";
+            $body = $this->generateRandomString(2*1024*1024+1023);
+            $md5 = base64_encode(md5($body, true));
+            $this->cosClient->upload($bucket=$this->bucket,
+                                     $key=$key,
+                                     $body=$body,
+                                     $options=['PartSize'=>1024 * 1024 + 1]);
+            $rt = $this->cosClient->download($bucket=$this->bucket,
+                                            $key=$key,
+                                            $saveAs=$local_path,
+                                            $options=['PartSize'=>1024 * 1024 + 1]);
+            $body = file_get_contents($local_path);
+            $download_md5 = base64_encode(md5($body, true));
+            $this->assertEquals($md5, $download_md5);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+    /*
      * get object，object名称包含特殊字符
      * 200
      */

@@ -22,11 +22,13 @@ try {
     $result = $cosClient->download(
         $bucket = 'examplebucket-125000000', //格式：BucketName-APPID
         $key = 'exampleobject',
-        $saveAs = local_path,
-        $options=['Progress'=>$printbar, //指定进度条
+        $saveAs = $local_path,
+        $options=['Progress' => $printbar, //指定进度条
                   'PartSize' => 10 * 1024 * 1024, //分块大小
-                  'Concurrency' => 5 //并发数
-                ] 
+                  'Concurrency' => 5, //并发数
+                  'ResumableDownload' => true, //是否开启断点续传，默认为false
+                  'ResumableTaskFile' => 'tmp.cosresumabletask' //断点文件信息路径，默认为<localpath>.cosresumabletask
+                ]
     );
     // 请求成功
     print_r($result);
