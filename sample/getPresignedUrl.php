@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 $local_path = "/data/exampleobject";
 try {
-    $signedUrl = $cosClient->getPresignetUrl(
+    $signedUrl = $cosClient->getPresignedUrl(
                                 $method='putObject',
                                 $args=['Bucket'=>'examplebucket-1250000000', //格式：BucketName-APPID
                                        'Key'=>'exampleobject',

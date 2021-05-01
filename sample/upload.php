@@ -42,7 +42,7 @@ try {
             'ContentMD5' => 'string',
             'ServerSideEncryption' => 'string',
             'StorageClass' => 'string', //存储类型
-            'Progress'=>$printbar, //指定进度条
+            'Progress' => $printbar, //指定进度条
             'PartSize' => 10 * 1024 * 1024, //分块大小
             'Concurrency' => 5 //并发数
         )

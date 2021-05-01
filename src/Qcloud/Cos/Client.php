@@ -108,7 +108,6 @@ class Client extends GuzzleClient {
         $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
-                  
         
         $service = Service::getService();
         $handler = HandlerStack::create();
@@ -229,10 +228,15 @@ class Client extends GuzzleClient {
     }
 
     public function getPresignetUrl($method, $args, $expires = "+30 minutes") {
+        return $this->getPresignedUrl($method, $args, $expires);
+    }
+
+    public function getPresignedUrl($method, $args, $expires = "+30 minutes") {
         $command = $this->getCommand($method, $args);
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires);
     }
+
 
     public function getObjectUrl($bucket, $key, $expires = "+30 minutes", array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
@@ -274,6 +278,13 @@ class Client extends GuzzleClient {
                 )
             );
             $contentLength = $rt['ContentLength'];
+            $resumableJson = [
+                'LastModified' => $rt['LastModified'],
+                'ContentLength' => $rt['ContentLength'],
+                'ETag' => $rt['ETag'],
+                'Crc64ecma' => $rt['Crc64ecma']
+            ];
+            $options['ResumableJson'] = $resumableJson;
         } catch (\Exception $e) {
             throw ($e);
         }

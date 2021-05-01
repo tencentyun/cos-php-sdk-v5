@@ -15,7 +15,7 @@ function region_map( $region ) {
     'gz'=>'ap-guangzhou',
     'cd'=>'ap-chengdu',
     'sgp'=>'ap-singapore' );
-    if ( array_key_exists( $region, $regionmap ) ) {
+    if ( isset($regionmap[ $region]) ) {
         return $regionmap[$region];
     }
     return $region;
