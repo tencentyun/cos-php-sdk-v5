@@ -1,8 +1,13 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.1.3 to 2.1.5
+----------
+- The `download` interface supports breakpoint
+- Rename `getPresignetUrl` to `getPresignedUrl`
+
 2.1.2 to 2.1.3
 ----------
-- Add `download` interface, which is used for concurrent block download.
+- Add `download` interface, which is used for concurrent block download
 - Add callback of `upload` and `download` progress
 - Fix request retry
 

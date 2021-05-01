@@ -77,7 +77,7 @@ use GuzzleHttp\Psr7;
  * @method object GetBucketIntelligentTiering (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.1.3';
+    const VERSION = '2.1.5';
 
     public $httpClient;
     
