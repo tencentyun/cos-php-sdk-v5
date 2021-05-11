@@ -2718,8 +2718,8 @@ class Service {
                                     )
                                 ),
                                 'JSON' => array(
-                                    'type' => 'string',
-                                    'location' => 'object',
+                                    'type' => 'object',
+                                    'location' => 'xml',
                                     'properties' => array(
                                         'Type' => array(
                                             'type' => 'string',
@@ -2764,8 +2764,8 @@ class Service {
                                     )
                                 ),
                                 'JSON' => array(
-                                    'type' => 'string',
-                                    'location' => 'object',
+                                    'type' => 'object',
+                                    'location' => 'xml',
                                     'properties' => array(
                                         'RecordDelimiter' => array(
                                             'type' => 'string',
