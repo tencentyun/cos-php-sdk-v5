@@ -19,6 +19,7 @@ $cosClient = new Qcloud\Cos\Client(
         'proxy' => '', //代理服务器
         'retry' => 10, //重试次数
         'userAgent' => '', //UA
+        'allow_redirects' => false, //是否follow302
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey,

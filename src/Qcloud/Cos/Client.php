@@ -77,7 +77,7 @@ use GuzzleHttp\Psr7;
  * @method object GetBucketIntelligentTiering (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.1.5';
+    const VERSION = '2.1.6';
 
     public $httpClient;
     
@@ -108,6 +108,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
+        $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         
         $service = Service::getService();
         $handler = HandlerStack::create();
@@ -130,6 +131,7 @@ class Client extends GuzzleClient {
             'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
             'proxy' => $this->cosConfig['proxy'],
+            'allow_redirects' => $this->cosConfig['allow_redirects']
         ]);
         $this->desc = new Description($service);
         $this->api = (array)($this->desc->getOperations());
