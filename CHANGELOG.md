@@ -1,5 +1,10 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.1.5 to 2.1.6
+----------
+- Add `allow_redirects` parameter
+- Fix `selectObjectContent` interface
+
 2.1.3 to 2.1.5
 ----------
 - The `download` interface supports breakpoint
