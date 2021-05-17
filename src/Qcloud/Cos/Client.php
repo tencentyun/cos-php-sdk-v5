@@ -75,6 +75,19 @@ use GuzzleHttp\Psr7;
  * @method object SelectObjectContent (array $arg)
  * @method object PutBucketIntelligentTiering (array $arg)
  * @method object GetBucketIntelligentTiering (array $arg)
+ * @method object ImageInfo (array $arg)
+ * @method object ImageExif (array $arg)
+ * @method object ImageAve (array $arg)
+ * @method object ImageProcess (array $arg)
+ * @method object Qrcode (array $arg)
+ * @method object QrcodeGenerate (array $arg)
+ * @method object DetectLabel (array $arg)
+ * @method object PutBucketImageStyle (array $arg)
+ * @method object GetBucketImageStyle (array $arg)
+ * @method object DeleteBucketImageStyle (array $arg)
+ * @method object PutBucketGuetzli (array $arg)
+ * @method object GetBucketGuetzli (array $arg)
+ * @method object DeleteBucketGuetzli (array $arg)
  */
 class Client extends GuzzleClient {
     const VERSION = '2.1.6';
@@ -184,6 +197,7 @@ class Client extends GuzzleClient {
         $request = $transformer->queryStringTransformer($command, $request);
         $request = $transformer->md5Transformer($command, $request);
         $request = $transformer->specialParamTransformer($command, $request);
+        $request = $transformer->ciParamTransformer($command, $request);
         return $request;
     }
 
@@ -197,6 +211,7 @@ class Client extends GuzzleClient {
         $result = $transformer->metaDataTransformer($command, $response, $result);
         $result = $transformer->extraHeadersTransformer($command, $request, $result);
         $result = $transformer->selectContentTransformer($command, $result);
+        $result = $transformer->ciContentInfoTransformer($command, $result);
         return $result;
     }
     
@@ -398,6 +413,7 @@ class Client extends GuzzleClient {
         }
         return $final_key;
     }
+
 
     public static function handleSignature($secretId, $secretKey) {
             return function (callable $handler) use ($secretId, $secretKey) {
