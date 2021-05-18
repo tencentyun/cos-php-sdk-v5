@@ -70,7 +70,7 @@ class Signature {
         $headerListArray = [];
         foreach ( $request->getHeaders() as $key => $value ) {
             $key = strtolower( urlencode( $key ) );
-            $value = urlencode( $value[0] );
+            $value = rawurlencode( $value[0] );
             if ( $this->needCheckHeader( $key ) ) {
                 $headerListArray[$key] = $key. '='. $value;
             }
