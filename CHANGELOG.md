@@ -1,5 +1,23 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.1.6 to 2.2.0
+----------
+`PutObject` interface supports ci image process
+`GetObject` interface supports ci image process
+Add `ImageInfo` interface, which is used for get image info
+Add `ImageExif` interface, which is used for get image exif
+Add `ImageAve` interface, which is used for get image ave
+Add `ImageProcess` interface, which is used for data processing on cloud
+Add `Qrcode` interface, which is used for qrcode recognition
+Add `QrcodeGenerate` interface, which is used for generate qrcode
+Add `DetectLabel` interface, which is used for detect image label
+Add `PutBucketImageStyle` interface, which is used for add bucket image style
+Add `GetBucketImageStyle` interface, which is used for get bucket image style
+Add `DeleteBucketImageStyle` interface, which is used for delete bucket image style
+Add `PutBucketGuetzli` interface, which is used for open bucket guetzli state
+Add `GetBucketGuetzli` interface, which is used for get bucket guetzli state
+Add `DeleteBucketGuetzli` interface, which is used for close bucket guetzli state
+
 2.1.5 to 2.1.6
 ----------
 - Add `allow_redirects` parameter

@@ -90,7 +90,7 @@ use GuzzleHttp\Psr7;
  * @method object DeleteBucketGuetzli (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.1.6';
+    const VERSION = '2.2.0';
 
     public $httpClient;
     
