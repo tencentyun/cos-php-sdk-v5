@@ -2,6 +2,7 @@
 
 namespace Qcloud\Cos;
 
+use Exception;
 use Guzzle\Service\Description\Parameter;
 use Guzzle\Service\Description\ServiceDescription;
 use Guzzle\Service\Client as GSClient;
@@ -12,7 +13,7 @@ use Qcloud\Cos\Signature;
 use Qcloud\Cos\TokenListener;
 
 class Client extends GSClient {
-    const VERSION = '1.3.4';
+    const VERSION = '1.3.5';
 
     private $region;       // string: region.
     private $credentials;
@@ -45,6 +46,7 @@ class Client extends GSClient {
         $this->ip = isset($config['ip']) ? $config['ip'] : null;
         $this->port = isset($config['port']) ? $config['port'] : null;
         $this->endpoint = isset($config['endpoint']) ? $config['endpoint'] : null;
+        $this->domain = isset($config['domain']) ? $config['domain'] : null;
         $this->region =  isset($regionmap[$this->region]) ? $regionmap[$this->region] : $this->region;
         $this->credentials = $config['credentials'];
         $this->appId = isset($config['credentials']['appId']) ? $config['credentials']['appId'] : null;
@@ -65,7 +67,7 @@ class Client extends GSClient {
         $this->addSubscriber(new Md5Listener($this->signature));
         $this->addSubscriber(new TokenListener($this->token));
         $this->addSubscriber(new SignatureListener($this->secretId, $this->secretKey));
-        $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port, $this->endpoint));
+        $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port, $this->endpoint, $this->domain));
         $this->addSubscriber(new UploadBodyListener(array('PutObject', 'UploadPart')));
     }
 
@@ -107,6 +109,27 @@ class Client extends GSClient {
 
         return $expires ? $this->createPresignedUrl($request, $expires) : $request->getUrl();
     }
+    
+    public function upload_with_retry($bucket, $key, $body, $options = array()) {
+        try {
+            $rt = $this->upload($bucket, $key, $body, $options);
+            return $rt;
+        } catch (\Exception $e) {
+            if (isset($options["RetryDomain"])) {
+                echo($e);
+                $this->domain = $options["RetryDomain"];
+                $this->addSubscriber(new BucketStyleListener($this->appId, $this->ip, $this->port, $this->endpoint, $this->domain));
+                try {
+                    $rt = $this->upload($bucket, $key, $body, $options);
+                } catch (\Exception $e2) {
+                    throw $e2;
+                }
+            } else {
+                throw $e;
+            }
+        }
+    }
+
     public function Upload($bucket, $key, $body, $options = array()) {
         $body = EntityBody::factory($body);
         $options = Collection::fromConfig(array_change_key_case($options), array(
