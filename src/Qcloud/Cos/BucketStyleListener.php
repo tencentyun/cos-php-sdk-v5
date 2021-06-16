@@ -24,12 +24,13 @@ class BucketStyleListener implements EventSubscriberInterface {
     private $ipport;
     private $endpoint;
 
-    public function __construct($appId, $ip=null, $port=null, $endpoint=null) {
+    public function __construct($appId, $ip=null, $port=null, $endpoint=null, $domain=null) {
         $this->appId = $appId;
         $this->ip = $ip;
         $this->port = $port;
         $this->ipport = null;
         $this->endpoint = $endpoint;
+        $this->domain = $domain;
         if ($ip != null) {
             $this->ipport = $ip;
             if ($port != null) {
@@ -92,6 +93,11 @@ class BucketStyleListener implements EventSubscriberInterface {
             } else {
                 $request->setHost($realHost);
             }
+        }
+        if ($this->domain != null ) {
+            $realHost = $this->domain;
+            $request->setHost($realHost);
+            $request->setHeader('Host', $realHost);
         }
         if (!$bucket) {
             $request->getParams()->set('cos.resource', '/');
