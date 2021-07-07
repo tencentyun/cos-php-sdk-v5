@@ -637,6 +637,30 @@ class Service {
                         ),
                     ),
                 ),
+                // 删除对象标签的方法
+                'DeleteObjectTagging' => array(
+                    'httpMethod' => 'DELETE',
+                    'uri' => '/{Bucket}{/Key*}?tagging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DeleteObjectTaggingOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri'
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        )
+                    )
+                ),
                 // 下载对象的方法.
                 'GetObject' => array(
                     'httpMethod' => 'GET',
@@ -3549,6 +3573,16 @@ class Service {
                             'sentAs' => 'x-cos-request-id',
                         ),
                     ),
+                ),
+                'DeleteObjectTaggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id'
+                        )
+                    )
                 ),
                 'GetObjectOutput' => array(
                     'type' => 'object',

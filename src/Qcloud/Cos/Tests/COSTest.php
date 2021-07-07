@@ -1797,4 +1797,25 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /*
+     * 正常delete对象标签
+     * 200
+     */
+    public function testDeleteObjectTagging()
+    {
+        $key = '你好.txt';
+        try {
+            $result = $this->cosClient->deleteObjectTagging(array(
+                // Bucket is required
+                'Bucket' => $this->bucket,
+                // Key(Object) is required
+                'Key' => $key
+            ));
+            print_r($result);
+            $this->assertTrue(True);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
 }
