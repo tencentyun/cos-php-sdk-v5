@@ -637,6 +637,80 @@ class Service {
                         ),
                     ),
                 ),
+                // 配置对象标签的方法.
+                'PutObjectTagging' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}{/Key*}?tagging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutObjectTaggingOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'Tagging',
+                        ),
+                        'contentMd5' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'TagSet' => array(
+                            'required' => true,
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'name' => 'TagRule',
+                                'type' => 'object',
+                                'sentAs' => 'Tag',
+                                'properties' => array(
+                                    'Key' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                    ),
+                                    'Value' => array(
+                                        'required' => true,
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                // 获取对象标签信息的方法
+                'GetObjectTagging' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?tagging',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetObjectTaggingOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        )
+                    ),
+                ),
                 // 删除对象标签的方法
                 'DeleteObjectTagging' => array(
                     'httpMethod' => 'DELETE',
@@ -3574,6 +3648,45 @@ class Service {
                         ),
                     ),
                 ),
+                //设置对象标签
+                'PutObjectTaggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                //查询对象标签
+                'GetObjectTaggingOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'TagSet' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'sentAs' => 'Tag',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Key' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'Value' => array(
+                                        'type' => 'string',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                    ),
+                ),
+                //删除对象标签
                 'DeleteObjectTaggingOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,

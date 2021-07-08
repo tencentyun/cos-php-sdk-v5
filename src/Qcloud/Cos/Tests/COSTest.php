@@ -1798,6 +1798,65 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
+     * 正常put对象标签
+     * 200
+     */
+    public function testPutObjectTagging()
+    {
+        $key = '你好.txt';
+        $testTaggingKeys = array(
+            'key1', 'key2'
+        );
+        $testTaggingValues = array(
+            'value1', 'value2'
+        );
+        try {
+            $result = $this->cosClient->putObjectTagging(array(
+                // Bucket is required
+                'Bucket' => $this->bucket,
+                // Key(Object) is required
+                'Key' => $key,
+                // tagging(key-value) is required
+                'TagSet' => array(
+                    array('Key'=> $testTaggingKeys[0],
+                        'Value'=> $testTaggingValues[0],
+                    ),
+                    array('Key'=> $testTaggingKeys[1],
+                        'Value'=> $testTaggingValues[1],
+                    ),
+                )
+            ));
+            print_r($result);
+            $this->assertTrue(True);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
+     * 正常get对象标签
+     * 200
+     */
+    public function testGetObjectTagging()
+    {
+        $key = '你好.txt';
+        try {
+            $result = $this->cosClient->getObjectTagging(array(
+                // Bucket is required
+                'Bucket' => $this->bucket,
+                // Key(Object) is required
+                'Key' => $key
+            ));
+            print_r($result);
+            $this->assertTrue(True);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
      * 正常delete对象标签
      * 200
      */
