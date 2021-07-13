@@ -1117,7 +1117,7 @@ class Service {
                         ),
                         'ContentMD5' => array(
                             'type' => array(
-                                'string',
+//                                'string',
                                 'boolean'
                             ),
                             'location' => 'header',
@@ -1232,7 +1232,7 @@ class Service {
                         ),
                         'ContentMD5' => array(
                             'type' => array(
-                                'string',
+//                                'string',
                                 'boolean'
                             ),
                             'location' => 'header',
