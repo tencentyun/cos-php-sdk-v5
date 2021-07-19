@@ -9,20 +9,27 @@
 
 ## 环境准备
 
-- PHP 5.6+ 您可以通过`php -v`命令查看当前的 PHP 版本。
+### PHP Version
 
-> - 如果您的 php 版本 `>=5.3` 且 `<5.6` , 请使用 [v1.3](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
+PHP 5.6+ 您可以通过`php -v`命令查看当前的 PHP 版本。
 
-- cURL 扩展 您可以通过`php -m`命令查看 cURL 扩展是否已经安装好。
+> 如果您的 php 版本 `>=5.3` 且 `<5.6` , 请使用 [v1.3](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
 
-> - Ubuntu 系统中，您可以使用 apt-get 包管理器安装 PHP 的 cURL 扩展，安装命令如下。
+### CURL 扩展安装
+
+cURL 扩展 您可以通过`php -m`命令查看 cURL 扩展是否已经安装好。
+
+#### debian/ubuntu 系统安装
+
+debian/ubuntu 系统中，您可以使用 apt-get 包管理器安装 PHP 的 cURL 扩展，安装命令如下。
 
 ```
 sudo apt-get install php-curl
 ```
 
-> - CentOS 系统中，您可以使用 yum 包管理器安装 PHP 的 cURL 扩展。
+#### CentOS 系统
 
+CentOS 系统中，您可以使用 yum 包管理器安装 PHP 的 cURL 扩展。
 ```
 sudo yum install php-curl
 ```
