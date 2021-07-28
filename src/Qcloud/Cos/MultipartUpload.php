@@ -19,7 +19,7 @@ class MultipartUpload {
     private $parts;
     private $body;
     private $progress;
-    private $totolSize;
+    private $totalSize;
     private $uploadedSize;
 
     public function __construct($client, $body, $options = array()) {
@@ -30,11 +30,11 @@ class MultipartUpload {
         $this->options = $options;
         $this->partSize = $this->calculatePartSize($minPartSize);
         $this->concurrency = isset($options['Concurrency']) ? $options['Concurrency'] : 10;
-        $this->progress = isset($options['Progress']) ? $options['Progress'] : function($totolSize, $uploadedSize) {};
+        $this->progress = isset($options['Progress']) ? $options['Progress'] : function($totalSize, $uploadedSize) {};
         $this->parts = [];
         $this->partNumberList = [];
         $this->uploadedSize = 0;
-        $this->totolSize = $this->body->getSize();
+        $this->totalSize = $this->body->getSize();
         $this->needMd5 = isset($options['ContentMD5']) ? $options['ContentMD5'] : true;
         $this->retry = isset($options['Retry']) ? $options['Retry'] : 3;
     }
@@ -66,8 +66,8 @@ class MultipartUpload {
                 }
                 $body = $this->body->read($this->partSize);
                 $partSize = $this->partSize;
-                if ($offset + $this->partSize >= $this->totolSize) {
-                    $partSize = $this->totolSize - $offset;
+                if ($offset + $this->partSize >= $this->totalSize) {
+                    $partSize = $this->totalSize - $offset;
                 }
                 $offset += $partSize;
                 if (empty($body)) {
@@ -107,7 +107,7 @@ class MultipartUpload {
                 $part = array('PartNumber' => $partNumber, 'ETag' => $etag);
                 $this->parts[$partNumber] = $part;
                 $this->uploadedSize += $partSize;
-                call_user_func_array($this->progress, [$this->totolSize, $this->uploadedSize]);
+                call_user_func_array($this->progress, [$this->totalSize, $this->uploadedSize]);
             },
            
             'rejected' => function ($reason, $index) {
