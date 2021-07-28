@@ -14,7 +14,7 @@ class RangeDownload {
     private $partSize;
     private $parts;
     private $progress;
-    private $totolSize;
+    private $totalSize;
     private $resumableJson;
 
     public function __construct( $client, $contentLength, $saveAs, $options = array() ) {
@@ -22,13 +22,13 @@ class RangeDownload {
         $this->options = $options;
         $this->partSize = isset( $options['PartSize'] ) ? $options['PartSize'] : self::DEFAULT_PART_SIZE;
         $this->concurrency = isset( $options['Concurrency'] ) ? $options['Concurrency'] : 10;
-        $this->progress = isset( $options['Progress'] ) ? $options['Progress'] : function( $totolSize, $downloadedSize ) {
+        $this->progress = isset( $options['Progress'] ) ? $options['Progress'] : function( $totalSize, $downloadedSize ) {
         }
         ;
         $this->parts = [];
         $this->partNumberList = [];
         $this->downloadedSize = 0;
-        $this->totolSize = $contentLength;
+        $this->totalSize = $contentLength;
         $this->saveAs = $saveAs;
         $this->resumableJson = [];
         $this->resumableJson = isset( $options['ResumableJson'] ) ? $options['ResumableJson'] : [];
@@ -83,10 +83,10 @@ class RangeDownload {
         $uploadRequests = function () {
             $index = 1;
             $partSize = 0;
-            for ( $offset = 0; $offset < $this->totolSize; ) {
+            for ( $offset = 0; $offset < $this->totalSize; ) {
                 $partSize = $this->partSize;
-                if ( $offset + $this->partSize >= $this->totolSize ) {
-                    $partSize = $this->totolSize - $offset;
+                if ( $offset + $this->partSize >= $this->totalSize ) {
+                    $partSize = $this->totalSize - $offset;
                 }
                 $this->parts[$index]['PartSize'] = $partSize;
                 $this->parts[$index]['Offset'] = $offset;
@@ -107,7 +107,7 @@ class RangeDownload {
                 } else {
                     $this->resumableJson['DownloadedBlocks'][] = ['from' => $begin, 'to' => $end];
                     $this->downloadedSize += $partSize;
-                    call_user_func_array( $this->progress, [$this->totolSize, $this->downloadedSize] );
+                    call_user_func_array( $this->progress, [$this->totalSize, $this->downloadedSize] );
                 }
                 $offset += $partSize;
             }
@@ -133,7 +133,7 @@ class RangeDownload {
                 $this->resumableJson['DownloadedBlocks'][] = ['from' => $begin, 'to' => $end];
                 $partSize = $this->parts[$index]['PartSize'];
                 $this->downloadedSize += $partSize;
-                call_user_func_array( $this->progress, [$this->totolSize, $this->downloadedSize] );
+                call_user_func_array( $this->progress, [$this->totalSize, $this->downloadedSize] );
             }
             ,
             'rejected' => function ( $reason, $index ) {
