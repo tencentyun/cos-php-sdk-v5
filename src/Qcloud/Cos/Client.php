@@ -2,6 +2,7 @@
 
 namespace Qcloud\Cos;
 
+use Exception;
 use Qcloud\Cos\Signature;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
@@ -16,6 +17,7 @@ use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
+use Qcloud\Cos\Exception\CosException;
 
 /**
  * @method object AbortMultipartUpload (array $arg)
@@ -105,7 +107,7 @@ class Client extends GuzzleClient {
     public function __construct($cosConfig) {
         $this->rawCosConfig = $cosConfig;
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
-        $this->cosConfig['region'] = region_map($cosConfig['region']);
+        $this->cosConfig['region'] = isset($cosConfig['region']) ? region_map($cosConfig['region']) : null;
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
         $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
         $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : "";
@@ -122,7 +124,11 @@ class Client extends GuzzleClient {
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
-        
+        try {
+            $this->inputCheck();
+        } catch (\Exception $e) {
+            throw($e);
+        }
         $service = Service::getService();
         $handler = HandlerStack::create();
         $handler->push(Middleware::retry($this->retryDecide(), $this->retryDelay()));
@@ -152,6 +158,19 @@ class Client extends GuzzleClient {
         'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
         null);
     }
+
+    public function inputCheck() {
+        if ($this->cosConfig['region'] == null &&
+            $this->cosConfig['domain'] == null && 
+            $this->cosConfig['endpoint'] == null && 
+            $this->cosConfig['ip'] == null) {
+            $e = new \Qcloud\Cos\Exception\CosException("Region is empty");
+            $e->setExceptionCode("Invalid Argument");
+            throw $e;
+        }
+    }
+
+
     public function retryDecide() {
       return function (
         $retries,
