@@ -2,8 +2,6 @@
 
 namespace Qcloud\Cos;
 
-use Exception;
-use Qcloud\Cos\Exception\CosException;
 use GuzzleHttp\Pool;
 
 class RangeDownload {

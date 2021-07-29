@@ -2,22 +2,10 @@
 
 namespace Qcloud\Cos;
 
-use Guzzle\Service\Description\Parameter;
-use Guzzle\Service\Description\ServiceDescription;
-use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Qcloud\Cos\Signature;
-use GuzzleHttp\Command\Guzzle\Description;
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\CommandInterface;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Middleware;
-use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Command\Result;
-use InvalidArgumentException;
-
 
 class ResultTransformer {
     private $config;

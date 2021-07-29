@@ -2,8 +2,6 @@
 
 namespace Qcloud\Cos;
 
-use Exception;
-use Qcloud\Cos\Signature;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\RequestInterface;
@@ -11,9 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Deserializer;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Command\CommandInterface;
-use GuzzleHttp\Command\Exception\CommandException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
@@ -127,7 +123,7 @@ class Client extends GuzzleClient {
         try {
             $this->inputCheck();
         } catch (\Exception $e) {
-            throw($e);
+            throw $e;
         }
         $service = Service::getService();
         $handler = HandlerStack::create();
@@ -164,8 +160,8 @@ class Client extends GuzzleClient {
             $this->cosConfig['domain'] == null && 
             $this->cosConfig['endpoint'] == null && 
             $this->cosConfig['ip'] == null) {
-            $e = new \Qcloud\Cos\Exception\CosException("Region is empty");
-            $e->setExceptionCode("Invalid Argument");
+            $e = new CosException('Region is empty');
+            $e->setExceptionCode('Invalid Argument');
             throw $e;
         }
     }
@@ -200,9 +196,10 @@ class Client extends GuzzleClient {
 
     public function retryDelay() {
         return function ($numberOfRetries) {
-        return 1000 * $numberOfRetries;
+            return 1000 * $numberOfRetries;
         };
     }
+
     public function commandToRequestTransformer(CommandInterface $command)
     {
         $this->action = $command->GetName();

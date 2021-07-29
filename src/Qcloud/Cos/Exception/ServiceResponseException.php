@@ -89,7 +89,7 @@ class ServiceResponseException extends \RuntimeException {
     /**
      * Set the associated response
      *
-     * @param Response $response Response
+     * @param Response $response
      */
     public function setResponse(ResponseInterface $response) {
         $this->response = $response;
