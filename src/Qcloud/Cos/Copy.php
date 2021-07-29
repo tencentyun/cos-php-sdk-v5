@@ -2,7 +2,6 @@
 
 namespace Qcloud\Cos;
 
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Pool;
 
 class Copy {

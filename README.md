@@ -23,14 +23,15 @@ cURL 扩展 您可以通过`php -m`命令查看 cURL 扩展是否已经安装好
 
 debian/ubuntu 系统中，您可以使用 apt-get 包管理器安装 PHP 的 cURL 扩展，安装命令如下。
 
-```
+```bash
 sudo apt-get install php-curl
 ```
 
 #### CentOS 系统
 
 CentOS 系统中，您可以使用 yum 包管理器安装 PHP 的 cURL 扩展。
-```
+
+```bash
 sudo yum install php-curl
 ```
 
@@ -38,9 +39,9 @@ sudo yum install php-curl
 
 SDK 安装有三种方式：
 
-- Composer 方式
-- Phar 方式
-- 源码方式
+- [Composer 方式](#composer-方式)
+- [Phar 方式](#Phar-方式)
+- [源码方式](#源码方式)
 
 ### Composer 方式
 

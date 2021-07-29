@@ -1,10 +1,12 @@
 <?php
+
 namespace Qcloud\Cos;
+
 use GuzzleHttp\Command\CommandInterface;
-use GuzzleHttp\Command\Guzzle\SchemaValidator;
 use GuzzleHttp\Command\Guzzle\DescriptionInterface;
 use GuzzleHttp\Command\Guzzle\Serializer as DefaultSerializer;
 use Psr\Http\Message\RequestInterface;
+
 /**
  * Override Request serializer to modify authentication mechanism
  */

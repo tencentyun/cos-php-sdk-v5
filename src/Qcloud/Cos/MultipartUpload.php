@@ -2,10 +2,7 @@
 
 namespace Qcloud\Cos;
 
-use Qcloud\Cos\Exception\CosException;
 use GuzzleHttp\Pool;
-
-use function GuzzleHttp\Promise\rejection_for;
 
 class MultipartUpload {
     const MIN_PART_SIZE = 1048576;

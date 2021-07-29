@@ -2,12 +2,7 @@
 
 namespace Qcloud\Cos;
 
-use Qcloud\Cos\Exception\ServiceResponseException;
-use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Exception\RequestException;
 
 class SignatureMiddleware {
     private $nextHandler;
