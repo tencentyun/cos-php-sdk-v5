@@ -541,6 +541,106 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
+     * append object相关测试
+     */
+    public function testAppendObject()
+    {
+        $key = '你好.txt';
+        $content_array = array('hello cos', 'hi cos');
+        $local_test_key = 'local_test_file';
+        /**
+         * 追加上传字符流
+         */
+        try {
+            $position = $this->cosClient->appendObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $key,
+                'Position' => 0,
+                'Body' => $content_array[0]))['Position'];
+            $this->assertEquals($position, strlen($content_array[0]));
+            $position = $this->cosClient->appendObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $key,
+                'Position' => (integer)$position,
+                'Body' => $content_array[1]))['Position'];
+            $this->assertEquals($position, strlen($content_array[0]) + strlen($content_array[1]));
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+
+        /**
+         * 检查追加上传字符流与下载对象内容是否一致
+         */
+        try {
+            $content = $this->cosClient->getObject(array('Bucket'=>$this->bucket, 'Key'=>$key));
+            $this->assertEquals($content['Body'], implode($content_array));
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+
+        /**
+         * bucket不存在
+         */
+        try {
+            TestHelper::nuke($this->bucket2);
+            sleep(COSTest::SYNC_TIME);
+            $this->cosClient->appendObject(array(
+                'Bucket' => $this->bucket2,
+                'Key' => $key,
+                'Position' => 0,
+                'Body' => $content_array[0]));
+            $this->assertTrue(False);
+        } catch (ServiceResponseException $e) {
+            $this->assertTrue($e->getExceptionCode() === 'NoSuchBucket' && $e->getStatusCode() === 404);
+        }
+
+        /**
+         * 删除测试对象
+         */
+        try {
+            $this->cosClient->deleteObject(array('Bucket'=>$this->bucket, 'Key'=>$key));
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+
+        /**
+         * 追加本地文件
+         */
+        try {
+            $position = $this->cosClient->appendObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $key,
+                'Position' => 0,
+                'Body' => fopen($local_test_key, 'rb')
+            ))['Position'];
+            $this->assertEquals($position, filesize($local_test_key));
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+
+        /**
+         * 检查追加上传文件与下载对象内容是否一致
+         */
+        try {
+            $md5 = base64_encode(md5(file_get_contents($local_test_key), true));
+            $rt = $this->cosClient->getObject(array('Bucket'=>$this->bucket, 'Key'=>$key));
+            $download_md5 = base64_encode(md5($rt['Body'], true));
+            $this->assertEquals($md5, $download_md5);
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+
+        /**
+         * 删除测试对象
+         */
+        try {
+            $this->cosClient->deleteObject(array('Bucket'=>$this->bucket, 'Key'=>$key));
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+    }
+
+    /*
      * 正常head bucket
      * 200
      */

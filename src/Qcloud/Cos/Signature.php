@@ -46,7 +46,7 @@ class Signature {
     }
 
     public function createAuthorization( RequestInterface $request, $expires = '+30 minutes' ) {
-        if ( is_null( $expires ) ) {
+        if ( is_null( $expires ) || !strtotime( $expires )) {
             $expires = '+30 minutes';
         }
         $signTime = ( string )( time() - 60 ) . ';' . ( string )( strtotime( $expires ) );
