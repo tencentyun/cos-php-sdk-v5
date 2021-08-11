@@ -1454,6 +1454,145 @@ class Service {
                         )
                     )
                 ),
+                // 追加对象
+                'AppendObject' => array(
+                    'httpMethod' => 'POST',
+                    'uri' => '/{Bucket}{/Key*}?append',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'AppendObjectOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'AppendObjectRequest'
+                        )
+                    ),
+                    'parameters' => array(
+                        'Position' => array(
+                            'type' => 'integer',
+                            'required' => true,
+                            'location' => 'query',
+                            'sentAs' => 'position'
+                        ),
+                        'ACL' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-acl'
+                        ),
+                        'Body' => array(
+                            'required' => true,
+                            'type' => array(
+                                'any'
+                            ),
+                            'location' => 'body'
+                        ),
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri'
+                        ),
+                        'CacheControl' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Cache-Control'
+                        ),
+                        'ContentDisposition' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Disposition'
+                        ),
+                        'ContentEncoding' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Encoding'
+                        ),
+                        'ContentLanguage' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Language'
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length'
+                        ),
+                        'ContentMD5' => array(
+                            'type' => array(
+                                'boolean'
+                            ),
+                            'location' => 'header',
+                            'sentAs' => 'Content-MD5'
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type'
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'ServerSideEncryption' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption',
+                        ),
+                        'StorageClass' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-storage-class',
+                        ),
+                        'WebsiteRedirectLocation' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-website-redirect-location',
+                        ),
+                        'SSECustomerAlgorithm' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
+                        ),
+                        'SSECustomerKey' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-customer-key',
+                        ),
+                        'SSECustomerKeyMD5' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
+                        ),
+                        'SSEKMSKeyId' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-cos-kms-key-id',
+                        ),
+                        'RequestPayer' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-payer',
+                        ),
+                        'ACP' => array(
+                            'type' => 'object',
+                            'additionalProperties' => true,
+                        ),
+                        'PicOperations' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Pic-Operations',
+                        ),
+                        'TrafficLimit' => array(
+                            'type' => 'integer',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-traffic-limit',
+                        )
+                    )
+                ),
                 // 设置 COS 对象的访问权限信息（Access Control List, ACL）的方法.
                 'PutObjectAcl' => array(
                     'httpMethod' => 'PUT',
