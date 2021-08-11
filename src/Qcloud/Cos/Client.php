@@ -88,6 +88,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketImageStyle (array $arg)
  * @method object DeleteBucketImageStyle (array $arg)
  * @method object PutBucketGuetzli (array $arg)
+ * @method object AppendObject (array $arg)
  * @method object GetBucketGuetzli (array $arg)
  * @method object DeleteBucketGuetzli (array $arg)
  * @method object GetObjectSensitiveContentRecognition (array $arg)
