@@ -1485,6 +1485,21 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
+     * 获取文件基本url
+     * 200
+     */
+    public function testGetObjectUrlWithoutSign() {
+        $key = 'hello.txt';
+        try{
+            $result = $this->cosClient->getObjectUrlWithoutSign($this->bucket, $key);
+            $tmpUrl = 'http://' . $this->bucket . '.cos.' . $this->region . '.myqcloud.com/' . $key;
+            $this->assertEquals($result, $tmpUrl);
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
      * 复制小文件
      * 200
      */

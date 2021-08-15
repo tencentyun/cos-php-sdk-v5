@@ -72,7 +72,10 @@ class CommandToRequestTransformer {
             $domain_type = '.pic.';
         }
 
-        $origin_host = $bucketname . $domain_type . $this->config['region'] . '.' . $this->config['endpoint'];
+        $origin_host = $this->config['allow_accelerate'] ?
+            $bucketname . $domain_type . 'accelerate' . '.' . $this->config['endpoint'] :
+            $bucketname . $domain_type . $this->config['region'] . '.' . $this->config['endpoint'];
+
         // domain
         if ( $this->config['domain'] != null ) {
             $origin_host = $this->config['domain'];

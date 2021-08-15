@@ -121,6 +121,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
+        $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
         try {
             $this->inputCheck();
         } catch (\Exception $e) {
@@ -142,8 +143,9 @@ class Client extends GuzzleClient {
         }
         $handler->push($this::handleErrors());
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig['token']);
+        $area = $this->cosConfig['allow_accelerate'] ? 'accelerate' : $this->cosConfig['region'];
         $this->httpClient = new HttpClient([
-            'base_uri' => $this->cosConfig['schema'].'://cos.' . $this->cosConfig['region'] . '.myqcloud.com/',
+            'base_uri' => $this->cosConfig['schema'].'://cos.' . $area . '.myqcloud.com/',
             'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
             'proxy' => $this->cosConfig['proxy'],
