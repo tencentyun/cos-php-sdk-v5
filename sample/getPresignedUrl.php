@@ -19,7 +19,7 @@ try {
                                 $args=['Bucket'=>'examplebucket-1250000000', //格式：BucketName-APPID
                                        'Key'=>'exampleobject',
                                        'Body'=>''],
-                                $expires='+30 minutes"');
+                                $expires='+30 minutes');
     // 请求成功
     echo($signedUrl);
 } catch (\Exception $e) {
