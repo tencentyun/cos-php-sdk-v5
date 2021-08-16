@@ -305,6 +305,6 @@ try {
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
     echo $signedUrl;
 } catch (\Exception $e) {
-    print_r($e);
+    echo "$e\n";
 }
 ```

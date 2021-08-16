@@ -89,7 +89,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object DeleteBucketGuetzli (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.2.1';
+    const VERSION = '2.2.2';
 
     public $httpClient;
     
@@ -122,11 +122,9 @@ class Client extends GuzzleClient {
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
-        try {
-            $this->inputCheck();
-        } catch (\Exception $e) {
-            throw $e;
-        }
+
+        $this->inputCheck();
+
         $service = Service::getService();
         $handler = HandlerStack::create();
         $handler->push(Middleware::retry($this->retryDecide(), $this->retryDelay()));
