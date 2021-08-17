@@ -11,7 +11,7 @@
 
 ### PHP Version
 
-PHP 5.6+ 您可以通过`php -v`命令查看当前的 PHP 版本。
+PHP 7.3+ 您可以通过`php -v`命令查看当前的 PHP 版本。
 
 > 如果您的 php 版本 `>=5.3` 且 `<5.6` , 请使用 [v1.3](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
 
