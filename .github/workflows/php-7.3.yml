@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Test
+      - name: Prepare
         run: |
           apt update
           apt install -y libzip-dev unzip
@@ -32,6 +32,9 @@ jobs:
           docker-php-ext-enable xdebug
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           composer install
+
+      - name: Test
+        run: |
           XDEBUG_MODE=coverage ./vendor/bin/phpunit
 
       - name: codecov
