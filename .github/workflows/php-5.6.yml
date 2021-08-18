@@ -28,8 +28,6 @@ jobs:
           apt update
           apt install -y libzip-dev unzip
           docker-php-ext-install zip
-          pecl install xdebug
-          docker-php-ext-enable xdebug
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           composer install
 
