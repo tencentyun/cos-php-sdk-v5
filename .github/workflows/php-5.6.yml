@@ -1,4 +1,4 @@
-name: PHP 7.3
+name: PHP 5.6
 on:
   push:
     branches:
@@ -18,7 +18,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: php:7.3
+      image: php:5.6
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -31,8 +31,7 @@ jobs:
           pecl install xdebug
           docker-php-ext-enable xdebug
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-          composer require --dev phpunit/phpunit
+          composer install
 
       - name: Test
-        run: |
-          XDEBUG_MODE=coverage ./vendor/bin/phpunit
+        run: for i in `ls src/Qcloud/Cos/*.php`; do php -l $i; done
