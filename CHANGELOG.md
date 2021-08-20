@@ -1,5 +1,20 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.2.1 to 2.2.2
+----------
+新增appendObject SDK，包括sample,service,test
+增加无签名对象下载地址 SDK，包括sample,service,test
+增加全球加速相关配置参数
+将COS_SECRETID修改为SECRETID、COS_SECRETKEY修改为SECRETKEY，防止混淆
+修复部分逻辑代码bug
+修复部分拼写错误
+- Add `AppendObject` interface
+- Add `GetObjectWithoutSign` interface
+- Add `allow_accelerate` param to client
+- Change const name `COS_SECRETID->SECRETID` `COS_SECRETKEY->SECRETKEY`
+- Fix `getPresigned` interface
+- Fix typo
+
 2.2.0 to 2.2.1
 ----------
 - Add `PutObjectTagging` interface
