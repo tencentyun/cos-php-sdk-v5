@@ -89,7 +89,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object DeleteBucketGuetzli (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.2.2';
+    const VERSION = '2.2.1';
 
     public $httpClient;
     
