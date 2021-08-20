@@ -1305,7 +1305,12 @@ class Service {
                             'type' => 'integer',
                             'location' => 'header',
                             'sentAs' => 'x-cos-traffic-limit',
-                        )
+                        ),
+                        'Tagging' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-tagging',
+                        ),
                     )
                 ),
                 // 追加对象
