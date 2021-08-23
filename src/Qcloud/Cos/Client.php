@@ -89,7 +89,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object DeleteBucketGuetzli (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.2.2';
+    const VERSION = '2.2.3';
 
     public $httpClient;
     
@@ -278,6 +278,12 @@ class Client extends GuzzleClient {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires)->__toString();
+    }
+
+    public function getObjectUrlWithoutSign($bucket, $key, array $args = array()) {
+        $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
+        $request = $this->commandToRequestTransformer($command);
+        return $request->getUri()-> __toString();
     }
 
     public function upload($bucket, $key, $body, $options = array()) {
