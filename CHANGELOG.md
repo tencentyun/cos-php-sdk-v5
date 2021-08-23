@@ -1,5 +1,10 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.2.2 to 2.2.3
+- 在putObejct中新增x-cos-tagging头
+- 修复`GetObjectWithoutSign`bug
+
+
 2.2.1 to 2.2.2
 ----------
 新增appendObject SDK，包括sample,service,test
