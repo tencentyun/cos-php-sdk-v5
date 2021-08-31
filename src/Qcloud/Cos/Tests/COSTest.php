@@ -545,7 +545,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     {
         $key = 'hi3.txt';
         $content_array = array('hello cos', 'hi cos');
-        $local_test_key = '/Users/tuuna/Desktop/123hello.txt';
+        $local_test_key = 'local_test_file';
         /**
          * 删除测试对象
          */
