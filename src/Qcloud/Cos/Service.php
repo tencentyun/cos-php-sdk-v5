@@ -3394,6 +3394,56 @@ class Service {
                         ),
                     ),
                 ),
+                //图片审核
+                'GetObjectSensitiveContentRecognition' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}?ci-process=sensitive-content-recognition',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetObjectSensitiveContentRecognitionOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'DetectType' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'detect-type'
+                        ),
+                        'DetectUrl' => array(
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'detect-url'
+                        ),
+                        'Interval' => array(
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'interval'
+                        ),
+                        'MaxFrames' => array(
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'max-frames'
+                        ),
+                        'BizType' => array(
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'biz-type'
+                        )
+                    ),
+                )
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6041,6 +6091,112 @@ class Service {
                             'sentAs' => 'x-cos-request-id',
                         ),
                     ),
+                ),
+                'GetObjectSensitiveContentRecognitionOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'PornInfo' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Code' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Msg' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'HitFlag' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Score' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Label' => array(
+                                        'type' => 'string',
+                                    )
+                                ),
+                            ),
+                        ),
+                        'TerroristInfo' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Code' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Msg' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'HitFlag' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Score' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Label' => array(
+                                        'type' => 'string',
+                                    )
+                                ),
+                            ),
+                        ),
+                        'PoliticsInfo' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Code' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Msg' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'HitFlag' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Score' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Label' => array(
+                                        'type' => 'string',
+                                    )
+                                ),
+                            ),
+                        ),
+                        'AdsInfo' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Code' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Msg' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'HitFlag' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Score' => array(
+                                        'type' => 'integer',
+                                    ),
+                                    'Label' => array(
+                                        'type' => 'string',
+                                    )
+                                ),
+                            ),
+                        ),
+                    )
                 ),
             )
         );
