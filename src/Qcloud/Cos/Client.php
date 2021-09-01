@@ -212,7 +212,7 @@ class Client extends GuzzleClient {
     }
 
     public function upload($bucket, $key, $body, $options = array()) {
-        $body = Psr7\stream_for($body);
+        $body = Psr7\Utils::streamFor($body);
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         if ($body->getSize() < $options['PartSize']) {
             $rt = $this->putObject(array(
@@ -233,7 +233,7 @@ class Client extends GuzzleClient {
     }
 
     public function resumeUpload($bucket, $key, $body, $uploadId, $options = array()) {
-        $body = Psr7\stream_for($body);
+        $body = Psr7\Utils::streamFor($body);
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         $multipartUpload = new MultipartUpload($this, $body, array(
                 'Bucket' => $bucket,
