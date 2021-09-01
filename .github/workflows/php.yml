@@ -32,6 +32,7 @@ jobs:
           docker-php-ext-enable xdebug
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           composer install
+          composer require --dev phpunit/phpunit
           XDEBUG_MODE=coverage ./vendor/bin/phpunit
       - name: codecov
         uses: codecov/codecov-action@v2
