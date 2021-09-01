@@ -13,6 +13,10 @@
         {
             "name": "lewzylu",
             "email": "327874225@qq.com"
+        },
+        {
+            "name": "tuunalai",
+            "email": "550566181@qq.com"
         }
     ],
     "autoload": {
@@ -22,11 +26,8 @@
         "files": ["src/Qcloud/Cos/Common.php"]
     },
     "require": {
-        "php": ">=7.3",
+        "php": ">=5.3",
         "guzzlehttp/guzzle": "~6.3",
         "guzzlehttp/guzzle-services": "~1.1"
-    },
-    "require-dev": {
-      "phpunit/phpunit": "^9.5" 
     }
 }

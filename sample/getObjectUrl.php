@@ -29,7 +29,7 @@ try {
             'Params' => [ // Params中可以传自定义querystring
                 'aaa' => 'bbb',
                 'ccc' => 'ddd'
-            ]
+            ],
         ]
     );
     // 请求成功
