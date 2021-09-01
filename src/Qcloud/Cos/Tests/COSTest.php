@@ -498,24 +498,6 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
-     * sensitive content recognition
-     */
-    public function testSensitiveContentRecognition() {
-        $key = "hello123.txt";
-        try {
-            $this->cosClient->getObjectSensitiveContentRecognition(
-                array(
-                    'Bucket' =>  $this->bucket,
-                    'Key' => $key,
-                    'DetectType' => 'porn,politics'));
-            $this->assertTrue(True);
-        } catch (ServiceResponseException $e) {
-            print $e;
-            $this->assertFalse(TRUE);
-        }
-    }
-
-    /*
      * put bucket acl，bucket不存在
      * NoSuchBucket
      * 404
@@ -545,7 +527,10 @@ class COSTest extends \PHPUnit\Framework\TestCase
     {
         $key = 'hi3.txt';
         $content_array = array('hello cos', 'hi cos');
-        $local_test_key = 'local_test_file';
+        $local_test_key = "local_test_file";
+        $f = fopen($local_test_key, "wb");
+        fwrite($f, $body);
+        fclose($f);
         /**
          * 删除测试对象
          */

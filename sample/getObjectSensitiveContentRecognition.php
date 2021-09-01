@@ -16,7 +16,7 @@ try {
     $result = $cosClient->getObjectSensitiveContentRecognition(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Key' => 'exampleobject',
-        'DetectType' => 'porn,politics' //可选四种参数：porn,politics,
+        'DetectType' => 'porn,politics' //可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
     ));
     // 请求成功
     print_r($result);
