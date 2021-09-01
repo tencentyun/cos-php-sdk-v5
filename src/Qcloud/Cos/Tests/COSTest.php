@@ -527,6 +527,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     {
         $key = 'hi3.txt';
         $content_array = array('hello cos', 'hi cos');
+        $body = $this->generateRandomString(1024+1023);
         $local_test_key = "local_test_file";
         $f = fopen($local_test_key, "wb");
         fwrite($f, $body);
