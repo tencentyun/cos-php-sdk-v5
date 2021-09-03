@@ -30,6 +30,9 @@ use Qcloud\Cos\Exception\CosException;
  * @method object DeleteBucketWebsite (array $arg)
  * @method object DeleteBucketLifecycle (array $arg)
  * @method object DeleteBucketReplication (array $arg)
+ * @method object PutObjectTagging (array $arg)
+ * @method object GetObjectTagging (array $arg)
+ * @method object DeleteObjectTagging (array $arg)
  * @method object GetObject (array $arg)
  * @method object GetObjectAcl (array $arg)
  * @method object GetBucketAcl (array $arg)
@@ -47,6 +50,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketTagging (array $arg)
  * @method object UploadPart (array $arg)
  * @method object PutObject (array $arg)
+ * @method object AppendObject (array $arg)
  * @method object PutObjectAcl (array $arg)
  * @method object PutBucketAcl (array $arg)
  * @method object PutBucketCors (array $arg)
@@ -84,9 +88,9 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketImageStyle (array $arg)
  * @method object DeleteBucketImageStyle (array $arg)
  * @method object PutBucketGuetzli (array $arg)
- * @method object AppendObject (array $arg)
  * @method object GetBucketGuetzli (array $arg)
  * @method object DeleteBucketGuetzli (array $arg)
+ * @method object GetObjectSensitiveContentRecognition (array $arg)
  */
 class Client extends GuzzleClient {
     const VERSION = '2.2.3';
