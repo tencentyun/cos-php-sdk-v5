@@ -91,6 +91,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketGuetzli (array $arg)
  * @method object DeleteBucketGuetzli (array $arg)
  * @method object GetObjectSensitiveContentRecognition (array $arg)
+ * @method object GetTextDetect (array $arg)
  */
 class Client extends GuzzleClient {
     const VERSION = '2.2.3';
@@ -221,6 +222,7 @@ class Client extends GuzzleClient {
         $request = $transformer->md5Transformer($command, $request);
         $request = $transformer->specialParamTransformer($command, $request);
         $request = $transformer->ciParamTransformer($command, $request);
+        $request = $transformer->cosDomain2CiTransformer($command, $request);
         return $request;
     }
 
