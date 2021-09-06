@@ -218,7 +218,7 @@ class CommandToRequestTransformer {
 
         public function cosDomain2CiTransformer($command, $request) {
             $action = $command->getName();
-            if ($action == 'GetTextDetect') {
+            if ($action == 'DetectText') {
                 $bucketname = $command['Bucket'];
                 $appId = $this->config['appId'];
                 if ( $appId != null && endWith( $bucketname, '-'.$appId ) == False ) {

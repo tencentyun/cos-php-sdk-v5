@@ -15,7 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 try {
     // start --------------- 文本内容审核 ----------------- //
     $content = '约炮';
-    $result = $cosClient->getTextDetect(array(
+    $result = $cosClient->detectText(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Input' => array(
             'Content' => base64_encode($content) // 文本需base64_encode
@@ -30,7 +30,7 @@ try {
     // end --------------- 文本内容审核 ----------------- //
 
     // start --------------- 存储桶文本文件审核 ----------------- //
-    $result = $cosClient->getTextDetect(array(
+    $result = $cosClient->detectText(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Input' => array(
             'Object' => 'test01.txt'
