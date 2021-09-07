@@ -92,6 +92,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object DeleteBucketGuetzli (array $arg)
  * @method object GetObjectSensitiveContentRecognition (array $arg)
  * @method object DetectText (array $arg)
+ * @method object CreateMediaTranscodeJobs (array $arg)
  */
 class Client extends GuzzleClient {
     const VERSION = '2.2.3';

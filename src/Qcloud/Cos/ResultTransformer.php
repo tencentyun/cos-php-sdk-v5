@@ -104,6 +104,16 @@ class ResultTransformer {
             }
         }
 
+        if ($action == 'CreateMediaTranscodeJobs') {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $xmlData = json_decode(json_encode($obj),true);
+                $result['Response'] = $xmlData;
+            }
+        }
+
         return $result;
     }
 
