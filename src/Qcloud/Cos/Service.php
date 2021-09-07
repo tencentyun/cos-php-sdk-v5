@@ -1,6 +1,8 @@
 <?php
 namespace Qcloud\Cos;
 // http://guzzle3.readthedocs.io/webservice-client/guzzle-service-descriptions.html
+
+use Qcloud\Cos\Descriptions;
 class Service {
     public static function getService() {
         return array(
@@ -3496,6 +3498,7 @@ class Service {
                         ),
                     ),
                 ),
+                'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(),
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6470,6 +6473,7 @@ class Service {
                         ),
                     ),
                 ),
+                'CreateMediaTranscodeJobsOutput' => Descriptions::CreateMediaTranscodeJobsOutput(),
             )
         );
     }

@@ -218,7 +218,7 @@ class CommandToRequestTransformer {
 
         public function cosDomain2CiTransformer($command, $request) {
             $action = $command->getName();
-            if ($action == 'DetectText') {
+            if ($action == 'DetectText' || $action == 'CreateMediaTranscodeJobs') {
                 $bucketname = $command['Bucket'];
                 $appId = $this->config['appId'];
                 if ( $appId != null && endWith( $bucketname, '-'.$appId ) == False ) {
@@ -234,7 +234,7 @@ class CommandToRequestTransformer {
                         $host = $this->config['ip'] . ':' . $this->config['port'];
                     }
                 }
-                $path = $this->config['schema'].'://'. $host . '/text/auditing';
+                $path = $this->config['schema'].'://'. $host . $request->getUri()->getPath();
                 $uri = new Uri( $path );
                 $query = $request->getUri()->getQuery();
                 $uri = $uri->withQuery( $query );
