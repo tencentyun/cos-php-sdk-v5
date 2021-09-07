@@ -3443,7 +3443,59 @@ class Service {
                             'sentAs' => 'biz-type'
                         )
                     ),
-                )
+                ),
+                // 文本审核
+                'DetectText' => array(
+                    'httpMethod' => 'POST',
+                    'uri' => '/{Bucket}text/auditing',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'DetectTextOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'Request',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Input' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Content' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'Object' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                            ),
+                        ),
+                        'Conf' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'DetectType' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'Callback' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                                'BizType' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6197,6 +6249,226 @@ class Service {
                             ),
                         ),
                     )
+                ),
+                'DetectTextOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-ci-request-id',
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'JobsDetail' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'JobId' => array(
+                                    'type' => 'string',
+                                ),
+                                'State' => array(
+                                    'type' => 'string',
+                                ),
+                                'CreationTime' => array(
+                                    'type' => 'string',
+                                ),
+                                'Content' => array(
+                                    'type' => 'string',
+                                ),
+                                'Result' => array(
+                                    'type' => 'string',
+                                ),
+                                'SectionCount' => array(
+                                    'type' => 'string',
+                                ),
+                                'PornInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Count' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                                'TerrorismInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Count' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                                'PoliticsInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Count' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                                'AdsInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Count' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                                'IllegalInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Count' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                                'AbuseInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Count' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                                'Section' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'properties' => array(
+                                            'StartByte' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'PornInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Score' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Keywords' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                            'TerrorismInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Score' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Keywords' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                            'PoliticsInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Score' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Keywords' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                            'AdsInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Score' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Keywords' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                            'IllegalInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Score' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Keywords' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                            'AbuseInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Score' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Keywords' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
             )
         );
