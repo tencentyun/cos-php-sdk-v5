@@ -97,7 +97,7 @@ use Qcloud\Cos\Exception\CosException;
  */
 class Client extends GuzzleClient {
     const VERSION = '2.2.3';
-    
+
     public $httpClient;
     
     private $api;
