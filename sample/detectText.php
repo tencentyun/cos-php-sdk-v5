@@ -21,7 +21,7 @@ try {
             'Content' => base64_encode($content) // 文本需base64_encode
         ),
         'Conf' => array(
-            'DetectType' => 'Porn,Terrorism,Politics,Ads',
+            'DetectType' => 'Porn,Terrorism,Politics,Ads', //Porn,Terrorism,Politics,Ads,Illegal,Abuse类型
             'BizType' => '',
         ),
     ));

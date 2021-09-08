@@ -50,7 +50,6 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketTagging (array $arg)
  * @method object UploadPart (array $arg)
  * @method object PutObject (array $arg)
- * @method object AppendObject (array $arg)
  * @method object PutObjectAcl (array $arg)
  * @method object PutBucketAcl (array $arg)
  * @method object PutBucketCors (array $arg)
@@ -88,13 +87,22 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketImageStyle (array $arg)
  * @method object DeleteBucketImageStyle (array $arg)
  * @method object PutBucketGuetzli (array $arg)
+ * @method object AppendObject (array $arg)
  * @method object GetBucketGuetzli (array $arg)
  * @method object DeleteBucketGuetzli (array $arg)
  * @method object GetObjectSensitiveContentRecognition (array $arg)
  * @method object DetectText (array $arg)
+ * @method object GetDetectTextResult (array $arg)
+ * @method object CreateMediaTranscodeJobs (array $arg)
+ * @method object DetectAudio (array $arg)
+ * @method object GetDetectAudioResult (array $arg)
+ * @method object DetectVideo (array $arg)
+ * @method object GetDetectVideoResult (array $arg)
+ * @method object DetectDocument (array $arg)
+ * @method object GetDetectDocumentResult (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.2.3';
+    const VERSION = '2.3.0';
 
     public $httpClient;
     
@@ -293,7 +301,7 @@ class Client extends GuzzleClient {
     }
 
     public function upload($bucket, $key, $body, $options = array()) {
-        $body = Psr7\stream_for($body);
+        $body = Psr7\Utils::streamFor($body);
         $options['Retry'] = $this->cosConfig['retry'];
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         if ($body->getSize() < $options['PartSize']) {
@@ -354,7 +362,7 @@ class Client extends GuzzleClient {
     }
 
     public function resumeUpload($bucket, $key, $body, $uploadId, $options = array()) {
-        $body = Psr7\stream_for($body);
+        $body = Psr7\Utils::streamFor($body);
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         $multipartUpload = new MultipartUpload($this, $body, array(
                 'Bucket' => $bucket,

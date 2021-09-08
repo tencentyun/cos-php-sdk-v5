@@ -104,6 +104,23 @@ class ResultTransformer {
             }
         }
 
+        $xml2JsonActions = array(
+            'CreateMediaTranscodeJobs' => 1,
+            'GetDetectAudioResult' => 1,
+            'GetDetectTextResult' => 1,
+            'GetDetectVideoResult' => 1,
+            'GetDetectDocumentResult' => 1,
+        );
+        if (key_exists($action, $xml2JsonActions)) {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $xmlData = json_decode(json_encode($obj),true);
+                $result['Response'] = $xmlData;
+            }
+        }
+
         return $result;
     }
 

@@ -1,6 +1,8 @@
 <?php
 namespace Qcloud\Cos;
 // http://guzzle3.readthedocs.io/webservice-client/guzzle-service-descriptions.html
+
+use Qcloud\Cos\Descriptions;
 class Service {
     public static function getService() {
         return array(
@@ -3496,6 +3498,14 @@ class Service {
                         ),
                     ),
                 ),
+                'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(), // 媒体转码
+                'DetectAudio' => Descriptions::DetectAudio(), // 音频审核
+                'GetDetectAudioResult' => Descriptions::GetDetectAudioResult(), // 主动获取音频审核结果
+                'GetDetectTextResult' => Descriptions::GetDetectTextResult(), // 主动获取文本文件审核结果
+                'DetectVideo' => Descriptions::DetectVideo(), // 视频审核
+                'GetDetectVideoResult' => Descriptions::GetDetectVideoResult(), // 主动获取视频审核结果
+                'DetectDocument' => Descriptions::DetectDocument(), // 文档审核
+                'GetDetectDocumentResult' => Descriptions::GetDetectDocumentResult(), // 主动获取文档审核结果
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -4192,9 +4202,9 @@ class Service {
                                         'data' => array(
                                             'xmlFlattened' => true,
                                         ),
-                                        'items' => [
+                                        'items' => array(
                                             'type' => 'string',
-                                        ]
+                                        )
                                     ),
                                     'AllowedMethods' => array(
                                         'type' => 'array',
@@ -6470,6 +6480,14 @@ class Service {
                         ),
                     ),
                 ),
+                'CreateMediaTranscodeJobsOutput' => Descriptions::CreateMediaTranscodeJobsOutput(),
+                'DetectAudioOutput' => Descriptions::DetectAudioOutput(),
+                'GetDetectAudioResultOutput' => Descriptions::GetDetectAudioResultOutput(),
+                'GetDetectTextResultOutput' => Descriptions::GetDetectTextResultOutput(),
+                'DetectVideoOutput' => Descriptions::DetectVideoOutput(),
+                'GetDetectVideoResultOutput' => Descriptions::GetDetectVideoResultOutput(),
+                'DetectDocumentOutput' => Descriptions::DetectDocumentOutput(),
+                'GetDetectDocumentResultOutput' => Descriptions::GetDetectDocumentResultOutput(),
             )
         );
     }
