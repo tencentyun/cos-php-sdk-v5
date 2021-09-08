@@ -4195,9 +4195,9 @@ class Service {
                                         'data' => array(
                                             'xmlFlattened' => true,
                                         ),
-                                        'items' => [
+                                        'items' => array(
                                             'type' => 'string',
-                                        ]
+                                        )
                                     ),
                                     'AllowedMethods' => array(
                                         'type' => 'array',

@@ -38,7 +38,7 @@ function startWith( $haystack, $needle ) {
     if ( $length == 0 ) {
         return true;
     }
-    return ( substr( $haystack, $length ) === $needle );
+    return ( substr( $haystack, 0, $length ) === $needle );
 }
 
 function headersMap( $command, $request ) {

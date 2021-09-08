@@ -16,9 +16,12 @@ $local_path = "/data/exampleobject";
 try {
     $signedUrl = $cosClient->getPresignedUrl(
                                 $method='putObject',
-                                $args=['Bucket'=>'examplebucket-1250000000', //格式：BucketName-APPID
-                                       'Key'=>'exampleobject',
-                                       'Body'=>''],
+                                $args=array(
+                                    'Bucket'=>'examplebucket-1250000000', //格式：BucketName-APPID
+                                    'Key'=>'exampleobject',
+                                    'Body'=>'',
+                                    'Params'=>array(),
+                                    'Headers'=>array()),
                                 $expires='+30 minutes');
     // 请求成功
     echo($signedUrl);
