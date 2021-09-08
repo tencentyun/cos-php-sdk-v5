@@ -96,12 +96,8 @@ use Qcloud\Cos\Exception\CosException;
  * @method object CreateMediaTranscodeJobs (array $arg)
  */
 class Client extends GuzzleClient {
-<<<<<<< HEAD
     const VERSION = '2.2.3';
-=======
-    const VERSION = '2.2.2';
->>>>>>> 9ed45d1 (update)
-
+    
     public $httpClient;
     
     private $api;
