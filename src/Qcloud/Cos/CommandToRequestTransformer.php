@@ -216,6 +216,45 @@ class CommandToRequestTransformer {
             return $request;
         }
 
+        public function cosDomain2CiTransformer($command, $request) {
+            $action = $command->getName();
+            $ciActions = array(
+                'DetectText' => 1,
+                'CreateMediaTranscodeJobs' => 1,
+                'DetectAudio' => 1,
+                'GetDetectAudioResult' => 1,
+                'GetDetectTextResult' => 1,
+                'DetectVideo' => 1,
+                'GetDetectVideoResult' => 1,
+                'DetectDocument' => 1,
+                'GetDetectDocumentResult' => 1,
+            );
+            if (key_exists($action, $ciActions)) {
+                $bucketname = $command['Bucket'];
+                $appId = $this->config['appId'];
+                if ( $appId != null && endWith( $bucketname, '-'.$appId ) == False ) {
+                    $bucketname = $bucketname.'-'.$appId;
+                }
+                $command['Bucket'] = $bucketname;
+                $domain_type = '.ci.';
+                $origin_host = $bucketname . $domain_type . $this->config['region'] . '.' . $this->config['endpoint'];
+                $host = $origin_host;
+                if ( $this->config['ip'] != null ) {
+                    $host = $this->config['ip'];
+                    if ( $this->config['port'] != null ) {
+                        $host = $this->config['ip'] . ':' . $this->config['port'];
+                    }
+                }
+                $path = $this->config['schema'].'://'. $host . $request->getUri()->getPath();
+                $uri = new Uri( $path );
+                $query = $request->getUri()->getQuery();
+                $uri = $uri->withQuery( $query );
+                $request = $request->withUri( $uri );
+                $request = $request->withHeader( 'Host', $origin_host );
+            }
+            return $request;
+        }
+
         public function __destruct() {
         }
 
