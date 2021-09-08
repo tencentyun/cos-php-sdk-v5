@@ -104,7 +104,14 @@ class ResultTransformer {
             }
         }
 
-        if ($action == 'CreateMediaTranscodeJobs') {
+        $xml2JsonActions = array(
+            'CreateMediaTranscodeJobs' => 1,
+            'GetDetectAudioResult' => 1,
+            'GetDetectTextResult' => 1,
+            'GetDetectVideoResult' => 1,
+            'GetDetectDocumentResult' => 1,
+        );
+        if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
