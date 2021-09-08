@@ -25,7 +25,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
         $this->testTaggingValues = array(
             'value1', 'value2'
         );
-        $this->cosClient = new Client(array('region' => $this->region,
+        $this->cosClient = new Client(array('region' => $this->region,'schema' => 'https',
             'credentials' => array(
                 'secretId' => getenv('COS_KEY'),
                 'secretKey' => getenv('COS_SECRET'))));
@@ -87,7 +87,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
             'gz','ap-guangzhou',
             'cd','ap-chengdu',
             'sgp','ap-singapore');
-        foreach ($regionlist as$region) {
+        foreach ($regionlist as $region) {
             try {
                 $this->cosClient = new Client(array('region' => $region,
                     'schema' =>'https',
@@ -1594,7 +1594,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
         $key = 'hello.txt';
         try{
             $result = $this->cosClient->getObjectUrlWithoutSign($this->bucket, $key);
-            $tmpUrl = 'http://' . $this->bucket . '.cos.' . $this->region . '.myqcloud.com/' . $key;
+            $tmpUrl = 'https://' . $this->bucket . '.cos.' . $this->region . '.myqcloud.com/' . $key;
             $this->assertEquals($result, $tmpUrl);
         } catch (ServiceResponseException $e) {
             $this->assertFalse(TRUE);
@@ -2063,7 +2063,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     public function testDetectText() {
         $content = '约炮';
         try {
-            $this->cosClient->detectText(array(
+            $result = $this->cosClient->detectText(array(
                 'Bucket' => $this->bucket, //格式：BucketName-APPID
                 'Input' => array(
                     'Content' => base64_encode($content) // 文本需base64_encode
