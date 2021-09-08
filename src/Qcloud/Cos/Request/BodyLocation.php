@@ -44,6 +44,6 @@ class BodyLocation extends AbstractLocation
         }
         // binary string data from bound parameter
         $value = $command[$param->getName()];
-        return $request->withBody(Psr7\stream_for($value));
+        return $request->withBody(Psr7\Utils::streamFor($value));
     }
 }

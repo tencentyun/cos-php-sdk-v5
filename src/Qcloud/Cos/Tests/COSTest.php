@@ -2054,4 +2054,29 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+    /*
+     * 文本检测
+     *
+     * 200
+     */
+    public function testDetectText() {
+        $content = '约炮';
+        try {
+            $this->cosClient->detectText(array(
+                'Bucket' => $this->bucket, //格式：BucketName-APPID
+                'Input' => array(
+                    'Content' => base64_encode($content) // 文本需base64_encode
+                ),
+                'Conf' => array(
+                    'DetectType' => 'Porn,Terrorism,Politics,Ads',
+                    'BizType' => '',
+                ),
+            ));
+            $this->assertTrue(true);
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
+
+    }
+
 }
