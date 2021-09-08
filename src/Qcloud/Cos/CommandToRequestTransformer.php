@@ -218,7 +218,18 @@ class CommandToRequestTransformer {
 
         public function cosDomain2CiTransformer($command, $request) {
             $action = $command->getName();
-            if ($action == 'DetectText' || $action == 'CreateMediaTranscodeJobs') {
+            $ciActions = array(
+                'DetectText' => 1,
+                'CreateMediaTranscodeJobs' => 1,
+                'DetectAudio' => 1,
+                'GetDetectAudioResult' => 1,
+                'GetDetectTextResult' => 1,
+                'DetectVideo' => 1,
+                'GetDetectVideoResult' => 1,
+                'DetectDocument' => 1,
+                'GetDetectDocumentResult' => 1,
+            );
+            if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
                 $appId = $this->config['appId'];
                 if ( $appId != null && endWith( $bucketname, '-'.$appId ) == False ) {
