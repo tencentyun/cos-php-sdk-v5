@@ -50,7 +50,6 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetBucketTagging (array $arg)
  * @method object UploadPart (array $arg)
  * @method object PutObject (array $arg)
- * @method object AppendObject (array $arg)
  * @method object PutObjectAcl (array $arg)
  * @method object PutBucketAcl (array $arg)
  * @method object PutBucketCors (array $arg)
@@ -96,7 +95,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object CreateMediaTranscodeJobs (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.2.3';
+    const VERSION = '2.3.0';
 
     public $httpClient;
     
