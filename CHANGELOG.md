@@ -1,5 +1,14 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.2.3 to 2.3.0
+---------
+- 新增图片审核，视频审核，音频审核，文本审核，文档审核接口
+- 新增单链接限速demo
+- 暴露getPresigned接口Headers和Params参数接口
+- 补充textDetect UT
+- 修复stream_for废弃问题
+- 修复x-cos头检测逻辑问题
+- 修复UT部分bug
 
 2.2.2 to 2.2.3
 - 在putObejct中新增x-cos-tagging头
