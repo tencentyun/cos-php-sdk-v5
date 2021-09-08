@@ -346,6 +346,89 @@ class Descriptions {
         );
     }
 
+    public static function DetectText() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}text/auditing',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DetectTextOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Input' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Content' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Object' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                    ),
+                ),
+                'Conf' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'DetectType' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'Callback' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'BizType' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function DetectTextOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
     public static function GetDetectTextResult() {
         return array(
             'httpMethod' => 'GET',
