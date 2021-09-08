@@ -638,7 +638,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
             $this->assertFalse(TRUE);
         }
     }
-    
+
     /*
      * 正常head bucket
      * 200
@@ -2054,6 +2054,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+
     /*
      * 文本检测
      *
@@ -2078,5 +2079,4 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
 
     }
-
 }
