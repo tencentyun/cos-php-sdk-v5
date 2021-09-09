@@ -3499,6 +3499,7 @@ class Service {
                     ),
                 ),
                 'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(), // 媒体转码
+                'CreateMediaSnapshotJobs' => Descriptions::CreateMediaSnapshotJobs(), // 媒体截图
                 'DetectAudio' => Descriptions::DetectAudio(), // 音频审核
                 'GetDetectAudioResult' => Descriptions::GetDetectAudioResult(), // 主动获取音频审核结果
                 'GetDetectTextResult' => Descriptions::GetDetectTextResult(), // 主动获取文本文件审核结果
@@ -6481,6 +6482,7 @@ class Service {
                     ),
                 ),
                 'CreateMediaTranscodeJobsOutput' => Descriptions::CreateMediaTranscodeJobsOutput(),
+                'CreateMediaSnapshotJobsOutput' => Descriptions::CreateMediaSnapshotJobsOutput(),
                 'DetectAudioOutput' => Descriptions::DetectAudioOutput(),
                 'GetDetectAudioResultOutput' => Descriptions::GetDetectAudioResultOutput(),
                 'GetDetectTextResultOutput' => Descriptions::GetDetectTextResultOutput(),
