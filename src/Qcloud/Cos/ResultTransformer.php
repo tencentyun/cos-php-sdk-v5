@@ -107,7 +107,6 @@ class ResultTransformer {
         $xml2JsonActions = array(
             'CreateMediaTranscodeJobs' => 1,
             'GetDetectAudioResult' => 1,
-            'GetDetectTextResult' => 1,
             'GetDetectVideoResult' => 1,
             'GetDetectDocumentResult' => 1,
         );
