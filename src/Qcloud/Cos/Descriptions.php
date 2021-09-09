@@ -361,13 +361,22 @@ class Descriptions {
                                     ),
                                 ),
                                 'Index' => array( 'type' => 'string', 'location' => 'xml', ),
-                                'ConcatFragment' => array(
-                                    'type' => 'object',
+                                'ConcatFragments' => array(
+                                    'type' => 'array',
                                     'location' => 'xml',
-                                    'properties' => array(
-                                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
-                                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
-                                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'ConcatFragment',
+                                        'type' => 'object',
+                                        'sentAs' => 'ConcatFragment',
+                                        'properties' => array(
+                                            'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
                                     ),
                                 ),
                                 'Video' => array(

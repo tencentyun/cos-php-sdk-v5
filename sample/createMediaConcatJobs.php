@@ -13,7 +13,8 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    $result = $cosClient->createMediaSnapshotJobs(array(
+    // start --------------- 使用模版 ----------------- //
+    $result = $cosClient->createMediaConcatJobs(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Tag' => 'Concat',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
@@ -32,6 +33,62 @@ try {
     ));
     // 请求成功
     print_r($result);
+    // end --------------- 使用模版 ----------------- //
+
+    // start --------------- 自定义参数 ----------------- //
+    $result = $cosClient->createMediaConcatJobs(array(
+        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Tag' => 'Concat',
+        'QueueId' => 'asdadadfafsdkjhfjghdfjg',
+        'CallBack' => 'https://example.com/callback',
+        'Input' => array(
+            'Object' => 'video01.mp4'
+        ),
+        'Operation' => array(
+            'Output' => array(
+                'Region' => $region,
+                'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+                'Object' => 'concat-video03.mp4',
+            ),
+            'ConcatTemplate' => array(
+                'ConcatFragments' => array(
+                    array(
+                        'Url' => 'https://example.com/video01.mp4',
+                        'Mode' => 'Start',
+//                        'StartTime' => '0',
+//                        'EndTime' => '7',
+                    ),
+                    array(
+                        'Url' => 'https://example.com/video02.mp4',
+                        'Mode' => 'Start',
+//                        'StartTime' => '0',
+//                        'EndTime' => '10',
+                    ),
+                    // ... repeated
+                ),
+                'Index' => 1,
+                'Container' => array(
+                    'Format' => 'mp4'
+                ),
+                'Audio' => array(
+                    'Codec' => 'mp3',
+                    'Samplerate' => '',
+                    'Bitrate' => '',
+                    'Channels' => '',
+                ),
+                'Video' => array(
+                    'Codec' => 'H.264',
+                    'Bitrate' => '1000',
+                    'Width' => '1280',
+                    'Height' => '',
+                    'Fps' => '30',
+                ),
+            ),
+        ),
+    ));
+    // 请求成功
+    print_r($result);
+    // end --------------- 自定义参数 ----------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);
