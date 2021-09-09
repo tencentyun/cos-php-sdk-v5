@@ -13,6 +13,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
+    // start --------------- 使用模版 ----------------- //
     $result = $cosClient->createMediaSnapshotJobs(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Tag' => 'Snapshot',
@@ -32,6 +33,37 @@ try {
     ));
     // 请求成功
     print_r($result);
+    // end --------------- 使用模版 ----------------- //
+
+
+    // start --------------- 自定义参数 ----------------- //
+    $result = $cosClient->createMediaSnapshotJobs(array(
+        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Tag' => 'Snapshot',
+        'QueueId' => 'asdadadfafsdkjhfjghdfjg',
+        'CallBack' => 'https://example.com/callback',
+        'Input' => array(
+            'Object' => 'video01.mp4'
+        ),
+        'Operation' => array(
+            'Output' => array(
+                'Region' => $region,
+                'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+                'Object' => 'snapshot-${Number}.jpg',
+            ),
+            'Snapshot' => array(
+                'Mode' => 'Average',
+                'Start' => 3,
+                'TimeInterval' => '',
+                'Count' => 3,
+                'Width' => '1280',
+                'Height' => '',
+            ),
+        ),
+    ));
+    // 请求成功
+    print_r($result);
+    // end --------------- 自定义参数 ----------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);
