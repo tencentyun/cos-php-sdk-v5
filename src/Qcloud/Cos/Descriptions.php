@@ -305,6 +305,128 @@ class Descriptions {
         );
     }
 
+    public static function CreateMediaConcatJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaConcatJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Output' => array(
+                            'required' => true,
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'ConcatTemplate' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Audio' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'Index' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ConcatFragment' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'Video' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'Container' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaConcatJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
     public static function DetectAudio() {
         return array(
             'httpMethod' => 'POST',

@@ -95,6 +95,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetDetectTextResult (array $arg)
  * @method object CreateMediaTranscodeJobs (array $arg)
  * @method object CreateMediaSnapshotJobs (array $arg)
+ * @method object CreateMediaConcatJobs (array $arg)
  * @method object DetectAudio (array $arg)
  * @method object GetDetectAudioResult (array $arg)
  * @method object DetectVideo (array $arg)
