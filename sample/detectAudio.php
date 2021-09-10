@@ -13,6 +13,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
+    // start --------------- 桶文件审核 ----------------- //
     $result = $cosClient->detectAudio(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Input' => array(
@@ -26,6 +27,23 @@ try {
     ));
     // 请求成功
     print_r($result);
+    // end --------------- 桶文件审核 ----------------- //
+
+    // start --------------- 音频文件地址审核 ----------------- //
+    $result = $cosClient->detectAudio(array(
+        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Input' => array(
+            'Url' => 'https://example.com/test.mp3',
+        ),
+        'Conf' => array(
+            'DetectType' => 'Porn,Terrorism,Politics,Ads',
+            'Callback' => 'https://example.com/callback',
+            'BizType' => '',
+        ),
+    ));
+    // 请求成功
+    print_r($result);
+    // end --------------- 音频文件地址审核 ----------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

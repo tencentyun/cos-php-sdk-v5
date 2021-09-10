@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // start --------------- 文本内容审核 ----------------- //
-    $content = '约炮';
+    $content = '敏感词';
     $result = $cosClient->detectText(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Input' => array(
