@@ -14,9 +14,9 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // start --------------- 使用模版 ----------------- //
-    $result = $cosClient->createMediaTranscodeJobs(array(
+    $result = $cosClient->createMediaConcatJobs(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-        'Tag' => 'Transcode',
+        'Tag' => 'Concat',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
@@ -27,7 +27,7 @@ try {
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-                'Object' => 'video02.webm',
+                'Object' => 'concat-video02.mp4',
             ),
         ),
     ));
@@ -35,11 +35,10 @@ try {
     print_r($result);
     // end --------------- 使用模版 ----------------- //
 
-
     // start --------------- 自定义参数 ----------------- //
-    $result = $cosClient->createMediaTranscodeJobs(array(
+    $result = $cosClient->createMediaConcatJobs(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-        'Tag' => 'Transcode',
+        'Tag' => 'Concat',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
@@ -49,34 +48,40 @@ try {
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-                'Object' => 'video01.mkv',
+                'Object' => 'concat-video03.mp4',
             ),
-            'Transcode' => array(
+            'ConcatTemplate' => array(
+                'ConcatFragments' => array(
+                    array(
+                        'Url' => 'https://example.com/video01.mp4',
+                        'Mode' => 'Start',
+//                        'StartTime' => '0',
+//                        'EndTime' => '7',
+                    ),
+                    array(
+                        'Url' => 'https://example.com/video02.mp4',
+                        'Mode' => 'Start',
+//                        'StartTime' => '0',
+//                        'EndTime' => '10',
+                    ),
+                    // ... repeated
+                ),
+                'Index' => 1,
                 'Container' => array(
                     'Format' => 'mp4'
                 ),
+                'Audio' => array(
+                    'Codec' => 'mp3',
+                    'Samplerate' => '',
+                    'Bitrate' => '',
+                    'Channels' => '',
+                ),
                 'Video' => array(
                     'Codec' => 'H.264',
-                    'Profile' => 'high',
                     'Bitrate' => '1000',
-                    'Preset' => 'medium',
                     'Width' => '1280',
+                    'Height' => '',
                     'Fps' => '30',
-                ),
-                'Audio' => array(
-                    'Codec' => 'aac',
-                    'Samplerate' => '44100',
-                    'Bitrate' => '128',
-                    'Channels' => '4',
-                ),
-                'TransConfig' => array(
-                    'AdjDarMethod' => 'scale',
-                    'IsCheckReso' => 'false',
-                    'ResoAdjMethod' => '1',
-                ),
-                'TimeInterval' => array(
-                    'Start' => '0',
-                    'Duration' => '60',
                 ),
             ),
         ),

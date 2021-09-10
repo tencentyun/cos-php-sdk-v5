@@ -216,6 +216,226 @@ class Descriptions {
         );
     }
 
+    public static function CreateMediaSnapshotJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaSnapshotJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Output' => array(
+                            'required' => true,
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Snapshot' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TimeInterval' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaSnapshotJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaConcatJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaConcatJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Output' => array(
+                            'required' => true,
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'ConcatTemplate' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Audio' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'Index' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ConcatFragments' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'ConcatFragment',
+                                        'type' => 'object',
+                                        'sentAs' => 'ConcatFragment',
+                                        'properties' => array(
+                                            'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                ),
+                                'Video' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'Container' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaConcatJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
     public static function DetectAudio() {
         return array(
             'httpMethod' => 'POST',
@@ -372,11 +592,6 @@ class Descriptions {
             'type' => 'object',
             'additionalProperties' => true,
             'properties' => array(
-                'Body' => array(
-                    'type' => 'string',
-                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
-                    'location' => 'body',
-                ),
                 'RequestId' => array(
                     'type' => 'string',
                     'location' => 'header',
@@ -392,6 +607,210 @@ class Descriptions {
                     'minimum'=> 0,
                     'location' => 'header',
                     'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array(
+                            'type' => 'string',
+                        ),
+                        'Message' => array(
+                            'type' => 'string',
+                        ),
+                        'JobId' => array(
+                            'type' => 'string',
+                        ),
+                        'State' => array(
+                            'type' => 'string',
+                        ),
+                        'CreationTime' => array(
+                            'type' => 'string',
+                        ),
+                        'Object' => array(
+                            'type' => 'string',
+                        ),
+                        'SectionCount' => array(
+                            'type' => 'string',
+                        ),
+                        'Result' => array(
+                            'type' => 'string',
+                        ),
+                        'PornInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Count' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                        'TerrorismInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Count' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                        'PoliticsInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Count' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                        'AdsInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Count' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                        'IllegalInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Count' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                        'AbuseInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Count' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                        'Section' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'StartByte' => array(
+                                        'type' => 'string',
+                                    ),
+                                    'PornInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Score' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Keywords' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'TerrorismInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Score' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Keywords' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'PoliticsInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Score' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Keywords' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'AdsInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Score' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Keywords' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'IllegalInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Score' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Keywords' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                    'AbuseInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Score' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Keywords' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
             ),
         );

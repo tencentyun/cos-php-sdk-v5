@@ -14,9 +14,9 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // start --------------- 使用模版 ----------------- //
-    $result = $cosClient->createMediaTranscodeJobs(array(
+    $result = $cosClient->createMediaSnapshotJobs(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-        'Tag' => 'Transcode',
+        'Tag' => 'Snapshot',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
@@ -27,7 +27,7 @@ try {
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-                'Object' => 'video02.webm',
+                'Object' => 'snapshot-${Number}.jpg',
             ),
         ),
     ));
@@ -37,9 +37,9 @@ try {
 
 
     // start --------------- 自定义参数 ----------------- //
-    $result = $cosClient->createMediaTranscodeJobs(array(
+    $result = $cosClient->createMediaSnapshotJobs(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-        'Tag' => 'Transcode',
+        'Tag' => 'Snapshot',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
@@ -49,35 +49,15 @@ try {
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-                'Object' => 'video01.mkv',
+                'Object' => 'snapshot-${Number}.jpg',
             ),
-            'Transcode' => array(
-                'Container' => array(
-                    'Format' => 'mp4'
-                ),
-                'Video' => array(
-                    'Codec' => 'H.264',
-                    'Profile' => 'high',
-                    'Bitrate' => '1000',
-                    'Preset' => 'medium',
-                    'Width' => '1280',
-                    'Fps' => '30',
-                ),
-                'Audio' => array(
-                    'Codec' => 'aac',
-                    'Samplerate' => '44100',
-                    'Bitrate' => '128',
-                    'Channels' => '4',
-                ),
-                'TransConfig' => array(
-                    'AdjDarMethod' => 'scale',
-                    'IsCheckReso' => 'false',
-                    'ResoAdjMethod' => '1',
-                ),
-                'TimeInterval' => array(
-                    'Start' => '0',
-                    'Duration' => '60',
-                ),
+            'Snapshot' => array(
+                'Mode' => 'Average',
+                'Start' => 3,
+                'TimeInterval' => '',
+                'Count' => 3,
+                'Width' => '1280',
+                'Height' => '',
             ),
         ),
     ));

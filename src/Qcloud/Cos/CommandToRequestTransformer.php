@@ -221,6 +221,8 @@ class CommandToRequestTransformer {
             $ciActions = array(
                 'DetectText' => 1,
                 'CreateMediaTranscodeJobs' => 1,
+                'CreateMediaSnapshotJobs' => 1,
+                'CreateMediaConcatJobs' => 1,
                 'DetectAudio' => 1,
                 'GetDetectAudioResult' => 1,
                 'GetDetectTextResult' => 1,

@@ -13,7 +13,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    $result = $cosClient->detectAudio(array(
+    $result = $cosClient->detectDocument(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Input' => array(
             'Url' => 'https://example.com/test01.docx',
