@@ -2053,7 +2053,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
             $this->assertTrue($e->getExceptionCode() === 'NoSuchKey' && $e->getStatusCode() === 404);
         }
     }
-    
+
     /*
      * 文本检测
      *
