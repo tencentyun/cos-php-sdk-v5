@@ -2072,7 +2072,6 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-<<<<<<< HEAD
     /*
      * 文本检测
      *
@@ -2098,6 +2097,4 @@ class COSTest extends \PHPUnit\Framework\TestCase
 
     }
 
-=======
->>>>>>> 89e8c8c (feat(sensitiveContent):新增图片鉴别SDK示例)
 }
