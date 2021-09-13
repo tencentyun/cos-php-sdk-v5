@@ -2,9 +2,11 @@
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
+
 $secretId = "SECRETID"; //"云 API 密钥 SecretId";
 $secretKey = "SECRETKEY"; //"云 API 密钥 SecretKey";
 $region = "ap-beijing"; //设置一个默认的存储桶地域
+
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
@@ -13,7 +15,6 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 $local_path = '/data/exampleobject';
-
 try {
     //上传对象，单链接限速
     $result = $cosClient->putObject(array(
