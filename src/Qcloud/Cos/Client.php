@@ -104,6 +104,7 @@ use Qcloud\Cos\Exception\CosException;
  * @method object GetDetectDocumentResult (array $arg)
  */
 class Client extends GuzzleClient {
+
     const VERSION = '2.3.1';
 
     public $httpClient;
