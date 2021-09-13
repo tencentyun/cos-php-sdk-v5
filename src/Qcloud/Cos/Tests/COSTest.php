@@ -498,6 +498,24 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
+     * sensitive content recognition
+     */
+    public function testSensitiveContentRecognition() {
+        $key = "hello123.txt";
+        try {
+            $this->cosClient->getObjectSensitiveContentRecognition(
+                array(
+                    'Bucket' =>  $this->bucket,
+                    'Key' => $key,
+                    'DetectType' => 'porn,politics'));
+            $this->assertTrue(True);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
+        }
+    }
+
+    /*
      * put bucket acl，bucket不存在
      * NoSuchBucket
      * 404
@@ -638,15 +656,23 @@ class COSTest extends \PHPUnit\Framework\TestCase
             $this->assertFalse(TRUE);
         }
     }
-    
+
     /*
      * append object相关测试
      */
     public function testAppendObject()
     {
-        $key = '你好.txt';
+        $key = 'hi3.txt';
         $content_array = array('hello cos', 'hi cos');
-        $local_test_key = 'local_test_file';
+        $local_test_key = '/Users/tuuna/Desktop/123hello.txt';
+        /**
+         * 删除测试对象
+         */
+        try {
+            $this->cosClient->deleteObject(array('Bucket'=>$this->bucket, 'Key'=>$key));
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
         /**
          * 追加上传字符流
          */
@@ -677,21 +703,6 @@ class COSTest extends \PHPUnit\Framework\TestCase
             $this->assertFalse(true);
         }
 
-        /**
-         * bucket不存在
-         */
-        try {
-            TestHelper::nuke($this->bucket2);
-            sleep(COSTest::SYNC_TIME);
-            $this->cosClient->appendObject(array(
-                'Bucket' => $this->bucket2,
-                'Key' => $key,
-                'Position' => 0,
-                'Body' => $content_array[0]));
-            $this->assertTrue(False);
-        } catch (ServiceResponseException $e) {
-            $this->assertTrue($e->getExceptionCode() === 'NoSuchBucket' && $e->getStatusCode() === 404);
-        }
 
         /**
          * 删除测试对象
@@ -736,6 +747,28 @@ class COSTest extends \PHPUnit\Framework\TestCase
             $this->cosClient->deleteObject(array('Bucket'=>$this->bucket, 'Key'=>$key));
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true);
+        }
+    }
+
+    /*
+     * put bucket acl，覆盖设置
+     * x200
+     */
+    public function testPutBucketAclCover()
+    {
+        try {
+            $this->cosClient->PutBucketAcl(array(
+                'Bucket' =>  $this->bucket,
+                'GrantFullControl' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+                'GrantRead' => 'id="qcs::cam::uin/2779643970:uin/2779643970"',
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
+            $this->cosClient->PutBucketAcl(array(
+                'Bucket' =>  $this->bucket,
+                'GrantWrite' => 'id="qcs::cam::uin/2779643970:uin/2779643970"'));
+            $this->assertTrue(True);
+        } catch (ServiceResponseException $e) {
+            print $e;
+            $this->assertFalse(TRUE);
         }
     }
 
@@ -2154,6 +2187,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
+
     /*
      * 文本检测
      *
@@ -2178,4 +2212,5 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
 
     }
+
 }
