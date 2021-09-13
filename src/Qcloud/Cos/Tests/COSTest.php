@@ -2054,7 +2054,6 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-
     /*
      * 文本检测
      *
