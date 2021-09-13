@@ -3,3 +3,4 @@
 /.travis.yml          export-ignore
 /phpunit.xml          export-ignore
 /src/Qcloud/Cos/Tests export-ignore
+/bin                  export-ignore
