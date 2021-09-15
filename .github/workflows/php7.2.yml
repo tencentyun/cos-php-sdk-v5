@@ -1,4 +1,4 @@
-name: PHP 7.1
+name: PHP 7.2
 on:
   push:
     branches:
@@ -18,7 +18,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: php:7.1
+      image: php:7.2
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -28,9 +28,11 @@ jobs:
           apt update
           apt install -y libzip-dev unzip
           docker-php-ext-install zip
+          pecl install xdebug
+          docker-php-ext-enable xdebug
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           composer install
           composer require --dev phpunit/phpunit
-          ./vendor/bin/phpunit
+          XDEBUG_MODE=coverage ./vendor/bin/phpunit
       - name: codecov
         uses: codecov/codecov-action@v2
