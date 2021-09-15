@@ -2060,7 +2060,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
      * 200
      */
     public function testDetectText() {
-        $content = '约炮';
+        $content = '敏感词';
         try {
             $result = $this->cosClient->detectText(array(
                 'Bucket' => $this->bucket, //格式：BucketName-APPID
@@ -2077,5 +2077,38 @@ class COSTest extends \PHPUnit\Framework\TestCase
             $this->assertFalse(true);
         }
 
+    }
+
+    /*
+     * get/put referer
+     * 200
+     */
+    public function testPutBucketReferer() {
+        try {
+            TestHelper::nuke($this->bucket2);
+            sleep(COSTest::SYNC_TIME);
+            $this->cosClient->putBucketReferer(
+                array(
+                    'Bucket' => $this->bucket2, //格式：BucketName-APPID
+                    'Status' => 'Enabled',
+                    'RefererType' => 'White-List',
+                    'DomainList' => array(
+                        'Domains' => array(
+                            '*.qq.com',
+                            '*.qcloud.com',
+                        )
+                    ),
+                    'EmptyReferConfiguration' => 'Allow',
+                )
+            );
+            $result = $this->cosClient->getBucketReferer(
+                array(
+                    'Bucket' => $this->bucket2, //格式：BucketName-APPID
+                )
+            );
+            $this->assertEquals('Enabled', $result['status']);
+        } catch (ServiceResponseException $e) {
+            $this->assertFalse(true);
+        }
     }
 }

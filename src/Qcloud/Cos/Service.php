@@ -3538,7 +3538,7 @@ class Service {
                 //图片审核
                 'GetObjectSensitiveContentRecognition' => array(
                     'httpMethod' => 'GET',
-                    'uri' => '/{Bucket}{/Key*}?ci-process=sensitive-content-recognition',
+                    'uri' => '/{Bucket}{/Key*}',
                     'class' => 'Qcloud\\Cos\\Command',
                     'responseClass' => 'GetObjectSensitiveContentRecognitionOutput',
                     'responseType' => 'model',
@@ -3547,6 +3547,11 @@ class Service {
                             'required' => true,
                             'type' => 'string',
                             'location' => 'uri',
+                        ),
+                        'ci-process' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query'
                         ),
                         'Key' => array(
                             'required' => true,
@@ -3771,6 +3776,35 @@ class Service {
                         )
                     )
                 ),
+                //获取媒体信息
+                'GetMediaInfo' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetMediaInfoOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'ci-process' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query'
+                        )
+                    ),
+                ),
                 'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(), // 媒体转码
                 'CreateMediaSnapshotJobs' => Descriptions::CreateMediaSnapshotJobs(), // 媒体截图
                 'CreateMediaConcatJobs' => Descriptions::CreateMediaConcatJobs(), // 媒体拼接
@@ -3781,7 +3815,6 @@ class Service {
                 'GetDetectVideoResult' => Descriptions::GetDetectVideoResult(), // 主动获取视频审核结果
                 'DetectDocument' => Descriptions::DetectDocument(), // 文档审核
                 'GetDetectDocumentResult' => Descriptions::GetDetectDocumentResult(), // 主动获取文档审核结果
-//                'GetMediaInfo' => Descriptions::GetMediaInfo(),//获取媒体信息接口
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6997,6 +7030,216 @@ class Service {
                         )
                     )
                 ),
+                'GetMediaInfoOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'MediaInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Stream' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'JobId' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'State' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Video' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'Index' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'CodecName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'CodecLongName' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'CodecTimeBase' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'CodecTag' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Profile' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Height' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'Width' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'HasBFrame' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'RefFrames' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'Sar' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Dar' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'PixFormat' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'FieldOrder' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Level' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'Fps' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'AvgFps' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'Timebase' => array(
+                                                    'type' => 'string',
+                                                ),
+                                                'StartTime' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'Duration' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'Bitrate' => array(
+                                                    'type' => 'numeric',
+                                                ),
+                                                'NumFrames' => array(
+                                                    'type' => 'integer',
+                                                ),
+                                                'Language' => array(
+                                                    'type' => 'string',
+                                                )
+                                            ),
+                                            'Audio' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'Index' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'CodecName' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'CodecLongName' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'CodecTimeBase' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'CodecTagString' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'CodecTag' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'SampleFmt' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'SampleRate' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Channel' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'ChannelLayout' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'Timebase' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'StartTime' => array(
+                                                        'type' => 'numeric',
+                                                    ),
+                                                    'Duration' => array(
+                                                        'type' => 'numeric',
+                                                    ),
+                                                    'Bitrate' => array(
+                                                        'type' => 'numeric',
+                                                    ),
+                                                    'Language' => array(
+                                                        'type' => 'string',
+                                                    )
+                                                )
+                                            ),
+                                            'Subtitle' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'Index' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'Language' => array(
+                                                        'type' => 'string',
+                                                    )
+                                                )
+                                            )
+                                        ),
+                                    )
+                                ),
+                                'Format' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'NumStream' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'NumProgram' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'FormatName' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'FormatLongName' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'StartTime' => array(
+                                            'type' => 'numeric',
+                                        ),
+                                        'Duration' => array(
+                                            'type' => 'numeric',
+                                        ),
+                                        'Bitrate' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Size' => array(
+                                            'type' => 'integer',
+                                        )
+                                    )
+                                )
+                            )
+                        )
+
+
+                    )
+                ),
                 'CreateMediaTranscodeJobsOutput' => Descriptions::CreateMediaTranscodeJobsOutput(),
                 'CreateMediaSnapshotJobsOutput' => Descriptions::CreateMediaSnapshotJobsOutput(),
                 'CreateMediaConcatJobsOutput' => Descriptions::CreateMediaConcatJobsOutput(),
@@ -7007,7 +7250,6 @@ class Service {
                 'GetDetectVideoResultOutput' => Descriptions::GetDetectVideoResultOutput(),
                 'DetectDocumentOutput' => Descriptions::DetectDocumentOutput(),
                 'GetDetectDocumentResultOutput' => Descriptions::GetDetectDocumentResultOutput(),
-//                'GetMediaInfoOutput' => Descriptions::GetMediaInfoOutput(),
             )
         );
     }

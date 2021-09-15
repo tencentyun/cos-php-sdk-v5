@@ -7,7 +7,7 @@ use GuzzleHttp\Pool;
 class MultipartUpload {
     const MIN_PART_SIZE = 1048576;
     const MAX_PART_SIZE = 5368709120;
-    const DEFAULT_PART_SIZE = 52428800;
+    const DEFAULT_PART_SIZE = 5242880;
     const MAX_PARTS     = 10000;
 
     private $client;

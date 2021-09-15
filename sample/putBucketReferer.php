@@ -2,9 +2,9 @@
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-$secretId = getenv('SECRET_ID'); //"云 API 密钥 SecretId";
-$secretKey = getenv("SECRET_KEY"); //"云 API 密钥 SecretKey";
-$region = getenv("COS_REGION"); //设置一个默认的存储桶地域
+$secretId = "SECRETID"; //"云 API 密钥 SecretId";
+$secretKey = "SECRETKEY"; //"云 API 密钥 SecretKey";
+$region = "ap-beijing"; //设置一个默认的存储桶地域
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
@@ -12,24 +12,23 @@ $cosClient = new Qcloud\Cos\Client(
         'credentials' => array(
             'secretId' => $secretId,
             'secretKey' => $secretKey)));
-$time = 3.14;
 try {
-    $signedUrl = $cosClient->putBucketReferer(
+    $result = $cosClient->putBucketReferer(
         array(
-            'Bucket' => getenv('COS_BUCKET'), //格式：BucketName-APPID
-            'Status' => 'Enabled',
-            'RefererType' => 'White-List',
+            'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+            'Status' => 'Enabled', //是否开启防盗链，枚举值：Enabled、Disabled
+            'RefererType' => 'White-List', //防盗链类型，枚举值：Black-List、White-List
             'DomainList' => array(
                 'Domains' => array(
                      '*.qq.com',
                      '*.qcloud.com',
                 )
-            ),
-            'EmptyReferConfiguration' => 'Allow',
+            ), //生效域名列表
+//            'EmptyReferConfiguration' => 'Allow',//是否允许空 Referer 访问，枚举值：Allow、Deny，默认值为 Deny
         )
     );
     // 请求成功
-    echo($signedUrl);
+    echo($result);
 } catch (\Exception $e) {
     // 请求失败
     echo($e);
