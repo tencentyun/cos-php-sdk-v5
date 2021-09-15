@@ -2078,5 +2078,4 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
 
     }
-
 }
