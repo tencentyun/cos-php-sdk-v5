@@ -2076,39 +2076,5 @@ class COSTest extends \PHPUnit\Framework\TestCase
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true);
         }
-
-    }
-
-    /*
-     * get/put referer
-     * 200
-     */
-    public function testPutBucketReferer() {
-        try {
-            TestHelper::nuke($this->bucket2);
-            sleep(COSTest::SYNC_TIME);
-            $this->cosClient->putBucketReferer(
-                array(
-                    'Bucket' => $this->bucket2, //格式：BucketName-APPID
-                    'Status' => 'Enabled',
-                    'RefererType' => 'White-List',
-                    'DomainList' => array(
-                        'Domains' => array(
-                            '*.qq.com',
-                            '*.qcloud.com',
-                        )
-                    ),
-                    'EmptyReferConfiguration' => 'Allow',
-                )
-            );
-            $result = $this->cosClient->getBucketReferer(
-                array(
-                    'Bucket' => $this->bucket2, //格式：BucketName-APPID
-                )
-            );
-            $this->assertEquals('Enabled', $result['status']);
-        } catch (ServiceResponseException $e) {
-            $this->assertFalse(true);
-        }
     }
 }
