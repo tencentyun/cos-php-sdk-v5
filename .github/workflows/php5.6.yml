@@ -1,0 +1,34 @@
+name: PHP 5.6
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  COS_REGION: ${{ secrets.COS_REGION }}
+  COS_APPID: ${{ secrets.COS_APPID }}
+  COS_SECRET: ${{ secrets.COS_SECRET }}
+  COS_KEY: ${{ secrets.COS_KEY }}
+  COS_BUCKET: ${{ secrets.COS_BUCKET }}
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    container:
+      image: php:5.6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare
+        run: |
+          apt update
+          apt install -y libzip-dev unzip
+          docker-php-ext-install zip
+          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          composer install
+      - name: Test
+        run: for i in `ls src/Qcloud/Cos/*.php`; do php -l $i; done

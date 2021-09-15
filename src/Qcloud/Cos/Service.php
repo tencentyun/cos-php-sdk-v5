@@ -3637,6 +3637,140 @@ class Service {
                         ),
                     ),
                 ),
+                //媒体截图
+                'GetSnapshot' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}{/Key*}',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetSnapshotOutput',
+                    'responseType' => 'model',
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Key' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'minLength' => 1,
+                            'filters' => array(
+                                'Qcloud\\Cos\\Client::explodeKey'
+                            )
+                        ),
+                        'Time' => array(
+                            'required' => true,
+                            'type' => 'numeric',
+                            'location' => 'query',
+                            'sentAs' => 'time'
+                        ),
+                        'ci-process' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'query'
+                        ),
+                        'Width' => array(
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'width'
+                        ),
+                        'Height' => array(
+                            'type' => 'integer',
+                            'location' => 'query',
+                            'sentAs' => 'height'
+                        ),
+                        'Format' => array(
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'format'
+                        ),
+                        'Rotate' => array(
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'rotate'
+                        ),
+                        'Mode' => array(
+                            'type' => 'string',
+                            'location' => 'query',
+                            'sentAs' => 'mode'
+                        )
+                    ),
+                ),
+                //添加防盗链
+                'PutBucketReferer' => array(
+                    'httpMethod' => 'PUT',
+                    'uri' => '/{Bucket}?referer',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'PutBucketRefererOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'RefererConfiguration',
+                        ),
+                        'contentMd5' => true,
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri',
+                        ),
+                        'Status' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'RefererType' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'EmptyReferConfiguration' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
+
+                        'DomainList' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Domains' => array(
+                                    'type' => 'array',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Domain',
+                                        'type' => 'string',
+                                        'sentAs' => 'Domain',
+                                    ),
+                                )
+                            )
+                        ),
+                    ),
+                ),
+                //获取防盗链规则
+                'GetBucketReferer' => array(
+                    'httpMethod' => 'GET',
+                    'uri' => '/{Bucket}?referer',
+                    'class' => 'Qcloud\\Cos\\Command',
+                    'responseClass' => 'GetBucketRefererOutput',
+                    'responseType' => 'model',
+                    'data' => array(
+                        'xmlRoot' => array(
+                            'name' => 'RefererConfiguration',
+                        ),
+                    ),
+                    'parameters' => array(
+                        'Bucket' => array(
+                            'required' => true,
+                            'type' => 'string',
+                            'location' => 'uri'
+                        )
+                    )
+                ),
                 'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(), // 媒体转码
                 'CreateMediaSnapshotJobs' => Descriptions::CreateMediaSnapshotJobs(), // 媒体截图
                 'CreateMediaConcatJobs' => Descriptions::CreateMediaConcatJobs(), // 媒体拼接
@@ -3647,6 +3781,7 @@ class Service {
                 'GetDetectVideoResult' => Descriptions::GetDetectVideoResult(), // 主动获取视频审核结果
                 'DetectDocument' => Descriptions::DetectDocument(), // 文档审核
                 'GetDetectDocumentResult' => Descriptions::GetDetectDocumentResult(), // 主动获取文档审核结果
+//                'GetMediaInfo' => Descriptions::GetMediaInfo(),//获取媒体信息接口
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -3721,6 +3856,11 @@ class Service {
                         'RequestId' => array(
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
+                        ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
                         ),
                         'ImageInfo' => array(
                             'type' => 'object',
@@ -3883,6 +4023,11 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
+                        )
                     ),
                 ),
                 'DeleteBucketOutput' => array(
@@ -4226,6 +4371,11 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
+                        )
                     ),
                 ),
                 'GetObjectAclOutput' => array(
@@ -4937,6 +5087,11 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
+                        )
                     ),
                 ),
                 'UploadPartCopyOutput' => array(
@@ -4985,6 +5140,11 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
+                        )
                     ),
                 ),
                 'PutBucketAclOutput' => array(
@@ -5055,6 +5215,11 @@ class Service {
                             'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
                             'location' => 'body',
                         ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
+                        )
                     ),
                 ),
                 'AppendObjectOutput' => array(
@@ -5907,6 +6072,11 @@ class Service {
                         'RequestId' => array(
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
+                        ),
+                        'CRC' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-hash-crc64ecma',
                         )
                     )
                 ),
@@ -6621,6 +6791,212 @@ class Service {
                         ),
                     ),
                 ),
+                'GetSnapshotOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'Body' => array(
+                            'type' => 'string',
+                            'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                            'location' => 'body',
+                        ),
+                        'DeleteMarker' => array(
+                            'type' => 'boolean',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-delete-marker',
+                        ),
+                        'AcceptRanges' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'accept-ranges',
+                        ),
+                        'Expiration' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-expiration',
+                        ),
+                        'Restore' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-restore',
+                        ),
+                        'LastModified' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Last-Modified',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'ETag' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                        ),
+                        'MissingMeta' => array(
+                            'type' => 'numeric',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-missing-meta',
+                        ),
+                        'VersionId' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-version-id',
+                        ),
+                        'CacheControl' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Cache-Control',
+                        ),
+                        'ContentDisposition' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Disposition',
+                        ),
+                        'ContentEncoding' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Encoding',
+                        ),
+                        'ContentLanguage' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Language',
+                        ),
+                        'ContentRange' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Range',
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'Expires' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                        ),
+                        'WebsiteRedirectLocation' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-website-redirect-location',
+                        ),
+                        'ServerSideEncryption' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption',
+                        ),
+                        'SSECustomerAlgorithm' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
+                        ),
+                        'SSECustomerKeyMD5' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
+                        ),
+                        'SSEKMSKeyId' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-server-side-encryption-aws-kms-key-id',
+                        ),
+                        'StorageClass' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-storage-class',
+                        ),
+                        'RequestCharged' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-charged',
+                        ),
+                        'ReplicationStatus' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-replication-status',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        )
+                    )
+                ),
+                //设置防盗链
+                'PutBucketRefererOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'ETag' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                        ),
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id',
+                        )
+                    )
+                ),
+                //获取防盗链规则
+                'GetBucketRefererOutput' => array(
+                    'type' => 'object',
+                    'additionalProperties' => true,
+                    'properties' => array(
+                        'RequestId' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-request-id'
+                        ),
+                        'ContentType' => array(
+                            'type' => 'string',
+                            'location' => 'header',
+                            'sentAs' => 'Content-Type',
+                        ),
+                        'ContentLength' => array(
+                            'type' => 'numeric',
+                            'minimum'=> 0,
+                            'location' => 'header',
+                            'sentAs' => 'Content-Length',
+                        ),
+                        'Status' => array(
+                            'type' => 'string',
+                            'location' => 'xml'
+                        ),
+                        'RefererType' => array(
+                            'type' => 'string',
+                            'location' => 'xml'
+                        ),
+                        'EmptyReferConfiguration' => array(
+                            'type' => 'string',
+                            'location' => 'xml'
+                        ),
+                        'DomainList' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Domains' => array(
+                                    'type' => 'array',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'name' => 'Domain',
+                                        'type' => 'string',
+                                        'sentAs' => 'Domain',
+                                    ),
+                                )
+                            )
+                        )
+                    )
+                ),
                 'CreateMediaTranscodeJobsOutput' => Descriptions::CreateMediaTranscodeJobsOutput(),
                 'CreateMediaSnapshotJobsOutput' => Descriptions::CreateMediaSnapshotJobsOutput(),
                 'CreateMediaConcatJobsOutput' => Descriptions::CreateMediaConcatJobsOutput(),
@@ -6631,6 +7007,7 @@ class Service {
                 'GetDetectVideoResultOutput' => Descriptions::GetDetectVideoResultOutput(),
                 'DetectDocumentOutput' => Descriptions::DetectDocumentOutput(),
                 'GetDetectDocumentResultOutput' => Descriptions::GetDetectDocumentResultOutput(),
+//                'GetMediaInfoOutput' => Descriptions::GetMediaInfoOutput(),
             )
         );
     }
