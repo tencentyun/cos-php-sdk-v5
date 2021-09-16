@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1631711891">
-  <project timestamp="1631711891">
+<coverage generated="1631759324">
+  <project timestamp="1631759324">
     <package name="Qcloud\Cos">
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Client.php">
         <class name="Qcloud\Cos\Client" namespace="Qcloud\Cos">
-          <metrics complexity="76" methods="24" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="212" coveredstatements="81" elements="236" coveredelements="85"/>
+          <metrics complexity="76" methods="24" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="212" coveredstatements="109" elements="236" coveredelements="114"/>
         </class>
         <line num="123" type="method" name="__construct" visibility="public" complexity="24" crap="24.33" count="1"/>
         <line num="124" type="stmt" count="1"/>
@@ -64,7 +64,7 @@
         <line num="186" type="stmt" count="0"/>
         <line num="187" type="stmt" count="0"/>
         <line num="189" type="stmt" count="1"/>
-        <line num="192" type="method" name="retryDecide" visibility="public" complexity="7" crap="9.36" count="1"/>
+        <line num="192" type="method" name="retryDecide" visibility="public" complexity="7" crap="7.29" count="1"/>
         <line num="199" type="stmt" count="1"/>
         <line num="200" type="stmt" count="1"/>
         <line num="202" type="stmt" count="1"/>
@@ -72,9 +72,9 @@
         <line num="205" type="stmt" count="1"/>
         <line num="206" type="stmt" count="1"/>
         <line num="207" type="stmt" count="1"/>
-        <line num="211" type="stmt" count="0"/>
+        <line num="211" type="stmt" count="1"/>
         <line num="212" type="stmt" count="0"/>
-        <line num="215" type="stmt" count="0"/>
+        <line num="215" type="stmt" count="1"/>
         <line num="216" type="stmt" count="1"/>
         <line num="219" type="method" name="retryDelay" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="221" type="stmt" count="1"/>
@@ -94,21 +94,21 @@
         <line num="238" type="stmt" count="1"/>
         <line num="239" type="stmt" count="1"/>
         <line num="240" type="stmt" count="1"/>
-        <line num="243" type="method" name="responseToResultTransformer" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="245" type="stmt" count="0"/>
-        <line num="246" type="stmt" count="0"/>
-        <line num="247" type="stmt" count="0"/>
-        <line num="248" type="stmt" count="0"/>
-        <line num="250" type="stmt" count="0"/>
-        <line num="251" type="stmt" count="0"/>
-        <line num="252" type="stmt" count="0"/>
-        <line num="253" type="stmt" count="0"/>
-        <line num="254" type="stmt" count="0"/>
+        <line num="243" type="method" name="responseToResultTransformer" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="245" type="stmt" count="1"/>
+        <line num="246" type="stmt" count="1"/>
+        <line num="247" type="stmt" count="1"/>
+        <line num="248" type="stmt" count="1"/>
+        <line num="250" type="stmt" count="1"/>
+        <line num="251" type="stmt" count="1"/>
+        <line num="252" type="stmt" count="1"/>
+        <line num="253" type="stmt" count="1"/>
+        <line num="254" type="stmt" count="1"/>
         <line num="257" type="method" name="__destruct" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="258" type="stmt" count="0"/>
-        <line num="260" type="method" name="__call" visibility="public" complexity="3" crap="3.21" count="1"/>
+        <line num="260" type="method" name="__call" visibility="public" complexity="3" crap="3.03" count="1"/>
         <line num="262" type="stmt" count="1"/>
-        <line num="263" type="stmt" count="0"/>
+        <line num="263" type="stmt" count="1"/>
         <line num="264" type="stmt" count="1"/>
         <line num="265" type="stmt" count="1"/>
         <line num="266" type="stmt" count="1"/>
@@ -134,22 +134,22 @@
         <line num="304" type="stmt" count="0"/>
         <line num="305" type="stmt" count="0"/>
         <line num="306" type="stmt" count="0"/>
-        <line num="309" type="method" name="upload" visibility="public" complexity="3" crap="12" count="0"/>
-        <line num="310" type="stmt" count="0"/>
-        <line num="311" type="stmt" count="0"/>
-        <line num="312" type="stmt" count="0"/>
-        <line num="313" type="stmt" count="0"/>
+        <line num="309" type="method" name="upload" visibility="public" complexity="3" crap="3.33" count="1"/>
+        <line num="310" type="stmt" count="1"/>
+        <line num="311" type="stmt" count="1"/>
+        <line num="312" type="stmt" count="1"/>
+        <line num="313" type="stmt" count="1"/>
         <line num="314" type="stmt" count="0"/>
         <line num="315" type="stmt" count="0"/>
         <line num="316" type="stmt" count="0"/>
         <line num="317" type="stmt" count="0"/>
         <line num="318" type="stmt" count="0"/>
-        <line num="321" type="stmt" count="0"/>
-        <line num="322" type="stmt" count="0"/>
-        <line num="323" type="stmt" count="0"/>
-        <line num="324" type="stmt" count="0"/>
-        <line num="326" type="stmt" count="0"/>
-        <line num="328" type="stmt" count="0"/>
+        <line num="321" type="stmt" count="1"/>
+        <line num="322" type="stmt" count="1"/>
+        <line num="323" type="stmt" count="1"/>
+        <line num="324" type="stmt" count="1"/>
+        <line num="326" type="stmt" count="1"/>
+        <line num="328" type="stmt" count="1"/>
         <line num="331" type="method" name="download" visibility="public" complexity="5" crap="30" count="0"/>
         <line num="332" type="stmt" count="0"/>
         <line num="333" type="stmt" count="0"/>
@@ -228,31 +228,31 @@
         <line num="442" type="stmt" count="0"/>
         <line num="443" type="stmt" count="0"/>
         <line num="444" type="stmt" count="0"/>
-        <line num="448" type="method" name="explodeKey" visibility="public" complexity="5" crap="30" count="0"/>
-        <line num="450" type="stmt" count="0"/>
-        <line num="453" type="stmt" count="0"/>
-        <line num="454" type="stmt" count="0"/>
-        <line num="455" type="stmt" count="0"/>
-        <line num="456" type="stmt" count="0"/>
+        <line num="448" type="method" name="explodeKey" visibility="public" complexity="5" crap="5.07" count="1"/>
+        <line num="450" type="stmt" count="1"/>
+        <line num="453" type="stmt" count="1"/>
+        <line num="454" type="stmt" count="1"/>
+        <line num="455" type="stmt" count="1"/>
+        <line num="456" type="stmt" count="1"/>
         <line num="457" type="stmt" count="0"/>
-        <line num="459" type="stmt" count="0"/>
+        <line num="459" type="stmt" count="1"/>
         <line num="463" type="method" name="handleSignature" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="465" type="stmt" count="1"/>
         <line num="466" type="stmt" count="1"/>
         <line num="469" type="method" name="handleErrors" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="471" type="stmt" count="1"/>
         <line num="472" type="stmt" count="1"/>
-        <metrics loc="474" ncloc="372" classes="1" methods="24" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="212" coveredstatements="81" elements="236" coveredelements="85"/>
+        <metrics loc="474" ncloc="372" classes="1" methods="24" coveredmethods="5" conditionals="0" coveredconditionals="0" statements="212" coveredstatements="109" elements="236" coveredelements="114"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/CommandToRequestTransformer.php">
         <class name="Qcloud\Cos\CommandToRequestTransformer" namespace="Qcloud\Cos">
-          <metrics complexity="62" methods="11" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="137" coveredstatements="66" elements="148" coveredelements="68"/>
+          <metrics complexity="62" methods="11" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="137" coveredstatements="77" elements="148" coveredelements="80"/>
         </class>
         <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="15" type="stmt" count="1"/>
         <line num="16" type="stmt" count="1"/>
         <line num="17" type="stmt" count="1"/>
-        <line num="21" type="method" name="bucketStyleTransformer" visibility="public" complexity="26" crap="60.95" count="1"/>
+        <line num="21" type="method" name="bucketStyleTransformer" visibility="public" complexity="26" crap="55.72" count="1"/>
         <line num="22" type="stmt" count="1"/>
         <line num="23" type="stmt" count="1"/>
         <line num="24" type="stmt" count="0"/>
@@ -278,7 +278,7 @@
         <line num="56" type="stmt" count="1"/>
         <line num="57" type="stmt" count="1"/>
         <line num="60" type="stmt" count="1"/>
-        <line num="61" type="stmt" count="0"/>
+        <line num="61" type="stmt" count="1"/>
         <line num="65" type="stmt" count="1"/>
         <line num="66" type="stmt" count="1"/>
         <line num="69" type="stmt" count="1"/>
@@ -304,27 +304,27 @@
         <line num="98" type="stmt" count="1"/>
         <line num="99" type="stmt" count="1"/>
         <line num="100" type="stmt" count="1"/>
-        <line num="105" type="method" name="uploadBodyTransformer" visibility="public" complexity="7" crap="25.85" count="1"/>
+        <line num="105" type="method" name="uploadBodyTransformer" visibility="public" complexity="7" crap="7.99" count="1"/>
         <line num="107" type="stmt" count="1"/>
         <line num="108" type="stmt" count="1"/>
         <line num="109" type="stmt" count="1"/>
-        <line num="111" type="stmt" count="0"/>
-        <line num="112" type="stmt" count="0"/>
-        <line num="114" type="stmt" count="0"/>
+        <line num="111" type="stmt" count="1"/>
+        <line num="112" type="stmt" count="1"/>
+        <line num="114" type="stmt" count="1"/>
         <line num="115" type="stmt" count="0"/>
-        <line num="118" type="stmt" count="0"/>
-        <line num="119" type="stmt" count="0"/>
+        <line num="118" type="stmt" count="1"/>
+        <line num="119" type="stmt" count="1"/>
         <line num="121" type="stmt" count="0"/>
         <line num="122" type="stmt" count="0"/>
-        <line num="128" type="method" name="md5Transformer" visibility="public" complexity="5" crap="5.93" count="1"/>
+        <line num="128" type="method" name="md5Transformer" visibility="public" complexity="5" crap="5.03" count="1"/>
         <line num="129" type="stmt" count="1"/>
         <line num="130" type="stmt" count="1"/>
-        <line num="131" type="stmt" count="1"/>
+        <line num="131" type="stmt" count="0"/>
         <line num="133" type="stmt" count="1"/>
         <line num="134" type="stmt" count="1"/>
-        <line num="135" type="stmt" count="0"/>
-        <line num="136" type="stmt" count="0"/>
-        <line num="137" type="stmt" count="0"/>
+        <line num="135" type="stmt" count="1"/>
+        <line num="136" type="stmt" count="1"/>
+        <line num="137" type="stmt" count="1"/>
         <line num="141" type="stmt" count="1"/>
         <line num="146" type="method" name="queryStringTransformer" visibility="public" complexity="3" crap="5.67" count="1"/>
         <line num="147" type="stmt" count="1"/>
@@ -336,12 +336,12 @@
         <line num="153" type="stmt" count="0"/>
         <line num="154" type="stmt" count="0"/>
         <line num="158" type="stmt" count="1"/>
-        <line num="163" type="method" name="metadataTransformer" visibility="public" complexity="3" crap="3.71" count="1"/>
+        <line num="163" type="method" name="metadataTransformer" visibility="public" complexity="3" crap="3" count="1"/>
         <line num="164" type="stmt" count="1"/>
         <line num="165" type="stmt" count="1"/>
-        <line num="166" type="stmt" count="0"/>
-        <line num="167" type="stmt" count="0"/>
-        <line num="168" type="stmt" count="0"/>
+        <line num="166" type="stmt" count="1"/>
+        <line num="167" type="stmt" count="1"/>
+        <line num="168" type="stmt" count="1"/>
         <line num="171" type="stmt" count="1"/>
         <line num="173" type="stmt" count="1"/>
         <line num="178" type="method" name="addMd5" visibility="private" complexity="3" crap="3.07" count="1"/>
@@ -396,7 +396,7 @@
         <line num="257" type="stmt" count="1"/>
         <line num="260" type="method" name="__destruct" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="261" type="stmt" count="1"/>
-        <metrics loc="263" ncloc="239" classes="1" methods="11" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="137" coveredstatements="66" elements="148" coveredelements="68"/>
+        <metrics loc="263" ncloc="239" classes="1" methods="11" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="137" coveredstatements="77" elements="148" coveredelements="80"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Copy.php">
         <class name="Qcloud\Cos\Copy" namespace="Qcloud\Cos">
@@ -557,7 +557,7 @@
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/ExceptionMiddleware.php">
         <class name="Qcloud\Cos\ExceptionMiddleware" namespace="Qcloud\Cos">
-          <metrics complexity="8" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="24" elements="29" coveredelements="27"/>
+          <metrics complexity="8" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="29" coveredelements="29"/>
         </class>
         <line num="19" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="20" type="stmt" count="1"/>
@@ -569,10 +569,10 @@
         <line num="33" type="stmt" count="1"/>
         <line num="35" type="stmt" count="1"/>
         <line num="36" type="stmt" count="1"/>
-        <line num="40" type="method" name="handle" visibility="public" complexity="4" crap="4.02" count="1"/>
+        <line num="40" type="method" name="handle" visibility="public" complexity="4" crap="4" count="1"/>
         <line num="41" type="stmt" count="1"/>
         <line num="42" type="stmt" count="1"/>
-        <line num="43" type="stmt" count="0"/>
+        <line num="43" type="stmt" count="1"/>
         <line num="47" type="stmt" count="1"/>
         <line num="49" type="stmt" count="1"/>
         <line num="50" type="stmt" count="1"/>
@@ -588,7 +588,7 @@
         <line num="66" type="stmt" count="1"/>
         <line num="67" type="stmt" count="1"/>
         <line num="69" type="stmt" count="1"/>
-        <metrics loc="71" ncloc="60" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="24" elements="29" coveredelements="27"/>
+        <metrics loc="71" ncloc="60" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="25" elements="29" coveredelements="29"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/ExceptionParser.php">
         <class name="Qcloud\Cos\ExceptionParser" namespace="Qcloud\Cos">
@@ -649,98 +649,85 @@
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/MultipartUpload.php">
         <class name="Qcloud\Cos\MultipartUpload" namespace="Qcloud\Cos">
-          <metrics complexity="21" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="121" coveredstatements="0" elements="127" coveredelements="0"/>
+          <metrics complexity="21" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="100" coveredstatements="76" elements="106" coveredelements="80"/>
         </class>
-        <line num="22" type="method" name="__construct" visibility="public" complexity="5" crap="30" count="0"/>
-        <line num="23" type="stmt" count="0"/>
-        <line num="24" type="stmt" count="0"/>
-        <line num="25" type="stmt" count="0"/>
-        <line num="26" type="stmt" count="0"/>
-        <line num="27" type="stmt" count="0"/>
-        <line num="28" type="stmt" count="0"/>
-        <line num="29" type="stmt" count="0"/>
-        <line num="31" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
-        <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="35" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="37" type="stmt" count="0"/>
-        <line num="38" type="method" name="performUploading" visibility="public" complexity="2" crap="6" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="0"/>
-        <line num="45" type="stmt" count="0"/>
-        <line num="46" type="stmt" count="0"/>
-        <line num="47" type="stmt" count="0"/>
-        <line num="48" type="stmt" count="0"/>
-        <line num="49" type="stmt" count="0"/>
-        <line num="50" type="stmt" count="0"/>
-        <line num="51" type="stmt" count="0"/>
-        <line num="53" type="stmt" count="0"/>
-        <line num="54" type="method" name="uploadParts" visibility="public" complexity="8" crap="72" count="0"/>
-        <line num="56" type="stmt" count="0"/>
-        <line num="57" type="stmt" count="0"/>
-        <line num="58" type="stmt" count="0"/>
-        <line num="59" type="stmt" count="0"/>
-        <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
-        <line num="62" type="stmt" count="0"/>
-        <line num="63" type="stmt" count="0"/>
-        <line num="64" type="stmt" count="0"/>
-        <line num="65" type="stmt" count="0"/>
-        <line num="66" type="stmt" count="0"/>
-        <line num="67" type="stmt" count="0"/>
-        <line num="68" type="stmt" count="0"/>
-        <line num="69" type="stmt" count="0"/>
-        <line num="70" type="stmt" count="0"/>
+        <line num="22" type="method" name="__construct" visibility="public" complexity="5" crap="5" count="1"/>
+        <line num="23" type="stmt" count="1"/>
+        <line num="24" type="stmt" count="1"/>
+        <line num="25" type="stmt" count="1"/>
+        <line num="26" type="stmt" count="1"/>
+        <line num="27" type="stmt" count="1"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="29" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="33" type="stmt" count="1"/>
+        <line num="34" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="1"/>
+        <line num="38" type="method" name="performUploading" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="48" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="54" type="method" name="uploadParts" visibility="public" complexity="8" crap="8.07" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="61" type="stmt" count="1"/>
+        <line num="62" type="stmt" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="67" type="stmt" count="1"/>
+        <line num="69" type="stmt" count="1"/>
+        <line num="70" type="stmt" count="1"/>
         <line num="71" type="stmt" count="0"/>
-        <line num="72" type="stmt" count="0"/>
-        <line num="73" type="stmt" count="0"/>
+        <line num="73" type="stmt" count="1"/>
         <line num="74" type="stmt" count="0"/>
-        <line num="75" type="stmt" count="0"/>
-        <line num="76" type="stmt" count="0"/>
-        <line num="77" type="stmt" count="0"/>
-        <line num="78" type="stmt" count="0"/>
-        <line num="79" type="stmt" count="0"/>
-        <line num="80" type="stmt" count="0"/>
-        <line num="81" type="stmt" count="0"/>
-        <line num="82" type="stmt" count="0"/>
-        <line num="83" type="stmt" count="0"/>
-        <line num="84" type="stmt" count="0"/>
-        <line num="85" type="stmt" count="0"/>
-        <line num="86" type="stmt" count="0"/>
+        <line num="76" type="stmt" count="1"/>
+        <line num="77" type="stmt" count="1"/>
+        <line num="79" type="stmt" count="1"/>
+        <line num="80" type="stmt" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="82" type="stmt" count="1"/>
+        <line num="83" type="stmt" count="1"/>
+        <line num="84" type="stmt" count="1"/>
+        <line num="86" type="stmt" count="1"/>
         <line num="87" type="stmt" count="0"/>
-        <line num="88" type="stmt" count="0"/>
-        <line num="89" type="stmt" count="0"/>
-        <line num="90" type="stmt" count="0"/>
-        <line num="91" type="stmt" count="0"/>
-        <line num="92" type="stmt" count="0"/>
-        <line num="93" type="stmt" count="0"/>
-        <line num="94" type="stmt" count="0"/>
-        <line num="95" type="stmt" count="0"/>
-        <line num="96" type="stmt" count="0"/>
-        <line num="97" type="stmt" count="0"/>
-        <line num="98" type="stmt" count="0"/>
-        <line num="100" type="stmt" count="0"/>
-        <line num="101" type="stmt" count="0"/>
-        <line num="102" type="stmt" count="0"/>
-        <line num="103" type="stmt" count="0"/>
-        <line num="104" type="stmt" count="0"/>
-        <line num="105" type="stmt" count="0"/>
-        <line num="106" type="stmt" count="0"/>
-        <line num="107" type="stmt" count="0"/>
-        <line num="108" type="stmt" count="0"/>
+        <line num="89" type="stmt" count="1"/>
+        <line num="90" type="stmt" count="1"/>
+        <line num="91" type="stmt" count="1"/>
+        <line num="92" type="stmt" count="1"/>
+        <line num="93" type="stmt" count="1"/>
+        <line num="96" type="stmt" count="1"/>
+        <line num="97" type="stmt" count="1"/>
+        <line num="98" type="stmt" count="1"/>
+        <line num="100" type="stmt" count="1"/>
+        <line num="101" type="stmt" count="1"/>
+        <line num="102" type="stmt" count="1"/>
+        <line num="103" type="stmt" count="1"/>
+        <line num="104" type="stmt" count="1"/>
+        <line num="105" type="stmt" count="1"/>
+        <line num="106" type="stmt" count="1"/>
+        <line num="107" type="stmt" count="1"/>
+        <line num="108" type="stmt" count="1"/>
         <line num="111" type="stmt" count="0"/>
         <line num="112" type="stmt" count="0"/>
-        <line num="113" type="stmt" count="0"/>
-        <line num="114" type="stmt" count="0"/>
-        <line num="115" type="stmt" count="0"/>
-        <line num="116" type="stmt" count="0"/>
-        <line num="117" type="stmt" count="0"/>
+        <line num="113" type="stmt" count="1"/>
+        <line num="115" type="stmt" count="1"/>
+        <line num="116" type="stmt" count="1"/>
+        <line num="117" type="stmt" count="1"/>
         <line num="119" type="method" name="resumeUploading" visibility="public" complexity="4" crap="20" count="0"/>
         <line num="120" type="stmt" count="0"/>
         <line num="121" type="stmt" count="0"/>
@@ -751,34 +738,26 @@
         <line num="126" type="stmt" count="0"/>
         <line num="127" type="stmt" count="0"/>
         <line num="128" type="stmt" count="0"/>
-        <line num="129" type="stmt" count="0"/>
-        <line num="130" type="stmt" count="0"/>
         <line num="131" type="stmt" count="0"/>
         <line num="132" type="stmt" count="0"/>
         <line num="133" type="stmt" count="0"/>
         <line num="134" type="stmt" count="0"/>
-        <line num="135" type="stmt" count="0"/>
         <line num="136" type="stmt" count="0"/>
         <line num="137" type="stmt" count="0"/>
         <line num="138" type="stmt" count="0"/>
         <line num="139" type="stmt" count="0"/>
         <line num="140" type="stmt" count="0"/>
         <line num="141" type="stmt" count="0"/>
-        <line num="142" type="stmt" count="0"/>
-        <line num="143" type="stmt" count="0"/>
-        <line num="145" type="method" name="calculatePartSize" visibility="private" complexity="1" crap="2" count="0"/>
-        <line num="146" type="stmt" count="0"/>
-        <line num="147" type="stmt" count="0"/>
-        <line num="148" type="stmt" count="0"/>
-        <line num="149" type="stmt" count="0"/>
-        <line num="150" type="stmt" count="0"/>
-        <line num="151" type="stmt" count="0"/>
-        <line num="152" type="stmt" count="0"/>
-        <line num="154" type="method" name="initiateMultipartUpload" visibility="private" complexity="1" crap="2" count="0"/>
-        <line num="155" type="stmt" count="0"/>
-        <line num="156" type="stmt" count="0"/>
-        <line num="157" type="stmt" count="0"/>
-        <metrics loc="159" ncloc="159" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="121" coveredstatements="0" elements="127" coveredelements="0"/>
+        <line num="145" type="method" name="calculatePartSize" visibility="private" complexity="1" crap="1" count="1"/>
+        <line num="147" type="stmt" count="1"/>
+        <line num="148" type="stmt" count="1"/>
+        <line num="149" type="stmt" count="1"/>
+        <line num="150" type="stmt" count="1"/>
+        <line num="151" type="stmt" count="1"/>
+        <line num="154" type="method" name="initiateMultipartUpload" visibility="private" complexity="1" crap="1" count="1"/>
+        <line num="155" type="stmt" count="1"/>
+        <line num="156" type="stmt" count="1"/>
+        <metrics loc="159" ncloc="159" classes="1" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="100" coveredstatements="76" elements="106" coveredelements="80"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/RangeDownload.php">
         <class name="Qcloud\Cos\RangeDownload" namespace="Qcloud\Cos">
@@ -906,15 +885,15 @@
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/ResultTransformer.php">
         <class name="Qcloud\Cos\ResultTransformer" namespace="Qcloud\Cos">
-          <metrics complexity="47" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="148" coveredstatements="0" elements="157" coveredelements="0"/>
+          <metrics complexity="47" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="31" elements="118" coveredelements="35"/>
         </class>
-        <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="15" type="stmt" count="0"/>
-        <line num="16" type="stmt" count="0"/>
-        <line num="17" type="stmt" count="0"/>
-        <line num="19" type="method" name="writeDataToLocal" visibility="public" complexity="5" crap="30" count="0"/>
-        <line num="20" type="stmt" count="0"/>
-        <line num="21" type="stmt" count="0"/>
+        <line num="14" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="15" type="stmt" count="1"/>
+        <line num="16" type="stmt" count="1"/>
+        <line num="17" type="stmt" count="1"/>
+        <line num="19" type="method" name="writeDataToLocal" visibility="public" complexity="5" crap="17.13" count="1"/>
+        <line num="20" type="stmt" count="1"/>
+        <line num="21" type="stmt" count="1"/>
         <line num="22" type="stmt" count="0"/>
         <line num="23" type="stmt" count="0"/>
         <line num="24" type="stmt" count="0"/>
@@ -925,50 +904,36 @@
         <line num="29" type="stmt" count="0"/>
         <line num="30" type="stmt" count="0"/>
         <line num="31" type="stmt" count="0"/>
-        <line num="32" type="stmt" count="0"/>
         <line num="33" type="stmt" count="0"/>
-        <line num="34" type="stmt" count="0"/>
-        <line num="35" type="stmt" count="0"/>
-        <line num="36" type="stmt" count="0"/>
-        <line num="38" type="method" name="metaDataTransformer" visibility="public" complexity="4" crap="20" count="0"/>
-        <line num="39" type="stmt" count="0"/>
-        <line num="40" type="stmt" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="0"/>
-        <line num="45" type="stmt" count="0"/>
-        <line num="46" type="stmt" count="0"/>
-        <line num="47" type="stmt" count="0"/>
-        <line num="48" type="stmt" count="0"/>
-        <line num="49" type="stmt" count="0"/>
-        <line num="50" type="stmt" count="0"/>
-        <line num="52" type="method" name="extraHeadersTransformer" visibility="public" complexity="5" crap="30" count="0"/>
-        <line num="53" type="stmt" count="0"/>
-        <line num="54" type="stmt" count="0"/>
-        <line num="55" type="stmt" count="0"/>
-        <line num="56" type="stmt" count="0"/>
-        <line num="57" type="stmt" count="0"/>
-        <line num="58" type="stmt" count="0"/>
-        <line num="59" type="stmt" count="0"/>
-        <line num="60" type="stmt" count="0"/>
-        <line num="61" type="stmt" count="0"/>
-        <line num="63" type="method" name="selectContentTransformer" visibility="public" complexity="2" crap="6" count="0"/>
-        <line num="64" type="stmt" count="0"/>
-        <line num="65" type="stmt" count="0"/>
+        <line num="36" type="stmt" count="1"/>
+        <line num="38" type="method" name="metaDataTransformer" visibility="public" complexity="4" crap="4" count="1"/>
+        <line num="39" type="stmt" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="52" type="method" name="extraHeadersTransformer" visibility="public" complexity="5" crap="5" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="63" type="method" name="selectContentTransformer" visibility="public" complexity="2" crap="2.06" count="1"/>
+        <line num="64" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
         <line num="66" type="stmt" count="0"/>
-        <line num="67" type="stmt" count="0"/>
-        <line num="68" type="stmt" count="0"/>
-        <line num="69" type="stmt" count="0"/>
-        <line num="71" type="method" name="ciContentInfoTransformer" visibility="public" complexity="18" crap="342" count="0"/>
-        <line num="72" type="stmt" count="0"/>
-        <line num="73" type="stmt" count="0"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="71" type="method" name="ciContentInfoTransformer" visibility="public" complexity="18" crap="180.26" count="1"/>
+        <line num="72" type="stmt" count="1"/>
+        <line num="73" type="stmt" count="1"/>
         <line num="74" type="stmt" count="0"/>
         <line num="75" type="stmt" count="0"/>
         <line num="76" type="stmt" count="0"/>
-        <line num="77" type="stmt" count="0"/>
-        <line num="78" type="stmt" count="0"/>
-        <line num="80" type="stmt" count="0"/>
+        <line num="80" type="stmt" count="1"/>
         <line num="81" type="stmt" count="0"/>
         <line num="82" type="stmt" count="0"/>
         <line num="83" type="stmt" count="0"/>
@@ -980,38 +945,23 @@
         <line num="89" type="stmt" count="0"/>
         <line num="90" type="stmt" count="0"/>
         <line num="91" type="stmt" count="0"/>
-        <line num="92" type="stmt" count="0"/>
         <line num="93" type="stmt" count="0"/>
-        <line num="94" type="stmt" count="0"/>
-        <line num="95" type="stmt" count="0"/>
-        <line num="97" type="stmt" count="0"/>
+        <line num="97" type="stmt" count="1"/>
         <line num="98" type="stmt" count="0"/>
         <line num="99" type="stmt" count="0"/>
         <line num="100" type="stmt" count="0"/>
         <line num="101" type="stmt" count="0"/>
         <line num="102" type="stmt" count="0"/>
         <line num="103" type="stmt" count="0"/>
-        <line num="104" type="stmt" count="0"/>
-        <line num="105" type="stmt" count="0"/>
-        <line num="107" type="stmt" count="0"/>
-        <line num="108" type="stmt" count="0"/>
-        <line num="109" type="stmt" count="0"/>
-        <line num="110" type="stmt" count="0"/>
-        <line num="111" type="stmt" count="0"/>
-        <line num="112" type="stmt" count="0"/>
-        <line num="113" type="stmt" count="0"/>
-        <line num="114" type="stmt" count="0"/>
-        <line num="115" type="stmt" count="0"/>
+        <line num="108" type="stmt" count="1"/>
+        <line num="115" type="stmt" count="1"/>
         <line num="116" type="stmt" count="0"/>
         <line num="117" type="stmt" count="0"/>
         <line num="118" type="stmt" count="0"/>
         <line num="119" type="stmt" count="0"/>
         <line num="120" type="stmt" count="0"/>
         <line num="121" type="stmt" count="0"/>
-        <line num="122" type="stmt" count="0"/>
-        <line num="123" type="stmt" count="0"/>
-        <line num="125" type="stmt" count="0"/>
-        <line num="126" type="stmt" count="0"/>
+        <line num="125" type="stmt" count="1"/>
         <line num="128" type="method" name="geCiContentInfo" visibility="public" complexity="3" crap="12" count="0"/>
         <line num="129" type="stmt" count="0"/>
         <line num="130" type="stmt" count="0"/>
@@ -1019,11 +969,8 @@
         <line num="132" type="stmt" count="0"/>
         <line num="133" type="stmt" count="0"/>
         <line num="134" type="stmt" count="0"/>
-        <line num="135" type="stmt" count="0"/>
         <line num="136" type="stmt" count="0"/>
-        <line num="137" type="stmt" count="0"/>
         <line num="138" type="stmt" count="0"/>
-        <line num="139" type="stmt" count="0"/>
         <line num="141" type="method" name="getSelectContents" visibility="public" complexity="8" crap="72" count="0"/>
         <line num="142" type="stmt" count="0"/>
         <line num="143" type="stmt" count="0"/>
@@ -1031,7 +978,6 @@
         <line num="145" type="stmt" count="0"/>
         <line num="146" type="stmt" count="0"/>
         <line num="147" type="stmt" count="0"/>
-        <line num="148" type="stmt" count="0"/>
         <line num="149" type="stmt" count="0"/>
         <line num="150" type="stmt" count="0"/>
         <line num="151" type="stmt" count="0"/>
@@ -1046,26 +992,20 @@
         <line num="162" type="stmt" count="0"/>
         <line num="163" type="stmt" count="0"/>
         <line num="164" type="stmt" count="0"/>
-        <line num="165" type="stmt" count="0"/>
         <line num="166" type="stmt" count="0"/>
         <line num="167" type="stmt" count="0"/>
-        <line num="168" type="stmt" count="0"/>
         <line num="169" type="stmt" count="0"/>
         <line num="170" type="stmt" count="0"/>
-        <line num="171" type="stmt" count="0"/>
         <line num="172" type="stmt" count="0"/>
         <line num="173" type="stmt" count="0"/>
-        <line num="174" type="stmt" count="0"/>
-        <line num="175" type="stmt" count="0"/>
         <line num="176" type="stmt" count="0"/>
         <line num="177" type="stmt" count="0"/>
         <line num="178" type="stmt" count="0"/>
         <line num="179" type="stmt" count="0"/>
-        <line num="180" type="stmt" count="0"/>
         <line num="181" type="stmt" count="0"/>
-        <line num="182" type="method" name="__destruct" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="183" type="stmt" count="0"/>
-        <metrics loc="185" ncloc="185" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="148" coveredstatements="0" elements="157" coveredelements="0"/>
+        <line num="182" type="method" name="__destruct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="183" type="stmt" count="1"/>
+        <metrics loc="185" ncloc="185" classes="1" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="109" coveredstatements="31" elements="118" coveredelements="35"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Serializer.php">
         <class name="Qcloud\Cos\Serializer" namespace="Qcloud\Cos">
@@ -1111,7 +1051,7 @@
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Signature.php">
         <class name="Qcloud\Cos\Signature" namespace="Qcloud\Cos">
-          <metrics complexity="16" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="55" coveredstatements="44" elements="61" coveredelements="46"/>
+          <metrics complexity="16" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="55" coveredstatements="46" elements="61" coveredelements="49"/>
         </class>
         <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="14" type="stmt" count="1"/>
@@ -1122,16 +1062,16 @@
         <line num="28" type="stmt" count="1"/>
         <line num="30" type="method" name="__destruct" visibility="public" complexity="1" crap="2" count="0"/>
         <line num="31" type="stmt" count="0"/>
-        <line num="33" type="method" name="needCheckHeader" visibility="public" complexity="3" crap="3.07" count="1"/>
+        <line num="33" type="method" name="needCheckHeader" visibility="public" complexity="3" crap="3" count="1"/>
         <line num="34" type="stmt" count="1"/>
-        <line num="35" type="stmt" count="0"/>
+        <line num="35" type="stmt" count="1"/>
         <line num="37" type="stmt" count="1"/>
         <line num="38" type="stmt" count="1"/>
         <line num="40" type="stmt" count="1"/>
         <line num="43" type="method" name="signRequest" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="44" type="stmt" count="1"/>
         <line num="45" type="stmt" count="1"/>
-        <line num="48" type="method" name="createAuthorization" visibility="public" complexity="8" crap="8.01" count="1"/>
+        <line num="48" type="method" name="createAuthorization" visibility="public" complexity="8" crap="8" count="1"/>
         <line num="49" type="stmt" count="1"/>
         <line num="50" type="stmt" count="0"/>
         <line num="52" type="stmt" count="1"/>
@@ -1141,7 +1081,7 @@
         <line num="56" type="stmt" count="1"/>
         <line num="57" type="stmt" count="1"/>
         <line num="58" type="stmt" count="1"/>
-        <line num="59" type="stmt" count="0"/>
+        <line num="59" type="stmt" count="1"/>
         <line num="61" type="stmt" count="1"/>
         <line num="63" type="stmt" count="1"/>
         <line num="66" type="stmt" count="1"/>
@@ -1174,7 +1114,7 @@
         <line num="98" type="stmt" count="0"/>
         <line num="100" type="stmt" count="0"/>
         <line num="101" type="stmt" count="0"/>
-        <metrics loc="103" ncloc="99" classes="1" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="55" coveredstatements="44" elements="61" coveredelements="46"/>
+        <metrics loc="103" ncloc="99" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="55" coveredstatements="46" elements="61" coveredelements="49"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/SignatureMiddleware.php">
         <class name="Qcloud\Cos\SignatureMiddleware" namespace="Qcloud\Cos">
@@ -1195,7 +1135,7 @@
       <line num="18" type="stmt" count="1"/>
       <line num="19" type="stmt" count="0"/>
       <line num="21" type="stmt" count="1"/>
-      <line num="25" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="1"/>
       <line num="29" type="stmt" count="0"/>
       <line num="30" type="stmt" count="0"/>
       <line num="31" type="stmt" count="0"/>
@@ -1209,7 +1149,7 @@
       <line num="50" type="stmt" count="1"/>
       <line num="51" type="stmt" count="0"/>
       <line num="54" type="stmt" count="1"/>
-      <metrics loc="55" ncloc="55" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="10" elements="18" coveredelements="10"/>
+      <metrics loc="55" ncloc="55" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="11" elements="18" coveredelements="11"/>
     </file>
     <package name="Qcloud\Cos\Exception">
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Exception/CosException.php">
@@ -1924,24 +1864,24 @@
     <package name="Qcloud\Cos\Request">
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Request/BodyLocation.php">
         <class name="Qcloud\Cos\Request\BodyLocation" namespace="Qcloud\Cos\Request">
-          <metrics complexity="3" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="9" coveredelements="3"/>
+          <metrics complexity="3" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
         </class>
         <line num="24" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="26" type="stmt" count="1"/>
         <line num="27" type="stmt" count="1"/>
-        <line num="36" type="method" name="visit" visibility="public" complexity="2" crap="6" count="0"/>
-        <line num="41" type="stmt" count="0"/>
-        <line num="42" type="stmt" count="0"/>
+        <line num="36" type="method" name="visit" visibility="public" complexity="2" crap="2.03" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
         <line num="43" type="stmt" count="0"/>
-        <line num="46" type="stmt" count="0"/>
-        <line num="47" type="stmt" count="0"/>
-        <metrics loc="49" ncloc="31" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="2" elements="9" coveredelements="3"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
+        <metrics loc="49" ncloc="31" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
       </file>
     </package>
     <package name="Qcloud\Cos\Tests">
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Tests/COSTest.php">
         <class name="Qcloud\Cos\Tests\COSTest" namespace="Qcloud\Cos\Tests">
-          <metrics complexity="192" methods="85" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="886" coveredstatements="20" elements="971" coveredelements="22"/>
+          <metrics complexity="190" methods="84" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="875" coveredstatements="29" elements="959" coveredelements="32"/>
         </class>
         <line num="16" type="method" name="setUp" visibility="protected" complexity="2" crap="2" count="1"/>
         <line num="18" type="stmt" count="1"/>
@@ -1958,12 +1898,12 @@
         <line num="36" type="stmt" count="1"/>
         <line num="38" type="method" name="tearDown" visibility="protected" complexity="1" crap="1" count="1"/>
         <line num="39" type="stmt" count="1"/>
-        <line num="41" type="method" name="generateRandomString" complexity="2" crap="6" count="0"/>
-        <line num="42" type="stmt" count="0"/>
-        <line num="43" type="stmt" count="0"/>
-        <line num="44" type="stmt" count="0"/>
-        <line num="45" type="stmt" count="0"/>
-        <line num="47" type="stmt" count="0"/>
+        <line num="41" type="method" name="generateRandomString" complexity="2" crap="2" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="47" type="stmt" count="1"/>
         <line num="50" type="method" name="generateRandomFile" complexity="1" crap="2" count="0"/>
         <line num="51" type="stmt" count="0"/>
         <line num="52" type="stmt" count="0"/>
@@ -2521,21 +2461,21 @@
         <line num="1306" type="stmt" count="0"/>
         <line num="1307" type="stmt" count="0"/>
         <line num="1309" type="stmt" count="0"/>
-        <line num="1315" type="method" name="testUploadLargeObjectMeta" visibility="public" complexity="2" crap="6" count="0"/>
-        <line num="1317" type="stmt" count="0"/>
-        <line num="1319" type="stmt" count="0"/>
-        <line num="1320" type="stmt" count="0"/>
-        <line num="1322" type="stmt" count="0"/>
-        <line num="1323" type="stmt" count="0"/>
-        <line num="1324" type="stmt" count="0"/>
-        <line num="1325" type="stmt" count="0"/>
-        <line num="1326" type="stmt" count="0"/>
-        <line num="1327" type="stmt" count="0"/>
-        <line num="1328" type="stmt" count="0"/>
+        <line num="1315" type="method" name="testUploadLargeObjectMeta" visibility="public" complexity="2" crap="2.04" count="1"/>
+        <line num="1317" type="stmt" count="1"/>
+        <line num="1319" type="stmt" count="1"/>
+        <line num="1320" type="stmt" count="1"/>
+        <line num="1322" type="stmt" count="1"/>
+        <line num="1323" type="stmt" count="1"/>
+        <line num="1324" type="stmt" count="1"/>
+        <line num="1325" type="stmt" count="1"/>
+        <line num="1326" type="stmt" count="1"/>
+        <line num="1327" type="stmt" count="1"/>
+        <line num="1328" type="stmt" count="1"/>
         <line num="1329" type="stmt" count="0"/>
         <line num="1330" type="stmt" count="0"/>
         <line num="1331" type="stmt" count="0"/>
-        <line num="1333" type="stmt" count="0"/>
+        <line num="1333" type="stmt" count="1"/>
         <line num="1340" type="method" name="testPutObjectMeta2K" visibility="public" complexity="2" crap="6" count="0"/>
         <line num="1342" type="stmt" count="0"/>
         <line num="1343" type="stmt" count="0"/>
@@ -2901,20 +2841,8 @@
         <line num="2075" type="stmt" count="0"/>
         <line num="2076" type="stmt" count="0"/>
         <line num="2077" type="stmt" count="0"/>
-        <line num="2080" type="stmt" count="0"/>
-        <line num="2086" type="method" name="testPutBucketReferer" visibility="public" complexity="2" crap="2.19" count="1"/>
-        <line num="2088" type="stmt" count="1"/>
-        <line num="2090" type="stmt" count="1"/>
-        <line num="2091" type="stmt" count="1"/>
-        <line num="2092" type="stmt" count="1"/>
-        <line num="2099" type="stmt" count="1"/>
-        <line num="2102" type="stmt" count="0"/>
-        <line num="2104" type="stmt" count="0"/>
-        <line num="2107" type="stmt" count="0"/>
-        <line num="2108" type="stmt" count="1"/>
-        <line num="2109" type="stmt" count="1"/>
-        <line num="2111" type="stmt" count="0"/>
-        <metrics loc="2112" ncloc="1698" classes="1" methods="85" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="886" coveredstatements="20" elements="971" coveredelements="22"/>
+        <line num="2079" type="stmt" count="0"/>
+        <metrics loc="2080" ncloc="1674" classes="1" methods="84" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="875" coveredstatements="29" elements="959" coveredelements="32"/>
       </file>
       <file name="/Users/tuuna/Git/tuuna-php/src/Qcloud/Cos/Tests/TestHelper.php">
         <class name="Qcloud\Cos\Tests\TestHelper" namespace="Qcloud\Cos\Tests">
@@ -2956,6 +2884,6 @@
         <metrics loc="44" ncloc="42" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="0" elements="33" coveredelements="0"/>
       </file>
     </package>
-    <metrics files="29" loc="13382" ncloc="12407" classes="27" methods="321" coveredmethods="45" conditionals="0" coveredconditionals="0" statements="2453" coveredstatements="329" elements="2774" coveredelements="374"/>
+    <metrics files="29" loc="13350" ncloc="12383" classes="27" methods="320" coveredmethods="58" conditionals="0" coveredconditionals="0" statements="2382" coveredstatements="492" elements="2702" coveredelements="550"/>
   </project>
 </coverage>
