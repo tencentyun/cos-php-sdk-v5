@@ -159,7 +159,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
-     * put bucket，设置bucket公公权限为private
+     * put bucket，设置bucket公共权限为private
      * 200
      */
     public function testCreatePrivateBucket()
@@ -182,7 +182,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     }
 
     /*
-     * put bucket，设置bucket公公权限为public-read
+     * put bucket，设置bucket公共权限为public-read
      * 200
      */
     public function testCreatePublicReadBucket()
