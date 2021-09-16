@@ -47,6 +47,10 @@ SDK 安装有三种方式：
 
 推荐使用 Composer 安装 cos-php-sdk-v5，Composer 是 PHP 的依赖管理工具，允许您声明项目所需的依赖，然后自动将它们安装到您的项目中。
 
+```bash
+composer require qcloud/cos-sdk-v5
+```
+
 > 您可以在 [Composer 官网](https://getcomposer.org/) 上找到更多关于如何安装 Composer，配置自动加载以及用于定义依赖项的其他最佳实践等相关信息。
 
 #### 安装步骤：
@@ -54,7 +58,7 @@ SDK 安装有三种方式：
 1. 打开终端。
 2. 下载 Composer，执行以下命令。
 
-```
+```bash
 curl -sS https://getcomposer.org/installer | php
 ```
 
@@ -70,7 +74,7 @@ curl -sS https://getcomposer.org/installer | php
 
 4. 使用 Composer 安装，执行以下命令。
 
-```
+```bash
 php composer.phar install
 ```
 
@@ -305,6 +309,6 @@ try {
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
     echo $signedUrl;
 } catch (\Exception $e) {
-    print_r($e);
+    echo "$e\n";
 }
 ```
