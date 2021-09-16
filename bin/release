@@ -6,7 +6,7 @@
  * Usage: php bin/release or php bin/release version
  */
 
-require_once 'vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 use Qcloud\Cos\Client;
 use Qcloud\Cos\Service;

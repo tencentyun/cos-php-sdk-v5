@@ -4,3 +4,4 @@ composer.lock
 vendor/
 *.DS_Store
 index.php
+clover.xml

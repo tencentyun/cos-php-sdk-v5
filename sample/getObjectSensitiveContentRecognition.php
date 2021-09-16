@@ -17,7 +17,8 @@ try {
     $result = $cosClient->getObjectSensitiveContentRecognition(array(
         'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
         'Key' => 'exampleobject',
-        'DetectType' => 'porn,politics' //可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
+        'DetectType' => 'porn,politics', //可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
+        'ci-process' => 'sensitive-content-recognition',
 //      'Interval' => 5, // 审核gif时使用 截帧的间隔
 //      'MaxFrames' => 5, // 针对 GIF 动图审核的最大截帧数量，需大于0。
 //      'BizType' => '', // 审核策略
@@ -33,6 +34,7 @@ try {
         'Key' => '/', // 链接图片资源路径写 / 即可
         'DetectType' => 'porn,ads',//可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
         'DetectUrl' => $imgUrl,
+        'ci-process' => 'sensitive-content-recognition',
 //      'Interval' => 5, // 审核gif时使用 截帧的间隔
 //      'MaxFrames' => 5, // 针对 GIF 动图审核的最大截帧数量，需大于0。
 //      'BizType' => '', // 审核策略

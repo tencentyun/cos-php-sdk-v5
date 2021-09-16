@@ -18,7 +18,7 @@ class ResultTransformer {
 
     public function writeDataToLocal(CommandInterface $command, RequestInterface $request, ResponseInterface $response) {
         $action = $command->getName();
-        if ($action == "GetObject") {
+        if ($action == "GetObject" || $action == "GetSnapshot") {
             if (isset($command['SaveAs'])) {
                 $fp = fopen($command['SaveAs'], "wb");
                 $stream = $response->getBody();

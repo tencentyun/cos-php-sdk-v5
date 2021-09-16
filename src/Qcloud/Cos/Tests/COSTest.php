@@ -2054,14 +2054,13 @@ class COSTest extends \PHPUnit\Framework\TestCase
         }
     }
 
-
     /*
      * 文本检测
      *
      * 200
      */
     public function testDetectText() {
-        $content = '约炮';
+        $content = '敏感词';
         try {
             $result = $this->cosClient->detectText(array(
                 'Bucket' => $this->bucket, //格式：BucketName-APPID
@@ -2077,6 +2076,5 @@ class COSTest extends \PHPUnit\Framework\TestCase
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true);
         }
-
     }
 }

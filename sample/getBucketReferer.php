@@ -9,24 +9,17 @@ $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
         'schema' => 'https', //协议头部，默认为http
-        'credentials'=> array(
-            'secretId'  => $secretId ,
+        'credentials' => array(
+            'secretId' => $secretId,
             'secretKey' => $secretKey)));
-$local_path = "/data/exampleobject";
 try {
-    $result = $cosClient->copy(
-        $bucket = 'examplebucket-125000000', //格式：BucketName-APPID
-        $key = 'exampleobject',
-        $copySource = array(
-            'Region' => '<sourceRegion>', 
-            'Bucket' => '<sourceBucket>', 
-            'Key' => '<sourceKey>', 
+    $result = $cosClient->getBucketReferer(array(
+            'Bucket' => 'examplebucket-125000000' //格式：BucketName-APPID
         )
     );
     // 请求成功
-    print_r($result);
+    echo($result);
 } catch (\Exception $e) {
     // 请求失败
     echo($e);
 }
-

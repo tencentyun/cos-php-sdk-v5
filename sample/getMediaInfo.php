@@ -12,21 +12,18 @@ $cosClient = new Qcloud\Cos\Client(
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
-$local_path = "/data/exampleobject";
+
 try {
-    $result = $cosClient->copy(
-        $bucket = 'examplebucket-125000000', //格式：BucketName-APPID
-        $key = 'exampleobject',
-        $copySource = array(
-            'Region' => '<sourceRegion>', 
-            'Bucket' => '<sourceBucket>', 
-            'Key' => '<sourceKey>', 
+    $result = $cosClient->GetMediaInfo(
+        array(
+            'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+            'Key' =>'exampleobject', //桶中的媒体文件,如test.mp4
+            'ci-process' => 'videoinfo' //操作类型，固定使用 videoinfo
         )
     );
     // 请求成功
-    print_r($result);
+    echo($result);
 } catch (\Exception $e) {
     // 请求失败
     echo($e);
 }
-
