@@ -17,7 +17,7 @@ try {
     $result = $cosClient->copy(
         $bucket = 'examplebucket-125000000', //格式：BucketName-APPID
         $key = 'exampleobject',
-        $copySorce = array(
+        $copySource = array(
             'Region' => '<sourceRegion>', 
             'Bucket' => '<sourceBucket>', 
             'Key' => '<sourceKey>', 
