@@ -4,38 +4,19 @@
 
 [![Latest Stable Version](https://poser.pugx.org/qcloud/cos-sdk-v5/v/stable)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 [![Total Downloads](https://img.shields.io/packagist/dt/qcloud/cos-sdk-v5.svg?style=flat)](https://packagist.org/packages/qcloud/cos-sdk-v5)
-[![Build Status](https://travis-ci.com/tencentyun/cos-php-sdk-v5.svg?branch=master)](https://travis-ci.com/tencentyun/cos-php-sdk-v5)
+[![PHP 7.3](https://github.com/tencentyun/cos-php-sdk-v5/actions/workflows/php7.3.yml/badge.svg)](https://github.com/tencentyun/cos-php-sdk-v5/actions/workflows/php7.3.yml)
 [![codecov](https://codecov.io/gh/tencentyun/cos-php-sdk-v5/branch/master/graph/badge.svg)](https://codecov.io/gh/tencentyun/cos-php-sdk-v5)
+[![PHP Version](https://img.shields.io/badge/php-%3E=5.6-blue.svg)](https://www.php.net)
 
-## 环境准备
+## 依赖
 
-### PHP Version
-
-PHP 5.6+ 您可以通过`php -v`命令查看当前的 PHP 版本。
-
+- [x] PHP >= 5.6
 > 如果您的 php 版本 `>=5.3` 且 `<5.6` , 请使用 [v1.3](https://github.com/tencentyun/cos-php-sdk-v5/tree/1.3) 版本
 
-### CURL 扩展安装
+- [x] ext-curl
+- [x] ext-json
 
-cURL 扩展 您可以通过`php -m`命令查看 cURL 扩展是否已经安装好。
-
-#### debian/ubuntu 系统安装
-
-debian/ubuntu 系统中，您可以使用 apt-get 包管理器安装 PHP 的 cURL 扩展，安装命令如下。
-
-```bash
-sudo apt-get install php-curl
-```
-
-#### CentOS 系统
-
-CentOS 系统中，您可以使用 yum 包管理器安装 PHP 的 cURL 扩展。
-
-```bash
-sudo yum install php-curl
-```
-
-## SDK 安装
+## 安装
 
 SDK 安装有三种方式：
 
@@ -53,16 +34,16 @@ composer require qcloud/cos-sdk-v5
 
 > 您可以在 [Composer 官网](https://getcomposer.org/) 上找到更多关于如何安装 Composer，配置自动加载以及用于定义依赖项的其他最佳实践等相关信息。
 
-#### 安装步骤：
+#### 安装步骤
 
-1. 打开终端。
-2. 下载 Composer，执行以下命令。
+1. 打开终端；
+2. 下载 Composer，执行以下命令：
 
 ```bash
 curl -sS https://getcomposer.org/installer | php
 ```
 
-3. 创建一个名为`composer.json`的文件，内容如下。
+3. 创建一个名为`composer.json`的文件，内容如下：
 
 ```json
 {
@@ -72,7 +53,7 @@ curl -sS https://getcomposer.org/installer | php
 }
 ```
 
-4. 使用 Composer 安装，执行以下命令。
+4. 使用 Composer 安装，执行以下命令：
 
 ```bash
 php composer.phar install
@@ -80,7 +61,7 @@ php composer.phar install
 
 使用该命令后会在当前目录中创建一个 vendor 文件夹，里面包含 SDK 的依赖库和一个 autoload.php 脚本，方便在项目中调用。
 
-5. 通过 autoload.php 脚本调用 cos-php-sdk-v5。
+5. 通过 autoload.php 脚本调用 cos-php-sdk-v5：
 
 ```php
 require '/path/to/vendor/autoload.php';
@@ -92,7 +73,9 @@ require '/path/to/vendor/autoload.php';
 
 Phar 方式安装 SDK 的步骤如下：
 
-1. 在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 phar 文件。对于PHP版本`>= 5.6`且`<7.2.5`，请下载`cos-sdk-v5-6.phar`，以使用Guzzle6版本。对于PHP版本`>=7.2.5`的请下载`cos-sdk-v5-7.phar`以使用Guzzle7版本。
+1. 在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 phar 文件；
+> 对于 PHP 版本`>= 5.6`且`<7.2.5`的用户请下载`cos-sdk-v5-6.phar`以使用 Guzzle6 版本。  
+> 对于 PHP 版本`>=7.2.5`的用户请下载`cos-sdk-v5-7.phar`以使用 Guzzle7 版本。
 2. 在代码中引入 phar 文件：
 
 ```php
@@ -103,8 +86,10 @@ require '/path/to/cos-sdk-v5.phar';
 
 源码方式安装 SDK 的步骤如下：
 
-1.  在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 cos-sdk-v5.tar.gz 文件。对于PHP版本`>= 5.6`且`<7.2.5`，请下载`cos-sdk-v5-6.tar.gz`，以使用Guzzle6版本。对于PHP版本`>=7.2.5`的请下载`cos-sdk-v5-7.tar.gz`,以使用Guzzle7版本。
-2.  解压后通过 autoload.php 脚本加载 SDK：
+1. 在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 cos-sdk-v5.tar.gz 文件；
+> 对于 PHP 版本`>= 5.6`且`<7.2.5`的用户请下载`os-sdk-v5-6.tar.gz`以使用 Guzzle6 版本。  
+> 对于 PHP 版本`>=7.2.5`的用户请下载`cos-sdk-v5-7.tar.gz`以使用 Guzzle7 版本。
+2. 解压后通过 autoload.php 脚本加载 SDK：
 
 ```php
 require '/path/to/cos-php-sdk-v5/vendor/autoload.php';
@@ -112,7 +97,7 @@ require '/path/to/cos-php-sdk-v5/vendor/autoload.php';
 
 ## 快速入门
 
-可参照 Demo 程序，详见 [sample 目录](https://github.com/tencentyun/cos-php-sdk-v5/tree/master/sample)。
+可参照 Demo 程序，详见 [sample 目录](https://github.com/tencentyun/cos-php-sdk-v5/tree/master/sample) 。
 
 ## 接口文档
 
@@ -304,7 +289,7 @@ try {
     echo "$e\n";
 }
 
-## getObjectUrl(获取文件UrL)
+## getObjectUrl(获取文件Url)
 try {
     $signedUrl = $cosClient->getObjectUrl($bucket, $key, '+10 minutes');
     echo $signedUrl;

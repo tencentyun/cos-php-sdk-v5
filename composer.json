@@ -27,6 +27,8 @@
     },
     "require": {
         "php": ">=5.6",
+        "ext-curl": "*",
+        "ext-json": "*",
         "guzzlehttp/guzzle": ">=6.2.1",
         "guzzlehttp/guzzle-services": ">=1.1",
         "guzzlehttp/psr7": "<2.0"
