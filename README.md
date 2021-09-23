@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/qcloud/cos-sdk-v5/v/stable)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 [![Total Downloads](https://img.shields.io/packagist/dt/qcloud/cos-sdk-v5.svg?style=flat)](https://packagist.org/packages/qcloud/cos-sdk-v5)
-[![PHP 7.3](https://github.com/tencentyun/cos-php-sdk-v5/actions/workflows/php7.3.yml/badge.svg)](https://github.com/tencentyun/cos-php-sdk-v5/actions/workflows/php7.3.yml)
+[![PHPUnit for COS](https://github.com/tencentyun/cos-php-sdk-v5/actions/workflows/test.yml/badge.svg)](https://github.com/tencentyun/cos-php-sdk-v5/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/tencentyun/cos-php-sdk-v5/branch/master/graph/badge.svg)](https://codecov.io/gh/tencentyun/cos-php-sdk-v5)
 [![PHP Version](https://img.shields.io/badge/php-%3E=5.6-blue.svg)](https://www.php.net)
 
