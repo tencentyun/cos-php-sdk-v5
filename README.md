@@ -92,7 +92,7 @@ require '/path/to/vendor/autoload.php';
 
 Phar 方式安装 SDK 的步骤如下：
 
-1. 在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 phar 文件。对于PHP版本`>= 5.6`且`<7.2.5`，请下载`cos-sdk-v5-6.phar`，1⃣️使用Guzzle6版本。对于PHP版本`>=7.2.5`的请下载`cos-sdk-v5-7.phar`以使用Guzzle7版本。
+1. 在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 phar 文件。对于PHP版本`>= 5.6`且`<7.2.5`，请下载`cos-sdk-v5-6.phar`，以使用Guzzle6版本。对于PHP版本`>=7.2.5`的请下载`cos-sdk-v5-7.phar`以使用Guzzle7版本。
 2. 在代码中引入 phar 文件：
 
 ```php
