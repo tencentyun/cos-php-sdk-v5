@@ -1,14 +1,8 @@
 name: Tencent Laravel 8
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
-  test:
+  build:
     name: Test
     runs-on: ubuntu-latest
     container:
