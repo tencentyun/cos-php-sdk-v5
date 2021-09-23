@@ -1,11 +1,5 @@
 name: PHP 7.1
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: [push, pull_request]
 
 env:
   COS_REGION: ${{ secrets.COS_REGION }}
@@ -15,22 +9,25 @@ env:
   COS_BUCKET: ${{ secrets.COS_BUCKET }}
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
-    container:
-      image: php:7.1
+    name: PHP ${{ matrix.php-versions }} Test on ${{ matrix.os }}
+    runs-on: "${{ matrix.os }}"
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        php-versions: [ '7.1' ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: phpunit,composer
+          coverage: none
       - name: Test
         run: |
-          apt update
-          apt install -y libzip-dev unzip
-          docker-php-ext-install zip
-          curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+          sudo apt update
+          sudo apt install -y libzip-dev unzip libxml2-dev
           composer install
           composer require --dev phpunit/phpunit
           ./vendor/bin/phpunit
-      - name: codecov
-        uses: codecov/codecov-action@v2
