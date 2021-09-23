@@ -13,7 +13,6 @@ use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
-use Qcloud\Cos\Exception\CosException;
 
 /**
  * @method object AbortMultipartUpload (array $arg)
@@ -125,8 +124,8 @@ class Client extends GuzzleClient {
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
         $this->cosConfig['region'] = isset($cosConfig['region']) ? region_map($cosConfig['region']) : null;
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
-        $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : "";
-        $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : "";
+        $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : '';
+        $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : '';
         $this->cosConfig['anonymous'] = isset($cosConfig['credentials']['anonymous']) ? $cosConfig['anonymous']['anonymous'] : false;
         $this->cosConfig['token'] = isset($cosConfig['credentials']['token']) ? $cosConfig['credentials']['token'] : null;
         $this->cosConfig['timeout'] = isset($cosConfig['timeout']) ? $cosConfig['timeout'] : 3600;
@@ -141,11 +140,10 @@ class Client extends GuzzleClient {
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
-        try {
-            $this->inputCheck();
-        } catch (\Exception $e) {
-            throw $e;
-        }
+
+        // check config
+        $this->inputCheck();
+
         $service = Service::getService();
         $handler = HandlerStack::create();
         $handler->push(Middleware::retry($this->retryDecide(), $this->retryDelay()));
@@ -182,7 +180,7 @@ class Client extends GuzzleClient {
             $this->cosConfig['domain'] == null && 
             $this->cosConfig['endpoint'] == null && 
             $this->cosConfig['ip'] == null) {
-            $e = new CosException('Region is empty');
+            $e = new Exception\CosException('Region is empty');
             $e->setExceptionCode('Invalid Argument');
             throw $e;
         }
@@ -202,7 +200,7 @@ class Client extends GuzzleClient {
         if ($response != null && $response->getStatusCode() >= 400 ) {
             return true;
         }
-        if ($exception instanceof \Qcloud\Cos\Exception\ServiceResponseException) {
+        if ($exception instanceof Exception\ServiceResponseException) {
             if ($exception->getStatusCode() >= 400) {
                 return true;
             }
@@ -331,25 +329,23 @@ class Client extends GuzzleClient {
     public function download($bucket, $key, $saveAs, $options = array()) {
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : RangeDownload::DEFAULT_PART_SIZE;
         $contentLength = 0;
-        $versionId = isset($options['VersionId']) ? $options['VersionId'] : "";
-        try {
-            $rt = $this->headObject(array(
-                    'Bucket'=>$bucket,
-                    'Key'=>$key,
-                    'VersionId'=>$versionId,
-                )
-            );
-            $contentLength = $rt['ContentLength'];
-            $resumableJson = [
-                'LastModified' => $rt['LastModified'],
-                'ContentLength' => $rt['ContentLength'],
-                'ETag' => $rt['ETag'],
-                'Crc64ecma' => $rt['Crc64ecma']
-            ];
-            $options['ResumableJson'] = $resumableJson;
-        } catch (\Exception $e) {
-            throw ($e);
-        }
+        $versionId = isset($options['VersionId']) ? $options['VersionId'] : '';
+
+        $rt = $this->headObject(array(
+                'Bucket'=>$bucket,
+                'Key'=>$key,
+                'VersionId'=>$versionId,
+            )
+        );
+        $contentLength = $rt['ContentLength'];
+        $resumableJson = [
+            'LastModified' => $rt['LastModified'],
+            'ContentLength' => $rt['ContentLength'],
+            'ETag' => $rt['ETag'],
+            'Crc64ecma' => $rt['Crc64ecma']
+        ];
+        $options['ResumableJson'] = $resumableJson;
+
         if ($contentLength < $options['PartSize']) {
             $rt = $this->getObject(array(
                     'Bucket' => $bucket,
@@ -388,26 +384,22 @@ class Client extends GuzzleClient {
         $sourceConfig = $this->rawCosConfig;
         $sourceConfig['region'] = $copySource['Region'];
         $cosSourceClient = new Client($sourceConfig);
-        $copySource['VersionId'] = isset($copySource['VersionId']) ? $copySource['VersionId'] : "";
-        try {
-            $rt = $cosSourceClient->headObject(
-                array('Bucket'=>$copySource['Bucket'],
-                    'Key'=>$copySource['Key'],
-                    'VersionId'=>$copySource['VersionId'],
-                )
-            );
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        $copySource['VersionId'] = isset($copySource['VersionId']) ? $copySource['VersionId'] : '';
 
-        $contentLength =$rt['ContentLength'];
+        $rt = $cosSourceClient->headObject(
+            array('Bucket'=>$copySource['Bucket'],
+                'Key'=>$copySource['Key'],
+                'VersionId'=>$copySource['VersionId'],
+            )
+        );
+
+        $contentLength = $rt['ContentLength'];
         // sample copy
         if ($contentLength < $options['PartSize']) {
             $rt = $this->copyObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
-                    'CopySource'   => $copySource['Bucket']. '.cos.'. $copySource['Region'].
-                                      ".myqcloud.com/". $copySource['Key']. "?versionId=". $copySource['VersionId'],
+                    'CopySource'   => "{$copySource['Bucket']}.cos.{$copySource['Region']}.myqcloud.com/{$copySource['Key']}?versionId={$copySource['VersionId']}",
                 ) + $options
             );
             return $rt;
@@ -427,9 +419,9 @@ class Client extends GuzzleClient {
         try {
             $this->HeadBucket(array(
                 'Bucket' => $bucket));
-            return True;
+            return true;
         } catch (\Exception $e){
-            return False;
+            return false;
         }
     }
 
@@ -439,9 +431,9 @@ class Client extends GuzzleClient {
             $this->HeadObject(array(
                 'Bucket' => $bucket,
                 'Key' => $key));
-            return True;
+            return true;
         } catch (\Exception $e){
-            return False;
+            return false;
         }
     }
     
