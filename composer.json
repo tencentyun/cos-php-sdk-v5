@@ -31,7 +31,7 @@
         "ext-json": "*",
         "guzzlehttp/guzzle": ">=6.2.1",
         "guzzlehttp/guzzle-services": ">=1.1",
-        "guzzlehttp/psr7": "<2.0"
+        "guzzlehttp/psr7": "<=2.0"
     },
     "config": {
         "platform-check": false

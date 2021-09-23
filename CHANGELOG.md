@@ -1,5 +1,9 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.3.2 to 2.3.3
+---------
+- 修复laravel8中guzzlehttp/psr7报错问题
+- 清理无用代码
 
 2.3.1 to 2.3.2
 ---------
