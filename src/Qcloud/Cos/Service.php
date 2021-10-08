@@ -2130,12 +2130,7 @@ class Service {
                             'required' => true,
                             'type' => 'string',
                             'location' => 'xml',
-                        ),
-                        'Type' => array(
-                            'required' => true,
-                            'type' => 'string',
-                            'location' => 'xml',
-                        ),
+                        )
                     ),
                 ),
                 // 配置存储桶（Bucket) website的方法.

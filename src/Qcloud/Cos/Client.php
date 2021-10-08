@@ -107,7 +107,7 @@ use GuzzleHttp\Psr7;
  * @method object GetDetectDocumentResult (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.3.3';
+    const VERSION = '2.3.4';
 
     public $httpClient;
     

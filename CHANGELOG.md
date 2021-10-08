@@ -1,5 +1,10 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.3.3 to 2.3.4
+---------
+- 修复laravel8中guzzlehttp/psr7报错问题,后续重新整理依赖
+- 修复putBucketAccelerate接口与目前API不一致的问题
+
 2.3.2 to 2.3.3
 ---------
 - 修复laravel8中guzzlehttp/psr7报错问题
