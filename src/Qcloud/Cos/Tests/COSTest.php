@@ -2072,9 +2072,152 @@ class COSTest extends \PHPUnit\Framework\TestCase
                     'BizType' => '',
                 ),
             ));
+            $this->cosClient->getDetectTextResult(array(
+                'Bucket' => $this->bucket, //格式：BucketName-APPID
+                'Key' => $result['JobsDetail']['JobId'], // JobId
+            ));
             $this->assertTrue(true);
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true);
         }
     }
+
+//    /*
+//     * ci相关
+//     */
+//    public function testSensitiveContent() {
+//        try {
+//            $result = $this->cosClient->getObjectSensitiveContentRecognition(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Key' => '1.png', //待审核图片对象路径,如pic/test.png
+//                'DetectType' => 'porn,politics,terrorist,ads', //可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
+//                'ci-process' => 'sensitive-content-recognition'//操作类型，固定使用 sensitive-content-recognition
+//            ));
+//            $this->assertTrue(true);
+//        } catch (ServiceResponseException $e) {
+//            $this->assertFalse(true);
+//        }
+//    }
+//
+//    public function testDetectVideo() {
+//        try {
+//            $result = $this->cosClient->detectVideo(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Input' => array(
+//                    'Object' => 'movie.mp4',
+//                ),
+//                'Conf' => array(
+//                    'DetectType' => 'Porn,Terrorism,Politics,Ads', //可选四种参数：Porn,Politics,Terrorist,Ads，可使用多种规则，注意规则间不要加空格
+//                    'BizType' => '', //审核策略
+//                    'DetectContent' => 1, //是否审核视频声音，默认0
+//                    'Snapshot' => array(
+//                        'Mode' => 'Interval', //截帧模式。Interval,Average,Fps
+//                        'TimeInterval' => 50, //视频截帧数量
+//                        'Count' => '100', //视频截帧频率
+//                    ),//截取截图
+//                ),
+//            ));
+//             $this->cosClient->detectVideo(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Key' => $result['JobsDetail']['JobId'], // JobId
+//            ));
+//            // 请求成功
+//            $this->assertTrue(true);
+//        } catch (\Exception $e) {
+//            // 请求失败
+//            $this->assertFalse(true);
+//        }
+//    }
+//
+//    public function testDetectDocumentResult() {
+//        try {
+//            $result = $this->cosClient->detectDocument(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Input' => array(
+//                    'Url' => 'https://872400-1251668577.cos.ap-guangzhou.myqcloud.com/1.docx', //文档文件的链接地址
+//                    'Type' => 'docx', //文档文件类型
+//                ),
+//                'Conf' => array(
+//                    'DetectType' => 'Porn,Terrorism,Politics,Ads', //可选四种参数：Porn,Politics,Terrorist,Ads，可使用多种规则，注意规则间不要加空格
+//                    'BizType' => '', //审核策略
+//                ),
+//            ));
+//            $this->cosClient->getDetectDocumentResult(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Key' => $result['JobsDetail']['JobId'], // JobId
+//            ));
+//            // 请求成功
+//            $this->assertTrue(true);
+//        } catch (\Exception $e) {
+//            // 请求失败
+//            $this->assertFalse(true);
+//        }
+//    }
+//
+//    public function testDetectAudio() {
+//        try {
+//            $result = $this->cosClient->detectAudio(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Input' => array(
+//                    'Object' => 'sound01.mp3',
+//                ),
+//                'Conf' => array(
+//                    'DetectType' => 'Porn,Terrorism,Politics,Ads',//可选六种参数：Porn,Politics,Terrorist,Ads,Illegal,Abuse，可使用多种规则，注意规则间不要加空格
+//                    'BizType' => '',//审核策略
+//                ),
+//            ));
+//            $this->cosClient->getDetectAudioResult(array(
+//                'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                'Key' => $result['JobsDetail']['JobId'], // JobId
+//            ));
+//            // 请求成功
+//            $this->assertTrue(true);
+//        } catch (\Exception $e) {
+//            // 请求失败
+//            $this->assertFalse(true);
+//        }
+//    }
+//
+//    //这里需要加上机器没开启媒体的400错误
+//    public function testGetMediaInfo() {
+//        try {
+//            $result = $this->cosClient->GetMediaInfo(
+//                array(
+//                    'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                    'Key' => 'movie.mp4', //媒体文件对象路径,如folder/movie.mp4
+//                    'ci-process' => 'videoinfo' //操作类型，固定使用 videoinfo
+//                )
+//            );
+//            // 请求成功
+//            $this->assertTrue(true);
+//        } catch (\Exception $e) {
+//            // 请求失败
+//            $this->assertFalse(true);
+//        }
+//    }
+//
+//    public function testGetSnapshot() {
+//        $time = 3.14; //视频截帧时间点
+//        try {
+//            $result = $this->cosClient->getSnapshot(
+//                array(
+//                    'Bucket' => $this->bucket, //格式：BucketName-APPID
+//                    'Key' => 'movie.mp4', //媒体文件对象路径,如folder/movie.mp4
+//                    'ci-process' => 'snapshot', //操作类型，固定使用 snapshot
+//                    'Time' => $time, //视频截帧时间点
+//                    'SaveAs' => '/data/test.jpg', //截图保存到本地的路径
+//                )
+//            );
+//            // 请求成功
+//            $this->assertTrue(true);
+//        } catch (\Exception $e) {
+//            // 请求失败
+//            $this->assertFalse(true);
+//        }
+//    }
+//
+//    public function testBucketReferer() {
+//
+//    }
+
 }

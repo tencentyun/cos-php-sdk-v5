@@ -216,7 +216,7 @@ class CommandToRequestTransformer {
             return $request;
         }
 
-        public function cosDomain2CiTransformer($command, $request) {
+        public function cosDomain2CiTransformer(CommandInterface $command, $request) {
             $action = $command->getName();
             $ciActions = array(
                 'DetectText' => 1,
