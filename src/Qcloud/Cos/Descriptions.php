@@ -1087,4 +1087,634 @@ class Descriptions {
             ),
         );
     }
+    public static function CreateDocProcessJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}doc_jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateDocProcessJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Tag' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'xml',
+                ),
+                'QueueId' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'xml',
+                ),
+                'Input' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Output' => array(
+                            'required' => true,
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array(
+                                    'type' => 'string','required' => true,'location' => 'xml',
+                                ),
+                                'Bucket' => array(
+                                    'type' => 'string','required' => true,'location' => 'xml',
+                                ),
+                                'Object' => array(
+                                    'type' => 'string','required' => true,'location' => 'xml',
+                                ),
+                            ),
+                        ),
+                        'DocProcess' => array(
+                            'required' => true,
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'SrcType' => array(
+                                    'type' => 'string',
+                                ),
+                                'TgtType' => array(
+                                    'type' => 'string',
+                                ),
+                                'SheetId' => array(
+                                    'type' => 'integer',
+                                ),
+                                'StartPage' => array(
+                                    'type' => 'integer',
+                                ),
+                                'EndPage' => array(
+                                    'type' => 'integer',
+                                ),
+                                'ImageParams' => array(
+                                    'type' => 'string',
+                                ),
+                                'DocPassword' => array(
+                                    'type' => 'string',
+                                ),
+                                'Comments' => array(
+                                    'type' => 'integer',
+                                ),
+                                'PaperDirection' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Quality' => array(
+                                    'type' => 'integer',
+                                ),
+                                'Zoom' => array(
+                                    'type' => 'integer',
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateDocProcessJobsOutput()
+    {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id',),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'EndTime' => array('type' => 'string', 'location' => 'xml',),
+                        'StartTime' => array('type' => 'string', 'location' => 'xml',),
+                        'Code' => array('type' => 'string', 'location' => 'xml',),
+                        'Message' => array('type' => 'string', 'location' => 'xml',),
+                        'JobId' => array('type' => 'string', 'location' => 'xml',),
+                        'Tag' => array('type' => 'string', 'location' => 'xml',),
+                        'State' => array('type' => 'string', 'location' => 'xml',),
+                        'CreationTime' => array('type' => 'string', 'location' => 'xml',),
+                        'QueueId' => array('type' => 'string', 'location' => 'xml',),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Object' => array('type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Output' => array(
+                                    'required' => true,
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array(
+                                            'type' => 'string','location' => 'xml',
+                                        ),
+                                        'Bucket' => array(
+                                            'type' => 'string','location' => 'xml',
+                                        ),
+                                        'Object' => array(
+                                            'type' => 'string','location' => 'xml',
+                                        ),
+                                    ),
+                                ),
+                                'DocProcess' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'SrcType' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'TgtType' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'SheetId' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'StartPage' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'EndPage' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'ImageParams' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'DocPassword' => array(
+                                            'type' => 'string',
+                                        ),
+                                        'Comments' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'PaperDirection' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Quality' => array(
+                                            'type' => 'integer',
+                                        ),
+                                        'Zoom' => array(
+                                            'type' => 'integer',
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function DescribeDocProcessQueues() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}docqueue',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeDocProcessQueuesOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'queueIds' => array(
+                    'type' => 'string',
+                    'location' => 'xml',
+                ),
+                'state' => array(
+                    'type' => 'string',
+                    'location' => 'xml',
+                ),
+                'pageNumber' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                ),
+                'pageSize' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                ),
+            ),
+        );
+    }
+    public static function DescribeDocProcessQueuesOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array('type' => 'string', 'location' => 'xml',),
+                'TotalCount' => array('type' => 'integer', 'location' => 'xml',),
+                'PageNumber' => array('type' => 'integer', 'location' => 'xml',),
+                'PageSize' => array('type' => 'integer',  'location' => 'xml',),
+                'QueueList' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'State' => array('type' => 'string', 'location' => 'xml',),
+                        'Name' => array('type' => 'string', 'location' => 'xml',),
+                        'MaxSize' => array('type' => 'integer', 'location' => 'xml',),
+                        'MaxConcurrent' => array('type' => 'integer', 'location' => 'xml',),
+                        'CreateTime' => array('type' => 'string', 'location' => 'xml',),
+                        'UpdateTime' => array('type' => 'string', 'location' => 'xml',),
+                        'BucketId' => array('type' => 'string', 'location' => 'xml',),
+                        'Category' => array('type' => 'string', 'location' => 'xml',),
+                        'QueueId' => array('type' => 'string', 'location' => 'xml',),
+                        'NotifyConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Url' => array('type' => 'string', 'location' => 'xml',),
+                                'Event' => array('type' => 'string', 'location' => 'xml',),
+                                'Type' => array('type' => 'string', 'location' => 'xml',),
+                                'State' => array('type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeDocProcessJob() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}doc_jobs/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeDocProcessJobOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeDocProcessJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array(
+                            'type' => 'string',
+                        ),
+                        'Message' => array(
+                            'type' => 'string',
+                        ),
+                        'JobId' => array(
+                            'type' => 'string',
+                        ),
+                        'State' => array(
+                            'type' => 'string',
+                        ),
+                        'CreationTime' => array(
+                            'type' => 'string',
+                        ),
+                        'QueueId' => array(
+                            'type' => 'string',
+                        ),
+                        'Tag' => array(
+                            'type' => 'string',
+                        ),
+                        'EndTime' => array(
+                            'type' => 'string',
+                        ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Object' => array(
+                                    'type' => 'string',
+                                ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'properties' => array(
+                                    'DocProcess' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'SrcType' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'TgtType' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'SheetId' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'StartPage' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'EndPage' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'ImageParams' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'DocPassword' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Comments' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'PaperDirection' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Quality' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Zoom' => array(
+                                                'type' => 'integer',
+                                            ),
+                                        ),
+                                    ),
+                                    'DocProcessResult' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'PageInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'PageNo' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'TgtUri' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'PicIndex' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'PicNum' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                    'X-SheetPics' => array(
+                                                        'type' => 'integer',
+                                                    ),
+                                                ),
+                                            ),
+                                            'SuccPageCount' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'FailPageCount' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'TaskId' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'TgtType' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'TotalPageCount' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'TotalSheetCount' => array(
+                                                'type' => 'integer',
+                                            ),
+                                        ),
+                                    ),
+                                    'Output' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Bucket' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Object' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Region' => array(
+                                                'type' => 'string',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetDescribeDocProcessJobs() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}doc_jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetDescribeDocProcessJobsOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Tag' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'tag',
+                ),
+                'QueueId' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'queueId',
+                ),
+                'OrderByTime' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'orderByTime',
+                ),
+                'NextToken' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'nextToken',
+                ),
+                'Size' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'size',
+                ),
+                'States' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'states',
+                ),
+                'StartCreationTime' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'startCreationTime',
+                ),
+                'EndCreationTime' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'endCreationTime',
+                ),
+            ),
+        );
+    }
+
+    public static function GetDescribeDocProcessJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id',),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'NextToken' => array('type' => 'string','location' => 'xml',),
+                'JobsDetail' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'data' => array(
+                        'xmlFlattened' => true,
+                    ),
+                    'items' => array(
+                        'type' => 'object',
+                        'properties' => array(
+                            'Code' => array('type' => 'string', 'location' => 'xml',),
+                            'Message' => array('type' => 'string', 'location' => 'xml',),
+                            'JobId' => array('type' => 'string', 'location' => 'xml',),
+                            'Tag' => array('type' => 'string', 'location' => 'xml',),
+                            'State' => array('type' => 'string', 'location' => 'xml',),
+                            'CreationTime' => array('type' => 'string', 'location' => 'xml',),
+                            'QueueId' => array('type' => 'string', 'location' => 'xml',),
+                            'Input' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Object' => array('type' => 'string', 'location' => 'xml',),
+                                ),
+                            ),
+                            'Operation' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Output' => array(
+                                        'required' => true,
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Region' => array(
+                                                'type' => 'string','location' => 'xml',
+                                            ),
+                                            'Bucket' => array(
+                                                'type' => 'string','location' => 'xml',
+                                            ),
+                                            'Object' => array(
+                                                'type' => 'string','location' => 'xml',
+                                            ),
+                                        ),
+                                    ),
+                                    'DocProcess' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'SrcType' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'TgtType' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'SheetId' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'StartPage' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'EndPage' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'ImageParams' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'DocPassword' => array(
+                                                'type' => 'string',
+                                            ),
+                                            'Comments' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'PaperDirection' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Quality' => array(
+                                                'type' => 'integer',
+                                            ),
+                                            'Zoom' => array(
+                                                'type' => 'integer',
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
 }

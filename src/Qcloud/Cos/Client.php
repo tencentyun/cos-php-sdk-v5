@@ -105,9 +105,13 @@ use GuzzleHttp\Psr7;
  * @method object GetDetectVideoResult (array $arg)
  * @method object DetectDocument (array $arg)
  * @method object GetDetectDocumentResult (array $arg)
+ * @method object CreateDocProcessJobs (array $arg)
+ * @method object DescribeDocProcessQueues (array $arg)
+ * @method object DescribeDocProcessJob (array $arg)
+ * @method object GetDescribeDocProcessJobs (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.3.4';
+    const VERSION = '2.4.0';
 
     public $httpClient;
     

@@ -54,7 +54,7 @@ class Signature {
         foreach ( explode( '&', $request->getUri()->getQuery() ) as $query ) {
             if (!empty($query)) {
                 $tmpquery = explode( '=', $query );
-                $key = strtolower( $tmpquery[0] );
+                $key = strtolower( urlencode( $tmpquery[0] ));
                 if (count($tmpquery) >= 2) {
                     $value = $tmpquery[1];
                 } else {
@@ -84,7 +84,7 @@ class Signature {
         $stringToSign = "sha1\n$signTime\n$sha1edHttpString\n";
         $signKey = hash_hmac( 'sha1', $signTime, $this->secretKey );
         $signature = hash_hmac( 'sha1', $stringToSign, $signKey );
-        $authorization = 'q-sign-algorithm=sha1&q-ak='. $this->accessKey .
+        $authorization = 'q-sign-algorithm=sha1&q-ak='. trim($this->accessKey) .
         "&q-sign-time=$signTime&q-key-time=$signTime&q-header-list=$headerList&q-url-param-list=$urlParamList&" .
         "q-signature=$signature";
         return $authorization;

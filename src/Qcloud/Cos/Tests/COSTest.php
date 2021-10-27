@@ -1076,12 +1076,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     public function testPutBucket2()
     {
         try {
-            try{
-                $this->cosClient->deleteBucket(array('Bucket' => '12345-'.$this->bucket));
-            } catch (\Exception $e) {
-            }
             $this->cosClient->createBucket(array('Bucket' => '12345-'.$this->bucket));
-            sleep(COSTest::SYNC_TIME);
             $this->cosClient->deleteBucket(array('Bucket' => '12345-'.$this->bucket));
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
@@ -2072,9 +2067,14 @@ class COSTest extends \PHPUnit\Framework\TestCase
                     'BizType' => '',
                 ),
             ));
+            $this->cosClient->getDetectTextResult(array(
+                'Bucket' => $this->bucket, //格式：BucketName-APPID
+                'Key' => $result['JobsDetail']['JobId'], // JobId
+            ));
             $this->assertTrue(true);
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true);
         }
     }
+
 }
