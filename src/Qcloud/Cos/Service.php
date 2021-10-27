@@ -3810,6 +3810,10 @@ class Service {
                 'GetDetectVideoResult' => Descriptions::GetDetectVideoResult(), // 主动获取视频审核结果
                 'DetectDocument' => Descriptions::DetectDocument(), // 文档审核
                 'GetDetectDocumentResult' => Descriptions::GetDetectDocumentResult(), // 主动获取文档审核结果
+                'CreateDocProcessJobs' => Descriptions::CreateDocProcessJobs(), // 提交文档转码任务
+                'DescribeDocProcessQueues' => Descriptions::DescribeDocProcessQueues(), // 查询文档转码队列
+                'DescribeDocProcessJob' => Descriptions::DescribeDocProcessJob(), // 查询文档转码任务
+                'GetDescribeDocProcessJobs' => Descriptions::GetDescribeDocProcessJobs(), // 拉取符合条件的文档转码任务
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7245,6 +7249,10 @@ class Service {
                 'GetDetectVideoResultOutput' => Descriptions::GetDetectVideoResultOutput(),
                 'DetectDocumentOutput' => Descriptions::DetectDocumentOutput(),
                 'GetDetectDocumentResultOutput' => Descriptions::GetDetectDocumentResultOutput(),
+                'CreateDocProcessJobsOutput' => Descriptions::CreateDocProcessJobsOutput(),
+                'DescribeDocProcessQueuesOutput' => Descriptions::DescribeDocProcessQueuesOutput(),
+                'DescribeDocProcessJobOutput' => Descriptions::DescribeDocProcessJobOutput(),
+                'GetDescribeDocProcessJobsOutput' => Descriptions::GetDescribeDocProcessJobsOutput(),
             )
         );
     }

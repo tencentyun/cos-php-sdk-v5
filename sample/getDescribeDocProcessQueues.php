@@ -13,9 +13,8 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    $result = $cosClient->deleteObject(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
-        'Key' => 'exampleobject',
+    $result = $cosClient->describeDocProcessQueues(array(
+        'Bucket' => 'examplebucket-1250000000', //格式：BucketName-APPID
     ));
     // 请求成功
     print_r($result);

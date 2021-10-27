@@ -230,6 +230,10 @@ class CommandToRequestTransformer {
                 'GetDetectVideoResult' => 1,
                 'DetectDocument' => 1,
                 'GetDetectDocumentResult' => 1,
+                'CreateDocProcessJobs' => 1,
+                'DescribeDocProcessQueues' => 1,
+                'DescribeDocProcessJob' => 1,
+                'GetDescribeDocProcessJobs' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
