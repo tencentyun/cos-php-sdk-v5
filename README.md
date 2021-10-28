@@ -7,7 +7,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/qcloud/cos-sdk-v5.svg?style=flat)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 [![Build Status](https://api.travis-ci.com/tencentyun/cos-php-sdk-v5.svg?branch=master)](https://app.travis-ci.com/github/tencentyun/cos-php-sdk-v5)
 [![codecov](https://codecov.io/gh/tencentyun/cos-php-sdk-v5/branch/master/graph/badge.svg)](https://codecov.io/gh/tencentyun/cos-php-sdk-v5)
-[![PHP Version](https://img.shields.io/badge/php-%3E=5.6-blue.svg)](https://www.php.net)
+[![PHP Version](http://poser.pugx.org/qcloud/cos-sdk-v5/require/php)](https://packagist.org/packages/qcloud/cos-sdk-v5)
 
 ## 依赖
 
