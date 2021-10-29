@@ -4,7 +4,8 @@ namespace Qcloud\Cos\Tests;
 
 use Qcloud\Cos\Client;
 
-class TestHelper {
+class TestHelper
+{
 
     public static function nuke($bucket) {
         try {
