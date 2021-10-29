@@ -10,8 +10,8 @@ notifications:
 before_script:
   - composer install --prefer-dist --dev --no-interaction
 
-script: 
-  - phpunit -v --coverage-clover=coverage.xml
+script:
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then phpunit -v --coverage-clover=coverage.xml; fi'
 
 after_success:
-    - bash <(curl -s https://codecov.io/bash)
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash <(curl -s https://codecov.io/bash); fi'
