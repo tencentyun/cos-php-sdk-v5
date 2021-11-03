@@ -214,7 +214,8 @@ class COSTest extends \PHPUnit\Framework\TestCase
     public function testCreateInvalidACLBucket()
     {
         try {
-            TestHelper::nuke($this->bucket2);
+            //TestHelper::nuke($this->bucket2);
+            $this->cosClient->deleteBucket(array('Bucket' => $this->bucket2));
             sleep(COSTest::SYNC_TIME);
             $this->cosClient->createBucket(
                 array(
@@ -2068,11 +2069,12 @@ class COSTest extends \PHPUnit\Framework\TestCase
                     'BizType' => '',
                 ),
             ));
-            $this->cosClient->getDetectTextResult(array(
+            sleep(COSTest::SYNC_TIME);
+            $result1 = $this->cosClient->getDetectTextResult(array(
                 'Bucket' => $this->bucket, //格式：BucketName-APPID
                 'Key' => $result['JobsDetail']['JobId'], // JobId
             ));
-            $this->assertTrue(true);
+            $this->assertEquals($result1['Key'],$result['JobsDetail']['JobId']);
         } catch (ServiceResponseException $e) {
             $this->assertFalse(true);
         }
