@@ -16,6 +16,7 @@
 
 - [x] ext-curl
 - [x] ext-json
+- [x] ext-simplexml
 
 ## 安装
 

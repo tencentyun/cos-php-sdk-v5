@@ -4,6 +4,7 @@ namespace Qcloud\Cos\Tests;
 
 use Qcloud\Cos\Client;
 use Qcloud\Cos\Exception\ServiceResponseException;
+
 class COSTest extends \PHPUnit\Framework\TestCase
 {
     const SYNC_TIME = 5;
