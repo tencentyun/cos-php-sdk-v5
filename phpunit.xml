@@ -10,8 +10,4 @@
       <directory>tests</directory>
     </testsuite>
   </testsuites>
-  <logging/>
-  <php>
-    <ini name="xdebug.mode" value="coverage"/>
-  </php>
 </phpunit>
