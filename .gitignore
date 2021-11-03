@@ -4,5 +4,5 @@ composer.lock
 vendor/
 *.DS_Store
 index.php
-clover.xml
+coverage.xml
 .phpunit.result.cache

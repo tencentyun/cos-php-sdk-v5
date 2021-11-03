@@ -1,13 +1,16 @@
 <?xml version="1.0"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
   <coverage>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
     <report>
-      <clover outputFile="clover.xml"/>
+      <clover outputFile="coverage.xml"/>
     </report>
   </coverage>
   <testsuites>
     <testsuite name="cos">
-      <directory>tests</directory>
+      <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
 </phpunit>
