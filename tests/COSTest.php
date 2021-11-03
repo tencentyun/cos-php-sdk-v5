@@ -7,7 +7,7 @@ use Qcloud\Cos\Exception\ServiceResponseException;
 
 class COSTest extends \PHPUnit\Framework\TestCase
 {
-    const SYNC_TIME = 5;
+    const SYNC_TIME = 4;
     private $cosClient;
     private $bucket;
     private $region;
@@ -214,8 +214,7 @@ class COSTest extends \PHPUnit\Framework\TestCase
     public function testCreateInvalidACLBucket()
     {
         try {
-            //TestHelper::nuke($this->bucket2);
-            $this->cosClient->deleteBucket(array('Bucket' => $this->bucket2));
+            TestHelper::nuke($this->bucket2);
             sleep(COSTest::SYNC_TIME);
             $this->cosClient->createBucket(
                 array(
@@ -1078,7 +1077,9 @@ class COSTest extends \PHPUnit\Framework\TestCase
     public function testPutBucket2()
     {
         try {
+            TestHelper::nuke($this->bucket);
             $this->cosClient->createBucket(array('Bucket' => '12345-'.$this->bucket));
+            sleep(COSTest::SYNC_TIME);
             $this->cosClient->deleteBucket(array('Bucket' => '12345-'.$this->bucket));
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
@@ -1094,7 +1095,9 @@ class COSTest extends \PHPUnit\Framework\TestCase
     public function testPutBucket3()
     {
         try {
+            TestHelper::nuke($this->bucket);
             $this->cosClient->createBucket(array('Bucket' => '12-333-4445' . $this->bucket));
+            sleep(COSTest::SYNC_TIME);
             $this->cosClient->deleteBucket(array('Bucket' => '12-333-4445' . $this->bucket));
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
