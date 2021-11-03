@@ -5,3 +5,4 @@ vendor/
 *.DS_Store
 index.php
 clover.xml
+.phpunit.result.cache
