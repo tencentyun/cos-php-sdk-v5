@@ -15,7 +15,7 @@ before_script:
   - composer install --prefer-dist --dev --no-interaction
 
 script:
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then phpunit -v --coverage-clover=coverage.xml; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then phpunit -v; fi'
 
 after_success:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash <(curl -s https://codecov.io/bash); fi'
