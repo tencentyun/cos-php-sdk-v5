@@ -7,6 +7,10 @@ notifications:
       - wjielai@tencent.com
       - fysntian@tencent.com
 
+env:
+  global:
+    - XDEBUG_MODE=coverage
+
 before_script:
   - composer install --prefer-dist --dev --no-interaction
 
