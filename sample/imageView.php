@@ -19,7 +19,7 @@ try {
     $imageViewTemplate->setHeight(600);
     $imageViewTemplate->setQuality(1, 85);
     $result = $cosClient->getObject(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
         'ImageHandleParam' => $imageViewTemplate->queryString(),
         'SaveAs' => '/data/exampleobject'

@@ -15,7 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 
 try {
     $result = $cosClient->putBucketWebsite(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'IndexDocument' => array(
             'Suffix' => 'index.html',
         ),

@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     $result = $cosClient->getDescribeDocProcessJobs(array(
-        'Bucket' => 'examplebucket-1250000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-1250000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'QueueId' => 'pd8e422a2ea134165a92f2012ea43****', //拉取该队列 ID 下的任务
         'Tag' => 'DocProcess', //任务的 Tag：DocProcess 固定值
 //      'NextToken' => '143486', //请求的上下文，用于翻页。上次返回的值

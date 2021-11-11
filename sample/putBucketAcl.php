@@ -14,8 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     $result = $cosClient->putBucketAcl(array(
-        //bucket的命名规则为{name}-{appid} ，此处填写的存储桶名称必须为此格式
-        'Bucket' => 'examplebucket-125000000',
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'ACL' => 'private',
         'Grants' => array(
             array(

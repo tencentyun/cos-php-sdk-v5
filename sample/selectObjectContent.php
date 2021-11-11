@@ -14,9 +14,9 @@ $cosClient = new Qcloud\Cos\Client(array(
     )
 ));
 try { 
-    $result = $cosClient->selectObjectContent(array( 
-        'Bucket' => $bucket, //格式：BucketName-APPID
-        'Key' => $key, 
+    $result = $cosClient->selectObjectContent(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Key' => 'exampleobject',
         'Expression' => 'Select * from COSObject s', 
         'ExpressionType' => 'SQL', 
         'InputSerialization' => array( 
@@ -54,9 +54,9 @@ try {
 }
 
 try { 
-    $result = $cosClient->selectObjectContent(array( 
-        'Bucket' => $bucket, //格式：BucketName-APPID
-        'Key' => $key, 
+    $result = $cosClient->selectObjectContent(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Key' => 'exampleobject',
         'Expression' => 'Select * from COSObject s', 
         'ExpressionType' => 'SQL', 
         'InputSerialization' => array( 

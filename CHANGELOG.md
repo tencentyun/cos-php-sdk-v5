@@ -1,5 +1,13 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.4.0 to 2.4.1
+---------
+- 增加桶Bucket、GetBucket对应Sample详细注解
+- 对部分传入参数进行检查
+- 添加doesObjectExist、doesBucketExist对应Sample
+- 调整整体项目架构，修复composer依赖问题
+- 调整UT
+
 2.3.4 to 2.4.0
 ---------
 - 新增文档转码功能，包括提交、查询、拉取文档预览任务

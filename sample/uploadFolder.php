@@ -27,7 +27,7 @@ function uploadfiles( $path, $cosClient ) {
             // 按照需求自定义拼接上传路径
             try {
                 $cosClient->upload(
-                    $bucket = 'examplebucket-125000000', //格式：BucketName-APPID
+                    $bucket = 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                     $key = $cos_file_path,
                     $body = fopen( $cos_file_path, 'rb' )
                 );

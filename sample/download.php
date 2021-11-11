@@ -20,7 +20,7 @@ $printbar = function($totalSize, $downloadedSize) {
 
 try {
     $result = $cosClient->download(
-        $bucket = 'examplebucket-125000000', //格式：BucketName-APPID
+        $bucket = 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         $key = 'exampleobject',
         $saveAs = $local_path,
         $options=['Progress' => $printbar, //指定进度条

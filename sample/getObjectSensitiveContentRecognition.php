@@ -15,7 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 try {
     //存储桶图片审核
     $result = $cosClient->getObjectSensitiveContentRecognition(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
         'DetectType' => 'porn,politics', //可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
         'ci-process' => 'sensitive-content-recognition',
@@ -30,7 +30,7 @@ try {
     //图片链接审核
     $imgUrl = 'https://test.jpg';
     $result = $cosClient->getObjectSensitiveContentRecognition(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => '/', // 链接图片资源路径写 / 即可
         'DetectType' => 'porn,ads',//可选四种参数：porn,politics,terrorist,ads，可使用多种规则，注意规则间不要加空格
         'DetectUrl' => $imgUrl,

@@ -15,7 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 try {
     // start --------------- 使用模版 ----------------- //
     $result = $cosClient->createMediaConcatJobs(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Concat',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
@@ -26,7 +26,7 @@ try {
             'TemplateId' => 'asdfafiahfiushdfisdhfuis',
             'Output' => array(
                 'Region' => $region,
-                'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                 'Object' => 'concat-video02.mp4',
             ),
         ),
@@ -37,7 +37,7 @@ try {
 
     // start --------------- 自定义参数 ----------------- //
     $result = $cosClient->createMediaConcatJobs(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Concat',
         'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
@@ -47,7 +47,7 @@ try {
         'Operation' => array(
             'Output' => array(
                 'Region' => $region,
-                'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                 'Object' => 'concat-video03.mp4',
             ),
             'ConcatTemplate' => array(
