@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 
 try {
-    $bucket = 'examplebucket-125000000'; //存储桶，格式：BucketName-APPID
+    $bucket = 'examplebucket-125000000'; //存储桶，存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
     $key = "exampleobject"; //对象在存储桶中的位置，即对象键
     $signedUrl = $cosClient -> getObjectUrlWithoutSign($bucket, $key);
 

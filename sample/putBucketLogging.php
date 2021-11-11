@@ -14,9 +14,9 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     $result = $cosClient->putBucketLogging(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'LoggingEnabled' => array(
-            'TargetBucket' => 'examplebucket2-125000000', //格式：BucketName-APPID
+            'TargetBucket' => 'examplebucket2-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
             'TargetPrefix' => '', 
         )   
     ));

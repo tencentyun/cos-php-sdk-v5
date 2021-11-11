@@ -15,14 +15,29 @@ class Signature {
         $this->secretKey = $secretKey;
         $this->token = $token;
         $this->signHeader = [
-            'host',
-            'content-type',
-            'content-md5',
+            'cache-control',
             'content-disposition',
             'content-encoding',
             'content-length',
-            'transfer-encoding',
+            'content-md5',
+            'content-type',
+            'expect',
+            'expires',
+            'host',
+            'if-match',
+            'if-modified-since',
+            'if-none-match',
+            'if-unmodified-since',
+            'origin',
             'range',
+            'response-cache-control',
+            'response-content-disposition',
+            'response-content-encoding',
+            'response-content-language',
+            'response-content-type',
+            'response-expires',
+            'transfer-encoding',
+            'versionid',
         ];
         date_default_timezone_set( 'PRC' );
     }
@@ -82,7 +97,7 @@ class Signature {
         "\n". $httpHeaders. "\n";
         $sha1edHttpString = sha1( $httpString );
         $stringToSign = "sha1\n$signTime\n$sha1edHttpString\n";
-        $signKey = hash_hmac( 'sha1', $signTime, $this->secretKey );
+        $signKey = hash_hmac( 'sha1', $signTime, trim($this->secretKey) );
         $signature = hash_hmac( 'sha1', $stringToSign, $signKey );
         $authorization = 'q-sign-algorithm=sha1&q-ak='. trim($this->accessKey) .
         "&q-sign-time=$signTime&q-key-time=$signTime&q-header-list=$headerList&q-url-param-list=$urlParamList&" .

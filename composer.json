@@ -42,6 +42,7 @@
     "config": {
         "platform-check": false
     },
+
     "scripts": {
         "test": [
             "@putenv XDEBUG_MODE=coverage",

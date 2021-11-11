@@ -16,7 +16,7 @@ try {
     // start --------------- 文本内容审核 ----------------- //
     $content = '敏感词';
     $result = $cosClient->detectText(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Input' => array(
             'Content' => base64_encode($content) // 文本需base64_encode
         ),
@@ -31,7 +31,7 @@ try {
 
     // start --------------- 存储桶文本文件审核 ----------------- //
     $result = $cosClient->detectText(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Input' => array(
             'Object' => 'test01.txt'
         ),

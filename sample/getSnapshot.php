@@ -21,7 +21,7 @@ try {
      */
     $result = $cosClient->getSnapshot(
         array(
-            'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+            'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
             'Key' =>'exampleobject', //桶中的媒体文件,如test.mp4
             'ci-process' => 'snapshot', //操作类型，固定使用 snapshot
             'Time' => $time, //截图的时间点，单位为秒

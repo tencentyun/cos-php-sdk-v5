@@ -19,7 +19,7 @@ $isTruncated = true;
 while ( $isTruncated ) {
     try {
         $result = $cosClient->listObjects(
-            ['Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+            ['Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
             'Delimiter' => '',
             'EncodingType' => 'url',
             'Marker' => $nextMarker,
@@ -34,7 +34,7 @@ while ( $isTruncated ) {
             // 按照需求自定义拼接下载路径
             try {
                 $cosClient->deleteObject(array(
-                    'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+                    'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                     'Key' => $cos_file_path,
                 ));
                 echo ( $cos_file_path . "\n" );

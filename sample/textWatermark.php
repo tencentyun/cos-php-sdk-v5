@@ -18,7 +18,7 @@ try {
     $textWatermarkTemplate->setGravity('center');
     $textWatermarkTemplate->setFontsize(30);
     $result = $cosClient->getObject(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
         'ImageHandleParam' => $textWatermarkTemplate->queryString(),
         'SaveAs' => '/data/exampleobject'

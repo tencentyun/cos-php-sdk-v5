@@ -111,7 +111,7 @@ use GuzzleHttp\Psr7;
  * @method object GetDescribeDocProcessJobs (array $arg)
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.4.0';
+    const VERSION = '2.4.1';
 
     public $httpClient;
     
@@ -163,7 +163,7 @@ class Client extends GuzzleClient {
             }));
         }
         $handler->push($this::handleErrors());
-        $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig['token']);
+        $this->signature = new Signature(trim($this->cosConfig['secretId']), trim($this->cosConfig['secretKey']), trim($this->cosConfig['token']));
         $area = $this->cosConfig['allow_accelerate'] ? 'accelerate' : $this->cosConfig['region'];
         $this->httpClient = new HttpClient([
             'base_uri' => $this->cosConfig['schema'].'://cos.' . $area . '.myqcloud.com/',
@@ -180,10 +180,11 @@ class Client extends GuzzleClient {
     }
 
     public function inputCheck() {
-        if ($this->cosConfig['region'] == null &&
-            $this->cosConfig['domain'] == null && 
-            $this->cosConfig['endpoint'] == null && 
-            $this->cosConfig['ip'] == null) {
+        //检查Region
+        if (empty($this->cosConfig['region'])   &&
+            empty($this->cosConfig['domain'])   &&
+            empty($this->cosConfig['endpoint']) &&
+            empty($this->cosConfig['ip'])) {
             $e = new Exception\CosException('Region is empty');
             $e->setExceptionCode('Invalid Argument');
             throw $e;

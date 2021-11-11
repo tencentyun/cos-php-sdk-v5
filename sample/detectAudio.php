@@ -15,7 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 try {
     // start --------------- 桶文件审核 ----------------- //
     $result = $cosClient->detectAudio(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Input' => array(
             'Object' => 'sound01.mp3',
         ),
@@ -31,7 +31,7 @@ try {
 
     // start --------------- 音频文件地址审核 ----------------- //
     $result = $cosClient->detectAudio(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Input' => array(
             'Url' => 'https://example.com/test.mp3',
         ),

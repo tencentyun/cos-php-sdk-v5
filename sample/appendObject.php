@@ -15,14 +15,14 @@ $cosClient = new Qcloud\Cos\Client(
 $local_path = "/data/exampleobject";
 try {
     $result = $cosClient->appendObject(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
         'Position' => 0, //追加对象位置
         'Body' => fopen($local_path, 'rb'),//读取文件内容
     ));
     /*
     $result = $cosClient->appendObject(array(
-        'Bucket' => 'examplebucket-125000000', //格式：BucketName-APPID
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
         'Position' => (integer)$result['Position'], //取出上一个追加文件的对象位置进行追加
         'Body' => "hello", //文件流
