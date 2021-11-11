@@ -1,4 +1,4 @@
-name: Multiple Versions Support
+name: Support Multiple Versions
 
 on:
   push:
