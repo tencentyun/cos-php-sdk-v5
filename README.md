@@ -90,12 +90,12 @@ require '/path/to/cos-sdk-v5.phar';
 源码方式安装 SDK 的步骤如下：
 
 1. 在 [GitHub 发布页面](https://github.com/tencentyun/cos-php-sdk-v5/releases) 下载相应的 cos-sdk-v5.tar.gz 文件；
-> 对于 PHP 版本`>= 5.6`且`<7.2.5`的用户请下载`os-sdk-v5-6.tar.gz`以使用 Guzzle6 版本。  
+> 对于 PHP 版本`>= 5.6`且`<7.2.5`的用户请下载`cos-sdk-v5-6.tar.gz`以使用 Guzzle6 版本。  
 > 对于 PHP 版本`>=7.2.5`的用户请下载`cos-sdk-v5-7.tar.gz`以使用 Guzzle7 版本。
 2. 解压后通过 autoload.php 脚本加载 SDK：
 
 ```php
-require '/path/to/cos-php-sdk-v5/vendor/autoload.php';
+require '/path/to/cos-sdk-v5/vendor/autoload.php';
 ```
 
 ## 快速入门
