@@ -1,8 +1,10 @@
 <?php
-namespace Qcloud\Cos;
-// http://guzzle3.readthedocs.io/webservice-client/guzzle-service-descriptions.html
 
-use Qcloud\Cos\Descriptions;
+namespace Qcloud\Cos;
+
+/**
+ * @link http://guzzle3.readthedocs.io/webservice-client/guzzle-service-descriptions.html
+ */
 class Service {
     public static function getService() {
         return array(
@@ -10,7 +12,7 @@ class Service {
             'apiVersion' => 'V5',
             'description' => 'Cos V5 API Service',
             'operations' => array(
-                // 舍弃一个分块上传且删除已上传的分片块的方法.
+                // 舍弃一个分块上传且删除已上传的分片块
                 'AbortMultipartUpload' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}{/Key*}',
@@ -37,7 +39,7 @@ class Service {
                         )
                     )
                 ),
-                // 创建存储桶（Bucket）的方法.
+                // 创建存储桶（Bucket）
                 'CreateBucket' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}',
@@ -59,7 +61,7 @@ class Service {
                         )
                     )
                 ),
-                // 完成整个分块上传的方法.
+                // 完成整个分块上传
                 'CompleteMultipartUpload' => array(
                     'httpMethod' => 'POST',
                     'uri' => '/{Bucket}{/Key*}',
@@ -117,7 +119,7 @@ class Service {
                         )
                     )
                 ),
-                // 初始化分块上传的方法.
+                // 初始化分块上传
                 'CreateMultipartUpload' => array(
                     'httpMethod' => 'POST',
                     'uri' => '/{Bucket}{/Key*}?uploads',
@@ -254,7 +256,7 @@ class Service {
                         )
                     )
                 ),
-                // 复制对象的方法.
+                // 复制对象
                 'CopyObject' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}',
@@ -431,7 +433,7 @@ class Service {
                         )
                     ),
                 ),
-                // 删除存储桶 (Bucket)的方法.
+                // 删除存储桶 (Bucket)
                 'DeleteBucket' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}',
@@ -446,7 +448,7 @@ class Service {
                         )
                     )
                 ),
-                // 删除跨域访问配置信息的方法
+                // 删除跨域访问配置信息
                 'DeleteBucketCors' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}?cors',
@@ -461,7 +463,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 删除存储桶标签信息的方法
+                // 删除存储桶标签信息
                 'DeleteBucketTagging' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}?tagging',
@@ -476,7 +478,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 删除存储桶标清单任务的方法
+                // 删除存储桶标清单任务
                 'DeleteBucketInventory' => array(
                     'httpMethod' => 'Delete',
                     'uri' => '/{Bucket}?inventory',
@@ -497,7 +499,7 @@ class Service {
                         )
                     ),
                 ),
-                // 删除 COS 上单个对象的方法.
+                // 删除 COS 上单个对象
                 'DeleteObject' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}{/Key*}',
@@ -536,7 +538,7 @@ class Service {
                         )
                     )
                 ),
-                // 批量删除 COS 对象的方法.
+                // 批量删除 COS 对象
                 'DeleteObjects' => array(
                     'httpMethod' => 'POST',
                     'uri' => '/{Bucket}?delete',
@@ -594,7 +596,7 @@ class Service {
                         )
                     ),
                 ),
-                // 删除存储桶（Bucket） 的website的方法.
+                // 删除存储桶（Bucket）的website
                 'DeleteBucketWebsite' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}?website',
@@ -609,7 +611,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 删除存储桶（Bucket） 的生命周期配置的方法.
+                // 删除存储桶（Bucket）的生命周期配置
                 'DeleteBucketLifecycle' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}?lifecycle',
@@ -624,7 +626,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 删除跨区域复制配置的方法.
+                // 删除跨区域复制配置
                 'DeleteBucketReplication' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}?replication',
@@ -639,7 +641,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 配置对象标签的方法.
+                // 配置对象标签
                 'PutObjectTagging' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}?tagging',
@@ -689,7 +691,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 获取对象标签信息的方法
+                // 获取对象标签信息
                 'GetObjectTagging' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}{/Key*}?tagging',
@@ -713,7 +715,7 @@ class Service {
                         )
                     ),
                 ),
-                // 删除对象标签的方法
+                // 删除对象标签
                 'DeleteObjectTagging' => array(
                     'httpMethod' => 'DELETE',
                     'uri' => '/{Bucket}{/Key*}?tagging',
@@ -737,7 +739,7 @@ class Service {
                         )
                     )
                 ),
-                // 下载对象的方法.
+                // 下载对象
                 'GetObject' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}{/Key*}',
@@ -854,7 +856,7 @@ class Service {
                         )
                     )
                 ),
-                // 获取 COS 对象的访问权限信息（Access Control List, ACL）的方法.
+                // 获取 COS 对象的访问权限信息（Access Control List, ACL）
                 'GetObjectAcl' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}{/Key*}?acl',
@@ -887,7 +889,7 @@ class Service {
                         )
                     )
                 ),
-                // 获取存储桶（Bucket) 的访问权限信息（Access Control List, ACL）的方法.
+                // 获取存储桶（Bucket）的访问权限信息（Access Control List, ACL）
                 'GetBucketAcl' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?acl',
@@ -902,7 +904,7 @@ class Service {
                         )
                     )
                 ),
-                // 查询存储桶（Bucket) 跨域访问配置信息的方法.
+                // 查询存储桶（Bucket）跨域访问配置信息
                 'GetBucketCors' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?cors',
@@ -917,7 +919,7 @@ class Service {
                         )
                     ),
                 ),
-                // 查询存储桶（Bucket) Domain配置信息的方法.
+                // 查询存储桶（Bucket）Domain配置信息
                 'GetBucketDomain' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?domain',
@@ -932,7 +934,7 @@ class Service {
                         )
                     ),
                 ),
-                // 查询存储桶（Bucket) Accelerate配置信息的方法.
+                // 查询存储桶（Bucket）Accelerate配置信息
                 'GetBucketAccelerate' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?accelerate',
@@ -947,7 +949,7 @@ class Service {
                         )
                     ),
                 ),
-                // 查询存储桶（Bucket) Website配置信息的方法.
+                // 查询存储桶（Bucket）Website配置信息
                 'GetBucketWebsite' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?website',
@@ -962,7 +964,7 @@ class Service {
                         )
                     ),
                 ),
-                // 查询存储桶（Bucket) 的生命周期配置的方法.
+                // 查询存储桶（Bucket）的生命周期配置
                 'GetBucketLifecycle' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?lifecycle',
@@ -977,7 +979,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取存储桶（Bucket）版本控制信息的方法.
+                // 获取存储桶（Bucket）版本控制信息
                 'GetBucketVersioning' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?versioning',
@@ -992,7 +994,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取存储桶（Bucket) 跨区域复制配置信息的方法.
+                // 获取存储桶（Bucket）跨区域复制配置信息
                 'GetBucketReplication' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?replication',
@@ -1007,7 +1009,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取存储桶（Bucket) 所在的地域信息的方法.
+                // 获取存储桶（Bucket）所在的地域信息
                 'GetBucketLocation' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?location',
@@ -1022,7 +1024,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 获取存储桶（Bucket) Notification信息的方法.
+                // 获取存储桶（Bucket）Notification信息
                 'GetBucketNotification' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?notification',
@@ -1037,7 +1039,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取存储桶（Bucket) 日志信息的方法.
+                // 获取存储桶（Bucket）日志信息
                 'GetBucketLogging' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?logging',
@@ -1052,7 +1054,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取存储桶（Bucket) 清单信息的方法.
+                // 获取存储桶（Bucket）清单信息
                 'GetBucketInventory' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?inventory',
@@ -1073,7 +1075,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取存储桶（Bucket) 标签信息的方法.
+                // 获取存储桶（Bucket）标签信息
                 'GetBucketTagging' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?tagging',
@@ -1088,7 +1090,7 @@ class Service {
                         )
                     ),
                 ),
-                // 分块上传的方法.
+                // 分块上传
                 'UploadPart' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}',
@@ -1119,7 +1121,6 @@ class Service {
                         ),
                         'ContentMD5' => array(
                             'type' => array(
-//                                'string',
                                 'boolean'
                             ),
                             'location' => 'header',
@@ -1176,7 +1177,7 @@ class Service {
                         )
                     )
                 ),
-                // 上传对象的方法.
+                // 上传对象
                 'PutObject' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}',
@@ -1234,7 +1235,6 @@ class Service {
                         ),
                         'ContentMD5' => array(
                             'type' => array(
-//                                'string',
                                 'boolean'
                             ),
                             'location' => 'header',
@@ -1454,146 +1454,7 @@ class Service {
                         )
                     )
                 ),
-                // 追加对象
-                'AppendObject' => array(
-                    'httpMethod' => 'POST',
-                    'uri' => '/{Bucket}{/Key*}?append',
-                    'class' => 'Qcloud\\Cos\\Command',
-                    'responseClass' => 'AppendObjectOutput',
-                    'responseType' => 'model',
-                    'data' => array(
-                        'xmlRoot' => array(
-                            'name' => 'AppendObjectRequest'
-                        )
-                    ),
-                    'parameters' => array(
-                        'Position' => array(
-                            'type' => 'integer',
-                            'required' => true,
-                            'location' => 'query',
-                            'sentAs' => 'position'
-                        ),
-                        'ACL' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-acl'
-                        ),
-                        'Body' => array(
-                            'required' => true,
-                            'type' => array(
-                                'any'
-                            ),
-                            'location' => 'body'
-                        ),
-                        'Bucket' => array(
-                            'required' => true,
-                            'type' => 'string',
-                            'location' => 'uri'
-                        ),
-                        'CacheControl' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'Cache-Control'
-                        ),
-                        'ContentDisposition' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'Content-Disposition'
-                        ),
-                        'ContentEncoding' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'Content-Encoding'
-                        ),
-                        'ContentLanguage' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'Content-Language'
-                        ),
-                        'ContentLength' => array(
-                            'type' => 'numeric',
-                            'minimum'=> 0,
-                            'location' => 'header',
-                            'sentAs' => 'Content-Length'
-                        ),
-                        'ContentMD5' => array(
-                            'type' => array(
-                                'boolean'
-                            ),
-                            'location' => 'header',
-                            'sentAs' => 'Content-MD5'
-                        ),
-                        'ContentType' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'Content-Type'
-                        ),
-                        'Key' => array(
-                            'required' => true,
-                            'type' => 'string',
-                            'location' => 'uri',
-                            'minLength' => 1,
-                            'filters' => array(
-                                'Qcloud\\Cos\\Client::explodeKey'
-                            )
-                        ),
-                        'ServerSideEncryption' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-server-side-encryption',
-                        ),
-                        'StorageClass' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-storage-class',
-                        ),
-                        'WebsiteRedirectLocation' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-website-redirect-location',
-                        ),
-                        'SSECustomerAlgorithm' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-server-side-encryption-customer-algorithm',
-                        ),
-                        'SSECustomerKey' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-server-side-encryption-customer-key',
-                        ),
-                        'SSECustomerKeyMD5' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-server-side-encryption-customer-key-MD5',
-                        ),
-                        'SSEKMSKeyId' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-server-side-encryption-cos-kms-key-id',
-                        ),
-                        'RequestPayer' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-request-payer',
-                        ),
-                        'ACP' => array(
-                            'type' => 'object',
-                            'additionalProperties' => true,
-                        ),
-                        'PicOperations' => array(
-                            'type' => 'string',
-                            'location' => 'header',
-                            'sentAs' => 'Pic-Operations',
-                        ),
-                        'TrafficLimit' => array(
-                            'type' => 'integer',
-                            'location' => 'header',
-                            'sentAs' => 'x-cos-traffic-limit',
-                        )
-                    )
-                ),
-                // 设置 COS 对象的访问权限信息（Access Control List, ACL）的方法.
+                // 设置 COS 对象的访问权限信息（Access Control List, ACL）
                 'PutObjectAcl' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}?acl',
@@ -1701,7 +1562,7 @@ class Service {
                         ),
                     )
                 ),
-                // 设置存储桶（Bucket） 的访问权限（Access Control List, ACL)的方法.
+                // 设置存储桶（Bucket）的访问权限（Access Control List, ACL)
                 'PutBucketAcl' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?acl',
@@ -1807,7 +1668,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 设置存储桶（Bucket） 的跨域配置信息的方法.
+                // 设置存储桶（Bucket）的跨域配置信息
                 'PutBucketCors' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?cors',
@@ -1895,7 +1756,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 设置存储桶（Bucket） 的Domain信息的方法.
+                // 设置存储桶（Bucket）的Domain信息
                 'PutBucketDomain' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?domain',
@@ -1946,7 +1807,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 设置存储桶（Bucket) 生命周期配置的方法.
+                // 设置存储桶（Bucket）生命周期配置
                 'PutBucketLifecycle' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?lifecycle',
@@ -2073,7 +1934,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 存储桶（Bucket）版本控制的方法.
+                // 存储桶（Bucket）版本控制
                 'PutBucketVersioning' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?versioning',
@@ -2107,7 +1968,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 配置存储桶（Bucket) Accelerate的方法.
+                // 配置存储桶（Bucket）Accelerate
                 'PutBucketAccelerate' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?accelerate',
@@ -2133,7 +1994,7 @@ class Service {
                         )
                     ),
                 ),
-                // 配置存储桶（Bucket) website的方法.
+                // 配置存储桶（Bucket）website
                 'PutBucketWebsite' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?website',
@@ -2228,7 +2089,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 配置存储桶（Bucket) 跨区域复制的方法.
+                // 配置存储桶（Bucket）跨区域复制
                 'PutBucketReplication' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?replication',
@@ -2293,7 +2154,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 设置存储桶（Bucket） 的回调设置的方法.
+                // 设置存储桶（Bucket）的回调设置
                 'PutBucketNotification' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?notification',
@@ -2379,7 +2240,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 配置存储桶（Bucket) 标签的方法.
+                // 配置存储桶（Bucket）标签
                 'PutBucketTagging' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?tagging',
@@ -2420,7 +2281,7 @@ class Service {
                         ),
                     ),
                 ),
-                //开启存储桶（Bucket) 日志服务的方法.
+                //开启存储桶（Bucket）日志服务
                 'PutBucketLogging' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?logging',
@@ -2455,7 +2316,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 配置存储桶（Bucket) 清单的方法.
+                // 配置存储桶（Bucket）清单
                 'PutBucketInventory' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?inventory',
@@ -2554,7 +2415,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 回热归档对象的方法.
+                // 回热归档对象
                 'RestoreObject' => array(
                     'httpMethod' => 'POST',
                     'uri' => '/{Bucket}{/Key*}?restore',
@@ -2607,7 +2468,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 查询存储桶（Bucket）中正在进行中的分块上传对象的方法.
+                // 查询存储桶（Bucket）中正在进行中的分块上传对象
                 'ListParts' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}{/Key*}',
@@ -2646,7 +2507,7 @@ class Service {
                         )
                     )
                 ),
-                // 查询存储桶（Bucket) 下的部分或者全部对象的方法.
+                // 查询存储桶（Bucket）下的部分或者全部对象
                 'ListObjects' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}',
@@ -2686,7 +2547,7 @@ class Service {
                         )
                     )
                 ),
-                // 获取所属账户的所有存储空间列表的方法.
+                // 获取所属账户的所有存储空间列表
                 'ListBuckets' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/',
@@ -2696,7 +2557,7 @@ class Service {
                     'parameters' => array(
                     ),
                 ),
-                // 获取多版本对象的方法.
+                // 获取多版本对象
                 'ListObjectVersions' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?versions',
@@ -2741,7 +2602,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取已上传分块列表的方法
+                // 获取已上传分块列表
                 'ListMultipartUploads' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?uploads',
@@ -2786,7 +2647,7 @@ class Service {
                         )
                     ),
                 ),
-                // 获取清单列表的方法.
+                // 获取清单列表
                 'ListBucketInventoryConfigurations' => array(
                     'httpMethod' => 'GET',
                     'uri' => '/{Bucket}?inventory',
@@ -2806,7 +2667,7 @@ class Service {
                         ),
                     ),
                 ),
-                // 获取对象的meta信息的方法
+                // 获取对象的meta信息
                 'HeadObject' => array(
                     'httpMethod' => 'HEAD',
                     'uri' => '/{Bucket}{/Key*}',
@@ -2888,7 +2749,7 @@ class Service {
                         ),
                     )
                 ),
-                // 存储桶（Bucket） 是否存在的方法.
+                // 存储桶（Bucket）是否存在
                 'HeadBucket' => array(
                     'httpMethod' => 'HEAD',
                     'uri' => '/{Bucket}',
@@ -2903,7 +2764,7 @@ class Service {
                         ),
                     )
                 ),
-                // 分块copy的方法.
+                // 分块copy
                 'UploadPartCopy' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}{/Key*}',
@@ -3019,6 +2880,7 @@ class Service {
                         )
                     ),
                 ),
+                // 检索对象内容
                 'SelectObjectContent' => array(
                     'httpMethod' => 'Post',
                     'uri' => '/{/Key*}?select&select-type=2',
@@ -4222,7 +4084,6 @@ class Service {
                         ),
                     ),
                 ),
-                //设置对象标签
                 'PutObjectTaggingOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -4233,7 +4094,6 @@ class Service {
                         ),
                     ),
                 ),
-                //查询对象标签
                 'GetObjectTaggingOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -4260,7 +4120,6 @@ class Service {
                         ),
                     ),
                 ),
-                //删除对象标签
                 'DeleteObjectTaggingOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -6957,7 +6816,6 @@ class Service {
                         )
                     )
                 ),
-                //设置防盗链
                 'PutBucketRefererOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
@@ -6978,7 +6836,6 @@ class Service {
                         )
                     )
                 ),
-                //获取防盗链规则
                 'GetBucketRefererOutput' => array(
                     'type' => 'object',
                     'additionalProperties' => true,
