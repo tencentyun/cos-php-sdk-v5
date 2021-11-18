@@ -15,100 +15,101 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
 
 /**
- * @method object AbortMultipartUpload (array $arg)
- * @method object CreateBucket (array $arg)
- * @method object CompleteMultipartUpload (array $arg)
- * @method object CreateMultipartUpload (array $arg)
- * @method object CopyObject (array $arg)
- * @method object DeleteBucket (array $arg)
- * @method object DeleteBucketCors (array $arg)
- * @method object DeleteBucketTagging (array $arg)
- * @method object DeleteBucketInventory (array $arg)
- * @method object DeleteObject (array $arg)
- * @method object DeleteObjects (array $arg)
- * @method object DeleteBucketWebsite (array $arg)
- * @method object DeleteBucketLifecycle (array $arg)
- * @method object DeleteBucketReplication (array $arg)
- * @method object PutObjectTagging (array $arg)
- * @method object GetObjectTagging (array $arg)
- * @method object DeleteObjectTagging (array $arg)
- * @method object GetObject (array $arg)
- * @method object GetObjectAcl (array $arg)
- * @method object GetBucketAcl (array $arg)
- * @method object GetBucketCors (array $arg)
- * @method object GetBucketDomain (array $arg)
- * @method object GetBucketAccelerate (array $arg)
- * @method object GetBucketWebsite (array $arg)
- * @method object GetBucketLifecycle (array $arg)
- * @method object GetBucketVersioning (array $arg)
- * @method object GetBucketReplication (array $arg)
- * @method object GetBucketLocation (array $arg)
- * @method object GetBucketNotification (array $arg)
- * @method object GetBucketLogging (array $arg)
- * @method object GetBucketInventory (array $arg)
- * @method object GetBucketTagging (array $arg)
- * @method object UploadPart (array $arg)
- * @method object PutObject (array $arg)
- * @method object AppendObject (array $arg)
- * @method object PutObjectAcl (array $arg)
- * @method object PutBucketAcl (array $arg)
- * @method object PutBucketCors (array $arg)
- * @method object PutBucketDomain (array $arg)
- * @method object PutBucketLifecycle (array $arg)
- * @method object PutBucketVersioning (array $arg)
- * @method object PutBucketAccelerate (array $arg)
- * @method object PutBucketWebsite (array $arg)
- * @method object PutBucketReplication (array $arg)
- * @method object PutBucketNotification (array $arg)
- * @method object PutBucketTagging (array $arg)
- * @method object PutBucketLogging (array $arg)
- * @method object PutBucketInventory (array $arg)
- * @method object RestoreObject (array $arg)
- * @method object ListParts (array $arg)
- * @method object ListObjects (array $arg)
- * @method object ListBuckets
- * @method object ListObjectVersions (array $arg)
- * @method object ListMultipartUploads (array $arg)
- * @method object ListBucketInventoryConfigurations (array $arg)
- * @method object HeadObject (array $arg)
- * @method object HeadBucket (array $arg)
- * @method object UploadPartCopy (array $arg)
- * @method object SelectObjectContent (array $arg)
- * @method object PutBucketIntelligentTiering (array $arg)
- * @method object GetBucketIntelligentTiering (array $arg)
- * @method object ImageInfo (array $arg)
- * @method object ImageExif (array $arg)
- * @method object ImageAve (array $arg)
- * @method object ImageProcess (array $arg)
- * @method object Qrcode (array $arg)
- * @method object QrcodeGenerate (array $arg)
- * @method object DetectLabel (array $arg)
- * @method object PutBucketImageStyle (array $arg)
- * @method object GetBucketImageStyle (array $arg)
- * @method object DeleteBucketImageStyle (array $arg)
- * @method object PutBucketGuetzli (array $arg)
- * @method object GetBucketGuetzli (array $arg)
- * @method object DeleteBucketGuetzli (array $arg)
- * @method object GetObjectSensitiveContentRecognition (array $arg)
- * @method object DetectText (array $arg)
- * @method object GetSnapshot (array $arg)
- * @method object PutBucketReferer (array $arg)
- * @method object GetBucketReferer (array $arg)
- * @method object GetMediaInfo (array $arg)
- * @method object CreateMediaTranscodeJobs (array $arg)
- * @method object CreateMediaSnapshotJobs (array $arg)
- * @method object CreateMediaConcatJobs (array $arg)
- * @method object DetectAudio (array $arg)
- * @method object GetDetectAudioResult (array $arg)
- * @method object GetDetectTextResult (array $arg)
- * @method object DetectVideo (array $arg)
- * @method object GetDetectVideoResult (array $arg)
- * @method object DetectDocument (array $arg)
- * @method object GetDetectDocumentResult (array $arg)
- * @method object CreateDocProcessJobs (array $arg)
- * @method object DescribeDocProcessQueues (array $arg)
- * @method object DescribeDocProcessJob (array $arg)
- * @method object GetDescribeDocProcessJobs (array $arg)
+ * @method object AbortMultipartUpload(array $args) 舍弃一个分块上传且删除已上传的分片块
+ * @method object CreateBucket(array $args) 创建存储桶（Bucket）
+ * @method object CompleteMultipartUpload(array $args) 完成整个分块上传
+ * @method object CreateMultipartUpload(array $args) 初始化分块上传
+ * @method object CopyObject(array $args) 复制对象
+ * @method object DeleteBucket(array $args) 删除存储桶 (Bucket)
+ * @method object DeleteBucketCors(array $args) 删除跨域访问配置信息
+ * @method object DeleteBucketTagging(array $args) 删除存储桶标签信息
+ * @method object DeleteBucketInventory(array $args) 删除存储桶标清单任务
+ * @method object DeleteObject(array $args) 删除 COS 上单个对象
+ * @method object DeleteObjects(array $args) 批量删除 COS 对象
+ * @method object DeleteBucketWebsite(array $args) 删除存储桶（Bucket）的website
+ * @method object DeleteBucketLifecycle(array $args) 删除存储桶（Bucket）的生命周期配置
+ * @method object DeleteBucketReplication(array $args) 删除跨区域复制配置
+ * @method object PutObjectTagging(array $args) 配置对象标签
+ * @method object GetObjectTagging(array $args) 获取对象标签信息
+ * @method object DeleteObjectTagging(array $args) 删除对象标签
+ * @method object GetObject(array $args) 下载对象
+ * @method object GetObjectAcl(array $args) 获取 COS 对象的访问权限信息（Access Control List, ACL）
+ * @method object GetBucketAcl(array $args) 获取存储桶（Bucket）的访问权限信息（Access Control List, ACL）
+ * @method object GetBucketCors(array $args) 查询存储桶（Bucket）跨域访问配置信息
+ * @method object GetBucketDomain(array $args) 查询存储桶（Bucket）Domain配置信息
+ * @method object GetBucketAccelerate(array $args) 查询存储桶（Bucket）Accelerate配置信息
+ * @method object GetBucketWebsite(array $args) 查询存储桶（Bucket）Website配置信息
+ * @method object GetBucketLifecycle(array $args) 查询存储桶（Bucket）的生命周期配置
+ * @method object GetBucketVersioning(array $args) 获取存储桶（Bucket）版本控制信息
+ * @method object GetBucketReplication(array $args) 获取存储桶（Bucket）跨区域复制配置信息
+ * @method object GetBucketLocation(array $args) 获取存储桶（Bucket）所在的地域信息
+ * @method object GetBucketNotification(array $args) 获取存储桶（Bucket）Notification信息
+ * @method object GetBucketLogging(array $args) 获取存储桶（Bucket）日志信息
+ * @method object GetBucketInventory(array $args) 获取存储桶（Bucket）清单信息
+ * @method object GetBucketTagging(array $args) 获取存储桶（Bucket）标签信息
+ * @method object UploadPart(array $args) 分块上传
+ * @method object PutObject(array $args) 上传对象
+ * @method object AppendObject(array $args) 追加对象
+ * @method object PutObjectAcl(array $args) 设置 COS 对象的访问权限信息（Access Control List, ACL）
+ * @method object PutBucketAcl(array $args) 设置存储桶（Bucket）的访问权限（Access Control List, ACL)
+ * @method object PutBucketCors(array $args) 设置存储桶（Bucket）的跨域配置信息
+ * @method object PutBucketDomain(array $args) 设置存储桶（Bucket）的Domain信息
+ * @method object PutBucketLifecycle(array $args) 设置存储桶（Bucket）生命周期配置
+ * @method object PutBucketVersioning(array $args) 存储桶（Bucket）版本控制
+ * @method object PutBucketAccelerate(array $args) 配置存储桶（Bucket）Accelerate
+ * @method object PutBucketWebsite(array $args) 配置存储桶（Bucket）website
+ * @method object PutBucketReplication(array $args) 配置存储桶（Bucket）跨区域复制
+ * @method object PutBucketNotification(array $args) 设置存储桶（Bucket）的回调设置
+ * @method object PutBucketTagging(array $args) 配置存储桶（Bucket）标签
+ * @method object PutBucketLogging(array $args) 开启存储桶（Bucket）日志服务
+ * @method object PutBucketInventory(array $args) 配置存储桶（Bucket）清单
+ * @method object RestoreObject(array $args) 回热归档对象
+ * @method object ListParts(array $args) 查询存储桶（Bucket）中正在进行中的分块上传对象
+ * @method object ListObjects(array $args) 查询存储桶（Bucket）下的部分或者全部对象
+ * @method object ListBuckets 获取所属账户的所有存储空间列表
+ * @method object ListObjectVersions(array $args) 获取多版本对象
+ * @method object ListMultipartUploads(array $args) 获取已上传分块列表
+ * @method object ListBucketInventoryConfigurations(array $args) 获取清单列表
+ * @method object HeadObject(array $args) 获取对象的meta信息
+ * @method object HeadBucket(array $args) 存储桶（Bucket）是否存在
+ * @method object UploadPartCopy(array $args) 分块copy
+ * @method object SelectObjectContent(array $args) 检索对象内容
+ * @method object PutBucketIntelligentTiering(array $args) 存储桶（Bucket）开启智能分层
+ * @method object GetBucketIntelligentTiering(array $args) 查询存储桶（Bucket）智能分层
+ * @method object ImageInfo(array $args) 万象-获取图片基本信息
+ * @method object ImageExif(array $args) 万象-获取图片EXIF信息
+ * @method object ImageAve(array $args) 万象-获取图片主色调信息
+ * @method object ImageProcess(array $args) 万象-云上数据处理
+ * @method object Qrcode(array $args) 万象-二维码下载时识别
+ * @method object QrcodeGenerate(array $args) 万象-二维码生成
+ * @method object DetectLabel(array $args) 万象-图片标签
+ * @method object PutBucketImageStyle(array $args) 万象-增加样式
+ * @method object GetBucketImageStyle(array $args) 万象-查询样式
+ * @method object DeleteBucketImageStyle(array $args) 万象-删除样式
+ * @method object PutBucketGuetzli(array $args) 万象-开通Guetzli压缩
+ * @method object GetBucketGuetzli(array $args) 万象-查询Guetzli状态
+ * @method object DeleteBucketGuetzli(array $args) 万象-关闭Guetzli压缩
+ * @method object GetObjectSensitiveContentRecognition(array $args) 图片审核
+ * @method object DetectText(array $args) 文本审核
+ * @method object GetSnapshot(array $args) 媒体截图
+ * @method object PutBucketReferer(array $args) 添加防盗链
+ * @method object GetBucketReferer(array $args) 获取防盗链规则
+ * @method object GetMediaInfo(array $args) 获取媒体信息
+ * @method object CreateMediaTranscodeJobs(array $args) 媒体转码
+ * @method object CreateMediaSnapshotJobs(array $args) 媒体转码
+ * @method object CreateMediaConcatJobs(array $args) 媒体截图
+ * @method object DetectAudio(array $args) 媒体拼接
+ * @method object GetDetectAudioResult(array $args) 音频审核
+ * @method object GetDetectTextResult(array $args) 主动获取音频审核结果
+ * @method object DetectVideo(array $args) 主动获取文本文件审核结果
+ * @method object GetDetectVideoResult(array $args) 视频审核
+ * @method object DetectDocument(array $args) 主动获取视频审核结果
+ * @method object GetDetectDocumentResult(array $args) 文档审核
+ * @method object CreateDocProcessJobs(array $args) 主动获取文档审核结果
+ * @method object DescribeDocProcessQueues(array $args) 提交文档转码任务
+ * @method object DescribeDocProcessJob(array $args) 查询文档转码队列
+ * @method object GetDescribeDocProcessJobs(array $args) 查询文档转码任务
+ * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
     const VERSION = '2.4.1';
@@ -123,7 +124,7 @@ class Client extends GuzzleClient {
     private $signature;
     private $rawCosConfig;
 
-    public function __construct($cosConfig) {
+    public function __construct(array $cosConfig) {
         $this->rawCosConfig = $cosConfig;
         $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
         $this->cosConfig['region'] = isset($cosConfig['region']) ? region_map($cosConfig['region']) : null;
