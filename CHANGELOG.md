@@ -1,5 +1,9 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.4.1 to 2.4.2
+---------
+- 修复图片处理相关接口403签名不对的bug
+
 2.4.0 to 2.4.1
 ---------
 - 增加桶Bucket、GetBucket对应Sample详细注解
