@@ -69,6 +69,47 @@ class Common
         return $cosClient;
     }
 
+    public static function getCiClient() {
+        try {
+            $cosClient = new Client(
+                array(
+                    'region' => self::getRegion(),
+                    'schema' => 'https',
+                    'credentials' => array(
+                        'secretId' => getenv('CI_KEY'),
+                        'secretKey' => getenv('CI_SECRET')
+                    )
+                )
+            );
+        } catch (\Exception $e) {
+            return null;
+        }
+        return $cosClient;
+    }
+
+    public static function getCertainRegionClient($region) {
+        try {
+            $cosClient = new Client(
+                array(
+                    'region' => $region,
+                    'schema' => 'https',
+                    'credentials' => array(
+                        'secretId' => getenv('CI_KEY'),
+                        'secretKey' => getenv('CI_SECRET')
+                    )
+                )
+            );
+        } catch (\Exception $e) {
+            return null;
+        }
+        return $cosClient;
+    }
+
+    public static function getCiBucketName()
+    {
+        return getenv('CI_BUCKET');
+    }
+
 
     public static function getBucketName()
     {
