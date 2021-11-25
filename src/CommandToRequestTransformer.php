@@ -234,6 +234,7 @@ class CommandToRequestTransformer {
                 'DescribeDocProcessQueues' => 1,
                 'DescribeDocProcessJob' => 1,
                 'GetDescribeDocProcessJobs' => 1,
+                'DetectImages' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];

@@ -13,6 +13,11 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId' => $secretId,
             'secretKey' => $secretKey)));
 try {
+    /**
+     * 此接口已不再维护 2021.11.25
+     * 图片审核建议使用 detectImage & detectImages 两个接口
+     * 新增功能字段会在 detectImage & detectImages 接口维护
+     */
     //存储桶图片审核
     $result = $cosClient->getObjectSensitiveContentRecognition(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
