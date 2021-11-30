@@ -5,14 +5,19 @@ namespace Qcloud\Cos;
 use Psr\Http\Message\RequestInterface;
 
 class Signature {
-    private $accessKey;
     // string: access key.
-    private $secretKey;
-    // string: secret key.
+    private $accessKey;
 
-    public function __construct( $accessKey, $secretKey, $token = null ) {
+    // string: secret key.
+    private $secretKey;
+
+    // bool: host trigger
+    private $signHost;
+
+    public function __construct( $accessKey, $secretKey, $signHost, $token = null ) {
         $this->accessKey = $accessKey;
         $this->secretKey = $secretKey;
+        $this->signHost = $signHost;
         $this->token = $token;
         $this->signHeader = [
             'cache-control',
@@ -69,11 +74,15 @@ class Signature {
         foreach ( explode( '&', $request->getUri()->getQuery() ) as $query ) {
             if (!empty($query)) {
                 $tmpquery = explode( '=', $query );
-                $key = strtolower( urlencode( $tmpquery[0] ));
+                $key = strtolower( urlencode($tmpquery[0]) );
                 if (count($tmpquery) >= 2) {
                     $value = $tmpquery[1];
                 } else {
                     $value = "";
+                }
+                //host开关
+                if (!$this->signHost && $key == 'host') {
+                    continue;
                 }
                 $urlParamListArray[$key] = $key. '='. $value;
             }
@@ -86,6 +95,9 @@ class Signature {
         foreach ( $request->getHeaders() as $key => $value ) {
             $key = strtolower( urlencode( $key ) );
             $value = rawurlencode( $value[0] );
+            if ( !$this->signHost && $key == 'host' ) {
+                continue;
+            }
             if ( $this->needCheckHeader( $key ) ) {
                 $headerListArray[$key] = $key. '='. $value;
             }
@@ -106,7 +118,7 @@ class Signature {
     }
 
     public function createPresignedUrl( RequestInterface $request, $expires = '+30 minutes' ) {
-        $authorization = $this->createAuthorization( $request, $expires );
+        $authorization = $this->createAuthorization( $request, $expires);
         $uri = $request->getUri();
         $query = 'sign='.urlencode( $authorization ) . '&' . $uri->getQuery();
         if ( $this->token != null ) {

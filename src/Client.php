@@ -114,7 +114,7 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.4.2';
+    const VERSION = '2.4.3';
 
     public $httpClient;
     
@@ -133,7 +133,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
         $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? $cosConfig['credentials']['secretId'] : '';
         $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? $cosConfig['credentials']['secretKey'] : '';
-        $this->cosConfig['anonymous'] = isset($cosConfig['credentials']['anonymous']) ? $cosConfig['anonymous']['anonymous'] : false;
+        $this->cosConfig['anonymous'] = isset($cosConfig['credentials']['anonymous']) ? $cosConfig['credentials']['anonymous'] : false;
         $this->cosConfig['token'] = isset($cosConfig['credentials']['token']) ? $cosConfig['credentials']['token'] : null;
         $this->cosConfig['timeout'] = isset($cosConfig['timeout']) ? $cosConfig['timeout'] : 3600;
         $this->cosConfig['connect_timeout'] = isset($cosConfig['connect_timeout']) ? $cosConfig['connect_timeout'] : 3600;
@@ -145,6 +145,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
         $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
         $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
+        $this->cosConfig['signHost'] = isset($cosConfig['signHost']) ? $cosConfig['signHost'] : true;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
 
@@ -158,7 +159,7 @@ class Client extends GuzzleClient {
 			return $request->withHeader('User-Agent', $this->cosConfig['userAgent']);
         }));
         if ($this->cosConfig['anonymous'] != true) {
-            $handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey']));
+            $handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig['signHost']));
         }
         if ($this->cosConfig['token'] != null) {
             $handler->push(Middleware::mapRequest(function (RequestInterface $request) {
@@ -166,7 +167,7 @@ class Client extends GuzzleClient {
             }));
         }
         $handler->push($this::handleErrors());
-        $this->signature = new Signature(trim($this->cosConfig['secretId']), trim($this->cosConfig['secretKey']), trim($this->cosConfig['token']));
+        $this->signature = new Signature(trim($this->cosConfig['secretId']), trim($this->cosConfig['secretKey']), $this->cosConfig, trim($this->cosConfig['token'] ));
         $area = $this->cosConfig['allow_accelerate'] ? 'accelerate' : $this->cosConfig['region'];
         $this->httpClient = new HttpClient([
             'base_uri' => $this->cosConfig['schema'].'://cos.' . $area . '.myqcloud.com/',
@@ -287,10 +288,6 @@ class Client extends GuzzleClient {
 
     private function createPresignedUrl(RequestInterface $request, $expires) {
         return $this->signature->createPresignedUrl($request, $expires);
-    }
-
-    public function getPresignetUrl($method, $args, $expires = "+30 minutes") {
-        return $this->getPresignedUrl($method, $args, $expires);
     }
 
     public function getPresignedUrl($method, $args, $expires = "+30 minutes") {
@@ -460,9 +457,9 @@ class Client extends GuzzleClient {
     }
 
 
-    public static function handleSignature($secretId, $secretKey) {
-            return function (callable $handler) use ($secretId, $secretKey) {
-                    return new SignatureMiddleware($handler, $secretId, $secretKey);
+    public static function handleSignature($secretId, $secretKey, $signHost) {
+            return function (callable $handler) use ($secretId, $secretKey, $signHost) {
+                    return new SignatureMiddleware($handler, $secretId, $secretKey, $signHost);
             };
     }
 

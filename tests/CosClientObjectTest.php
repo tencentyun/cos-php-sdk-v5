@@ -972,7 +972,7 @@ class CosClientObjectTest extends TestCosClientBase {
     }
 
     protected function tearDown(): void {
-        parent::setUp();
+        parent::tearDown();
         try {
             $this->cosClient->deleteObject(array('Bucket' => $this->bucket, 'Key' => $this->appendKey));
         } catch(\Exception $e) {
