@@ -11,9 +11,9 @@ class SignatureMiddleware {
     /**
      * @param callable $nextHandler Next handler to invoke.
      */
-    public function __construct(callable $nextHandler, $accessKey, $secretKey) {
+    public function __construct(callable $nextHandler, $accessKey, $secretKey, $signHost) {
         $this->nextHandler = $nextHandler;
-        $this->signature = new Signature($accessKey, $secretKey);
+        $this->signature = new Signature($accessKey, $secretKey, $signHost);
     }
 
     public function __invoke(RequestInterface $request, array $options) {

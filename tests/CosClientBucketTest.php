@@ -816,11 +816,11 @@ class CosClientBucketTest extends TestCosClientBase {
         $this->bucket2 = "tmp-".$this->bucket;
         $this->prBucket = 'public-read' . $this->bucket2;
         $this->hyphenBucket = '12345-'. $this->bucket;
-        $this->doubleHyphenBucket = '12-333-4445' . $this->bucket;
+        $this->doubleHyphenBucket = '12-333-4445' . $this->bucket2;
     }
 
     protected function tearDown(): void {
-        parent::setUp();
+        parent::tearDown();
         try {
             $this->cosClient->deleteBucket(array('Bucket' => $this->bucket2));
         } catch(\Exception $e) {
