@@ -26,6 +26,7 @@ class TestCosClientBase extends \PHPUnit\Framework\TestCase
 
         $result = $this->cosClient->listObjects(
             array('Bucket' => $this->bucket));
+
         if (isset($result['Contents'])) {
             foreach ($result['Contents'] as $content) {
                 $this->cosClient->deleteObject(array('Bucket' => $this->bucket, 'Key' => $content['Key']));
