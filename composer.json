@@ -47,8 +47,5 @@
             "@putenv XDEBUG_MODE=coverage",
             "phpunit -v --color=always"
         ]
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7"
     }
 }
