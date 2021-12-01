@@ -8,7 +8,8 @@ use Qcloud\Cos\Exception\ServiceResponseException;
 
 use Qcloud\Cos\Client;
 
-class CosClientCiTest extends TestCosClientBase
-{
-    //TODO
-}
+//class CosClientCiTest extends TestCosClientBase
+//{
+//    //TODO
+//}
+

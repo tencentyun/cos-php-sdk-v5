@@ -9,6 +9,7 @@ class CosClientObjectTest extends TestCosClientBase {
 
     private $key;
     private $appendKey;
+    private $aclKey;
     /**********************************
      * TestObject
      **********************************/
@@ -482,11 +483,10 @@ class CosClientObjectTest extends TestCosClientBase {
      */
     public function testPutObjectACL() {
         try {
-            $this->cosClient->upload($this->bucket, '11', 'hello.txt');
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
-                    'Key' => '11',
+                    'Key' => $this->key,
                     'Grants' => array(
                         array(
                             'Grantee' => array(
@@ -506,10 +506,9 @@ class CosClientObjectTest extends TestCosClientBase {
             );
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
-
+            
             $this->assertFalse(True);
         }
-
     }
 
     /*
@@ -519,11 +518,10 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testGetObjectACL()
     {
         try {
-            $this->cosClient->upload($this->bucket, '11', 'hello.txt');
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
-                    'Key' => '11',
+                    'Key' => $this->key,
                     'Grants' => array(
                         array(
                             'Grantee' => array(
@@ -542,7 +540,7 @@ class CosClientObjectTest extends TestCosClientBase {
             );
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
-
+            
             $this->assertFalse(True);
         }
     }
@@ -554,7 +552,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclPrivate()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
@@ -564,7 +561,6 @@ class CosClientObjectTest extends TestCosClientBase {
             );
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
-
             $this->assertFalse(True);
         }
     }
@@ -576,7 +572,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclPublicRead()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
@@ -599,7 +594,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclInvalid()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
@@ -620,7 +614,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclReadToUser()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' =>  $this->bucket,
@@ -643,7 +636,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclFullToUser()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' =>  $this->bucket,
@@ -665,7 +657,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclToUsers()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' =>  $this->bucket,
@@ -687,7 +678,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclToSubuser()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' =>  $this->bucket,
@@ -710,7 +700,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclInvalidGrant()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' =>  $this->bucket,
@@ -731,7 +720,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclByBody()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->PutObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
@@ -755,7 +743,7 @@ class CosClientObjectTest extends TestCosClientBase {
             );
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
-
+            
             $this->assertFalse(True);
         }
     }
@@ -767,7 +755,6 @@ class CosClientObjectTest extends TestCosClientBase {
     public function testPutObjectAclByBodyToAnyone()
     {
         try {
-            $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
             $this->cosClient->putObjectAcl(
                 array(
                     'Bucket' => $this->bucket,
@@ -791,7 +778,7 @@ class CosClientObjectTest extends TestCosClientBase {
             );
             $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
-
+            
             $this->assertFalse(True);
         }
     }
@@ -912,7 +899,6 @@ class CosClientObjectTest extends TestCosClientBase {
                 'Key' => $this->key
             ));
             $this->assertEquals($rt['TagSet'], $tagSet);
-            $this->assertTrue(True);
         } catch (ServiceResponseException $e) {
             $this->assertFalse(True);
         }
@@ -954,6 +940,7 @@ class CosClientObjectTest extends TestCosClientBase {
                 'Key' => $this->key,
                 'TagSet' => $tagSet
             ));
+            Common::waitSync();
             $this->cosClient->deleteObjectTagging(array(
                 'Bucket' => $this->bucket,
                 'Key' => $this->key
@@ -969,14 +956,11 @@ class CosClientObjectTest extends TestCosClientBase {
         parent::setUp();
         $this->key = Common::FILE_NAME;
         $this->appendKey = $this->key.'append';
+        $this->cosClient->putObject(array('Bucket' => $this->bucket,'Key' => $this->key, 'Body' => '123'));
     }
 
     protected function tearDown(): void {
         parent::tearDown();
-        try {
-            $this->cosClient->deleteObject(array('Bucket' => $this->bucket, 'Key' => $this->appendKey));
-        } catch(\Exception $e) {
-        }
     }
 
 }
