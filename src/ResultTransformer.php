@@ -108,9 +108,6 @@ class ResultTransformer {
             'CreateMediaTranscodeJobs' => 1,
             'CreateMediaSnapshotJobs' => 1,
             'CreateMediaConcatJobs' => 1,
-            'GetDetectAudioResult' => 1,
-            'GetDetectVideoResult' => 1,
-            'GetDetectDocumentResult' => 1,
         );
         if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);

@@ -109,6 +109,8 @@ use GuzzleHttp\Psr7;
  * @method object DescribeDocProcessQueues(array $args) 提交文档转码任务
  * @method object DescribeDocProcessJob(array $args) 查询文档转码队列
  * @method object GetDescribeDocProcessJobs(array $args) 查询文档转码任务
+ * @method object DetectImage(array $args) 图片审核
+ * @method object DetectImages(array $args) 图片审核-批量
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

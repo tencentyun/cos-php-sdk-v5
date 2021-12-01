@@ -9,36 +9,31 @@ $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
         'schema' => 'https', //协议头部，默认为http
-        'credentials'=> array(
-            'secretId'  => $secretId ,
+        'credentials' => array(
+            'secretId' => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 存储桶文档审核
-    $result = $cosClient->detectDocument(array(
+    $imgUrl = 'http://example.com/test.php';
+    $result = $cosClient->detectImages(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Input' => array(
-            'Object' => 'test01.docx',
-//            'Type' => 'docx',
+        'Inputs' => array(
+            array(
+                'Object' => 'test01.png',
+//                'Interval' => '',
+//                'MaxFrames' => '',
+//                'DataId' => 'aaa',
+            ),
+            array(
+                'Url' => $imgUrl,
+//                'Interval' => '',
+//                'MaxFrames' => '',
+//                'DataId' => 'bbb',
+            ),
         ),
         'Conf' => array(
             'DetectType' => 'Porn,Terrorism,Politics,Ads',
-//            'Callback' => 'https://example.com/callback/',
-//            'BizType' => '',
-        ),
-    ));
-
-    // 文档URL审核
-    $result = $cosClient->detectDocument(array(
-        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Input' => array(
-            'Url' => 'https://example.com/test01.docx',
-//            'Type' => 'docx',
-        ),
-        'Conf' => array(
-            'DetectType' => 'Porn,Terrorism,Politics,Ads',
-//            'Callback' => 'https://example.com/callback/',
-//            'BizType' => '',
-        ),
+//            'BizType' => ''
+        )
     ));
     // 请求成功
     print_r($result);

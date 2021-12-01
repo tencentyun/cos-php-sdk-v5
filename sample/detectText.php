@@ -37,8 +37,9 @@ try {
         ),
         'Conf' => array(
             'DetectType' => 'Porn,Terrorism,Politics,Ads',
-            'Callback' => 'https://example.callback.com/test/', // 回调URL
-            'BizType' => '',
+//            'Callback' => 'https://example.callback.com/test/', // 回调URL
+//            'CallbackVersion' => 'Detail',
+//            'BizType' => '',
         ),
     ));
     // 请求成功
