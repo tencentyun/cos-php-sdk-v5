@@ -210,9 +210,9 @@ class CommandToRequestTransformer {
                     $uri = $request->getUri();
                     $query = $uri->getQuery();
                     if($query){
-                        $query .= "&" . $command['ImageHandleParam'];
+                        $query .= "&" . urlencode($command['ImageHandleParam']);
                     }else{
-                        $query .= $command['ImageHandleParam'];
+                        $query .= urlencode($command['ImageHandleParam']);
                     }
                     $uri = $uri->withQuery($query);
                     $request = $request->withUri( $uri );
