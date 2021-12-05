@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Qcloud\Cos\Tests;
 
 use Qcloud\Cos\Client;
