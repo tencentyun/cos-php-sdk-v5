@@ -29,12 +29,13 @@ foreach ($operations as $key => $operation) {
         if (!empty($des->getOperation($operation)->getParams())) {
             $arg = '(array $args)';
         }
+        $methodDesc = '';
         if (isset($token['method'][$operation])) {
             $line = $token['method'][$operation];
-            if (isset($token['comment'][$line - 1])) {
+            if (isset($token['comment'][$line])) {
+                $methodDesc = $token['comment'][$line];
+            } elseif (isset($token['comment'][$line - 1])) {
                 $methodDesc = $token['comment'][$line - 1];
-            } else {
-                $methodDesc = isset($token['comment'][$line]) ? $token['comment'][$line] : '';
             }
         }
     }

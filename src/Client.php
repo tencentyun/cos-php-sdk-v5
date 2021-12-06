@@ -96,19 +96,19 @@ use GuzzleHttp\Psr7;
  * @method object GetBucketReferer(array $args) 获取防盗链规则
  * @method object GetMediaInfo(array $args) 获取媒体信息
  * @method object CreateMediaTranscodeJobs(array $args) 媒体转码
- * @method object CreateMediaSnapshotJobs(array $args) 媒体转码
- * @method object CreateMediaConcatJobs(array $args) 媒体截图
- * @method object DetectAudio(array $args) 媒体拼接
- * @method object GetDetectAudioResult(array $args) 音频审核
- * @method object GetDetectTextResult(array $args) 主动获取音频审核结果
- * @method object DetectVideo(array $args) 主动获取文本文件审核结果
- * @method object GetDetectVideoResult(array $args) 视频审核
- * @method object DetectDocument(array $args) 主动获取视频审核结果
- * @method object GetDetectDocumentResult(array $args) 文档审核
- * @method object CreateDocProcessJobs(array $args) 主动获取文档审核结果
- * @method object DescribeDocProcessQueues(array $args) 提交文档转码任务
- * @method object DescribeDocProcessJob(array $args) 查询文档转码队列
- * @method object GetDescribeDocProcessJobs(array $args) 查询文档转码任务
+ * @method object CreateMediaSnapshotJobs(array $args) 媒体截图
+ * @method object CreateMediaConcatJobs(array $args) 媒体拼接
+ * @method object DetectAudio(array $args) 音频审核
+ * @method object GetDetectAudioResult(array $args) 主动获取音频审核结果
+ * @method object GetDetectTextResult(array $args) 主动获取文本文件审核结果
+ * @method object DetectVideo(array $args) 视频审核
+ * @method object GetDetectVideoResult(array $args) 主动获取视频审核结果
+ * @method object DetectDocument(array $args) 文档审核
+ * @method object GetDetectDocumentResult(array $args) 主动获取文档审核结果
+ * @method object CreateDocProcessJobs(array $args) 提交文档转码任务
+ * @method object DescribeDocProcessQueues(array $args) 查询文档转码队列
+ * @method object DescribeDocProcessJob(array $args) 查询文档转码任务
+ * @method object GetDescribeDocProcessJobs(array $args) 拉取符合条件的文档转码任务
  * @method object DetectImage(array $args) 图片审核
  * @method object DetectImages(array $args) 图片审核-批量
  * @see \Qcloud\Cos\Service::getService()
