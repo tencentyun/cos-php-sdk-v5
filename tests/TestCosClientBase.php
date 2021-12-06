@@ -1,7 +1,6 @@
 <?php
-namespace Qcloud\Cos\Tests;
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'Common.php';
+namespace Qcloud\Cos\Tests;
 
 class TestCosClientBase extends \PHPUnit\Framework\TestCase
 {
@@ -19,7 +18,8 @@ class TestCosClientBase extends \PHPUnit\Framework\TestCase
         Common::waitSync();
     }
 
-    protected function tearDown(): void {
+    protected function tearDown(): void
+    {
         if (!$this->cosClient->doesBucketExist($this->bucket)) {
             return;
         }

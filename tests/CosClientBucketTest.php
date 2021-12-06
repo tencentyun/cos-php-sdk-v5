@@ -1,9 +1,8 @@
 <?php
+
 namespace Qcloud\Cos\Tests;
 
 use Qcloud\Cos\Exception\ServiceResponseException;
-
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'TestCosClientBase.php';
 
 class CosClientBucketTest extends TestCosClientBase {
 
