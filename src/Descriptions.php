@@ -3459,6 +3459,28 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                                'ObjectResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Location' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                         'AdsInfo' => array(
@@ -3482,6 +3504,28 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'items' => array( 'type' => 'string', 'location' => 'xml',),
                                             ),
+                                            'Location' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                    'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                'ObjectResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Name' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Location' => array(
                                                 'type' => 'object',
                                                 'location' => 'xml',
