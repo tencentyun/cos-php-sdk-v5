@@ -3477,6 +3477,10 @@ class Service {
                                     'type' => 'string',
                                     'location' => 'xml',
                                 ),
+                                'Url' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
                             ),
                         ),
                         'Conf' => array(
@@ -3670,6 +3674,9 @@ class Service {
                 'GetDescribeDocProcessJobs' => Descriptions::GetDescribeDocProcessJobs(), // 拉取符合条件的文档转码任务
                 'DetectImage' => Descriptions::DetectImage(), // 图片审核
                 'DetectImages' => Descriptions::DetectImages(), // 图片审核-批量
+                'DetectVirus' => Descriptions::DetectVirus(), // 云查毒
+                'GetDetectVirusResult' => Descriptions::GetDetectVirusResult(), // 查询病毒检测任务结果
+                'GetDetectImageResult' => Descriptions::GetDetectImageResult(), // 主动获取图片审核结果
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7037,6 +7044,9 @@ class Service {
                 'GetDescribeDocProcessJobsOutput' => Descriptions::GetDescribeDocProcessJobsOutput(),
                 'DetectImageOutput' => Descriptions::DetectImageOutput(),
                 'DetectImagesOutput' => Descriptions::DetectImagesOutput(),
+                'DetectVirusOutput' => Descriptions::DetectVirusOutput(),
+                'GetDetectVirusResultOutput' => Descriptions::GetDetectVirusResultOutput(),
+                'GetDetectImageResultOutput' => Descriptions::GetDetectImageResultOutput(),
             )
         );
     }
