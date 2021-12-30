@@ -13,9 +13,28 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    $result = $cosClient->getDetectVideoResult(array(
+    // 存储桶文件查毒
+    $result = $cosClient->detectVirus(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Key' => 'exampleobject', // jobId
+        'Input' => array(
+            'Object' => 'test01.exe'
+        ),
+        'Conf' => array(
+            'DetectType' => 'Virus',
+//            'Callback' => '',
+        ),
+    ));
+
+    // URL查毒
+    $result = $cosClient->detectVirus(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Input' => array(
+            'Url' => 'https://example.com/test01.exe',
+        ),
+        'Conf' => array(
+            'DetectType' => 'Virus',
+//            'Callback' => '',
+        ),
     ));
     // 请求成功
     print_r($result);
