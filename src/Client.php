@@ -114,6 +114,8 @@ use GuzzleHttp\Psr7;
  * @method object GetDetectImageResult(array $args) 主动获取图片审核结果
  * @method object DetectVirus(array $args) 云查毒
  * @method object GetDetectVirusResult(array $args) 查询病毒检测任务结果
+ * @method object CreateMediaVoiceSeparateJobs(array $args) 提交人声分离任务
+ * @method object DescribeMediaVoiceSeparateJob(array $args) 查询指定的人声分离任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

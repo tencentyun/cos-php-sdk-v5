@@ -3677,6 +3677,8 @@ class Service {
                 'DetectVirus' => Descriptions::DetectVirus(), // 云查毒
                 'GetDetectVirusResult' => Descriptions::GetDetectVirusResult(), // 查询病毒检测任务结果
                 'GetDetectImageResult' => Descriptions::GetDetectImageResult(), // 主动获取图片审核结果
+                'CreateMediaVoiceSeparateJobs' => Descriptions::CreateMediaVoiceSeparateJobs(), // 提交人声分离任务
+                'DescribeMediaVoiceSeparateJob' => Descriptions::DescribeMediaVoiceSeparateJob(), // 查询指定的人声分离任务
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7047,6 +7049,8 @@ class Service {
                 'DetectVirusOutput' => Descriptions::DetectVirusOutput(),
                 'GetDetectVirusResultOutput' => Descriptions::GetDetectVirusResultOutput(),
                 'GetDetectImageResultOutput' => Descriptions::GetDetectImageResultOutput(),
+                'CreateMediaVoiceSeparateJobsOutput' => Descriptions::CreateMediaVoiceSeparateJobsOutput(),
+                'DescribeMediaVoiceSeparateJobOutput' => Descriptions::DescribeMediaVoiceSeparateJobOutput(),
             )
         );
     }
