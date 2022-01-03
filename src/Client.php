@@ -96,6 +96,9 @@ use GuzzleHttp\Psr7;
  * @method object GetBucketReferer(array $args) 获取防盗链规则
  * @method object GetMediaInfo(array $args) 获取媒体信息
  * @method object CreateMediaTranscodeJobs(array $args) 媒体转码
+ * @method object CreateMediaJobs(array $args) 媒体任务
+ * @method object DescribeMediaJob(array $args) 媒体任务
+ * @method object DescribeMediaJobs(array $args) 媒体任务
  * @method object CreateMediaSnapshotJobs(array $args) 媒体截图
  * @method object CreateMediaConcatJobs(array $args) 媒体拼接
  * @method object DetectAudio(array $args) 音频审核

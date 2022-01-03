@@ -3659,6 +3659,9 @@ class Service {
                     ),
                 ),
                 'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(), // 媒体转码
+                'CreateMediaJobs' => Descriptions::CreateMediaJobs(), // 媒体任务
+                'DescribeMediaJob' => Descriptions::DescribeMediaJob(),
+                'DescribeMediaJobs' => Descriptions::DescribeMediaJobs(),
                 'CreateMediaSnapshotJobs' => Descriptions::CreateMediaSnapshotJobs(), // 媒体截图
                 'CreateMediaConcatJobs' => Descriptions::CreateMediaConcatJobs(), // 媒体拼接
                 'DetectAudio' => Descriptions::DetectAudio(), // 音频审核
@@ -7031,6 +7034,9 @@ class Service {
                     )
                 ),
                 'CreateMediaTranscodeJobsOutput' => Descriptions::CreateMediaTranscodeJobsOutput(),
+                'DescribeMediaJobOutput' => Descriptions::DescribeMediaJobOutput(),
+                'DescribeMediaJobsOutput' => Descriptions::DescribeMediaJobsOutput(),
+                'CreateMediaJobsOutput' => Descriptions::CreateMediaJobsOutput(),
                 'CreateMediaSnapshotJobsOutput' => Descriptions::CreateMediaSnapshotJobsOutput(),
                 'CreateMediaConcatJobsOutput' => Descriptions::CreateMediaConcatJobsOutput(),
                 'DetectAudioOutput' => Descriptions::DetectAudioOutput(),
