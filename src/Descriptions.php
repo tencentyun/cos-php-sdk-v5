@@ -3031,7 +3031,6 @@ class Descriptions {
                     'location' => 'query'
                 ),
                 'DetectType' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'detect-type'
@@ -3426,7 +3425,7 @@ class Descriptions {
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'DetectType' => array( 'type' => 'string', 'location' => 'xml', 'required' => true,),
+                        'DetectType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
