@@ -2,9 +2,9 @@
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-$secretId = getenv("SECRETID"); //替换为用户的 secretId，请登录访问管理控制台进行查看和管理，https://console.cloud.tencent.com/cam/capi
-$secretKey = getenv("SECRETKEY"); //替换为用户的 secretKey，请登录访问管理控制台进行查看和管理，https://console.cloud.tencent.com/cam/capi
-$region = "ap-chongqing"; //替换为用户的 region，已创建桶归属的region可以在控制台查看，https://console.cloud.tencent.com/cos5/bucket
+$secretId = "SECRETID"; //替换为用户的 secretId，请登录访问管理控制台进行查看和管理，https://console.cloud.tencent.com/cam/capi
+$secretKey = "SECRETKEY"; //替换为用户的 secretKey，请登录访问管理控制台进行查看和管理，https://console.cloud.tencent.com/cam/capi
+$region = "ap-beijing"; //替换为用户的 region，已创建桶归属的region可以在控制台查看，https://console.cloud.tencent.com/cos5/bucket
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
@@ -15,7 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 try {
     // 多任务接口
     $result = $cosClient->CreateMediaJobs(array(
-        'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Transcode',
         'QueueId' => 'paaf4fce5521a40888a3034a5de80f6ca',
         'CallBack' => '',
@@ -27,7 +27,7 @@ try {
                 'TemplateId' => 't04e1ab86554984f1aa17c062fbf6c007c',
                 'Output' => array(
                     'Region' => $region,
-                    'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+                    'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                     'Object' => 'video01.mp4',
                 ),
                 'WatermarkTemplateId' => array(
@@ -51,7 +51,7 @@ try {
     // 单任务接口
     // start --------------- 使用模版 ----------------- //
     $result = $cosClient->createMediaTranscodeJobs(array(
-        'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Transcode',
         'QueueId' => 'paaf4fce5521a40888a3034a5de80f6ca',
         'Input' => array(
@@ -61,7 +61,7 @@ try {
             'TemplateId' => 't04e1ab86554984f1aa17c062fbf6c007c',
             'Output' => array(
                 'Region' => $region,
-                'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                 'Object' => 'video02.mp4',
             ),
             'Watermark' => arrray(
@@ -97,11 +97,11 @@ try {
         ),
     ));
     $result = $cosClient->DescribeMediaJob(array(
-        'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'j20f7a6be6c5511eca253f3ee9d4082e0',
     ));
     $result = $cosClient->DescribeMediaJobs(array(
-        'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Transcode',
         'QueueId' => 'paaf4fce5521a40888a3034a5de80f6ca',
     ));

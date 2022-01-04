@@ -151,7 +151,7 @@ class CommandToRequestTransformer {
                 foreach ( $params as $key => $value ) {
                     $uri = $request->getUri();
                     $query = $uri->getQuery();
-                    $uri = $uri->withQuery($query. "&" . $key . "=" . $value );
+                    $uri = $uri->withQuery($query. "&" . urlencode($key) . "=" . $value );
                     $request = $request->withUri( $uri );
                 }
             }

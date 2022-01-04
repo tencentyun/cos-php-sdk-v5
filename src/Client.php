@@ -98,7 +98,7 @@ use GuzzleHttp\Psr7;
  * @method object CreateMediaTranscodeJobs(array $args) 媒体转码
  * @method object CreateMediaJobs(array $args) 媒体任务
  * @method object DescribeMediaJob(array $args) 媒体任务
- * @method object DescribeMediaJobs(array $args) 媒体任务
+ * @method object DescribeMediaJobs(array $args) 
  * @method object CreateMediaSnapshotJobs(array $args) 媒体截图
  * @method object CreateMediaConcatJobs(array $args) 媒体拼接
  * @method object DetectAudio(array $args) 音频审核
@@ -114,15 +114,15 @@ use GuzzleHttp\Psr7;
  * @method object GetDescribeDocProcessJobs(array $args) 拉取符合条件的文档转码任务
  * @method object DetectImage(array $args) 图片审核
  * @method object DetectImages(array $args) 图片审核-批量
- * @method object GetDetectImageResult(array $args) 主动获取图片审核结果
  * @method object DetectVirus(array $args) 云查毒
  * @method object GetDetectVirusResult(array $args) 查询病毒检测任务结果
+ * @method object GetDetectImageResult(array $args) 主动获取图片审核结果
  * @method object CreateMediaVoiceSeparateJobs(array $args) 提交人声分离任务
  * @method object DescribeMediaVoiceSeparateJob(array $args) 查询指定的人声分离任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.4.4';
+    const VERSION = '2.5.0';
 
     public $httpClient;
     
@@ -412,7 +412,7 @@ class Client extends GuzzleClient {
             $rt = $this->copyObject(array(
                     'Bucket' => $bucket,
                     'Key'    => $key,
-                    'CopySource'   => "{$copySource['Bucket']}.cos.{$copySource['Region']}.myqcloud.com/{$copySource['Key']}?versionId={$copySource['VersionId']}",
+                    'CopySource'   => "{$copySource['Bucket']}.cos.{$copySource['Region']}.myqcloud.com/". urlencode("{$copySource['Key']}")."?versionId={$copySource['VersionId']}",
                 ) + $options
             );
             return $rt;
