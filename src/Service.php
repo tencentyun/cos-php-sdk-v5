@@ -3660,8 +3660,8 @@ class Service {
                 ),
                 'CreateMediaTranscodeJobs' => Descriptions::CreateMediaTranscodeJobs(), // 媒体转码
                 'CreateMediaJobs' => Descriptions::CreateMediaJobs(), // 媒体任务
-                'DescribeMediaJob' => Descriptions::DescribeMediaJob(),
-                'DescribeMediaJobs' => Descriptions::DescribeMediaJobs(),
+                'DescribeMediaJob' => Descriptions::DescribeMediaJob(), // 查询指定的媒体任务
+                'DescribeMediaJobs' => Descriptions::DescribeMediaJobs(), // 拉取拉取符合条件的媒体任务
                 'CreateMediaSnapshotJobs' => Descriptions::CreateMediaSnapshotJobs(), // 媒体截图
                 'CreateMediaConcatJobs' => Descriptions::CreateMediaConcatJobs(), // 媒体拼接
                 'DetectAudio' => Descriptions::DetectAudio(), // 音频审核
