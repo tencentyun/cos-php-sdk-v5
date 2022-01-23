@@ -1012,6 +1012,10 @@ class Descriptions {
                             'type' => 'string',
                             'location' => 'xml',
                         ),
+                        'DataId' => array(
+                            'type' => 'string',
+                            'location' => 'xml',
+                        ),
                     ),
                 ),
                 'Conf' => array(
@@ -1051,6 +1055,7 @@ class Descriptions {
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -1109,6 +1114,7 @@ class Descriptions {
                     'properties' => array(
                         'Code' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -1272,6 +1278,7 @@ class Descriptions {
                     'properties' => array(
                         'Code' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -1424,6 +1431,7 @@ class Descriptions {
                     'properties' => array(
                         'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Conf' => array(
@@ -1461,6 +1469,7 @@ class Descriptions {
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -1518,6 +1527,7 @@ class Descriptions {
                     'properties' => array(
                         'Code' => array('type' => 'string', 'location' => 'xml',),
                         'Message' => array('type' => 'string', 'location' => 'xml',),
+                        'DataId' => array('type' => 'string', 'location' => 'xml',),
                         'JobId' => array('type' => 'string', 'location' => 'xml',),
                         'State' => array('type' => 'string', 'location' => 'xml',),
                         'CreationTime' => array('type' => 'string', 'location' => 'xml',),
@@ -1985,6 +1995,7 @@ class Descriptions {
                         'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Conf' => array(
@@ -2011,6 +2022,7 @@ class Descriptions {
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -2068,6 +2080,7 @@ class Descriptions {
                     'properties' => array(
                         'Code' => array('type' => 'string', 'location' => 'xml',),
                         'Message' => array('type' => 'string', 'location' => 'xml',),
+                        'DataId' => array('type' => 'string', 'location' => 'xml',),
                         'JobId' => array('type' => 'string', 'location' => 'xml',),
                         'State' => array('type' => 'string', 'location' => 'xml',),
                         'Suggestion' => array('type' => 'integer', 'location' => 'xml',),
@@ -3070,6 +3083,7 @@ class Descriptions {
                 'Result' => array('type' => 'integer', 'location' => 'xml',),
                 'Label' => array('type' => 'string', 'location' => 'xml',),
                 'JobId' => array('type' => 'string', 'location' => 'xml',),
+                'CompressionResult' => array('type' => 'integer', 'location' => 'xml',),
                 'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                 'Score' => array('type' => 'integer', 'location' => 'xml',),
                 'Text' => array('type' => 'string', 'location' => 'xml',),
@@ -3135,6 +3149,67 @@ class Descriptions {
                     ),
                 ),
                 'TerroristInfo' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'integer', 'location' => 'xml',),
+                        'Msg' => array( 'type' => 'string', 'location' => 'xml',),
+                        'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
+                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                        'OcrResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Keywords' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                    ),
+                                    'Location' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'ObjectResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Location' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                            'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'TerrorismInfo' => array(
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -3421,7 +3496,6 @@ class Descriptions {
                     ),
                 ),
                 'Conf' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -3452,6 +3526,7 @@ class Descriptions {
                             'Message' => array( 'type' => 'string', 'location' => 'xml',),
                             'JobId' => array( 'type' => 'string', 'location' => 'xml',),
                             'DataId' => array( 'type' => 'string', 'location' => 'xml',),
+                            'CompressionResult' => array( 'type' => 'integer', 'location' => 'xml',),
                             'Label' => array( 'type' => 'string', 'location' => 'xml',),
                             'Result' => array( 'type' => 'integer', 'location' => 'xml',),
                             'Score' => array( 'type' => 'integer', 'location' => 'xml',),
@@ -3964,6 +4039,7 @@ class Descriptions {
                         'CreationTime' => array('type' => 'string', 'location' => 'xml',),
                         'Object' => array('type' => 'string', 'location' => 'xml',),
                         'Url' => array('type' => 'string', 'location' => 'xml',),
+                        'CompressionResult' => array('type' => 'integer', 'location' => 'xml',),
                         'Text' => array('type' => 'string', 'location' => 'xml',),
                         'Label' => array('type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array('type' => 'string', 'location' => 'xml',),
@@ -4411,6 +4487,474 @@ class Descriptions {
                     'minimum'=> 0,
                     'location' => 'header',
                     'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function DetectWebpage() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}webpage/auditing',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DetectWebpageOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Input' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Conf' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'DetectType' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ReturnHighlightHtml' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function DetectWebpageOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetDetectWebpageResult() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}webpage/auditing/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetDetectWebpageResultOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function GetDetectWebpageResultOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array('type' => 'string', 'location' => 'xml',),
+                        'Message' => array('type' => 'string', 'location' => 'xml',),
+                        'DataId' => array('type' => 'string', 'location' => 'xml',),
+                        'JobId' => array('type' => 'string', 'location' => 'xml',),
+                        'State' => array('type' => 'string', 'location' => 'xml',),
+                        'CreationTime' => array('type' => 'string', 'location' => 'xml',),
+                        'Url' => array('type' => 'string', 'location' => 'xml',),
+                        'Suggestion' => array('type' => 'integer', 'location' => 'xml',),
+                        'Label' => array('type' => 'string', 'location' => 'xml',),
+                        'PageCount' => array('type' => 'integer', 'location' => 'xml',),
+                        'HighlightHtml' => array('type' => 'string', 'location' => 'xml',),
+                        'Labels' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'PornInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                        'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                    ),
+                                ),
+                                'AdsInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                        'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                    ),
+                                ),
+                                'PoliticsInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                        'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                    ),
+                                ),
+                                'TerrorismInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                        'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'ImageResults' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Results' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Url' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Suggestion' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'PornInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'SubLabel' => array('type' => 'string', 'location' => 'xml',),
+                                                    'OcrResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'ObjectResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'AdsInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'SubLabel' => array('type' => 'string', 'location' => 'xml',),
+                                                    'OcrResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'ObjectResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'PoliticsInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'SubLabel' => array('type' => 'string', 'location' => 'xml',),
+                                                    'OcrResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'ObjectResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'TerrorismInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'SubLabel' => array('type' => 'string', 'location' => 'xml',),
+                                                    'OcrResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'ObjectResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Location' => array(
+                                                                    'type' => 'object',
+                                                                    'location' => 'xml',
+                                                                    'properties' => array(
+                                                                        'X' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Width' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Height' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                        'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
+                                                                    ),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'TextResults' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Results' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Suggestion' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'PornInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                            'AdsInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                            'PoliticsInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                            'TerrorismInfo' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
             ),
         );
