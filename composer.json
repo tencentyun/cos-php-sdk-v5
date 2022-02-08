@@ -4,6 +4,7 @@
     "keywords": [
         "qcloud", "cos", "php"
     ],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -23,6 +24,9 @@
         "psr-4": {
             "Qcloud\\Cos\\": "src/"
         },
+        "exclude-from-classmap": [
+            "/tests/"
+        ],
         "files": ["src/Common.php"]
     },
     "autoload-dev": {
