@@ -180,26 +180,34 @@ class Client extends GuzzleClient {
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig, $this->cosConfig['token']);
         $area = $this->cosConfig['allow_accelerate'] ? 'accelerate' : $this->cosConfig['region'];
         $this->httpClient = new HttpClient([
-            'base_uri' => $this->cosConfig['schema'].'://cos.' . $area . '.myqcloud.com/',
+            'base_uri' => "{$this->cosConfig['schema']}://cos.{$area}.myqcloud.com/",
             'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
             'proxy' => $this->cosConfig['proxy'],
             'allow_redirects' => $this->cosConfig['allow_redirects']
         ]);
         $this->desc = new Description($service);
-        $this->api = (array)($this->desc->getOperations());
+        $this->api = (array) $this->desc->getOperations();
         parent::__construct($this->httpClient, $this->desc, [$this,
         'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
         null);
     }
 
     public function inputCheck() {
+        $message = null;
         //检查Region
         if (empty($this->cosConfig['region'])   &&
             empty($this->cosConfig['domain'])   &&
             empty($this->cosConfig['endpoint']) &&
             empty($this->cosConfig['ip'])) {
-            $e = new Exception\CosException('Region is empty');
+            $message = 'Region is empty';
+        }
+        //检查Secret
+        if (empty($this->cosConfig['secretId']) || empty($this->cosConfig['secretKey'])) {
+            $message = 'Secret is empty';
+        }
+        if ($message !== null) {
+            $e = new Exception\CosException($message);
             $e->setExceptionCode('Invalid Argument');
             throw $e;
         }
