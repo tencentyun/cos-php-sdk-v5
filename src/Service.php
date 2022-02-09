@@ -3481,6 +3481,10 @@ class Service {
                                     'type' => 'string',
                                     'location' => 'xml',
                                 ),
+                                'DataId' => array(
+                                    'type' => 'string',
+                                    'location' => 'xml',
+                                ),
                             ),
                         ),
                         'Conf' => array(
@@ -3682,6 +3686,8 @@ class Service {
                 'GetDetectImageResult' => Descriptions::GetDetectImageResult(), // 主动获取图片审核结果
                 'CreateMediaVoiceSeparateJobs' => Descriptions::CreateMediaVoiceSeparateJobs(), // 提交人声分离任务
                 'DescribeMediaVoiceSeparateJob' => Descriptions::DescribeMediaVoiceSeparateJob(), // 查询指定的人声分离任务
+                'DetectWebpage' => Descriptions::DetectWebpage(), // 提交网页审核任务
+                'GetDetectWebpageResult' => Descriptions::GetDetectWebpageResult(), // 查询网页审核任务结果
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6493,6 +6499,7 @@ class Service {
                             'location' => 'xml',
                             'properties' => array(
                                 'Code' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DataId' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Message' => array( 'type' => 'string', 'location' => 'xml',),
                                 'JobId' => array( 'type' => 'string', 'location' => 'xml',),
                                 'State' => array( 'type' => 'string', 'location' => 'xml',),
@@ -7057,6 +7064,8 @@ class Service {
                 'GetDetectImageResultOutput' => Descriptions::GetDetectImageResultOutput(),
                 'CreateMediaVoiceSeparateJobsOutput' => Descriptions::CreateMediaVoiceSeparateJobsOutput(),
                 'DescribeMediaVoiceSeparateJobOutput' => Descriptions::DescribeMediaVoiceSeparateJobOutput(),
+                'DetectWebpageOutput' => Descriptions::DetectWebpageOutput(),
+                'GetDetectWebpageResultOutput' => Descriptions::GetDetectWebpageResultOutput(),
             )
         );
     }

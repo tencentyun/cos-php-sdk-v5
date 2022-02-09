@@ -119,6 +119,8 @@ use GuzzleHttp\Psr7;
  * @method object GetDetectImageResult(array $args) 主动获取图片审核结果
  * @method object CreateMediaVoiceSeparateJobs(array $args) 提交人声分离任务
  * @method object DescribeMediaVoiceSeparateJob(array $args) 查询指定的人声分离任务
+ * @method object DetectWebpage(array $args) 提交网页审核任务
+ * @method object GetDetectWebpageResult(array $args) 查询网页审核任务结果
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

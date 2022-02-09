@@ -248,6 +248,8 @@ class CommandToRequestTransformer {
                 'GetDetectVirusResult' => 1,
                 'CreateMediaVoiceSeparateJobs' => 1,
                 'DescribeMediaVoiceSeparateJob' => 1,
+                'DetectWebpage' => 1,
+                'GetDetectWebpageResult' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
