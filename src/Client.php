@@ -124,7 +124,7 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.5.1';
+    const VERSION = '2.5.5';
 
     public $httpClient;
     
@@ -150,6 +150,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
         $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
         $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : null;
+        $this->cosConfig['endUri'] = isset($cosConfig['endUri']) ? $cosConfig['endUri'] : null;
         $this->cosConfig['domain'] = isset($cosConfig['domain']) ? $cosConfig['domain'] : null;
         $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
         $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
@@ -158,6 +159,8 @@ class Client extends GuzzleClient {
         $this->cosConfig['signHost'] = isset($cosConfig['signHost']) ? $cosConfig['signHost'] : true;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
+        $this->cosConfig['enableOldDomain'] = isset($cosConfig['enableOldDomain']) ? $cosConfig['enableOldDomain'] : false;
+        $this->cosConfig['enableInternalDomain'] = isset($cosConfig['enableInternalDomain']) ? $cosConfig['enableInternalDomain'] : true;
 
         // check config
         $this->inputCheck();
@@ -179,8 +182,25 @@ class Client extends GuzzleClient {
         $handler->push($this::handleErrors());
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig, $this->cosConfig['token']);
         $area = $this->cosConfig['allow_accelerate'] ? 'accelerate' : $this->cosConfig['region'];
+       
+        $base_uri = $this->cosConfig['schema'].'://cos-internal.' . $area . '.tencentcos.cn/';
+
+        if ($this->cosConfig['endpoint'] != null) {
+            $base_uri = $this->cosConfig['schema'].'://' . $this->cosConfig['endpoint'];
+        } else if($this->cosConfig['ip'] != null) {
+            $base_uri = $this->cosConfig['ip'];
+        } else if($this->cosConfig['domain'] != null) {
+            $base_uri = $this->cosConfig['domain'];
+        } else if($this->cosConfig['enableOldDomain']) {
+            $base_uri = $this->cosConfig['schema'].'://cos.' . $area . '.myqcloud.com/';
+        } else {
+            $base_uri = $this->cosConfig['enableInternalDomain'] ?
+                $this->cosConfig['schema'].'://cos-internal.' . $area . '.tencentcos.cn/' :
+                $this->cosConfig['schema'].'://cos.' . $area . '.tencentcos.cn/';
+        }
+
         $this->httpClient = new HttpClient([
-            'base_uri' => "{$this->cosConfig['schema']}://cos.{$area}.myqcloud.com/",
+            'base_uri' => $base_uri,
             'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
             'proxy' => $this->cosConfig['proxy'],
