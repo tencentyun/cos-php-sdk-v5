@@ -9,6 +9,8 @@ $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
         'schema' => 'https', //协议头部，默认为http
+        'endpoint' => ".cos-internal." . $region . ".tencentcos.cn", // 默认为内网域名，使用公网域名请修改cos-internal为cos
+        'enableOldDomain' => true,
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));

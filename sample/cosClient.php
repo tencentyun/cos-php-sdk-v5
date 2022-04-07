@@ -19,6 +19,7 @@ $cosClient = new Qcloud\Cos\Client(
         'proxy' => '', //代理服务器
         'retry' => 10, //重试次数
         'userAgent' => '', //UA
+        'endpoint' => ".cos-internal." . $region . ".tencentcos.cn", // 默认为内网域名，使用公网域名请修改cos-internal为cos
         'allow_redirects' => false, //是否follow302
         'credentials'=> array(
             'secretId'  => $secretId ,
