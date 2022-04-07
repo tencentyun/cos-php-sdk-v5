@@ -20,7 +20,7 @@ try {
                                     'Key'=>'exampleobject',
                                     'Body'=>'',
                                     'Params'=>array(),
-                                    'Headers'=>array()),
+                                    'Headers'=>array()), //若上传加入headers，content-md5写法为"content-md5" => base64_encode( md5( Body, true ) )
                                 $expires='+30 minutes');
     // 请求成功
     echo($signedUrl);

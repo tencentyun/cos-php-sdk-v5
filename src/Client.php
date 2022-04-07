@@ -124,7 +124,7 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.5.1';
+    const VERSION = '2.5.2';
 
     public $httpClient;
     
@@ -258,6 +258,7 @@ class Client extends GuzzleClient {
         $request = $transformer->uploadBodyTransformer($command, $request);
         $request = $transformer->metadataTransformer($command, $request);
         $request = $transformer->queryStringTransformer($command, $request);
+        $request = $transformer->headerTransformer($command, $request);
         $request = $transformer->md5Transformer($command, $request);
         $request = $transformer->specialParamTransformer($command, $request);
         $request = $transformer->ciParamTransformer($command, $request);

@@ -159,6 +159,19 @@ class CommandToRequestTransformer {
             return $request;
         }
 
+        // add Header string
+
+        public function headerTransformer( CommandInterface $command, $request ) {
+            $operation = $this->operation;
+            if ( isset( $command['Headers'] ) ) {
+                $headers = $command['Headers'];
+                foreach ( $headers as $key => $value ) {
+                    $request = $request->withHeader( $key, $value);
+                }
+            }
+            return $request;
+        }
+
         // add meta
 
         public function metadataTransformer( CommandInterface $command, $request ) {
