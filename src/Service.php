@@ -3688,6 +3688,10 @@ class Service {
                 'DescribeMediaVoiceSeparateJob' => Descriptions::DescribeMediaVoiceSeparateJob(), // 查询指定的人声分离任务
                 'DetectWebpage' => Descriptions::DetectWebpage(), // 提交网页审核任务
                 'GetDetectWebpageResult' => Descriptions::GetDetectWebpageResult(), // 查询网页审核任务结果
+                'DescribeMediaBuckets' => Descriptions::DescribeMediaBuckets(), // 查询媒体处理开通状态
+                'GetPrivateM3U8' => Descriptions::GetPrivateM3U8(), // 获取私有 M3U8 ts 资源的下载授权
+                'DescribeMediaQueues' => Descriptions::DescribeMediaQueues(), // 搜索媒体处理队列
+                'UpdateMediaQueue' => Descriptions::UpdateMediaQueue(), // 更新媒体处理队列
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7066,6 +7070,10 @@ class Service {
                 'DescribeMediaVoiceSeparateJobOutput' => Descriptions::DescribeMediaVoiceSeparateJobOutput(),
                 'DetectWebpageOutput' => Descriptions::DetectWebpageOutput(),
                 'GetDetectWebpageResultOutput' => Descriptions::GetDetectWebpageResultOutput(),
+                'DescribeMediaBucketsOutput' => Descriptions::DescribeMediaBucketsOutput(),
+                'GetPrivateM3U8Output' => Descriptions::GetPrivateM3U8Output(),
+                'DescribeMediaQueuesOutput' => Descriptions::DescribeMediaQueuesOutput(),
+                'UpdateMediaQueueOutput' => Descriptions::UpdateMediaQueueOutput(),
             )
         );
     }

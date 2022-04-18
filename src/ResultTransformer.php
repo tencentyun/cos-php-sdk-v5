@@ -70,7 +70,7 @@ class ResultTransformer {
 
     public function ciContentInfoTransformer(CommandInterface $command, Result $result) {
         $action = $command->getName();
-        if ($action == "ImageInfo" || $action == "ImageExif" || $action == "ImageAve") {
+        if ($action == "ImageInfo" || $action == "ImageExif" || $action == "ImageAve" || $action == "GetPrivateM3U8") {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $result['Data'] = $this->geCiContentInfo($result, $length);
@@ -113,6 +113,7 @@ class ResultTransformer {
             'CreateMediaConcatJobs' => 1,
             'CreateMediaVoiceSeparateJobs' => 1,
             'DescribeMediaVoiceSeparateJob' => 1,
+            'UpdateMediaQueue' => 1,
         );
         if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);

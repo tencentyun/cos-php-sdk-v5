@@ -4960,4 +4960,249 @@ class Descriptions {
         );
     }
 
+    public static function DescribeMediaBuckets() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/mediabucket',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeMediaBucketsOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Regions' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'regions' ),
+                'BucketNames' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'bucketNames' ),
+                'BucketName' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'bucketName' ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function DescribeMediaBucketsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'TotalCount' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'MediaBucketList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'BucketId' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Region' => array( 'type' => 'string', 'location' => 'xml',),
+                            'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetPrivateM3U8() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetPrivateM3U8Output',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'ci-process' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'expires' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'query'
+                )
+            ),
+        );
+    }
+    public static function GetPrivateM3U8Output() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeMediaQueues() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}queue',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeMediaQueuesOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'QueueIds' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'queueIds' ),
+                'State' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'state' ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function DescribeMediaQueuesOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'TotalCount' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'QueueList' => array(
+                    'type' => 'array', 'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object', 'location' => 'xml',
+                        'properties' => array(
+                            'QueueId' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                            'State' => array( 'type' => 'string', 'location' => 'xml',),
+                            'MaxSize' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'MaxConcurrent' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'UpdateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                            'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                            'NotifyConfig' => array(
+                                'type' => 'object', 'location' => 'xml',
+                                'properties' => array(
+                                    'Url' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'State' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Event' => array( 'type' => 'string', 'location' => 'xml',),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'NonExistPIDs' => array(
+                    'type' => 'array', 'location' => 'xml',
+                    'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaQueue() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}queue/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaQueueOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'QueueID' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'State' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'NotifyConfig' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Url' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
+                        'Type' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
+                        'Event' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaQueueOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
 }

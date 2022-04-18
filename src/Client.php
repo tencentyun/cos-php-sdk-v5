@@ -121,6 +121,10 @@ use GuzzleHttp\Psr7;
  * @method object DescribeMediaVoiceSeparateJob(array $args) 查询指定的人声分离任务
  * @method object DetectWebpage(array $args) 提交网页审核任务
  * @method object GetDetectWebpageResult(array $args) 查询网页审核任务结果
+ * @method object DescribeMediaBuckets(array $args) 查询媒体处理开通状态
+ * @method object GetPrivateM3U8(array $args) 获取私有 M3U8 ts 资源的下载授权
+ * @method object DescribeMediaQueues(array $args) 搜索媒体处理队列
+ * @method object UpdateMediaQueue(array $args) 更新媒体处理队列
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
