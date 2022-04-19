@@ -100,7 +100,15 @@ class MultipartUpload {
                 $index = $index + 1;
                 $partNumber = $this->partNumberList[$index]['PartNumber'];
                 $partSize = $this->partNumberList[$index]['PartSize'];
-                $etag = $response->getHeaders()["ETag"][0];
+
+                //兼容两种写法，防止index为undefined
+                if (array_key_exists('etag', $response->getHeaders())) {
+                    $etag = $response->getHeaders()["etag"][0];
+                }
+
+                if (array_key_exists('ETag', $response->getHeaders())) {
+                    $etag = $response->getHeaders()["ETag"][0];
+                }
                 $part = array('PartNumber' => $partNumber, 'ETag' => $etag);
                 $this->parts[$partNumber] = $part;
                 $this->uploadedSize += $partSize;
