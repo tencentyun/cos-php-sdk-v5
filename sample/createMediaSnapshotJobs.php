@@ -13,6 +13,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
+    // 提交截图任务 https://cloud.tencent.com/document/product/436/54005
     // start --------------- 使用模版 ----------------- //
     $result = $cosClient->createMediaSnapshotJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
