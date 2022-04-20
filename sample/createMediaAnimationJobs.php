@@ -14,6 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // 提交动图任务 https://cloud.tencent.com/document/product/436/54001
+    // start --------------- 使用模版 ----------------- //
     $result = $cosClient->createMediaAnimationJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Animation',
@@ -32,6 +33,46 @@ try {
     ));
     // 请求成功
     print_r($result);
+    // end --------------- 使用模版 ----------------- //
+
+    // start --------------- 自定义参数 ----------------- //
+    $result = $cosClient->createMediaAnimationJobs(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Tag' => 'Animation',
+        'QueueId' => 'p81e648af2aee49688xxxxxxxxxxxxxxxx',
+        'Input' => array(
+            'Object' => 'video01.mp4'
+        ),
+        'Operation' => array(
+            'Animation' => array(
+                'Container' => array(
+                    'Format' => '',
+                ),
+                'Video' => array(
+                    'Codec' => '',
+                    'Width' => '',
+                    'Height' => '',
+                    'Fps' => '',
+                    'AnimateOnlyKeepKeyFrame' => '',
+                    'AnimateTimeIntervalOfFrame' => '',
+                    'AnimateFramesPerSecond' => '',
+                    'Quality' => '',
+                ),
+                'TimeInterval' => array(
+                    'Start' => '',
+                    'Duration' => '',
+                ),
+            ),
+            'Output' => array(
+                'Region' => $region,
+                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+                'Object' => 'Animation.gif',
+            ),
+        ),
+    ));
+    // 请求成功
+    print_r($result);
+    // end --------------- 自定义参数 ----------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

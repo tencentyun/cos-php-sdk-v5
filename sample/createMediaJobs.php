@@ -16,33 +16,35 @@ try {
     // 多任务接口 https://cloud.tencent.com/document/product/436/58335
     $result = $cosClient->CreateMediaJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'Transcode',
-        'QueueId' => 'paaf4fce5521a40888a3034a5de80f6ca',
+        'Tag' => 'Transcode', // 可选，单一任务时，优先以Operation.Tag为准，当Operation无Tag参数时，该参数生效
+        'QueueId' => 'paaf4fce5521a40888a303xxxxxxxxxxxxxx',
         'CallBack' => '',
         'Input' => array(
             'Object' => 'example.mp4'
         ),
         'Operation' => array(
             array(
-                'TemplateId' => 't04e1ab86554984f1aa17c062fbf6c007c',
+                'Tag' => 'Transcode',
+                'TemplateId' => 't04e1ab86554984f1aa17cxxxxxxxxxxxxxx',
                 'Output' => array(
                     'Region' => $region,
                     'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                     'Object' => 'video01.mp4',
                 ),
                 'WatermarkTemplateId' => array(
-                    't112d18d9b2a9b430e91d3c320f80af341',
+                    't112d18d9b2a9b430e91dxxxxxxxxxxxxxx',
                 ),
             ),
             array(
-                'TemplateId' => 't04e1ab86554984f1aa17c062fbf6c007c',
+                'Tag' => 'Transcode',
+                'TemplateId' => 't04e1ab86554984f1aa17xxxxxxxxxxxxxx',
                 'Output' => array(
                     'Region' => $region,
-                    'Bucket' => 'wwj-cq-1253960454', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+                    'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                     'Object' => 'video02.mp4',
                 ),
                 'WatermarkTemplateId' => array(
-                    't1bf713bb5c6a5496e859aebc4a8973ab5',
+                    't1bf713bb5c6a5496e859axxxxxxxxxxxxxx',
                 ),
             ),
         ),

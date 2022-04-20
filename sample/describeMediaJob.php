@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // 查询指定的任务
-    $result = $cosClient->DescribeMediaJob(array(
+    $result = $cosClient->describeMediaJob(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => '', // jobId
     ));
