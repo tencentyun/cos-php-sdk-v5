@@ -125,6 +125,10 @@ use GuzzleHttp\Psr7;
  * @method object GetPrivateM3U8(array $args) 获取私有 M3U8 ts 资源的下载授权
  * @method object DescribeMediaQueues(array $args) 搜索媒体处理队列
  * @method object UpdateMediaQueue(array $args) 更新媒体处理队列
+ * @method object CreateMediaSmartCoverJobs(array $args) 提交智能封面任务
+ * @method object CreateMediaVideoProcessJobs(array $args) 提交视频增强任务
+ * @method object CreateMediaVideoMontageJobs(array $args) 提交精彩集锦任务
+ * @method object CreateMediaAnimationJobs(array $args) 提交动图任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

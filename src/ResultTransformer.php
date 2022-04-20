@@ -114,6 +114,10 @@ class ResultTransformer {
             'CreateMediaVoiceSeparateJobs' => 1,
             'DescribeMediaVoiceSeparateJob' => 1,
             'UpdateMediaQueue' => 1,
+            'CreateMediaSmartCoverJobs' => 1,
+            'CreateMediaVideoProcessJobs' => 1,
+            'CreateMediaVideoMontageJobs' => 1,
+            'CreateMediaAnimationJobs' => 1,
         );
         if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);
