@@ -12,12 +12,12 @@ class Signature {
     private $secretKey;
 
     // bool: host trigger
-    private $signHost;
+    private $options;
 
-    public function __construct( $accessKey, $secretKey, $signHost, $token = null ) {
+    public function __construct( $accessKey, $secretKey, $options, $token = null ) {
         $this->accessKey = $accessKey;
         $this->secretKey = $secretKey;
-        $this->signHost = $signHost;
+        $this->options = $options;
         $this->token = $token;
         $this->signHeader = [
             'cache-control',
@@ -82,7 +82,7 @@ class Signature {
                     $value = "";
                 }
                 //host开关
-                if (!$this->signHost && $key == 'host') {
+                if (!$this->options['signHost'] && $key == 'host') {
                     continue;
                 }
                 $urlParamListArray[$key] = $key. '='. $value;
@@ -96,7 +96,7 @@ class Signature {
         foreach ( $request->getHeaders() as $key => $value ) {
             $key = strtolower( urlencode( $key ) );
             $value = rawurlencode( $value[0] );
-            if ( !$this->signHost && $key == 'host' ) {
+            if ( !$this->options['signHost'] && $key == 'host' ) {
                 continue;
             }
             if ( $this->needCheckHeader( $key ) ) {
