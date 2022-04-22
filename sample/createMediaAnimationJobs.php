@@ -13,23 +13,21 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交人声分离任务 https://cloud.tencent.com/document/product/436/58341
+    // 提交动图任务 https://cloud.tencent.com/document/product/436/54001
     // start --------------- 使用模版 ----------------- //
-    $result = $cosClient->createMediaVoiceSeparateJobs(array(
+    $result = $cosClient->createMediaAnimationJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'VoiceSeparate',
-        'QueueId' => '',
-        'CallBack' => '',
+        'Tag' => 'Animation',
+        'QueueId' => 'p81e648af2aee49688xxxxxxxxxxxxxxxx',
         'Input' => array(
-            'Object' => 'test.mp3'
+            'Object' => 'video01.mp4'
         ),
         'Operation' => array(
-            'TemplateId' => '',
+            'TemplateId' => 't1de276cbdab16xxxxxxxxxxxxxxxxxxxxx',
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'VoiceSeparate01.mp3',
-                'AuObject' => 'VoiceSeparate02.mp3',
+                'Object' => 'Animation.gif',
             ),
         ),
     ));
@@ -38,29 +36,37 @@ try {
     // end --------------- 使用模版 ----------------- //
 
     // start --------------- 自定义参数 ----------------- //
-    $result = $cosClient->createMediaVoiceSeparateJobs(array(
+    $result = $cosClient->createMediaAnimationJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'VoiceSeparate',
-        'QueueId' => '',
-        'CallBack' => '',
+        'Tag' => 'Animation',
+        'QueueId' => 'p81e648af2aee49688xxxxxxxxxxxxxxxx',
         'Input' => array(
-            'Object' => 'test.mp3'
+            'Object' => 'video01.mp4'
         ),
         'Operation' => array(
+            'Animation' => array(
+                'Container' => array(
+                    'Format' => '',
+                ),
+                'Video' => array(
+                    'Codec' => '',
+                    'Width' => '',
+                    'Height' => '',
+                    'Fps' => '',
+                    'AnimateOnlyKeepKeyFrame' => '',
+                    'AnimateTimeIntervalOfFrame' => '',
+                    'AnimateFramesPerSecond' => '',
+                    'Quality' => '',
+                ),
+                'TimeInterval' => array(
+                    'Start' => '',
+                    'Duration' => '',
+                ),
+            ),
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'VoiceSeparate01.mp3',
-                'AuObject' => 'VoiceSeparate02.mp3',
-            ),
-            'VoiceSeparate' => array(
-                'AudioMode' => 'AudioAndBackground',
-                'AudioConfig' => array(
-                    'Codec' => 'mp3',
-                    'Samplerate' => '11025',
-                    'Bitrate' => '256',
-                    'Channels' => '2',
-                ),
+                'Object' => 'Animation.gif',
             ),
         ),
     ));
