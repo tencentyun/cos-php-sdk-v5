@@ -11,7 +11,7 @@ class Signature {
     // string: secret key.
     private $secretKey;
 
-    // bool: host trigger
+    // array: cos config.
     private $options;
 
     public function __construct( $accessKey, $secretKey, $options, $token = null ) {
