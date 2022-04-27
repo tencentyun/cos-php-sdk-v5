@@ -1,5 +1,9 @@
 cos-php-sdk-v5 Upgrade Guide
 ====================
+2.5.4 to 2.5.5
+---------
+- fix signHost type error
+
 2.5.3 to 2.5.4
 ---------
 - 新增查询是否开通媒体处理接口
