@@ -33,6 +33,7 @@ try {
                 'Object' => 'SDRtoHDR.flv',
             ),
         ),
+        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);

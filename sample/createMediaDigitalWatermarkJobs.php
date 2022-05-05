@@ -33,6 +33,7 @@ try {
                 'Object' => 'DigitalWatermark.mp4',
             ),
         ),
+        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);

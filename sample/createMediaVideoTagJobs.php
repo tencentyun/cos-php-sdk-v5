@@ -26,6 +26,7 @@ try {
                 'Scenario' => 'Stream',
             ),
         ),
+        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);

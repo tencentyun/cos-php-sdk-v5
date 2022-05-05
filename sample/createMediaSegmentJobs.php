@@ -36,6 +36,7 @@ try {
                 'Object' => 'Segment-trans${Number}.mkv',
             ),
         ),
+        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);

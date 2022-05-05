@@ -27,7 +27,7 @@ try {
                 'Version' => 'V1',
             ),
         ),
-        'CallBack' => 'xxx',
+        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);
