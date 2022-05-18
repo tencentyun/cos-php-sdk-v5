@@ -13,19 +13,24 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交智能封面任务 https://cloud.tencent.com/document/product/436/54017
-    $result = $cosClient->createMediaSmartCoverJobs(array(
+    // 嵌入数字水印任务 https://cloud.tencent.com/document/product/436/65999
+    $result = $cosClient->createMediaDigitalWatermarkJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'SmartCover',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
+        'Tag' => 'DigitalWatermark',
+        'QueueId' => 'p81e648af2aee496885707caxxxxxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),
         'Operation' => array(
+            'DigitalWatermark' => array(
+                'Message' => '123456789ab',
+                'Type' => 'Text',
+                'Version' => 'V1',
+            ),
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'SmartCover-${Number}.jpg',
+                'Object' => 'DigitalWatermark.mp4',
             ),
         ),
         'CallBack' => '',

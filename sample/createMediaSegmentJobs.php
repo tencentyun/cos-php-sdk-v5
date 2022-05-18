@@ -13,19 +13,27 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交智能封面任务 https://cloud.tencent.com/document/product/436/54017
-    $result = $cosClient->createMediaSmartCoverJobs(array(
+    // 提交转封装任务 https://cloud.tencent.com/document/product/436/67186
+    $result = $cosClient->createMediaSegmentJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'SmartCover',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
+        'Tag' => 'Segment',
+        'QueueId' => 'p81e648af2aee496885707ca0xxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),
         'Operation' => array(
+            'Segment' => array(
+                'Format' => 'mkv',
+                'Duration' => '5',
+                'HlsEncrypt' => array(
+                    'IsHlsEncrypt' => 'false',
+                    'UriKey' => '',
+                ),
+            ),
             'Output' => array(
                 'Region' => $region,
-                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'SmartCover-${Number}.jpg',
+                'Bucket' => 'examplebucket-125000000',
+                'Object' => 'Segment-trans${Number}.mkv',
             ),
         ),
         'CallBack' => '',

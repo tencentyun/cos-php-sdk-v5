@@ -13,23 +13,29 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交视频增强任务 https://cloud.tencent.com/document/product/436/60750
+    // 提交超分辨率任务 https://cloud.tencent.com/document/product/436/67210
     // start --------------- 使用模版 ----------------- //
-    $result = $cosClient->createMediaVideoProcessJobs(array(
+    $result = $cosClient->createMediaSuperResolutionJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'VideoProcess',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
+        'Tag' => 'SuperResolution',
+        'QueueId' => 'p81e648af2aee49688570xxxxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),
         'Operation' => array(
-            'TemplateId' => 't13466f1ea41a14c0xxxxxxxxxxxxx', // 视频增强模板 ID
-            'TranscodeTemplateId' => 't0b6a845f5e42847bd81xxxxxxxxxxxxx', // 转码模板 ID
-            'WatermarkTemplateId' => 't185e2e24551b24259a0xxxxxxxxxxxxx', // 水印模板 ID
+            'TemplateId' =>'t19ea5e0c0b7054d7b904axxxxxxxxxxx',
+            'TranscodeTemplateId' =>'t0b612860a293f41078xxxxxxxxxxx',
+            'WatermarkTemplateId' =>'t185e2e24551b24259a02xxxxxxxxxxx',
+            'DigitalWatermark' => array(
+                'Message' => 'xxx',
+                'Type' => 'Text',
+                'Version' => 'V1',
+                'IgnoreError' => 'true',
+            ),
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'VideoProcess.flv',
+                'Object' => 'SuperResolution.flv',
             ),
         ),
         'CallBack' => '',
@@ -39,25 +45,17 @@ try {
     // end --------------- 使用模版 ----------------- //
 
     // start --------------- 自定义参数 ----------------- //
-    $result = $cosClient->createMediaVideoProcessJobs(array(
+    $result = $cosClient->createMediaSuperResolutionJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'VideoProcess',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
+        'Tag' => 'SuperResolution',
+        'QueueId' => 'p81e648af2aee49688570xxxxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),
         'Operation' => array(
-            'VideoProcess' => array(
-                'ColorEnhance' => array(
-                    'Enable' => '',
-                    'Contrast' => '',
-                    'Correction' => '',
-                    'Saturation' => '',
-                ),
-                'MsSharpen' => array(
-                    'Enable' => '',
-                    'SharpenLevel' => '',
-                ),
+            'SuperResolution' => array(
+                'Resolution' => '',
+                'EnableScaleUp' => '',
             ),
             'Transcode' => array(
                 'Tag' => '',
@@ -136,10 +134,16 @@ try {
                     'Text' => '',
                 ),
             ),
+            'DigitalWatermark' => array(
+                'Message' => '',
+                'Type' => '',
+                'Version' => '',
+                'IgnoreError' => '',
+            ),
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'VideoProcess.flv',
+                'Object' => 'SuperResolution.flv',
             ),
         ),
         'CallBack' => '',

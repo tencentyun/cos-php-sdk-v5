@@ -13,21 +13,21 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交动图任务 https://cloud.tencent.com/document/product/436/54001
+    // 提交图片处理任务 https://cloud.tencent.com/document/product/436/67194
     // start --------------- 使用模版 ----------------- //
-    $result = $cosClient->createMediaAnimationJobs(array(
+    $result = $cosClient->createMediaPicProcessJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'Animation',
-        'QueueId' => 'p81e648af2aee49688xxxxxxxxxxxxxxxx',
+        'Tag' => 'PicProcess',
+        'QueueId' => 'pcf4d6d9e5e734asd0as8d09as8d09a8d0',
         'Input' => array(
-            'Object' => 'video01.mp4'
+            'Object' => 'test01.png'
         ),
         'Operation' => array(
-            'TemplateId' => 't1de276cbdab16xxxxxxxxxxxxxxxxxxxxx',
+            'TemplateId' => 't1648745f76c354e8ad8a09sd890ad80a8d',
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'Animation.gif',
+                'Object' => 'picprocess.jpg',
             ),
         ),
         'CallBack' => '',
@@ -36,38 +36,24 @@ try {
     print_r($result);
     // end --------------- 使用模版 ----------------- //
 
+
     // start --------------- 自定义参数 ----------------- //
-    $result = $cosClient->createMediaAnimationJobs(array(
+    $result = $cosClient->createMediaPicProcessJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'Animation',
-        'QueueId' => 'p81e648af2aee49688xxxxxxxxxxxxxxxx',
+        'Tag' => 'PicProcess',
+        'QueueId' => 'pcf4d6d9e5e734asd0as8d09as8d09a8d0',
         'Input' => array(
-            'Object' => 'video01.mp4'
+            'Object' => 'test01.png'
         ),
         'Operation' => array(
-            'Animation' => array(
-                'Container' => array(
-                    'Format' => '',
-                ),
-                'Video' => array(
-                    'Codec' => '',
-                    'Width' => '',
-                    'Height' => '',
-                    'Fps' => '',
-                    'AnimateOnlyKeepKeyFrame' => '',
-                    'AnimateTimeIntervalOfFrame' => '',
-                    'AnimateFramesPerSecond' => '',
-                    'Quality' => '',
-                ),
-                'TimeInterval' => array(
-                    'Start' => '',
-                    'Duration' => '',
-                ),
+            'PicProcess' => array(
+                'IsPicInfo' => '',
+                'ProcessRule' => '',
             ),
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'Animation.gif',
+                'Object' => 'picprocess.jpg',
             ),
         ),
         'CallBack' => '',
