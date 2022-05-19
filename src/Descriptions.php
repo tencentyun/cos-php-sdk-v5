@@ -1469,7 +1469,6 @@ class Descriptions {
                     'type' => 'string',
                     'location' => 'uri',
                 ),
-                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
                 'Input' => array(
                     'location' => 'xml',
                     'type' => 'object',
@@ -1643,6 +1642,8 @@ class Descriptions {
                                     'Url' => array('type' => 'string', 'location' => 'xml',),
                                     'SnapshotTime' => array('type' => 'integer', 'location' => 'xml',),
                                     'Text' => array('type' => 'string', 'location' => 'xml',),
+                                    'Label' => array('type' => 'string', 'location' => 'xml',),
+                                    'Result' => array('type' => 'integer', 'location' => 'xml',),
                                     'PornInfo' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -3178,7 +3179,17 @@ class Descriptions {
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'biz-type'
-                )
+                ),
+                'LargeImageDetect' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'large-image-detect'
+                ),
+                'DataId' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'dataid'
+                ),
             ),
         );
     }
@@ -3199,6 +3210,7 @@ class Descriptions {
                 'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                 'Score' => array('type' => 'integer', 'location' => 'xml',),
                 'Text' => array('type' => 'string', 'location' => 'xml',),
+                'DataId' => array('type' => 'string', 'location' => 'xml',),
                 'PornInfo' => array(
                     'type' => 'object',
                     'location' => 'xml',
