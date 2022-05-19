@@ -1016,6 +1016,19 @@ class Descriptions {
                             'type' => 'string',
                             'location' => 'xml',
                         ),
+                        'UserInfo' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
                 'Conf' => array(
@@ -1167,14 +1180,17 @@ class Descriptions {
                                 'properties' => array(
                                     'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Text' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Label' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'OffsetTime' => array( 'type' => 'integer', 'location' => 'xml', ),
                                     'Duration' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                    'Result' => array( 'type' => 'integer', 'location' => 'xml', ),
                                     'PornInfo' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
                                         'properties' => array(
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1188,6 +1204,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1201,6 +1218,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1222,6 +1240,19 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                            ),
+                        ),
+                        'UserInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml',),
                             ),
                         ),
                     ),
@@ -1401,6 +1432,19 @@ class Descriptions {
                                 ),
                             ),
                         ),
+                        'UserInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -1425,6 +1469,7 @@ class Descriptions {
                     'type' => 'string',
                     'location' => 'uri',
                 ),
+                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
                 'Input' => array(
                     'location' => 'xml',
                     'type' => 'object',
@@ -1432,6 +1477,19 @@ class Descriptions {
                         'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                         'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UserInfo' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
                 'Conf' => array(
@@ -1592,6 +1650,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                             'Score' => array('type' => 'integer', 'location' => 'xml',),
                                             'Label' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'OcrResults' => array(
                                                 'type' => 'array',
@@ -1651,6 +1710,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                             'Score' => array('type' => 'integer', 'location' => 'xml',),
                                             'Label' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'OcrResults' => array(
                                                 'type' => 'array',
@@ -1710,6 +1770,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                             'Score' => array('type' => 'integer', 'location' => 'xml',),
                                             'Label' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'OcrResults' => array(
                                                 'type' => 'array',
@@ -1769,6 +1830,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                             'Score' => array('type' => 'integer', 'location' => 'xml',),
                                             'Label' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'OcrResults' => array(
                                                 'type' => 'array',
@@ -1828,6 +1890,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                             'Score' => array('type' => 'integer', 'location' => 'xml',),
                                             'Label' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'OcrResults' => array(
                                                 'type' => 'array',
@@ -1901,6 +1964,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1914,6 +1978,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1927,6 +1992,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1940,6 +2006,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1953,6 +2020,7 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
+                                            'Category' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1961,6 +2029,19 @@ class Descriptions {
                                         )
                                     ),
                                 ),
+                            ),
+                        ),
+                        'UserInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml',),
                             ),
                         ),
                     )
@@ -1996,6 +2077,19 @@ class Descriptions {
                         'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Type' => array( 'type' => 'string', 'location' => 'xml', ),
                         'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UserInfo' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
                 'Conf' => array(
@@ -2149,6 +2243,7 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'OcrResults' => array(
@@ -2207,6 +2302,7 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'OcrResults' => array(
@@ -2265,6 +2361,7 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'OcrResults' => array(
@@ -2323,6 +2420,7 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'OcrResults' => array(
@@ -2379,6 +2477,19 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                            ),
+                        ),
+                        'UserInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml',),
                             ),
                         ),
                     ),
@@ -3082,6 +3193,7 @@ class Descriptions {
                 'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
                 'Result' => array('type' => 'integer', 'location' => 'xml',),
                 'Label' => array('type' => 'string', 'location' => 'xml',),
+                'Category' => array('type' => 'string', 'location' => 'xml',),
                 'JobId' => array('type' => 'string', 'location' => 'xml',),
                 'CompressionResult' => array('type' => 'integer', 'location' => 'xml',),
                 'SubLabel' => array('type' => 'string', 'location' => 'xml',),
@@ -3096,6 +3208,7 @@ class Descriptions {
                         'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                         'OcrResults' => array(
                             'type' => 'array',
@@ -3157,6 +3270,7 @@ class Descriptions {
                         'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                         'OcrResults' => array(
                             'type' => 'array',
@@ -3218,6 +3332,7 @@ class Descriptions {
                         'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                         'OcrResults' => array(
                             'type' => 'array',
@@ -3279,6 +3394,7 @@ class Descriptions {
                         'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                         'OcrResults' => array(
                             'type' => 'array',
@@ -3340,6 +3456,7 @@ class Descriptions {
                         'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                         'OcrResults' => array(
                             'type' => 'array',
@@ -3401,6 +3518,7 @@ class Descriptions {
                         'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                         'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                         'OcrResults' => array(
                             'type' => 'array',
@@ -3492,6 +3610,20 @@ class Descriptions {
                             'Interval' => array( 'type' => 'integer', 'location' => 'xml', ),
                             'MaxFrames' => array( 'type' => 'integer', 'location' => 'xml', ),
                             'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'LargeImageDetect' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            'UserInfo' => array(
+                                'location' => 'xml',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
                         ),
                     ),
                 ),
@@ -3530,6 +3662,7 @@ class Descriptions {
                             'Label' => array( 'type' => 'string', 'location' => 'xml',),
                             'Result' => array( 'type' => 'integer', 'location' => 'xml',),
                             'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'Category' => array( 'type' => 'string', 'location' => 'xml',),
                             'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
                             'Object' => array( 'type' => 'string', 'location' => 'xml',),
@@ -3543,6 +3676,7 @@ class Descriptions {
                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Category' => array( 'type' => 'string', 'location' => 'xml',),
                                     'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'OcrResults' => array(
                                         'type' => 'array',
@@ -3604,6 +3738,7 @@ class Descriptions {
                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Category' => array( 'type' => 'string', 'location' => 'xml',),
                                     'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'OcrResults' => array(
                                         'type' => 'array',
@@ -3665,6 +3800,7 @@ class Descriptions {
                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Category' => array( 'type' => 'string', 'location' => 'xml',),
                                     'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'OcrResults' => array(
                                         'type' => 'array',
@@ -3726,6 +3862,7 @@ class Descriptions {
                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Category' => array( 'type' => 'string', 'location' => 'xml',),
                                     'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'OcrResults' => array(
                                         'type' => 'array',
@@ -3787,6 +3924,7 @@ class Descriptions {
                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                     'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Category' => array( 'type' => 'string', 'location' => 'xml',),
                                     'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'OcrResults' => array(
                                         'type' => 'array',
@@ -3837,6 +3975,19 @@ class Descriptions {
                                             ),
                                         ),
                                     ),
+                                ),
+                            ),
+                            'UserInfo' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml',),
                                 ),
                             ),
                         ),
@@ -4042,6 +4193,7 @@ class Descriptions {
                         'CompressionResult' => array('type' => 'integer', 'location' => 'xml',),
                         'Text' => array('type' => 'string', 'location' => 'xml',),
                         'Label' => array('type' => 'string', 'location' => 'xml',),
+                        'Category' => array('type' => 'string', 'location' => 'xml',),
                         'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                         'Result' => array('type' => 'integer', 'location' => 'xml',),
                         'Score' => array('type' => 'integer', 'location' => 'xml',),
@@ -4052,6 +4204,7 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'OcrResults' => array(
                                     'type' => 'array',
@@ -4111,6 +4264,7 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'OcrResults' => array(
                                     'type' => 'array',
@@ -4170,6 +4324,7 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'OcrResults' => array(
                                     'type' => 'array',
@@ -4229,6 +4384,7 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'OcrResults' => array(
                                     'type' => 'array',
@@ -4288,6 +4444,7 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'OcrResults' => array(
                                     'type' => 'array',
@@ -4338,6 +4495,19 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                            ),
+                        ),
+                        'UserInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml',),
                             ),
                         ),
                     ),
@@ -4516,6 +4686,19 @@ class Descriptions {
                     'properties' => array(
                         'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                         'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UserInfo' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
                 'Conf' => array(
@@ -4668,6 +4851,7 @@ class Descriptions {
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'OcrResults' => array(
                                                         'type' => 'array',
@@ -4726,6 +4910,7 @@ class Descriptions {
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'OcrResults' => array(
                                                         'type' => 'array',
@@ -4784,6 +4969,7 @@ class Descriptions {
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'OcrResults' => array(
                                                         'type' => 'array',
@@ -4842,6 +5028,7 @@ class Descriptions {
                                                 'properties' => array(
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
+                                                    'Category' => array('type' => 'string', 'location' => 'xml',),
                                                     'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                     'OcrResults' => array(
                                                         'type' => 'array',
@@ -4952,6 +5139,19 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                            ),
+                        ),
+                        'UserInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml',),
                             ),
                         ),
                     ),
