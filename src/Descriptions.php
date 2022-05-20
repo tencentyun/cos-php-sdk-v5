@@ -6753,4 +6753,121 @@ class Descriptions {
         );
     }
 
+    public static function DetectLiveVideo() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}video/auditing',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DetectLiveVideoOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                'Input' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UserInfo' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'Conf' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function DetectLiveVideoOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CancelLiveVideoAuditing() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}video/cancel_auditing/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CancelLiveVideoAuditingOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function CancelLiveVideoAuditingOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+
 }

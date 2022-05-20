@@ -3716,6 +3716,8 @@ class Service {
                 'CreateMediaSDRtoHDRJobs' => Descriptions::CreateMediaSDRtoHDRJobs(), // 提交 SDR to HDR 任务
                 'CreateMediaDigitalWatermarkJobs' => Descriptions::CreateMediaDigitalWatermarkJobs(), // 嵌入数字水印任务(添加水印)
                 'CreateMediaExtractDigitalWatermarkJobs' => Descriptions::CreateMediaExtractDigitalWatermarkJobs(), // 提取数字水印任务(提取水印)
+                'DetectLiveVideo' => Descriptions::DetectLiveVideo(), // 直播流审核
+                'CancelLiveVideoAuditing' => Descriptions::CancelLiveVideoAuditing(), // 取消直播流审核
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7122,6 +7124,8 @@ class Service {
                 'CreateMediaSDRtoHDRJobsOutput' => Descriptions::CreateMediaSDRtoHDRJobsOutput(),
                 'CreateMediaDigitalWatermarkJobsOutput' => Descriptions::CreateMediaDigitalWatermarkJobsOutput(),
                 'CreateMediaExtractDigitalWatermarkJobsOutput' => Descriptions::CreateMediaExtractDigitalWatermarkJobsOutput(),
+                'DetectLiveVideoOutput' => Descriptions::DetectLiveVideoOutput(),
+                'CancelLiveVideoAuditingOutput' => Descriptions::CancelLiveVideoAuditingOutput(),
             )
         );
     }
