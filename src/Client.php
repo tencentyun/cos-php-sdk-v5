@@ -136,6 +136,8 @@ use GuzzleHttp\Psr7;
  * @method object CreateMediaSDRtoHDRJobs(array $args) 提交 SDR to HDR 任务
  * @method object CreateMediaDigitalWatermarkJobs(array $args) 嵌入数字水印任务(添加水印)
  * @method object CreateMediaExtractDigitalWatermarkJobs(array $args) 提取数字水印任务(提取水印)
+ * @method object DetectLiveVideo(array $args) 直播流审核
+ * @method object CancelLiveVideoAuditing(array $args) 取消直播流审核
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

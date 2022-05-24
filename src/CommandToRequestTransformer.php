@@ -294,6 +294,8 @@ class CommandToRequestTransformer {
                 'CreateMediaSDRtoHDRJobs' => 1,
                 'CreateMediaDigitalWatermarkJobs' => 1,
                 'CreateMediaExtractDigitalWatermarkJobs' => 1,
+                'DetectLiveVideo' => 1,
+                'CancelLiveVideoAuditing' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];

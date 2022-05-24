@@ -3485,6 +3485,19 @@ class Service {
                                     'type' => 'string',
                                     'location' => 'xml',
                                 ),
+                                'UserInfo' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'TokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Nickname' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'DeviceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'AppId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Room' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'IP' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
                             ),
                         ),
                         'Conf' => array(
@@ -3703,6 +3716,8 @@ class Service {
                 'CreateMediaSDRtoHDRJobs' => Descriptions::CreateMediaSDRtoHDRJobs(), // 提交 SDR to HDR 任务
                 'CreateMediaDigitalWatermarkJobs' => Descriptions::CreateMediaDigitalWatermarkJobs(), // 嵌入数字水印任务(添加水印)
                 'CreateMediaExtractDigitalWatermarkJobs' => Descriptions::CreateMediaExtractDigitalWatermarkJobs(), // 提取数字水印任务(提取水印)
+                'DetectLiveVideo' => Descriptions::DetectLiveVideo(), // 直播流审核
+                'CancelLiveVideoAuditing' => Descriptions::CancelLiveVideoAuditing(), // 取消直播流审核
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6637,6 +6652,19 @@ class Service {
                                         ),
                                     ),
                                 ),
+                                'UserInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'TokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'Nickname' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'DeviceId' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'AppId' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'Room' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'IP' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -7096,6 +7124,8 @@ class Service {
                 'CreateMediaSDRtoHDRJobsOutput' => Descriptions::CreateMediaSDRtoHDRJobsOutput(),
                 'CreateMediaDigitalWatermarkJobsOutput' => Descriptions::CreateMediaDigitalWatermarkJobsOutput(),
                 'CreateMediaExtractDigitalWatermarkJobsOutput' => Descriptions::CreateMediaExtractDigitalWatermarkJobsOutput(),
+                'DetectLiveVideoOutput' => Descriptions::DetectLiveVideoOutput(),
+                'CancelLiveVideoAuditingOutput' => Descriptions::CancelLiveVideoAuditingOutput(),
             )
         );
     }
