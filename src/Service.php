@@ -3718,6 +3718,32 @@ class Service {
                 'CreateMediaExtractDigitalWatermarkJobs' => Descriptions::CreateMediaExtractDigitalWatermarkJobs(), // 提取数字水印任务(提取水印)
                 'DetectLiveVideo' => Descriptions::DetectLiveVideo(), // 直播流审核
                 'CancelLiveVideoAuditing' => Descriptions::CancelLiveVideoAuditing(), // 取消直播流审核
+                'TriggerWorkflow' => Descriptions::TriggerWorkflow(), // 手动触发工作流
+                'GetWorkflowInstances' => Descriptions::GetWorkflowInstances(), // 获取工作流实例列表
+                'GetWorkflowInstance' => Descriptions::GetWorkflowInstance(), // 获取工作流实例详情
+                'CreateMediaSnapshotTemplate' => Descriptions::CreateMediaSnapshotTemplate(), // 新增截图模板
+                'UpdateMediaSnapshotTemplate' => Descriptions::UpdateMediaSnapshotTemplate(), // 更新截图模板
+                'CreateMediaTranscodeTemplate' => Descriptions::CreateMediaTranscodeTemplate(), // 新增转码模板
+                'UpdateMediaTranscodeTemplate' => Descriptions::UpdateMediaTranscodeTemplate(), // 更新转码模板
+                'CreateMediaHighSpeedHdTemplate' => Descriptions::CreateMediaHighSpeedHdTemplate(), // 新增极速高清转码模板
+                'UpdateMediaHighSpeedHdTemplate' => Descriptions::UpdateMediaHighSpeedHdTemplate(), // 更新极速高清转码模板
+                'CreateMediaAnimationTemplate' => Descriptions::CreateMediaAnimationTemplate(), // 新增动图模板
+                'UpdateMediaAnimationTemplate' => Descriptions::UpdateMediaAnimationTemplate(), // 更新动图模板
+                'CreateMediaConcatTemplate' => Descriptions::CreateMediaConcatTemplate(), // 新增拼接模板
+                'UpdateMediaConcatTemplate' => Descriptions::UpdateMediaConcatTemplate(), // 更新拼接模板
+                'CreateMediaVideoProcessTemplate' => Descriptions::CreateMediaVideoProcessTemplate(), // 新增视频增强模板
+                'UpdateMediaVideoProcessTemplate' => Descriptions::UpdateMediaVideoProcessTemplate(), // 更新视频增强模板
+                'CreateMediaVideoMontageTemplate' => Descriptions::CreateMediaVideoMontageTemplate(), // 新增精彩集锦模板
+                'UpdateMediaVideoMontageTemplate' => Descriptions::UpdateMediaVideoMontageTemplate(), // 更新精彩集锦模板
+                'CreateMediaVoiceSeparateTemplate' => Descriptions::CreateMediaVoiceSeparateTemplate(), // 新增人声分离模板
+                'UpdateMediaVoiceSeparateTemplate' => Descriptions::UpdateMediaVoiceSeparateTemplate(), // 更新人声分离模板
+                'CreateMediaSuperResolutionTemplate' => Descriptions::CreateMediaSuperResolutionTemplate(), // 新增超分辨率模板
+                'UpdateMediaSuperResolutionTemplate' => Descriptions::UpdateMediaSuperResolutionTemplate(), // 更新超分辨率模板
+                'CreateMediaPicProcessTemplate' => Descriptions::CreateMediaPicProcessTemplate(), // 新增图片处理模板
+                'UpdateMediaPicProcessTemplate' => Descriptions::UpdateMediaPicProcessTemplate(), // 更新图片处理模板
+                'CreateMediaWatermarkTemplate' => Descriptions::CreateMediaWatermarkTemplate(), // 新增水印模板
+                'UpdateMediaWatermarkTemplate' => Descriptions::UpdateMediaWatermarkTemplate(), // 更新水印模板
+                'DescribeMediaTemplates' => Descriptions::DescribeMediaTemplates(), // 查询模板列表
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7126,6 +7152,32 @@ class Service {
                 'CreateMediaExtractDigitalWatermarkJobsOutput' => Descriptions::CreateMediaExtractDigitalWatermarkJobsOutput(),
                 'DetectLiveVideoOutput' => Descriptions::DetectLiveVideoOutput(),
                 'CancelLiveVideoAuditingOutput' => Descriptions::CancelLiveVideoAuditingOutput(),
+                'TriggerWorkflowOutput' => Descriptions::TriggerWorkflowOutput(),
+                'GetWorkflowInstancesOutput' => Descriptions::GetWorkflowInstancesOutput(),
+                'GetWorkflowInstanceOutput' => Descriptions::GetWorkflowInstanceOutput(),
+                'CreateMediaSnapshotTemplateOutput' => Descriptions::CreateMediaSnapshotTemplateOutput(),
+                'UpdateMediaSnapshotTemplateOutput' => Descriptions::UpdateMediaSnapshotTemplateOutput(),
+                'CreateMediaTranscodeTemplateOutput' => Descriptions::CreateMediaTranscodeTemplateOutput(),
+                'UpdateMediaTranscodeTemplateOutput' => Descriptions::UpdateMediaTranscodeTemplateOutput(),
+                'CreateMediaHighSpeedHdTemplateOutput' => Descriptions::CreateMediaHighSpeedHdTemplateOutput(),
+                'UpdateMediaHighSpeedHdTemplateOutput' => Descriptions::UpdateMediaHighSpeedHdTemplateOutput(),
+                'CreateMediaAnimationTemplateOutput' => Descriptions::CreateMediaAnimationTemplateOutput(),
+                'UpdateMediaAnimationTemplateOutput' => Descriptions::UpdateMediaAnimationTemplateOutput(),
+                'CreateMediaConcatTemplateOutput' => Descriptions::CreateMediaConcatTemplateOutput(),
+                'UpdateMediaConcatTemplateOutput' => Descriptions::UpdateMediaConcatTemplateOutput(),
+                'CreateMediaVideoProcessTemplateOutput' => Descriptions::CreateMediaVideoProcessTemplateOutput(),
+                'UpdateMediaVideoProcessTemplateOutput' => Descriptions::UpdateMediaVideoProcessTemplateOutput(),
+                'CreateMediaVideoMontageTemplateOutput' => Descriptions::CreateMediaVideoMontageTemplateOutput(),
+                'UpdateMediaVideoMontageTemplateOutput' => Descriptions::UpdateMediaVideoMontageTemplateOutput(),
+                'CreateMediaVoiceSeparateTemplateOutput' => Descriptions::CreateMediaVoiceSeparateTemplateOutput(),
+                'UpdateMediaVoiceSeparateTemplateOutput' => Descriptions::UpdateMediaVoiceSeparateTemplateOutput(),
+                'CreateMediaSuperResolutionTemplateOutput' => Descriptions::CreateMediaSuperResolutionTemplateOutput(),
+                'UpdateMediaSuperResolutionTemplateOutput' => Descriptions::UpdateMediaSuperResolutionTemplateOutput(),
+                'CreateMediaPicProcessTemplateOutput' => Descriptions::CreateMediaPicProcessTemplateOutput(),
+                'UpdateMediaPicProcessTemplateOutput' => Descriptions::UpdateMediaPicProcessTemplateOutput(),
+                'CreateMediaWatermarkTemplateOutput' => Descriptions::CreateMediaWatermarkTemplateOutput(),
+                'UpdateMediaWatermarkTemplateOutput' => Descriptions::UpdateMediaWatermarkTemplateOutput(),
+                'DescribeMediaTemplatesOutput' => Descriptions::DescribeMediaTemplatesOutput(),
             )
         );
     }

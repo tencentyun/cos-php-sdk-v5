@@ -138,6 +138,32 @@ use GuzzleHttp\Psr7;
  * @method object CreateMediaExtractDigitalWatermarkJobs(array $args) 提取数字水印任务(提取水印)
  * @method object DetectLiveVideo(array $args) 直播流审核
  * @method object CancelLiveVideoAuditing(array $args) 取消直播流审核
+ * @method object TriggerWorkflow(array $args) 手动触发工作流
+ * @method object GetWorkflowInstances(array $args) 获取工作流实例列表
+ * @method object GetWorkflowInstance(array $args) 获取工作流实例详情
+ * @method object CreateMediaSnapshotTemplate(array $args) 新增截图模板
+ * @method object UpdateMediaSnapshotTemplate(array $args) 更新截图模板
+ * @method object CreateMediaTranscodeTemplate(array $args) 新增转码模板
+ * @method object UpdateMediaTranscodeTemplate(array $args) 更新转码模板
+ * @method object CreateMediaHighSpeedHdTemplate(array $args) 新增极速高清转码模板
+ * @method object UpdateMediaHighSpeedHdTemplate(array $args) 更新极速高清转码模板
+ * @method object CreateMediaAnimationTemplate(array $args) 新增动图模板
+ * @method object UpdateMediaAnimationTemplate(array $args) 更新动图模板
+ * @method object CreateMediaConcatTemplate(array $args) 新增拼接模板
+ * @method object UpdateMediaConcatTemplate(array $args) 更新拼接模板
+ * @method object CreateMediaVideoProcessTemplate(array $args) 新增视频增强模板
+ * @method object UpdateMediaVideoProcessTemplate(array $args) 更新视频增强模板
+ * @method object CreateMediaVideoMontageTemplate(array $args) 新增精彩集锦模板
+ * @method object UpdateMediaVideoMontageTemplate(array $args) 更新精彩集锦模板
+ * @method object CreateMediaVoiceSeparateTemplate(array $args) 新增人声分离模板
+ * @method object UpdateMediaVoiceSeparateTemplate(array $args) 更新人声分离模板
+ * @method object CreateMediaSuperResolutionTemplate(array $args) 新增超分辨率模板
+ * @method object UpdateMediaSuperResolutionTemplate(array $args) 更新超分辨率模板
+ * @method object CreateMediaPicProcessTemplate(array $args) 新增图片处理模板
+ * @method object UpdateMediaPicProcessTemplate(array $args) 更新图片处理模板
+ * @method object CreateMediaWatermarkTemplate(array $args) 新增水印模板
+ * @method object UpdateMediaWatermarkTemplate(array $args) 更新水印模板
+ * @method object DescribeMediaTemplates(array $args) 查询模版列表
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
