@@ -322,6 +322,12 @@ class CommandToRequestTransformer {
                 'CreateMediaWatermarkTemplate' => 1,
                 'UpdateMediaWatermarkTemplate' => 1,
                 'DescribeMediaTemplates' => 1,
+                'DescribeWorkflow' => 1,
+                'DeleteWorkflow' => 1,
+                'CreateInventoryTriggerJob' => 1,
+                'DescribeInventoryTriggerJobs' => 1,
+                'DescribeInventoryTriggerJob' => 1,
+                'CancelInventoryTriggerJob' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];

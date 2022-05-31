@@ -164,6 +164,12 @@ use GuzzleHttp\Psr7;
  * @method object CreateMediaWatermarkTemplate(array $args) 新增水印模板
  * @method object UpdateMediaWatermarkTemplate(array $args) 更新水印模板
  * @method object DescribeMediaTemplates(array $args) 查询模版列表
+ * @method object DescribeWorkflow(array $args) 搜索工作流
+ * @method object DeleteWorkflow(array $args) 删除工作流
+ * @method object CreateInventoryTriggerJob(array $args) 触发批量存量任务
+ * @method object DescribeInventoryTriggerJobs(array $args) 批量拉取存量任务
+ * @method object DescribeInventoryTriggerJob(array $args) 查询存量任务
+ * @method object CancelInventoryTriggerJob(array $args) 取消存量任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

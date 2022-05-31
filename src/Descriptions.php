@@ -8872,4 +8872,328 @@ class Descriptions {
         );
     }
 
+    public static function DescribeWorkflow() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}workflow',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeWorkflowOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Ids' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'ids' ),
+                'Name' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'name' ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function DescribeWorkflowOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'TotalCount' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                'MediaWorkflowList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function DeleteWorkflow() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/{Bucket}workflow/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DeleteWorkflowOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function DeleteWorkflowOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'WorkflowId' => array( 'type' => 'string', 'location' => 'xml' ),
+            ),
+        );
+    }
+
+    public static function CreateInventoryTriggerJob() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}inventorytriggerjob',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateInventoryTriggerJobOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Manifest' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UrlFile' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'WorkflowIds' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TimeInterval' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'End' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateInventoryTriggerJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeInventoryTriggerJobs() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}inventorytriggerjob',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeInventoryTriggerJobsOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'NextToken' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'nextToken' ),
+                'Size' => array( 'type' => 'integer', 'location' => 'query', 'sentAs' => 'size' ),
+                'OrderByTime' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'orderByTime' ),
+                'States' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'states' ),
+                'StartCreationTime' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'startCreationTime' ),
+                'EndCreationTime' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'endCreationTime' ),
+                'WorkflowId' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'workflowId' ),
+                'JobId' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'jobId' ),
+                'Name' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'name' ),
+            ),
+        );
+    }
+    public static function DescribeInventoryTriggerJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'NextToken' => array( 'type' => 'string', 'location' => 'xml', ),
+                'JobsDetail' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeInventoryTriggerJob() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}inventorytriggerjob/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeInventoryTriggerJobOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function DescribeInventoryTriggerJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'NonExistJobIds' => array( 'type' => 'string', 'location' => 'xml', ),
+                'NextToken' => array( 'type' => 'string', 'location' => 'xml', ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                ),
+            ),
+        );
+    }
+
+    public static function CancelInventoryTriggerJob() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}inventorytriggerjob/{/Key*}?cancel',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CancelInventoryTriggerJobOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function CancelInventoryTriggerJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
 }

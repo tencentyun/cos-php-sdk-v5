@@ -3744,6 +3744,12 @@ class Service {
                 'CreateMediaWatermarkTemplate' => Descriptions::CreateMediaWatermarkTemplate(), // 新增水印模板
                 'UpdateMediaWatermarkTemplate' => Descriptions::UpdateMediaWatermarkTemplate(), // 更新水印模板
                 'DescribeMediaTemplates' => Descriptions::DescribeMediaTemplates(), // 查询模板列表
+                'DescribeWorkflow' => Descriptions::DescribeWorkflow(), // 搜索工作流
+                'DeleteWorkflow' => Descriptions::DeleteWorkflow(), // 删除工作流
+                'CreateInventoryTriggerJob' => Descriptions::CreateInventoryTriggerJob(), // 触发批量存量任务
+                'DescribeInventoryTriggerJobs' => Descriptions::DescribeInventoryTriggerJobs(), // 批量拉取存量任务
+                'DescribeInventoryTriggerJob' => Descriptions::DescribeInventoryTriggerJob(), // 查询存量任务
+                'CancelInventoryTriggerJob' => Descriptions::CancelInventoryTriggerJob(), // 取消存量任务
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7178,6 +7184,12 @@ class Service {
                 'CreateMediaWatermarkTemplateOutput' => Descriptions::CreateMediaWatermarkTemplateOutput(),
                 'UpdateMediaWatermarkTemplateOutput' => Descriptions::UpdateMediaWatermarkTemplateOutput(),
                 'DescribeMediaTemplatesOutput' => Descriptions::DescribeMediaTemplatesOutput(),
+                'DescribeWorkflowOutput' => Descriptions::DescribeWorkflowOutput(),
+                'DeleteWorkflowOutput' => Descriptions::DeleteWorkflowOutput(),
+                'CreateInventoryTriggerJobOutput' => Descriptions::CreateInventoryTriggerJobOutput(),
+                'DescribeInventoryTriggerJobsOutput' => Descriptions::DescribeInventoryTriggerJobsOutput(),
+                'DescribeInventoryTriggerJobOutput' => Descriptions::DescribeInventoryTriggerJobOutput(),
+                'CancelInventoryTriggerJobOutput' => Descriptions::CancelInventoryTriggerJobOutput(),
             )
         );
     }
