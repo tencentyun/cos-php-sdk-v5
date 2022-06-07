@@ -141,7 +141,7 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.5.5';
+    const VERSION = '2.5.6';
 
     public $httpClient;
     
@@ -216,7 +216,8 @@ class Client extends GuzzleClient {
         if (empty($this->cosConfig['region'])   &&
             empty($this->cosConfig['domain'])   &&
             empty($this->cosConfig['endpoint']) &&
-            empty($this->cosConfig['ip'])) {
+            empty($this->cosConfig['ip'])       &&
+            !$this->cosConfig['allow_accelerate']) {
             $message = 'Region is empty';
         }
         //检查Secret
