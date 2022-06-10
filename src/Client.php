@@ -138,6 +138,7 @@ use GuzzleHttp\Psr7;
  * @method object CreateMediaExtractDigitalWatermarkJobs(array $args) 提取数字水印任务(提取水印)
  * @method object DetectLiveVideo(array $args) 直播流审核
  * @method object CancelLiveVideoAuditing(array $args) 取消直播流审核
+ * @method object OpticalOcrRecognition(array $args) 通用文字识别
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

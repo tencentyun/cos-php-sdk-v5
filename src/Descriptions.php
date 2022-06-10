@@ -5446,6 +5446,17 @@ class Descriptions {
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
+                        'SmartCover' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DeleteDuplicates' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
                         'Output' => array(
                             'required' => true,
                             'type' => 'object',
@@ -6865,6 +6876,60 @@ class Descriptions {
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
+                ),
+            ),
+        );
+    }
+
+    public static function OpticalOcrRecognition() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'OpticalOcrRecognitionOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'CiProcess' => array( 'required' => true, 'type' => 'string', 'location' => 'query', 'sentAs' => 'ci-process' ),
+                'Type' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'type' ),
+                'LanguageType' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'language-type' ),
+                'IsPDF' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'ispdf' ),
+                'PdfPageNumber' => array( 'type' => 'integer', 'location' => 'query', 'sentAs' => 'pdf-pagenumber' ),
+                'IsWord' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'isword' ),
+                'EnableWordPolygon' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'enable-word-polygon' ),
+            ),
+        );
+    }
+    public static function OpticalOcrRecognitionOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
                 ),
             ),
         );
