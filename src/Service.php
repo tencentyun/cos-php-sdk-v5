@@ -3718,6 +3718,7 @@ class Service {
                 'CreateMediaExtractDigitalWatermarkJobs' => Descriptions::CreateMediaExtractDigitalWatermarkJobs(), // 提取数字水印任务(提取水印)
                 'DetectLiveVideo' => Descriptions::DetectLiveVideo(), // 直播流审核
                 'CancelLiveVideoAuditing' => Descriptions::CancelLiveVideoAuditing(), // 取消直播流审核
+                'OpticalOcrRecognition' => Descriptions::OpticalOcrRecognition(), // 通用文字识别
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7126,6 +7127,7 @@ class Service {
                 'CreateMediaExtractDigitalWatermarkJobsOutput' => Descriptions::CreateMediaExtractDigitalWatermarkJobsOutput(),
                 'DetectLiveVideoOutput' => Descriptions::DetectLiveVideoOutput(),
                 'CancelLiveVideoAuditingOutput' => Descriptions::CancelLiveVideoAuditingOutput(),
+                'OpticalOcrRecognitionOutput' => Descriptions::OpticalOcrRecognitionOutput(),
             )
         );
     }

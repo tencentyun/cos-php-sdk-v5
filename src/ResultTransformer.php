@@ -125,6 +125,7 @@ class ResultTransformer {
             'CreateMediaSDRtoHDRJobs' => 1,
             'CreateMediaDigitalWatermarkJobs' => 1,
             'CreateMediaExtractDigitalWatermarkJobs' => 1,
+            'OpticalOcrRecognition' => 1,
         );
         if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);
