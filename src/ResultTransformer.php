@@ -125,6 +125,7 @@ class ResultTransformer {
             'CreateMediaSDRtoHDRJobs' => 1,
             'CreateMediaDigitalWatermarkJobs' => 1,
             'CreateMediaExtractDigitalWatermarkJobs' => 1,
+            'OpticalOcrRecognition' => 1,
             'GetWorkflowInstance' => 1,
             'CreateMediaTranscodeTemplate' => 1,
             'UpdateMediaTranscodeTemplate' => 1,

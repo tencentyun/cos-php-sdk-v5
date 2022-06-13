@@ -138,6 +138,7 @@ use GuzzleHttp\Psr7;
  * @method object CreateMediaExtractDigitalWatermarkJobs(array $args) 提取数字水印任务(提取水印)
  * @method object DetectLiveVideo(array $args) 直播流审核
  * @method object CancelLiveVideoAuditing(array $args) 取消直播流审核
+ * @method object OpticalOcrRecognition(array $args) 通用文字识别
  * @method object TriggerWorkflow(array $args) 手动触发工作流
  * @method object GetWorkflowInstances(array $args) 获取工作流实例列表
  * @method object GetWorkflowInstance(array $args) 获取工作流实例详情
@@ -173,7 +174,7 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.5.5';
+    const VERSION = '2.5.6';
 
     public $httpClient;
     
@@ -248,7 +249,8 @@ class Client extends GuzzleClient {
         if (empty($this->cosConfig['region'])   &&
             empty($this->cosConfig['domain'])   &&
             empty($this->cosConfig['endpoint']) &&
-            empty($this->cosConfig['ip'])) {
+            empty($this->cosConfig['ip'])       &&
+            !$this->cosConfig['allow_accelerate']) {
             $message = 'Region is empty';
         }
         //检查Secret

@@ -3718,6 +3718,7 @@ class Service {
                 'CreateMediaExtractDigitalWatermarkJobs' => Descriptions::CreateMediaExtractDigitalWatermarkJobs(), // 提取数字水印任务(提取水印)
                 'DetectLiveVideo' => Descriptions::DetectLiveVideo(), // 直播流审核
                 'CancelLiveVideoAuditing' => Descriptions::CancelLiveVideoAuditing(), // 取消直播流审核
+                'OpticalOcrRecognition' => Descriptions::OpticalOcrRecognition(), // 通用文字识别
                 'TriggerWorkflow' => Descriptions::TriggerWorkflow(), // 手动触发工作流
                 'GetWorkflowInstances' => Descriptions::GetWorkflowInstances(), // 获取工作流实例列表
                 'GetWorkflowInstance' => Descriptions::GetWorkflowInstance(), // 获取工作流实例详情
@@ -7158,6 +7159,7 @@ class Service {
                 'CreateMediaExtractDigitalWatermarkJobsOutput' => Descriptions::CreateMediaExtractDigitalWatermarkJobsOutput(),
                 'DetectLiveVideoOutput' => Descriptions::DetectLiveVideoOutput(),
                 'CancelLiveVideoAuditingOutput' => Descriptions::CancelLiveVideoAuditingOutput(),
+                'OpticalOcrRecognitionOutput' => Descriptions::OpticalOcrRecognitionOutput(),
                 'TriggerWorkflowOutput' => Descriptions::TriggerWorkflowOutput(),
                 'GetWorkflowInstancesOutput' => Descriptions::GetWorkflowInstancesOutput(),
                 'GetWorkflowInstanceOutput' => Descriptions::GetWorkflowInstanceOutput(),
