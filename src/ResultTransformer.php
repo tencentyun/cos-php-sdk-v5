@@ -147,6 +147,9 @@ class ResultTransformer {
             'UpdateMediaPicProcessTemplate' => 1,
             'CreateMediaWatermarkTemplate' => 1,
             'UpdateMediaWatermarkTemplate' => 1,
+            'CreateInventoryTriggerJob' => 1,
+            'DescribeInventoryTriggerJobs' => 1,
+            'DescribeInventoryTriggerJob' => 1,
         );
         if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);

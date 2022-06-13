@@ -7166,9 +7166,8 @@ class Descriptions {
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Snapshot' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -7376,7 +7375,7 @@ class Descriptions {
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Container' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -8444,7 +8443,7 @@ class Descriptions {
                 'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
                 'Name' => array( 'location' => 'xml', 'type' => 'string', ),
-                'AudioMode' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'AudioMode' => array( 'location' => 'xml', 'type' => 'string', ),
                 'AudioConfig' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -9080,6 +9079,11 @@ class Descriptions {
             'type' => 'object',
             'additionalProperties' => true,
             'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
                 'RequestId' => array(
                     'type' => 'string',
                     'location' => 'header',
@@ -9095,10 +9099,6 @@ class Descriptions {
                     'minimum'=> 0,
                     'location' => 'header',
                     'sentAs' => 'Content-Length',
-                ),
-                'JobsDetail' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
                 ),
             ),
         );
@@ -9134,6 +9134,11 @@ class Descriptions {
             'type' => 'object',
             'additionalProperties' => true,
             'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
                 'RequestId' => array(
                     'type' => 'string',
                     'location' => 'header',
@@ -9149,15 +9154,6 @@ class Descriptions {
                     'minimum'=> 0,
                     'location' => 'header',
                     'sentAs' => 'Content-Length',
-                ),
-                'NextToken' => array( 'type' => 'string', 'location' => 'xml', ),
-                'JobsDetail' => array(
-                    'type' => 'array',
-                    'location' => 'xml',
-                    'items' => array(
-                        'type' => 'object',
-                        'location' => 'xml',
-                    ),
                 ),
             ),
         );
@@ -9189,6 +9185,11 @@ class Descriptions {
             'type' => 'object',
             'additionalProperties' => true,
             'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
                 'RequestId' => array(
                     'type' => 'string',
                     'location' => 'header',
@@ -9204,12 +9205,6 @@ class Descriptions {
                     'minimum'=> 0,
                     'location' => 'header',
                     'sentAs' => 'Content-Length',
-                ),
-                'NonExistJobIds' => array( 'type' => 'string', 'location' => 'xml', ),
-                'NextToken' => array( 'type' => 'string', 'location' => 'xml', ),
-                'JobsDetail' => array(
-                    'type' => 'object',
-                    'location' => 'xml',
                 ),
             ),
         );
