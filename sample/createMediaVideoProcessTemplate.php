@@ -13,29 +13,21 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交智能封面任务 https://cloud.tencent.com/document/product/436/54017
-    $result = $cosClient->createMediaSmartCoverJobs(array(
+    // https://cloud.tencent.com/document/product/436/60745 新增视频增强模板
+    $result = $cosClient->createMediaVideoProcessTemplate(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'SmartCover',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
-        'Input' => array(
-            'Object' => 'video01.mp4'
+        'Tag' => 'VideoProcess',
+        'Name' => 'VideoProcess-Template-Name',
+        'ColorEnhance' => array(
+            'Enable' => '',
+            'Contrast' => '',
+            'Correction' => '',
+            'Saturation' => '',
         ),
-        'Operation' => array(
-            'SmartCover' => array(
-                'Format' => '',
-                'Width' => '',
-                'Height' => '',
-                'Count' => '',
-                'DeleteDuplicates' => '',
-            ),
-            'Output' => array(
-                'Region' => $region,
-                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'SmartCover-${Number}.jpg',
-            ),
+        'MsSharpen' => array(
+            'Enable' => '',
+            'SharpenLevel' => '',
         ),
-        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);

@@ -13,29 +13,20 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交智能封面任务 https://cloud.tencent.com/document/product/436/54017
-    $result = $cosClient->createMediaSmartCoverJobs(array(
+    // https://cloud.tencent.com/document/product/436/54032 更新截图模板
+    $result = $cosClient->updateMediaSnapshotTemplate(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'SmartCover',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
-        'Input' => array(
-            'Object' => 'video01.mp4'
+        'Key' => '', // TemplateId
+        'Tag' => 'Snapshot',
+        'Name' => 'Snapshot-Template-Name',
+        'Snapshot' => array(
+            'Mode' => '',
+            'Start' => '',
+            'TimeInterval' => '',
+            'Count' => '',
+            'Width' => '',
+            'Height' => '',
         ),
-        'Operation' => array(
-            'SmartCover' => array(
-                'Format' => '',
-                'Width' => '',
-                'Height' => '',
-                'Count' => '',
-                'DeleteDuplicates' => '',
-            ),
-            'Output' => array(
-                'Region' => $region,
-                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'SmartCover-${Number}.jpg',
-            ),
-        ),
-        'CallBack' => '',
     ));
     // 请求成功
     print_r($result);

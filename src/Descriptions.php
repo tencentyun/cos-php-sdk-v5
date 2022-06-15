@@ -6918,6 +6918,2327 @@ class Descriptions {
                 'RequestId' => array(
                     'type' => 'string',
                     'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function TriggerWorkflow() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}triggerworkflow',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'TriggerWorkflowOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'workflowId' => array( 'required' => true, 'type' => 'string', 'location' => 'query', ),
+                'object' => array( 'required' => true, 'type' => 'string', 'location' => 'query', ),
+                'name' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+            ),
+        );
+    }
+    public static function TriggerWorkflowOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'InstanceId' => array( 'type' => 'string', 'location' => 'xml', ),
+            ),
+        );
+    }
+
+    public static function GetWorkflowInstances() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}workflowexecution',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetWorkflowInstancesOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'workflowId' => array( 'required' => true, 'type' => 'string', 'location' => 'query', ),
+                'name' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+                'orderByTime' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+                'size' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+                'states' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+                'startCreationTime' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+                'endCreationTime' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+                'nextToken' => array( 'required' => false, 'type' => 'string', 'location' => 'query', ),
+            ),
+        );
+    }
+    public static function GetWorkflowInstancesOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'NextToken' => array( 'type' => 'string', 'location' => 'xml', ),
+                'WorkflowExecutionList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'RunId' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'WorkflowId' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetWorkflowInstance() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}workflowexecution/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetWorkflowInstanceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function GetWorkflowInstanceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaSnapshotTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaSnapshotTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Snapshot' => array(
+                    'required' => true,
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TimeInterval' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaSnapshotTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Template' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UpdateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Snapshot' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TimeInterval' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaSnapshotTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaSnapshotTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Snapshot' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TimeInterval' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaSnapshotTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Template' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UpdateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Snapshot' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TimeInterval' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaTranscodeTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaTranscodeTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ClipConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Profile' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Crf' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Gop' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Preset' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bufsize' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Maxrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Pixfmt' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'LongShortMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Rotate' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TimeInterval' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Audio' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'KeepTwoTracks' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SwitchTrack' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SampleFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TransConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'AdjDarMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsCheckReso' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResoAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsCheckVideoBitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'VideoBitrateAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsCheckAudioBitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AudioBitrateAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DeleteMetadata' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsHdr2Sdr' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'HlsEncrypt' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'IsHlsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaTranscodeTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaTranscodeTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaTranscodeTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ClipConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Profile' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Crf' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Gop' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Preset' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bufsize' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Maxrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Pixfmt' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'LongShortMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Rotate' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TimeInterval' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Audio' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'KeepTwoTracks' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SwitchTrack' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SampleFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TransConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'AdjDarMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsCheckReso' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResoAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsCheckVideoBitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'VideoBitrateAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsCheckAudioBitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AudioBitrateAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'DeleteMetadata' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsHdr2Sdr' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'HlsEncrypt' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'IsHlsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaTranscodeTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaHighSpeedHdTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaHighSpeedHdTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Profile' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Crf' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Gop' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Preset' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bufsize' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Maxrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'HlsTsTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Pixfmt' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TimeInterval' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Audio' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TransConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'IsCheckReso' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResoAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsHdr2Sdr' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaHighSpeedHdTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaHighSpeedHdTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaHighSpeedHdTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Profile' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Crf' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Gop' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Preset' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bufsize' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Maxrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'HlsTsTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Pixfmt' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TimeInterval' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Audio' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TransConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'IsCheckReso' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResoAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'IsHdr2Sdr' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaHighSpeedHdTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaAnimationTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaAnimationTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AnimateOnlyKeepKeyFrame' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AnimateTimeIntervalOfFrame' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AnimateFramesPerSecond' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Quality' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TimeInterval' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaAnimationTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaAnimationTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaAnimationTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AnimateOnlyKeepKeyFrame' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AnimateTimeIntervalOfFrame' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'AnimateFramesPerSecond' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Quality' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'TimeInterval' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaAnimationTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaConcatTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaConcatTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'ConcatTemplate' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'ConcatFragments' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'ConcatFragment',
+                                'type' => 'object',
+                                'sentAs' => 'ConcatFragment',
+                                'properties' => array(
+                                    'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                        ),
+                        'Audio' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Video' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Container' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaConcatTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaConcatTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaConcatTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'ConcatTemplate' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'ConcatFragments' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'ConcatFragment',
+                                'type' => 'object',
+                                'sentAs' => 'ConcatFragment',
+                                'properties' => array(
+                                    'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                        ),
+                        'Audio' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Video' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Container' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaConcatTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaVideoProcessTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaVideoProcessTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'ColorEnhance' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Enable' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Contrast' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Correction' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Saturation' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'MsSharpen' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Enable' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SharpenLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaVideoProcessTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaVideoProcessTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaVideoProcessTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'ColorEnhance' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Enable' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Contrast' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Correction' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Saturation' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'MsSharpen' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Enable' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SharpenLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaVideoProcessTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaVideoMontageTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaVideoMontageTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Crf' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Audio' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'AudioMix' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaVideoMontageTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaVideoMontageTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaVideoMontageTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Container' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Video' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Crf' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Audio' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'AudioMix' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaVideoMontageTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaVoiceSeparateTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaVoiceSeparateTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'AudioMode' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'AudioConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaVoiceSeparateTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaVoiceSeparateTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaVoiceSeparateTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'AudioMode' => array( 'location' => 'xml', 'type' => 'string', ),
+                'AudioConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaVoiceSeparateTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaSuperResolutionTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaSuperResolutionTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Resolution' => array( 'location' => 'xml', 'type' => 'string', ),
+                'EnableScaleUp' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Version' => array( 'location' => 'xml', 'type' => 'string', ),
+            ),
+        );
+    }
+    public static function CreateMediaSuperResolutionTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaSuperResolutionTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaSuperResolutionTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Resolution' => array( 'location' => 'xml', 'type' => 'string', ),
+                'EnableScaleUp' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Version' => array( 'location' => 'xml', 'type' => 'string', ),
+            ),
+        );
+    }
+    public static function UpdateMediaSuperResolutionTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaPicProcessTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaPicProcessTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'PicProcess' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'IsPicInfo' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ProcessRule' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaPicProcessTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaPicProcessTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaPicProcessTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'PicProcess' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'IsPicInfo' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ProcessRule' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaPicProcessTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaWatermarkTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaWatermarkTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Watermark' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Pos' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'LocMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Dx' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Dy' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Image' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Transparency' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Background' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Text' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'FontSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'FontType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'FontColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Transparency' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Text' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaWatermarkTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaWatermarkTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaWatermarkTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Watermark' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Pos' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'LocMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Dx' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Dy' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Image' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Transparency' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Background' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Text' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'FontSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'FontType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'FontColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Transparency' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Text' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaWatermarkTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeMediaTemplates() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeMediaTemplatesOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Tag' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'tag' ),
+                'Category' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'category' ),
+                'Ids' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'ids' ),
+                'Name' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'name' ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function DescribeMediaTemplatesOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'TotalCount' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                'TemplateList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeWorkflow() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}workflow',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeWorkflowOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Ids' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'ids' ),
+                'Name' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'name' ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function DescribeWorkflowOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'TotalCount' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                'MediaWorkflowList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function DeleteWorkflow() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/{Bucket}workflow/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DeleteWorkflowOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function DeleteWorkflowOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'WorkflowId' => array( 'type' => 'string', 'location' => 'xml' ),
+            ),
+        );
+    }
+
+    public static function CreateInventoryTriggerJob() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}inventorytriggerjob',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateInventoryTriggerJobOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Manifest' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UrlFile' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'WorkflowIds' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TimeInterval' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Start' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'End' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateInventoryTriggerJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeInventoryTriggerJobs() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}inventorytriggerjob',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeInventoryTriggerJobsOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'NextToken' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'nextToken' ),
+                'Size' => array( 'type' => 'integer', 'location' => 'query', 'sentAs' => 'size' ),
+                'OrderByTime' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'orderByTime' ),
+                'States' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'states' ),
+                'StartCreationTime' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'startCreationTime' ),
+                'EndCreationTime' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'endCreationTime' ),
+                'WorkflowId' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'workflowId' ),
+                'JobId' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'jobId' ),
+                'Name' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'name' ),
+            ),
+        );
+    }
+    public static function DescribeInventoryTriggerJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function DescribeInventoryTriggerJob() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}inventorytriggerjob/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeInventoryTriggerJobOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function DescribeInventoryTriggerJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CancelInventoryTriggerJob() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}inventorytriggerjob/{/Key*}?cancel',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CancelInventoryTriggerJobOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function CancelInventoryTriggerJobOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
                     'sentAs' => 'x-ci-request-id',
                 ),
                 'ContentType' => array(
