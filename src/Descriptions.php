@@ -6918,7 +6918,7 @@ class Descriptions {
                 'RequestId' => array(
                     'type' => 'string',
                     'location' => 'header',
-                    'sentAs' => 'x-ci-request-id',
+                    'sentAs' => 'x-cos-request-id',
                 ),
                 'ContentType' => array(
                     'type' => 'string',
