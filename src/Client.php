@@ -164,7 +164,7 @@ use GuzzleHttp\Psr7;
  * @method object UpdateMediaPicProcessTemplate(array $args) 更新图片处理模板
  * @method object CreateMediaWatermarkTemplate(array $args) 新增水印模板
  * @method object UpdateMediaWatermarkTemplate(array $args) 更新水印模板
- * @method object DescribeMediaTemplates(array $args) 查询模版列表
+ * @method object DescribeMediaTemplates(array $args) 查询模板列表
  * @method object DescribeWorkflow(array $args) 搜索工作流
  * @method object DeleteWorkflow(array $args) 删除工作流
  * @method object CreateInventoryTriggerJob(array $args) 触发批量存量任务
