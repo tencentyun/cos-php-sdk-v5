@@ -171,6 +171,7 @@ use GuzzleHttp\Psr7;
  * @method object DescribeInventoryTriggerJobs(array $args) 批量拉取存量任务
  * @method object DescribeInventoryTriggerJob(array $args) 查询存量任务
  * @method object CancelInventoryTriggerJob(array $args) 取消存量任务
+ * @method object CreateMediaNoiseReductionJobs(array $args) 提交音频降噪任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
