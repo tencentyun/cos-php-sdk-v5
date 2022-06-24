@@ -3751,6 +3751,7 @@ class Service {
                 'DescribeInventoryTriggerJobs' => Descriptions::DescribeInventoryTriggerJobs(), // 批量拉取存量任务
                 'DescribeInventoryTriggerJob' => Descriptions::DescribeInventoryTriggerJob(), // 查询存量任务
                 'CancelInventoryTriggerJob' => Descriptions::CancelInventoryTriggerJob(), // 取消存量任务
+                'CreateMediaNoiseReductionJobs' => Descriptions::CreateMediaNoiseReductionJobs(), // 提交音频降噪任务
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7192,6 +7193,7 @@ class Service {
                 'DescribeInventoryTriggerJobsOutput' => Descriptions::DescribeInventoryTriggerJobsOutput(),
                 'DescribeInventoryTriggerJobOutput' => Descriptions::DescribeInventoryTriggerJobOutput(),
                 'CancelInventoryTriggerJobOutput' => Descriptions::CancelInventoryTriggerJobOutput(),
+                'CreateMediaNoiseReductionJobsOutput' => Descriptions::CreateMediaNoiseReductionJobsOutput(),
             )
         );
     }
