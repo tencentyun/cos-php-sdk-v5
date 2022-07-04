@@ -9331,4 +9331,68 @@ class Descriptions {
         );
     }
 
+    public static function ImageRepairProcess() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageRepairProcessOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'ci-process' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'MaskPic' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                ),
+                'MaskPoly' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                ),
+            ),
+        );
+    }
+    public static function ImageRepairProcessOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
 }
