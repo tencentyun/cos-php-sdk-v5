@@ -3753,6 +3753,8 @@ class Service {
                 'CancelInventoryTriggerJob' => Descriptions::CancelInventoryTriggerJob(), // 取消存量任务
                 'CreateMediaNoiseReductionJobs' => Descriptions::CreateMediaNoiseReductionJobs(), // 提交音频降噪任务
                 'ImageRepairProcess' => Descriptions::ImageRepairProcess(), // 图片水印修复
+                'ImageDetectCarProcess' => Descriptions::ImageDetectCarProcess(), // 车辆车牌检测
+                'ImageAssessQualityProcess' => Descriptions::ImageAssessQualityProcess(), // 图片质量评估
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7196,6 +7198,8 @@ class Service {
                 'CancelInventoryTriggerJobOutput' => Descriptions::CancelInventoryTriggerJobOutput(),
                 'CreateMediaNoiseReductionJobsOutput' => Descriptions::CreateMediaNoiseReductionJobsOutput(),
                 'ImageRepairProcessOutput' => Descriptions::ImageRepairProcessOutput(),
+                'ImageDetectCarProcessOutput' => Descriptions::ImageDetectCarProcessOutput(),
+                'ImageAssessQualityProcessOutput' => Descriptions::ImageAssessQualityProcessOutput(),
             )
         );
     }

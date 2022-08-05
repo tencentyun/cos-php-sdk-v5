@@ -173,6 +173,8 @@ use GuzzleHttp\Psr7;
  * @method object CancelInventoryTriggerJob(array $args) 取消存量任务
  * @method object CreateMediaNoiseReductionJobs(array $args) 提交音频降噪任务
  * @method object ImageRepairProcess(array $args) 图片水印修复
+ * @method object ImageDetectCarProcess(array $args) 车辆车牌检测
+ * @method object ImageAssessQualityProcess(array $args) 图片质量评估
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
