@@ -12,19 +12,11 @@ $cosClient = new Qcloud\Cos\Client(
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
-$local_path = "/data/exampleobject";
 try {
-    // 图片上传时识别二维码
-    $imageQrcodeTemplate = new Qcloud\Cos\ImageParamTemplate\ImageQrcodeTemplate();
-    $imageQrcodeTemplate->setMode(0);
-    $picOperationsTemplate = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();
-    $picOperationsTemplate->setIsPicInfo(1);
-    $picOperationsTemplate->addRule($imageQrcodeTemplate, "resultobject");
-    $result = $cosClient->putObject(array(
+    // 图片质量评估 - https://cloud.tencent.com/document/product/460/63228
+    $result = $cosClient->imageAssessQualityProcess(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
-        'Body' => fopen($local_path, 'rb'),
-        'PicOperations' => $picOperationsTemplate->queryString(),
     ));
     // 请求成功
     print_r($result);

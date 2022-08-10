@@ -15,6 +15,7 @@ $cosClient = new Qcloud\Cos\Client(
 try {
     $result = $cosClient->DeleteBucketImageStyle(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'StyleName' => 'stylename',
     ));
     // 请求成功
     print_r($result);

@@ -9395,4 +9395,140 @@ class Descriptions {
         );
     }
 
+    public static function ImageDetectCarProcess() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=DetectCar',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageDetectCarProcessOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function ImageDetectCarProcessOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'CarTags' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Serial' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Brand' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Color' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Confidence' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                        'Year' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                        'CarLocation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'X' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                'Y' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'PlateContent' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Plate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Color' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'PlateLocation' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'X' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                        'Y' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function ImageAssessQualityProcess() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=AssessQuality',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageAssessQualityProcessOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function ImageAssessQualityProcessOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'LongImage' => array( 'type' => 'string', 'location' => 'xml', ),
+                'BlackAndWhite' => array( 'type' => 'string', 'location' => 'xml', ),
+                'SmallImage' => array( 'type' => 'string', 'location' => 'xml', ),
+                'BigImage' => array( 'type' => 'string', 'location' => 'xml', ),
+                'PureImage' => array( 'type' => 'string', 'location' => 'xml', ),
+                'ClarityScore' => array( 'type' => 'string', 'location' => 'xml', ),
+                'AestheticScore' => array( 'type' => 'string', 'location' => 'xml', ),
+            ),
+        );
+    }
+
 }
