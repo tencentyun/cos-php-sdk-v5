@@ -13,6 +13,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
+    // 车辆车牌检测 - https://cloud.tencent.com/document/product/460/63225
     $result = $cosClient->imageDetectCarProcess(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',

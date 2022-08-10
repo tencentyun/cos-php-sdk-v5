@@ -14,6 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 $local_path = "/data/exampleobject";
 try {
+    // 图片上传时识别二维码
     $imageQrcodeTemplate = new Qcloud\Cos\ImageParamTemplate\ImageQrcodeTemplate();
     $imageQrcodeTemplate->setMode(0);
     $picOperationsTemplate = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();

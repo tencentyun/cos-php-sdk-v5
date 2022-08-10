@@ -17,7 +17,7 @@ try {
     $imageRule = new Qcloud\Cos\ImageParamTemplate\ImageMogrTemplate();
     $imageRule->rotate(90); // /rotate/<rotateDegree>
     $imageRule->autoOrient(); // /auto-orient
-    $imageRule->flip(50); // /flip/<flip>
+    $imageRule->flip('vertical'); // /flip/<flip>
     $imageRule->ignoreError(); // /ignore-error/1
 
     $picOperations = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();

@@ -123,6 +123,7 @@ class ImageMogrTemplate extends ImageTemplate
      * @param $rgb
      */
     public function color($rgb) {
+        $rgb = $this->ciBase64($rgb);
         $this->tranParams[] = "/color/{$rgb}";
     }
 

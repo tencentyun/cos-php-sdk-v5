@@ -27,7 +27,7 @@ try {
     $imageRule->thumbnailEqualRatioReduceByWH(300, 300); // /thumbnail/<Width>x<Height>>
     $imageRule->thumbnailEqualRatioEnlargeByWH(300, 300); // /thumbnail/<Width>x<Height><
     $imageRule->pad(1); // /pad/1
-    $imageRule->color(base64_encode('#3D3D3D')); // /color/IzNEM0QzRA
+    $imageRule->color('#3D3D3D'); // /color/IzNEM0QzRA
     $imageRule->ignoreError(); // /ignore-error/1
 
     $picOperations = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();

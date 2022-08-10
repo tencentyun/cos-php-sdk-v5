@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId' => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 图片处理-亮度 https://cloud.tencent.com/document/product/460/51808
+    // 图片处理-对比度 https://cloud.tencent.com/document/product/460/51809
     $imageRule = new Qcloud\Cos\ImageParamTemplate\ImageMogrTemplate();
     $imageRule->contrast(-70); // 图片对比度调节 /contrast/<value>
     $imageRule->ignoreError(); // /ignore-error/1
