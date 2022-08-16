@@ -22,7 +22,7 @@ class CommandToRequestTransformer {
     public function bucketStyleTransformer( CommandInterface $command, RequestInterface $request ) {
         $action = $command->getName();
         if ($action == 'ListBuckets') {
-            $uri =  "service.cos.myqcloud.com";
+            $uri = "service.cos.myqcloud.com";
     
             if ($this->config['endpoint'] != null) {
                 $uri = $this->config['endpoint'];
@@ -42,13 +42,11 @@ class CommandToRequestTransformer {
         $bucketname = $command['Bucket'];
 
         $appId = $this->config['appId'];
-        if ( $appId != null && endWith( $bucketname, '-'.$appId ) == False ) {
+        if ( $appId != null && endWith( $bucketname, '-'.$appId ) == false ) {
             $bucketname = $bucketname.'-'.$appId;
         }
         $command['Bucket'] = $bucketname;
-        $path = '';
 
-        $http_method = $operation['httpMethod'];
         $uri = $operation['uri'];
 
         // Hoststyle is used by default
@@ -93,7 +91,7 @@ class CommandToRequestTransformer {
         $uri = new Uri( $path );
         $query = $request->getUri()->getQuery();
         if ( $uri->getQuery() != $query && $uri->getQuery() != '' ) {
-            $query =   $uri->getQuery() . '&' . $request->getUri()->getQuery();
+            $query = $uri->getQuery() . '&' . $request->getUri()->getQuery();
         }
         $uri = $uri->withQuery( $query );
         $request = $request->withUri( $uri );
@@ -333,7 +331,7 @@ class CommandToRequestTransformer {
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
                 $appId = $this->config['appId'];
-                if ( $appId != null && endWith( $bucketname, '-'.$appId ) == False ) {
+                if ( $appId != null && endWith( $bucketname, '-'.$appId ) == false ) {
                     $bucketname = $bucketname.'-'.$appId;
                 }
                 $command['Bucket'] = $bucketname;
