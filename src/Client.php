@@ -175,6 +175,10 @@ use GuzzleHttp\Psr7;
  * @method object ImageRepairProcess(array $args) 图片水印修复
  * @method object ImageDetectCarProcess(array $args) 车辆车牌检测
  * @method object ImageAssessQualityProcess(array $args) 图片质量评估
+ * @method object ImageSearchOpen(array $args) 开通以图搜图
+ * @method object ImageSearchAdd(array $args) 添加图库图片
+ * @method object ImageSearch(array $args) 图片搜索接口
+ * @method object ImageSearchDelete(array $args) 删除图库图片
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

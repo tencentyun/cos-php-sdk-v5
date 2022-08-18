@@ -3755,6 +3755,10 @@ class Service {
                 'ImageRepairProcess' => Descriptions::ImageRepairProcess(), // 图片水印修复
                 'ImageDetectCarProcess' => Descriptions::ImageDetectCarProcess(), // 车辆车牌检测
                 'ImageAssessQualityProcess' => Descriptions::ImageAssessQualityProcess(), // 图片质量评估
+                'ImageSearchOpen' => Descriptions::ImageSearchOpen(), // 开通以图搜图
+                'ImageSearchAdd' => Descriptions::ImageSearchAdd(), // 添加图库图片
+                'ImageSearch' => Descriptions::ImageSearch(), // 图片搜索接口
+                'ImageSearchDelete' => Descriptions::ImageSearchDelete(), // 图片搜索接口
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7200,6 +7204,10 @@ class Service {
                 'ImageRepairProcessOutput' => Descriptions::ImageRepairProcessOutput(),
                 'ImageDetectCarProcessOutput' => Descriptions::ImageDetectCarProcessOutput(),
                 'ImageAssessQualityProcessOutput' => Descriptions::ImageAssessQualityProcessOutput(),
+                'ImageSearchOpenOutput' => Descriptions::ImageSearchOpenOutput(),
+                'ImageSearchAddOutput' => Descriptions::ImageSearchAddOutput(),
+                'ImageSearchOutput' => Descriptions::ImageSearchOutput(),
+                'ImageSearchDeleteOutput' => Descriptions::ImageSearchDeleteOutput(),
             )
         );
     }
