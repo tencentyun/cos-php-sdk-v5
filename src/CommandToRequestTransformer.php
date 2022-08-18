@@ -327,6 +327,7 @@ class CommandToRequestTransformer {
                 'DescribeInventoryTriggerJob' => 1,
                 'CancelInventoryTriggerJob' => 1,
                 'CreateMediaNoiseReductionJobs' => 1,
+                'ImageSearchOpen' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];

@@ -9531,4 +9531,183 @@ class Descriptions {
         );
     }
 
+    public static function ImageSearchOpen() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}ImageSearchBucket',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageSearchOpenOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'MaxCapacity' => array( 'location' => 'xml', 'type' => 'integer', ),
+                'MaxQps' => array( 'location' => 'xml', 'type' => 'integer', ),
+            ),
+        );
+    }
+    public static function ImageSearchOpenOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function ImageSearchAdd() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}{/Key*}?ci-process=ImageSearch&action=AddImage',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageSearchAddOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'EntityId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CustomContent' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Tags' => array( 'location' => 'xml', 'type' => 'string', ),
+            ),
+        );
+    }
+    public static function ImageSearchAddOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function ImageSearch() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=ImageSearch&action=SearchImage',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageSearchOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'MatchThreshold' => array( 'type' => 'integer', 'location' => 'query' ),
+                'Offset' => array( 'type' => 'integer', 'location' => 'query' ),
+                'Limit' => array( 'type' => 'integer', 'location' => 'query' ),
+                'Filter' => array( 'type' => 'string', 'location' => 'query' ),
+            ),
+        );
+    }
+    public static function ImageSearchOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'Count' => array('type' => 'integer', 'location' => 'xml',),
+                'ImageInfos' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'EntityId' => array( 'type' => 'string', 'location' => 'xml',),
+                            'CustomContent' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Tags' => array( 'type' => 'string', 'location' => 'xml',),
+                            'PicName' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                        ),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function ImageSearchDelete() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}{/Key*}?ci-process=ImageSearch&action=DeleteImage',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageSearchDeleteOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'EntityId' => array( 'location' => 'xml', 'type' => 'string', ),
+            ),
+        );
+    }
+    public static function ImageSearchDeleteOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
 }
