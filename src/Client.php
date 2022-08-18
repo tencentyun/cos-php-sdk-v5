@@ -178,7 +178,7 @@ use GuzzleHttp\Psr7;
  * @method object ImageSearchOpen(array $args) 开通以图搜图
  * @method object ImageSearchAdd(array $args) 添加图库图片
  * @method object ImageSearch(array $args) 图片搜索接口
- * @method object ImageSearchDelete(array $args) 删除图库图片
+ * @method object ImageSearchDelete(array $args) 图片搜索接口
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
