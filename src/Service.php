@@ -3759,6 +3759,20 @@ class Service {
                 'ImageSearchAdd' => Descriptions::ImageSearchAdd(), // 添加图库图片
                 'ImageSearch' => Descriptions::ImageSearch(), // 图片搜索接口
                 'ImageSearchDelete' => Descriptions::ImageSearchDelete(), // 图片搜索接口
+                'BindCiService' => Descriptions::BindCiService(), // 绑定数据万象服务
+                'GetCiService' => Descriptions::GetCiService(), // 查询数据万象服务
+                'UnBindCiService' => Descriptions::UnBindCiService(), // 解绑数据万象服务
+                'GetHotLink' => Descriptions::GetHotLink(), // 查询防盗链
+                'AddHotLink' => Descriptions::AddHotLink(), // 查询防盗链
+                'OpenOriginProtect' => Descriptions::OpenOriginProtect(), // 开通原图保护
+                'GetOriginProtect' => Descriptions::GetOriginProtect(), // 查询原图保护状态
+                'CloseOriginProtect' => Descriptions::CloseOriginProtect(), // 关闭原图保护
+                'ImageDetectFace' => Descriptions::ImageDetectFace(), // 人脸检测
+                'ImageFaceEffect' => Descriptions::ImageFaceEffect(), // 人脸特效
+                'IDCardOCR' => Descriptions::IDCardOCR(), // 身份证识别
+                'IDCardOCRByUpload' => Descriptions::IDCardOCRByUpload(), // 身份证识别-上传时处理
+                'GetLiveCode' => Descriptions::GetLiveCode(), // 获取数字验证码
+                'GetActionSequence' => Descriptions::GetActionSequence(), // 获取动作顺序
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7208,6 +7222,20 @@ class Service {
                 'ImageSearchAddOutput' => Descriptions::ImageSearchAddOutput(),
                 'ImageSearchOutput' => Descriptions::ImageSearchOutput(),
                 'ImageSearchDeleteOutput' => Descriptions::ImageSearchDeleteOutput(),
+                'BindCiServiceOutput' => Descriptions::BindCiServiceOutput(),
+                'GetCiServiceOutput' => Descriptions::GetCiServiceOutput(),
+                'UnBindCiServiceOutput' => Descriptions::UnBindCiServiceOutput(),
+                'GetHotLinkOutput' => Descriptions::GetHotLinkOutput(),
+                'AddHotLinkOutput' => Descriptions::AddHotLinkOutput(),
+                'OpenOriginProtectOutput' => Descriptions::OpenOriginProtectOutput(),
+                'GetOriginProtectOutput' => Descriptions::GetOriginProtectOutput(),
+                'CloseOriginProtectOutput' => Descriptions::CloseOriginProtectOutput(),
+                'ImageDetectFaceOutput' => Descriptions::ImageDetectFaceOutput(),
+                'ImageFaceEffectOutput' => Descriptions::ImageFaceEffectOutput(),
+                'IDCardOCROutput' => Descriptions::IDCardOCROutput(),
+                'IDCardOCRByUploadOutput' => Descriptions::IDCardOCRByUploadOutput(),
+                'GetLiveCodeOutput' => Descriptions::GetLiveCodeOutput(),
+                'GetActionSequenceOutput' => Descriptions::GetActionSequenceOutput(),
             )
         );
     }

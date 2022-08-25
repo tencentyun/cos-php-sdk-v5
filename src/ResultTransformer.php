@@ -104,6 +104,39 @@ class ResultTransformer {
             }
         }
 
+        if ($action == "GetCiService" ) {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $arr = json_decode(json_encode($obj),true);
+                $result['CIStatus'] = isset($arr[0]) ? $arr[0] : '';
+                unset($result['Body']);
+            }
+        }
+
+        if ($action == "GetOriginProtect" ) {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $arr = json_decode(json_encode($obj),true);
+                $result['OriginProtectStatus'] = isset($arr[0]) ? $arr[0] : '';
+                unset($result['Body']);
+            }
+        }
+
+        if ($action == "GetHotLink" ) {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $arr = json_decode(json_encode($obj),true);
+                $result['Hotlink'] = $arr;
+                unset($result['Body']);
+            }
+        }
+
         $xml2JsonActions = array(
             'CreateMediaTranscodeJobs' => 1,
             'CreateMediaJobs' => 1,
