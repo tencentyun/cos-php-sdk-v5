@@ -183,7 +183,7 @@ use GuzzleHttp\Psr7;
  * @method object GetCiService(array $args) 查询数据万象服务
  * @method object UnBindCiService(array $args) 解绑数据万象服务
  * @method object GetHotLink(array $args) 查询防盗链
- * @method object AddHotLink(array $args) 设置防盗链
+ * @method object AddHotLink(array $args) 查询防盗链
  * @method object OpenOriginProtect(array $args) 开通原图保护
  * @method object GetOriginProtect(array $args) 查询原图保护状态
  * @method object CloseOriginProtect(array $args) 关闭原图保护
