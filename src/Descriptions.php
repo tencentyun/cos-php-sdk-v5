@@ -9710,4 +9710,575 @@ class Descriptions {
         );
     }
 
+    public static function BindCiService() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'BindCiServiceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function BindCiServiceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function GetCiService() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetCiServiceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function GetCiServiceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function UnBindCiService() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}?unbind',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UnBindCiServiceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function UnBindCiServiceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function GetHotLink() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}?hotlink',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetHotLinkOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function GetHotLinkOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function AddHotLink() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}?hotlink',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'AddHotLinkOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Hotlink',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Type' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Urls' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'data' => array(
+                        'xmlFlattened' => true,
+                    ),
+                    'items' => array( 'name' => 'Url', 'type' => 'string', 'location' => 'xml', 'sentAs' => 'Url', ),
+                ),
+            ),
+        );
+    }
+    public static function AddHotLinkOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function OpenOriginProtect() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}?origin-protect',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'OpenOriginProtectOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function OpenOriginProtectOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function GetOriginProtect() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}?origin-protect',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetOriginProtectOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function GetOriginProtectOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'Body' => array(
+                    'type' => 'string',
+                    'instanceOf' => 'GuzzleHttp\\Psr7\\Stream',
+                    'location' => 'body',
+                ),
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function CloseOriginProtect() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/{Bucket}?origin-protect',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CloseOriginProtectOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function CloseOriginProtectOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+            ),
+        );
+    }
+
+    public static function ImageDetectFace() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=DetectFace',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageDetectFaceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'MaxFaceNum' => array( 'type' => 'integer', 'location' => 'query', 'sentAs' => 'max-face-num' ),
+            ),
+        );
+    }
+    public static function ImageDetectFaceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'ImageWidth' => array('type' => 'integer', 'location' => 'xml',),
+                'ImageHeight' => array('type' => 'integer', 'location' => 'xml',),
+                'FaceModelVersion' => array('type' => 'string', 'location' => 'xml',),
+                'FaceInfos' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'X' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'Y' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'Width' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'Height' => array( 'type' => 'integer', 'location' => 'xml',),
+                        ),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function ImageFaceEffect() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=face-effect',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageFaceEffectOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'type' => array( 'type' => 'string', 'location' => 'query', ),
+                'whitening' => array( 'type' => 'integer', 'location' => 'query', ),
+                'smoothing' => array( 'type' => 'integer', 'location' => 'query', ),
+                'faceLifting' => array( 'type' => 'integer', 'location' => 'query', ),
+                'eyeEnlarging' => array( 'type' => 'integer', 'location' => 'query', ),
+                'gender' => array( 'type' => 'integer', 'location' => 'query', ),
+                'age' => array( 'type' => 'integer', 'location' => 'query', ),
+            ),
+        );
+    }
+    public static function ImageFaceEffectOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'ResultImage' => array('type' => 'string', 'location' => 'xml',),
+                'ResultMask' => array('type' => 'string', 'location' => 'xml',),
+            )
+        );
+    }
+
+    public static function IDCardOCR() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=IDCardOCR',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'IDCardOCROutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'CardSide' => array( 'type' => 'string', 'location' => 'query', ),
+                'Config' => array( 'type' => 'string', 'location' => 'query', ),
+            ),
+        );
+    }
+    public static function IDCardOCROutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'ResultImage' => array('type' => 'string', 'location' => 'xml',),
+                'IdInfo' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Sex' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Nation' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Birth' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Address' => array( 'type' => 'string', 'location' => 'xml',),
+                        'IdNum' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Authority' => array( 'type' => 'string', 'location' => 'xml',),
+                        'ValidDate' => array( 'type' => 'string', 'location' => 'xml',),
+                    ),
+                ),
+                'AdvancedInfo' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'IdCard' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Portrait' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Quality' => array( 'type' => 'string', 'location' => 'xml',),
+                        'BorderCodeValue' => array( 'type' => 'string', 'location' => 'xml',),
+                        'WarnInfos' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                        ),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function IDCardOCRByUpload() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}{/Key*}?ci-process=IDCardOCR',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'IDCardOCRByUploadOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'CardSide' => array( 'type' => 'string', 'location' => 'query', ),
+                'Config' => array( 'type' => 'string', 'location' => 'query', ),
+                'Body' => array(
+                    'required' => true,
+                    'type' => array( 'any' ),
+                    'location' => 'body'
+                ),
+            ),
+        );
+    }
+    public static function IDCardOCRByUploadOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'ResultImage' => array('type' => 'string', 'location' => 'xml',),
+                'IdInfo' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Sex' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Nation' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Birth' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Address' => array( 'type' => 'string', 'location' => 'xml',),
+                        'IdNum' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Authority' => array( 'type' => 'string', 'location' => 'xml',),
+                        'ValidDate' => array( 'type' => 'string', 'location' => 'xml',),
+                    ),
+                ),
+                'AdvancedInfo' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'IdCard' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Portrait' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Quality' => array( 'type' => 'string', 'location' => 'xml',),
+                        'BorderCodeValue' => array( 'type' => 'string', 'location' => 'xml',),
+                        'WarnInfos' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                        ),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function GetLiveCode() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}?ci-process=GetLiveCode',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetLiveCodeOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function GetLiveCodeOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'LiveCode' => array('type' => 'string', 'location' => 'xml',),
+            )
+        );
+    }
+
+    public static function GetActionSequence() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}?ci-process=GetActionSequence',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetActionSequenceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function GetActionSequenceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'ActionSequence' => array('type' => 'string', 'location' => 'xml',),
+            )
+        );
+    }
+
 }

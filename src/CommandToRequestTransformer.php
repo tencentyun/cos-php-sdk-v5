@@ -67,7 +67,10 @@ class CommandToRequestTransformer {
 
         $domain_type = '.cos.';
         if ($action == 'PutBucketImageStyle' || $action == 'GetBucketImageStyle' || $action == 'DeleteBucketImageStyle'
-            || $action == 'PutBucketGuetzli' || $action == 'GetBucketGuetzli' || $action == 'DeleteBucketGuetzli') {
+            || $action == 'PutBucketGuetzli' || $action == 'GetBucketGuetzli' || $action == 'DeleteBucketGuetzli'
+            || $action == 'BindCiService' || $action == 'GetCiService' || $action == 'UnBindCiService'
+            || $action == 'GetHotLink' || $action == 'AddHotLink'
+            || $action == 'OpenOriginProtect' || $action == 'GetOriginProtect' || $action == 'CloseOriginProtect') {
             $domain_type = '.pic.';
         }
 

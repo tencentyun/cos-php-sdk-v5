@@ -179,6 +179,20 @@ use GuzzleHttp\Psr7;
  * @method object ImageSearchAdd(array $args) 添加图库图片
  * @method object ImageSearch(array $args) 图片搜索接口
  * @method object ImageSearchDelete(array $args) 图片搜索接口
+ * @method object BindCiService(array $args) 绑定数据万象服务
+ * @method object GetCiService(array $args) 查询数据万象服务
+ * @method object UnBindCiService(array $args) 解绑数据万象服务
+ * @method object GetHotLink(array $args) 查询防盗链
+ * @method object AddHotLink(array $args) 设置防盗链
+ * @method object OpenOriginProtect(array $args) 开通原图保护
+ * @method object GetOriginProtect(array $args) 查询原图保护状态
+ * @method object CloseOriginProtect(array $args) 关闭原图保护
+ * @method object ImageDetectFace(array $args) 人脸检测
+ * @method object ImageFaceEffect(array $args) 人脸特效
+ * @method object IDCardOCR(array $args) 身份证识别
+ * @method object IDCardOCRByUpload(array $args) 身份证识别-上传时处理
+ * @method object GetLiveCode(array $args) 获取数字验证码
+ * @method object GetActionSequence(array $args) 获取动作顺序
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
