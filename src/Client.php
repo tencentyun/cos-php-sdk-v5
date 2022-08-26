@@ -193,6 +193,8 @@ use GuzzleHttp\Psr7;
  * @method object IDCardOCRByUpload(array $args) 身份证识别-上传时处理
  * @method object GetLiveCode(array $args) 获取数字验证码
  * @method object GetActionSequence(array $args) 获取动作顺序
+ * @method object DescribeDocProcessBuckets(array $args) 查询文档预览开通状态
+ * @method object UpdateDocProcessQueue(array $args) 更新文档转码队列
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

@@ -237,7 +237,10 @@ class CommandToRequestTransformer {
 
         public function cosDomain2CiTransformer(CommandInterface $command, $request) {
             $action = $command->getName();
-            if(key_exists($action, array( 'DescribeMediaBuckets' => 1, ))) {
+            if(key_exists($action, array(
+                'DescribeMediaBuckets' => 1,
+                'DescribeDocProcessBuckets' =>1,
+            ))) {
                 $origin_host = "ci.{$this->config['region']}.myqcloud.com";
                 $host = $origin_host;
                 if ($this->config['ip'] != null) {
@@ -331,6 +334,7 @@ class CommandToRequestTransformer {
                 'CancelInventoryTriggerJob' => 1,
                 'CreateMediaNoiseReductionJobs' => 1,
                 'ImageSearchOpen' => 1,
+                'UpdateDocProcessQueue' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
