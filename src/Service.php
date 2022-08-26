@@ -3773,6 +3773,8 @@ class Service {
                 'IDCardOCRByUpload' => Descriptions::IDCardOCRByUpload(), // 身份证识别-上传时处理
                 'GetLiveCode' => Descriptions::GetLiveCode(), // 获取数字验证码
                 'GetActionSequence' => Descriptions::GetActionSequence(), // 获取动作顺序
+                'DescribeDocProcessBuckets' => Descriptions::DescribeDocProcessBuckets(), // 查询文档预览开通状态
+                'UpdateDocProcessQueue' => Descriptions::UpdateDocProcessQueue(), // 更新文档转码队列
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7236,6 +7238,8 @@ class Service {
                 'IDCardOCRByUploadOutput' => Descriptions::IDCardOCRByUploadOutput(),
                 'GetLiveCodeOutput' => Descriptions::GetLiveCodeOutput(),
                 'GetActionSequenceOutput' => Descriptions::GetActionSequenceOutput(),
+                'DescribeDocProcessBucketsOutput' => Descriptions::DescribeDocProcessBucketsOutput(),
+                'UpdateDocProcessQueueOutput' => Descriptions::UpdateDocProcessQueueOutput(),
             )
         );
     }
