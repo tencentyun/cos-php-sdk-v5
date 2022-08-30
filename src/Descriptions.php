@@ -1027,6 +1027,10 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -1049,6 +1053,10 @@ class Descriptions {
                         ),
                         'CallbackVersion' => array(
                             'type' => 'string',
+                            'location' => 'xml',
+                        ),
+                        'CallbackType' => array(
+                            'type' => 'integer',
                             'location' => 'xml',
                         ),
                     ),
@@ -1196,6 +1204,23 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'items' => array( 'type' => 'string', 'location' => 'xml', ),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'TerrorismInfo' => array(
@@ -1209,6 +1234,23 @@ class Descriptions {
                                                 'type' => 'array',
                                                 'location' => 'xml',
                                                 'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
                                             ),
                                         ),
                                     ),
@@ -1224,6 +1266,23 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'items' => array( 'type' => 'string', 'location' => 'xml', ),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'AdsInfo' => array(
@@ -1232,10 +1291,28 @@ class Descriptions {
                                         'properties' => array(
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
                                                 'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
                                             ),
                                         ),
                                     ),
@@ -1253,6 +1330,29 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'ListInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'ListResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -1317,6 +1417,7 @@ class Descriptions {
                         'Content' => array( 'type' => 'string', 'location' => 'xml', ),
                         'SectionCount' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Result' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'PornInfo' => array(
                             'type' => 'object',
@@ -1382,6 +1483,24 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Keywords' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'TerrorismInfo' => array(
@@ -1391,6 +1510,24 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Keywords' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'PoliticsInfo' => array(
@@ -1400,6 +1537,24 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Keywords' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'AdsInfo' => array(
@@ -1409,6 +1564,24 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Keywords' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'IllegalInfo' => array(
@@ -1418,6 +1591,24 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Keywords' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                     'AbuseInfo' => array(
@@ -1427,6 +1618,24 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Keywords' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                 ),
@@ -1443,6 +1652,29 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'ListInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'ListResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -1487,6 +1719,10 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -1500,6 +1736,7 @@ class Descriptions {
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CallbackVersion' => array( 'type' => 'string', 'location' => 'xml', ),
                         'DetectContent' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'Snapshot' => array(
                             'location' => 'xml',
                             'type' => 'object',
@@ -1702,6 +1939,18 @@ class Descriptions {
                                                     )
                                                 ),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
                                         )
                                     ),
                                     'TerrorismInfo' => array(
@@ -1760,6 +2009,18 @@ class Descriptions {
                                                             )
                                                         ),
                                                     )
+                                                ),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
                                                 ),
                                             ),
                                         )
@@ -1822,6 +2083,18 @@ class Descriptions {
                                                     )
                                                 ),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
                                         )
                                     ),
                                     'AdsInfo' => array(
@@ -1882,6 +2155,18 @@ class Descriptions {
                                                     )
                                                 ),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
                                         )
                                     ),
                                     'TeenagerInfo' => array(
@@ -1940,6 +2225,18 @@ class Descriptions {
                                                             )
                                                         ),
                                                     )
+                                                ),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
                                                 ),
                                             ),
                                         )
@@ -1971,6 +2268,23 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'items' => array('type' => 'string', 'location' => 'xml',),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         )
                                     ),
                                     'TerrorismInfo' => array(
@@ -1984,6 +2298,23 @@ class Descriptions {
                                                 'type' => 'array',
                                                 'location' => 'xml',
                                                 'items' => array('type' => 'string', 'location' => 'xml',),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
                                             ),
                                         )
                                     ),
@@ -1999,6 +2330,23 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'items' => array('type' => 'string', 'location' => 'xml',),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         )
                                     ),
                                     'AdsInfo' => array(
@@ -2013,6 +2361,23 @@ class Descriptions {
                                                 'location' => 'xml',
                                                 'items' => array('type' => 'string', 'location' => 'xml',),
                                             ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
                                         )
                                     ),
                                     'TeenagerInfo' => array(
@@ -2026,6 +2391,23 @@ class Descriptions {
                                                 'type' => 'array',
                                                 'location' => 'xml',
                                                 'items' => array('type' => 'string', 'location' => 'xml',),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
                                             ),
                                         )
                                     ),
@@ -2043,6 +2425,29 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'ListInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'ListResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     )
@@ -2089,6 +2494,10 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -2100,6 +2509,7 @@ class Descriptions {
                         'DetectType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
                     ),
                 ),
             ),
@@ -2296,6 +2706,18 @@ class Descriptions {
                                                             ),
                                                         ),
                                                     ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'TerrorismInfo' => array(
@@ -2352,6 +2774,18 @@ class Descriptions {
                                                                         'Rotate' => array('type' => 'numeric', 'location' => 'xml',),
                                                                     ),
                                                                 ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                             ),
                                                         ),
                                                     ),
@@ -2414,6 +2848,18 @@ class Descriptions {
                                                             ),
                                                         ),
                                                     ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'AdsInfo' => array(
@@ -2473,6 +2919,18 @@ class Descriptions {
                                                             ),
                                                         ),
                                                     ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                         ),
@@ -2491,6 +2949,29 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'ListInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'ListResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -3190,6 +3671,16 @@ class Descriptions {
                     'location' => 'query',
                     'sentAs' => 'dataid'
                 ),
+                'Async' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'async'
+                ),
+                'Callback' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'callback'
+                ),
             ),
         );
     }
@@ -3271,6 +3762,18 @@ class Descriptions {
                                 ),
                             ),
                         ),
+                        'LibResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
                 'TerroristInfo' => array(
@@ -3330,6 +3833,18 @@ class Descriptions {
                                             'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                         ),
                                     ),
+                                ),
+                            ),
+                        ),
+                        'LibResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                 ),
                             ),
                         ),
@@ -3395,6 +3910,18 @@ class Descriptions {
                                 ),
                             ),
                         ),
+                        'LibResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
                 'PoliticsInfo' => array(
@@ -3454,6 +3981,18 @@ class Descriptions {
                                             'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                         ),
                                     ),
+                                ),
+                            ),
+                        ),
+                        'LibResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                 ),
                             ),
                         ),
@@ -3519,6 +4058,18 @@ class Descriptions {
                                 ),
                             ),
                         ),
+                        'LibResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
                 'TeenagerInfo' => array(
@@ -3581,6 +4132,18 @@ class Descriptions {
                                 ),
                             ),
                         ),
+                        'LibResults' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
             )
@@ -3634,6 +4197,10 @@ class Descriptions {
                                     'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                                 ),
                             ),
                         ),
@@ -3645,6 +4212,8 @@ class Descriptions {
                     'properties' => array(
                         'DetectType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Async' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
             ),
@@ -3739,6 +4308,18 @@ class Descriptions {
                                             ),
                                         ),
                                     ),
+                                    'LibResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             'TerrorismInfo' => array(
@@ -3798,6 +4379,18 @@ class Descriptions {
                                                         'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                                     ),
                                                 ),
+                                            ),
+                                        ),
+                                    ),
+                                    'LibResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                             ),
                                         ),
                                     ),
@@ -3863,6 +4456,18 @@ class Descriptions {
                                             ),
                                         ),
                                     ),
+                                    'LibResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             'AdsInfo' => array(
@@ -3922,6 +4527,18 @@ class Descriptions {
                                                         'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                                     ),
                                                 ),
+                                            ),
+                                        ),
+                                    ),
+                                    'LibResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                             ),
                                         ),
                                     ),
@@ -3987,6 +4604,18 @@ class Descriptions {
                                             ),
                                         ),
                                     ),
+                                    'LibResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             'UserInfo' => array(
@@ -4000,6 +4629,29 @@ class Descriptions {
                                     'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                     'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                                ),
+                            ),
+                            'ListInfo' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ListResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                         ),
@@ -4267,6 +4919,18 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                                'LibResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                         'AdsInfo' => array(
@@ -4324,6 +4988,18 @@ class Descriptions {
                                                     'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                                 ),
                                             ),
+                                        ),
+                                    ),
+                                ),
+                                'LibResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                         ),
                                     ),
                                 ),
@@ -4387,6 +5063,18 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                                'LibResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                         'TerrorismInfo' => array(
@@ -4444,6 +5132,18 @@ class Descriptions {
                                                     'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                                 ),
                                             ),
+                                        ),
+                                    ),
+                                ),
+                                'LibResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                         ),
                                     ),
                                 ),
@@ -4507,6 +5207,18 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                                'LibResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                         'UserInfo' => array(
@@ -4520,6 +5232,29 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'ListInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'ListResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -4709,6 +5444,10 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -4720,6 +5459,7 @@ class Descriptions {
                         'DetectType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                         'ReturnHighlightHtml' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
                     ),
                 ),
             ),
@@ -4914,6 +5654,18 @@ class Descriptions {
                                                             ),
                                                         ),
                                                     ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'AdsInfo' => array(
@@ -4970,6 +5722,18 @@ class Descriptions {
                                                                         'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                                                     ),
                                                                 ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                             ),
                                                         ),
                                                     ),
@@ -5032,6 +5796,18 @@ class Descriptions {
                                                             ),
                                                         ),
                                                     ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'TerrorismInfo' => array(
@@ -5088,6 +5864,18 @@ class Descriptions {
                                                                         'Rotate' => array( 'type' => 'numeric', 'location' => 'xml',),
                                                                     ),
                                                                 ),
+                                                            ),
+                                                        ),
+                                                    ),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'ImageId' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                             ),
                                                         ),
                                                     ),
@@ -5119,6 +5907,23 @@ class Descriptions {
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'AdsInfo' => array(
@@ -5128,6 +5933,23 @@ class Descriptions {
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'PoliticsInfo' => array(
@@ -5137,6 +5959,23 @@ class Descriptions {
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'TerrorismInfo' => array(
@@ -5146,6 +5985,23 @@ class Descriptions {
                                                     'HitFlag' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array('type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array('type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                         ),
@@ -5164,6 +6020,29 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                            ),
+                        ),
+                        'ListInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'ListResults' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                            'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                        ),
+                                    ),
+                                ),
                             ),
                         ),
                     ),
@@ -6800,6 +7679,10 @@ class Descriptions {
                                 'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),

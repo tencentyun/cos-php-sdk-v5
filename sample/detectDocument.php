@@ -20,6 +20,19 @@ try {
             'Object' => 'test01.docx',
 //            'Type' => 'docx',
 //            'DataId' => '', // 选填 该字段在审核结果中会返回原始内容，长度限制为512字节。您可以使用该字段对待审核的数据进行唯一业务标识。
+//            'UserInfo' => array(
+//                'TokenId' => '',
+//                'Nickname' => '',
+//                'DeviceId' => '',
+//                'AppId' => '',
+//                'Room' => '',
+//                'IP' => '',
+//                'Type' => '',
+//                'ReceiveTokenId' => '',
+//                'Gender' => '',
+//                'Level' => '',
+//                'Role' => '',
+//            ),
         ),
 //        'Conf' => array(
 //            'BizType' => '',
