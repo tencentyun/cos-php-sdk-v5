@@ -3496,6 +3496,10 @@ class Service {
                                         'Room' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'IP' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Gender' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Level' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                                     ),
                                 ),
                             ),
@@ -3508,6 +3512,7 @@ class Service {
                                 'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'CallbackVersion' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -6593,6 +6598,7 @@ class Service {
                                 'CreationTime' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Content' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                 'Result' => array( 'type' => 'integer', 'location' => 'xml',),
                                 'SectionCount' => array( 'type' => 'integer', 'location' => 'xml',),
                                 'PornInfo' => array(
@@ -6659,6 +6665,24 @@ class Service {
                                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'TerrorismInfo' => array(
@@ -6668,6 +6692,24 @@ class Service {
                                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'PoliticsInfo' => array(
@@ -6677,6 +6719,24 @@ class Service {
                                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'AdsInfo' => array(
@@ -6686,6 +6746,24 @@ class Service {
                                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'IllegalInfo' => array(
@@ -6695,6 +6773,24 @@ class Service {
                                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                             'AbuseInfo' => array(
@@ -6704,6 +6800,24 @@ class Service {
                                                     'HitFlag' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Score' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     'Keywords' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'LibResults' => array(
+                                                        'type' => 'array',
+                                                        'location' => 'xml',
+                                                        'items' => array(
+                                                            'type' => 'object',
+                                                            'location' => 'xml',
+                                                            'properties' => array(
+                                                                'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                                'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'Keywords' => array(
+                                                                    'type' => 'array',
+                                                                    'location' => 'xml',
+                                                                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                ),
+                                                            ),
+                                                        ),
+                                                    ),
                                                 ),
                                             ),
                                         ),
@@ -6720,6 +6834,29 @@ class Service {
                                         'Room' => array( 'type' => 'string', 'location' => 'xml',),
                                         'IP' => array( 'type' => 'string', 'location' => 'xml',),
                                         'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'ReceiveTokenId' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'Gender' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'Level' => array( 'type' => 'string', 'location' => 'xml',),
+                                        'Role' => array( 'type' => 'string', 'location' => 'xml',),
+                                    ),
+                                ),
+                                'ListInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'ListResults' => array(
+                                            'type' => 'array',
+                                            'location' => 'xml',
+                                            'items' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'ListType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    'ListName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'Entity' => array( 'type' => 'string', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                        ),
                                     ),
                                 ),
                             ),
