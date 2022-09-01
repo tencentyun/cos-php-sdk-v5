@@ -36,6 +36,7 @@ try {
             ),
         ),
         'CallBack' => '',
+        'CallBackFormat' => '',
     ));
     // 请求成功
     print_r($result);

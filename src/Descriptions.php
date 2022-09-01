@@ -6312,6 +6312,7 @@ class Descriptions {
                 'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
                 'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
                     'required' => true,
                     'type' => 'object',
