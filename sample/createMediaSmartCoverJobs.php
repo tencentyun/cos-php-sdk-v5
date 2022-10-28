@@ -22,6 +22,7 @@ try {
             'Object' => 'video01.mp4'
         ),
         'Operation' => array(
+//            'TemplateId' => '', // 使用模版
             'SmartCover' => array(
                 'Format' => '',
                 'Width' => '',
@@ -34,9 +35,12 @@ try {
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                 'Object' => 'SmartCover-${Number}.jpg',
             ),
+//            'UserData' => 'xxx', // 透传用户信息
+//            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
         ),
         'CallBack' => '',
-        'CallBackFormat' => '',
+//        'CallBackFormat' => '',
+//        'CallBackType' => '',
     ));
     // 请求成功
     print_r($result);

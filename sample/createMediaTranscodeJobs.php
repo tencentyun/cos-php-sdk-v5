@@ -24,6 +24,8 @@ try {
         ),
         'Operation' => array(
             'TemplateId' => 't04e1ab86554984f1aa17c062fbf6c007c',
+//            'UserData' => 'xxx', // 透传用户信息
+//            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
@@ -76,6 +78,8 @@ try {
             'Object' => 'video01.mp4'
         ),
         'Operation' => array(
+//            'UserData' => 'xxx', // 透传用户信息
+//            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
             'Output' => array(
                 'Region' => $region,
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
