@@ -10387,7 +10387,9 @@ class Descriptions {
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
                 'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
                     'required' => true,
                     'type' => 'object',
@@ -10397,20 +10399,29 @@ class Descriptions {
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
+                        'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Output' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
-                                'Region' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
-                                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
-                                'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
+                    ),
+                ),
+                'CallBackMqConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
             ),
