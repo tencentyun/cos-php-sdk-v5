@@ -27,6 +27,8 @@ try {
                 'Bucket' => 'examplebucket-125000000',
                 'Object' => 'NoiseReduction.mp3',
             ),
+//            'UserData' => 'xxx', // 透传用户信息
+//            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
         ),
     ));
     // 请求成功
