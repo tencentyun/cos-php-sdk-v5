@@ -196,7 +196,7 @@ use GuzzleHttp\Psr7;
  * @method object DescribeDocProcessBuckets(array $args) 查询文档预览开通状态
  * @method object UpdateDocProcessQueue(array $args) 更新文档转码队列
  * @method object CreateMediaQualityEstimateJobs(array $args) 提交视频质量评分任务
- * @method object CreateMediaStreamExtractJobs(array $args) 提交视频质量评分任务
+ * @method object CreateMediaStreamExtractJobs(array $args) 提交音视频流分离任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
