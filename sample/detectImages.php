@@ -13,6 +13,12 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId' => $secretId,
             'secretKey' => $secretKey)));
 try {
+    // 获取图片base64编码
+//    $localImageFile = '/tmp/test.jpg';
+//    $img = file_get_contents($localImageFile);
+//    $imgInfo = getimagesize($localImageFile);
+//    $imgBase64Content = base64_encode($img);
+
     $result = $cosClient->detectImages(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Inputs' => array(
@@ -28,6 +34,12 @@ try {
 //                'MaxFrames' => 5, // 可选 针对 GIF 动图审核的最大截帧数量，需大于0。
 //                'DataId' => 'bbb', // 可选 图片标识，该字段在结果中返回原始内容，长度限制为512字节
             ),
+//            array(
+//                'Content' => $imgBase64Content, // 图片文件的内容，需要先经过 base64 编码。
+////                'Interval' => 5, // 可选 审核 GIF 时使用 截帧的间隔
+////                'MaxFrames' => 5, // 可选 针对 GIF 动图审核的最大截帧数量，需大于0。
+////                'DataId' => 'bbb', // 可选 图片标识，该字段在结果中返回原始内容，长度限制为512字节
+//            ),
         ),
 //        'Conf' => array(
 //            'BizType' => '', // 可选 定制化策略，不传走默认策略
