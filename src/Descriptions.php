@@ -1191,7 +1191,11 @@ class Descriptions {
                         'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'BucketId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Result' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'ForbidState' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'AudioText' => array( 'type' => 'string', 'location' => 'xml', ),
                         'PornInfo' => array(
                             'type' => 'object',
@@ -1200,6 +1204,8 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                         'TerrorismInfo' => array(
@@ -1209,6 +1215,8 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                         'PoliticsInfo' => array(
@@ -1218,6 +1226,8 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                         'AdsInfo' => array(
@@ -1227,6 +1237,19 @@ class Descriptions {
                                 'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'TeenagerInfo' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Category' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                         'Section' => array(
@@ -1248,6 +1271,7 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1267,6 +1291,34 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'items' => array( 'type' => 'string', 'location' => 'xml',),
                                                         ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'SpeakerResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                            'RecognitionResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     ),
                                                 ),
                                             ),
@@ -1279,6 +1331,7 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1298,6 +1351,34 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'items' => array( 'type' => 'string', 'location' => 'xml',),
                                                         ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'SpeakerResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                            'RecognitionResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     ),
                                                 ),
                                             ),
@@ -1310,6 +1391,7 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1329,6 +1411,34 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'items' => array( 'type' => 'string', 'location' => 'xml',),
                                                         ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'SpeakerResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                            'RecognitionResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
                                                     ),
                                                 ),
                                             ),
@@ -1341,6 +1451,7 @@ class Descriptions {
                                             'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
                                             'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -1362,6 +1473,108 @@ class Descriptions {
                                                         ),
                                                     ),
                                                 ),
+                                            ),
+                                            'SpeakerResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                            'RecognitionResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'TeenagerInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'HitFlag' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Keywords' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                            'LibResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'LibType' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'LibName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Keywords' => array(
+                                                            'type' => 'array',
+                                                            'location' => 'xml',
+                                                            'items' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                            'SpeakerResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                            'RecognitionResults' => array(
+                                                'type' => 'array',
+                                                'location' => 'xml',
+                                                'items' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                        'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'LanguageResults' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'Label' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                'StartTime' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                'EndTime' => array( 'type' => 'integer', 'location' => 'xml',),
                                             ),
                                         ),
                                     ),
@@ -1403,6 +1616,10 @@ class Descriptions {
                                     ),
                                 ),
                             ),
+                        ),
+                        'CosHeaders' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
                         ),
                     ),
                 ),
@@ -4231,6 +4448,7 @@ class Descriptions {
                         'properties' => array(
                             'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                             'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'Content' => array( 'type' => 'string', 'location' => 'xml', ),
                             'Interval' => array( 'type' => 'integer', 'location' => 'xml', ),
                             'MaxFrames' => array( 'type' => 'integer', 'location' => 'xml', ),
                             'DataId' => array( 'type' => 'string', 'location' => 'xml', ),
