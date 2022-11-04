@@ -184,6 +184,8 @@ class ResultTransformer {
             'DescribeInventoryTriggerJobs' => 1,
             'DescribeInventoryTriggerJob' => 1,
             'CreateMediaNoiseReductionJobs' => 1,
+            'CreateMediaQualityEstimateJobs' => 1,
+            'CreateMediaStreamExtractJobs' => 1,
         );
         if (key_exists($action, $xml2JsonActions)) {
             $length = intval($result['ContentLength']);

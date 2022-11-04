@@ -3780,6 +3780,8 @@ class Service {
                 'GetActionSequence' => Descriptions::GetActionSequence(), // 获取动作顺序
                 'DescribeDocProcessBuckets' => Descriptions::DescribeDocProcessBuckets(), // 查询文档预览开通状态
                 'UpdateDocProcessQueue' => Descriptions::UpdateDocProcessQueue(), // 更新文档转码队列
+                'CreateMediaQualityEstimateJobs' => Descriptions::CreateMediaQualityEstimateJobs(), // 提交视频质量评分任务
+                'CreateMediaStreamExtractJobs' => Descriptions::CreateMediaStreamExtractJobs(), // 提交音视频流分离任务
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7377,6 +7379,8 @@ class Service {
                 'GetActionSequenceOutput' => Descriptions::GetActionSequenceOutput(),
                 'DescribeDocProcessBucketsOutput' => Descriptions::DescribeDocProcessBucketsOutput(),
                 'UpdateDocProcessQueueOutput' => Descriptions::UpdateDocProcessQueueOutput(),
+                'CreateMediaQualityEstimateJobsOutput' => Descriptions::CreateMediaQualityEstimateJobsOutput(),
+                'CreateMediaStreamExtractJobsOutput' => Descriptions::CreateMediaStreamExtractJobsOutput(),
             )
         );
     }

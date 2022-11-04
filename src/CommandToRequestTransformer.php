@@ -335,6 +335,8 @@ class CommandToRequestTransformer {
                 'CreateMediaNoiseReductionJobs' => 1,
                 'ImageSearchOpen' => 1,
                 'UpdateDocProcessQueue' => 1,
+                'CreateMediaQualityEstimateJobs' => 1,
+                'CreateMediaStreamExtractJobs' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
