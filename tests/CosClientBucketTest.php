@@ -841,4 +841,3 @@ class CosClientBucketTest extends TestCosClientBase {
         }
     }
 }
-

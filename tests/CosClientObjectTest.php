@@ -967,4 +967,3 @@ class CosClientObjectTest extends TestCosClientBase {
 
 
 }
-
