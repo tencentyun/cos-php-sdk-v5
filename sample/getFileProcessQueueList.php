@@ -12,27 +12,17 @@ $cosClient = new Qcloud\Cos\Client(
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
-
 try {
-    // https://cloud.tencent.com/document/product/436/54046 更新媒体处理队列
-    $result = $cosClient->updateMediaQueue(array(
-        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Key' => 'xxx', // queueId
-        'Name' => '', // 模板名称, 长度限制100字符
-        'State' => 'Active', // 管道状态
-        'NotifyConfig' => array(
-            'State' => 'Off',
-//            'Event' => '',
-//            'ResultFormat' => '',
-//            'Type' => '',
-//            'Url' => '',
-//            'MqMode' => '',
-//            'MqRegion' => '',
-//            'MqName' => '',
-        ),
-    ));
-    // 请求成功
-    print_r($result);
+    // 搜索文件处理队列
+//    $result = $cosClient->getFileProcessQueueList(array(
+//        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+////        'QueueIds' => '', // 队列 ID，以“,”符号分割字符串
+////        'State' => 'Active', // Active 表示队列内的作业会被调度执行;  Paused 表示队列暂停
+////        'PageNumber' => '1', // 第几页,默认值1
+////        'PageSize' => '10', // 每页个数,默认值10
+//    ));
+//    // 请求成功
+//    print_r($result);
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

@@ -12,24 +12,34 @@ $cosClient = new Qcloud\Cos\Client(
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
-
 try {
-    // https://cloud.tencent.com/document/product/436/54046 更新媒体处理队列
-    $result = $cosClient->updateMediaQueue(array(
+    // https://cloud.tencent.com/document/product/436/83110 提交文件解压任务-异步
+    $result = $cosClient->createFileUncompressJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Key' => 'xxx', // queueId
-        'Name' => '', // 模板名称, 长度限制100字符
-        'State' => 'Active', // 管道状态
-        'NotifyConfig' => array(
-            'State' => 'Off',
-//            'Event' => '',
-//            'ResultFormat' => '',
-//            'Type' => '',
-//            'Url' => '',
-//            'MqMode' => '',
-//            'MqRegion' => '',
-//            'MqName' => '',
+        'Tag' => 'FileUncompress',
+//        'QueueId' => 'pcc3ae89sa9d807fs89dg789sdg',
+        'Input' => array(
+            'Object' => 'test.zip',
         ),
+        'Operation' => array(
+            'UserData' => 'xxx',
+            'FileUncompressConfig' => array(
+                'Prefix' => 'prefix',
+                'PrefixReplaced' => '1',
+            ),
+            'Output' => array(
+                'Region' => $region,
+                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+            ),
+        ),
+//        'CallBackFormat' => '',
+//        'CallBackType' => '',
+//        'CallBack' => '',
+//        'CallBackMqConfig' => array(
+//            'MqRegion' => '',
+//            'MqMode' => '',
+//            'MqName' => '',
+//        ),
     ));
     // 请求成功
     print_r($result);

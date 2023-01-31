@@ -6451,6 +6451,7 @@ class Descriptions {
                 ),
                 'QueueIds' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'queueIds' ),
                 'State' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'state' ),
+                'Category' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'category' ),
                 'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
                 'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
             ),
@@ -6490,6 +6491,7 @@ class Descriptions {
                             'State' => array( 'type' => 'string', 'location' => 'xml',),
                             'MaxSize' => array( 'type' => 'integer', 'location' => 'xml',),
                             'MaxConcurrent' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'Category' => array( 'type' => 'string', 'location' => 'xml',),
                             'UpdateTime' => array( 'type' => 'string', 'location' => 'xml',),
                             'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
                             'NotifyConfig' => array(
@@ -6499,6 +6501,10 @@ class Descriptions {
                                     'State' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Type' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Event' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'ResultFormat' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
                                 ),
                             ),
                         ),
@@ -6527,18 +6533,21 @@ class Descriptions {
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueID' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'State' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueID' => array( 'location' => 'xml', 'type' => 'string', ),
+                'State' => array( 'location' => 'xml', 'type' => 'string', ),
                 'NotifyConfig' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Url' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
-                        'Type' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
-                        'Event' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
-                        'State' => array( 'required' => false, 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Event' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResultFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
             ),
@@ -11911,6 +11920,964 @@ class Descriptions {
                     'location' => 'header',
                     'sentAs' => 'Content-Length',
                 ),
+            ),
+        );
+    }
+
+    public static function FileJobs4Hash() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=filehash',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'FileJobs4HashOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Type' => array( 'required' => true, 'type' => 'string', 'location' => 'query', 'sentAs' => 'type', ),
+                'AddToHeader' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'addtoheader', ),
+            ),
+        );
+    }
+    public static function FileJobs4HashOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'FileHashCodeResult' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MD5' => array( 'type' => 'string', 'location' => 'xml',),
+                        'SHA1' => array( 'type' => 'string', 'location' => 'xml',),
+                        'SHA256' => array( 'type' => 'string', 'location' => 'xml',),
+                        'FileSize' => array( 'type' => 'numeric', 'location' => 'xml',),
+                    ),
+                ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Region' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Bucket' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml',),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function OpenFileProcessService() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}file_bucket',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'OpenFileProcessServiceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function OpenFileProcessServiceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'FileBucket' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'BucketId' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Region' => array( 'type' => 'string', 'location' => 'xml',),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function GetFileProcessQueueList() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}file_queue',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetFileProcessQueueListOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'QueueIds' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'queueIds', ),
+                'State' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'state', ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber', ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize', ),
+            ),
+        );
+    }
+    public static function GetFileProcessQueueListOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'TotalCount' => array( 'type' => 'numeric', 'location' => 'xml',),
+                'PageNumber' => array( 'type' => 'numeric', 'location' => 'xml',),
+                'PageSize' => array( 'type' => 'numeric', 'location' => 'xml',),
+                'QueueList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'QueueId' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                            'State' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Category' => array( 'type' => 'string', 'location' => 'xml',),
+                            'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                            'UpdateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                            'MaxSize' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'MaxConcurrent' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'NotifyConfig' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Url' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'State' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'Event' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'ResultFormat' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'MqMode' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'MqRegion' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'MqName' => array( 'type' => 'string', 'location' => 'xml',),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'NonExistPIDs' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array( 'type' => 'string', 'location' => 'xml',),
+                ),
+            )
+        );
+    }
+
+    public static function UpdateFileProcessQueue() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}file_queue/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateFileProcessQueueOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'State' => array( 'location' => 'xml', 'type' => 'string', ),
+                'NotifyConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Event' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResultFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateFileProcessQueueOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Queue' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                        'State' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml',),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                        'UpdateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                        'MaxSize' => array( 'type' => 'numeric', 'location' => 'xml',),
+                        'MaxConcurrent' => array( 'type' => 'numeric', 'location' => 'xml',),
+                        'NotifyConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Event' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ResultFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateFileHashCodeJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}file_jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateFileHashCodeJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'FileHashCodeConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'AddToHeader' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'CallBackMqConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateFileHashCodeJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'FileHashCodeConfig' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'AddToHeader' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileHashCodeResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'MD5' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'SHA1' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'SHA256' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'LastModified' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Etag' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'FileSize' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetFileHashCodeResult() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}file_jobs/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetFileHashCodeResultOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function GetFileHashCodeResultOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'FileHashCodeConfig' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'AddToHeader' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileHashCodeResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'MD5' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'SHA1' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'SHA256' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'LastModified' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Etag' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'FileSize' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'NonExistJobIds' => array('type' => 'string', 'location' => 'xml',),
+            ),
+        );
+    }
+
+    public static function CreateFileUncompressJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}file_jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateFileUncompressJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'FileUncompressConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'PrefixReplaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Output' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'CallBackMqConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateFileUncompressJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Output' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileUncompressConfig' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'PrefixReplaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileUncompressResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'FileCount' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetFileUncompressResult() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}file_jobs/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetFileUncompressResultOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function GetFileUncompressResultOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Output' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileUncompressConfig' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'PrefixReplaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileUncompressResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'FileCount' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'NonExistJobIds' => array('type' => 'string', 'location' => 'xml',),
+            ),
+        );
+    }
+
+    public static function CreateFileCompressJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}file_jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateFileCompressJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'FileCompressConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Flatten' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'UrlList' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Keys' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'data' => array(
+                                        'xmlFlattened' => true),
+                                    'items' => array(
+                                        'name' => 'Key',
+                                        'type' => 'string',
+                                        'sentAs' => 'Key',
+                                        'location' => 'xml',
+                                    )
+                                ),
+                            ),
+                        ),
+                        'Output' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'CallBackMqConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateFileCompressJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Output' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileCompressConfig' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Flatten' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'UrlList' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Key' => array(
+                                            'type' => 'array',
+                                            'location' => 'xml',
+                                            'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                ),
+                                'FileCompressResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function GetFileCompressResult() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}file_jobs/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetFileCompressResultOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+        );
+    }
+    public static function GetFileCompressResultOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Output' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'FileCompressConfig' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Flatten' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'UrlList' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Key' => array(
+                                            'type' => 'array',
+                                            'location' => 'xml',
+                                            'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                ),
+                                'FileCompressResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'NonExistJobIds' => array('type' => 'string', 'location' => 'xml',),
             ),
         );
     }
