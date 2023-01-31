@@ -337,6 +337,15 @@ class CommandToRequestTransformer {
                 'UpdateDocProcessQueue' => 1,
                 'CreateMediaQualityEstimateJobs' => 1,
                 'CreateMediaStreamExtractJobs' => 1,
+                'OpenFileProcessService' => 1,
+                'GetFileProcessQueueList' => 1,
+                'UpdateFileProcessQueue' => 1,
+                'CreateFileHashCodeJobs' => 1,
+                'GetFileHashCodeResult' => 1,
+                'CreateFileUncompressJobs' => 1,
+                'GetFileUncompressResult' => 1,
+                'CreateFileCompressJobs' => 1,
+                'GetFileCompressResult' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];

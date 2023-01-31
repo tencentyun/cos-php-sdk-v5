@@ -197,6 +197,16 @@ use GuzzleHttp\Psr7;
  * @method object UpdateDocProcessQueue(array $args) 更新文档转码队列
  * @method object CreateMediaQualityEstimateJobs(array $args) 提交视频质量评分任务
  * @method object CreateMediaStreamExtractJobs(array $args) 提交音视频流分离任务
+ * @method object FileJobs4Hash(array $args) 哈希值计算同步请求
+ * @method object OpenFileProcessService(array $args) 开通文件处理服务
+ * @method object GetFileProcessQueueList(array $args) 搜索文件处理队列
+ * @method object UpdateFileProcessQueue(array $args) 更新文件处理的队列
+ * @method object CreateFileHashCodeJobs(array $args) 提交哈希值计算任务
+ * @method object GetFileHashCodeResult(array $args) 查询哈希值计算结果
+ * @method object CreateFileUncompressJobs(array $args) 提交文件解压任务
+ * @method object GetFileUncompressResult(array $args) 查询文件解压结果
+ * @method object CreateFileCompressJobs(array $args) 提交多文件打包压缩任务
+ * @method object GetFileCompressResult(array $args) 查询多文件打包压缩结果
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

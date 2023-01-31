@@ -3782,6 +3782,16 @@ class Service {
                 'UpdateDocProcessQueue' => Descriptions::UpdateDocProcessQueue(), // 更新文档转码队列
                 'CreateMediaQualityEstimateJobs' => Descriptions::CreateMediaQualityEstimateJobs(), // 提交视频质量评分任务
                 'CreateMediaStreamExtractJobs' => Descriptions::CreateMediaStreamExtractJobs(), // 提交音视频流分离任务
+                'FileJobs4Hash' => Descriptions::FileJobs4Hash(), // 哈希值计算同步请求
+                'OpenFileProcessService' => Descriptions::OpenFileProcessService(), // 开通文件处理服务
+                'GetFileProcessQueueList' => Descriptions::GetFileProcessQueueList(), // 搜索文件处理队列
+                'UpdateFileProcessQueue' => Descriptions::UpdateFileProcessQueue(), // 更新文件处理的队列
+                'CreateFileHashCodeJobs' => Descriptions::CreateFileHashCodeJobs(), // 提交哈希值计算任务
+                'GetFileHashCodeResult' => Descriptions::GetFileHashCodeResult(), // 查询哈希值计算结果
+                'CreateFileUncompressJobs' => Descriptions::CreateFileUncompressJobs(), // 提交文件解压任务
+                'GetFileUncompressResult' => Descriptions::GetFileUncompressResult(), // 查询文件解压结果
+                'CreateFileCompressJobs' => Descriptions::CreateFileCompressJobs(), // 提交多文件打包压缩任务
+                'GetFileCompressResult' => Descriptions::GetFileCompressResult(), // 查询多文件打包压缩结果
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7381,6 +7391,16 @@ class Service {
                 'UpdateDocProcessQueueOutput' => Descriptions::UpdateDocProcessQueueOutput(),
                 'CreateMediaQualityEstimateJobsOutput' => Descriptions::CreateMediaQualityEstimateJobsOutput(),
                 'CreateMediaStreamExtractJobsOutput' => Descriptions::CreateMediaStreamExtractJobsOutput(),
+                'FileJobs4HashOutput' => Descriptions::FileJobs4HashOutput(),
+                'OpenFileProcessServiceOutput' => Descriptions::OpenFileProcessServiceOutput(),
+                'GetFileProcessQueueListOutput' => Descriptions::GetFileProcessQueueListOutput(),
+                'UpdateFileProcessQueueOutput' => Descriptions::UpdateFileProcessQueueOutput(),
+                'CreateFileHashCodeJobsOutput' => Descriptions::CreateFileHashCodeJobsOutput(),
+                'GetFileHashCodeResultOutput' => Descriptions::GetFileHashCodeResultOutput(),
+                'CreateFileUncompressJobsOutput' => Descriptions::CreateFileUncompressJobsOutput(),
+                'GetFileUncompressResultOutput' => Descriptions::GetFileUncompressResultOutput(),
+                'CreateFileCompressJobsOutput' => Descriptions::CreateFileCompressJobsOutput(),
+                'GetFileCompressResultOutput' => Descriptions::GetFileCompressResultOutput(),
             )
         );
     }
