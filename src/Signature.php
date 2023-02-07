@@ -35,14 +35,7 @@ class Signature {
             'if-unmodified-since',
             'origin',
             'range',
-            'response-cache-control',
-            'response-content-disposition',
-            'response-content-encoding',
-            'response-content-language',
-            'response-content-type',
-            'response-expires',
             'transfer-encoding',
-            'versionid',
         ];
         date_default_timezone_set( 'PRC' );
     }
