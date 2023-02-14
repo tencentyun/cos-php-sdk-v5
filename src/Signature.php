@@ -37,7 +37,7 @@ class Signature {
             'range',
             'transfer-encoding',
         ];
-        date_default_timezone_set( 'PRC' );
+        date_default_timezone_set($this->options['timezone']);
     }
 
     public function __destruct() {

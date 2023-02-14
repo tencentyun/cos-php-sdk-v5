@@ -244,6 +244,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['signHost'] = isset($cosConfig['signHost']) ? $cosConfig['signHost'] : true;
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
+        $this->cosConfig['timezone'] = isset($cosConfig['timezone']) ? $cosConfig['timezone'] : 'PRC';
 
         // check config
         $this->inputCheck();
