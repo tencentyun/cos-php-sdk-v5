@@ -551,7 +551,7 @@ class Client extends GuzzleClient {
     
     public static function explodeKey($key) {
         // Remove a leading slash if one is found
-        $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
+        $split_key = explode('/', ltrim(strval($key),'/'));
         // Remove empty element
         $split_key = array_filter($split_key, function($var) {
             return !($var == '' || $var == null);
