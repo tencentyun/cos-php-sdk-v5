@@ -14,6 +14,12 @@ class Signature {
     // array: cos config.
     private $options;
 
+    // string: token.
+    private $token;
+
+    // array: sign header.
+    private $signHeader;
+
     public function __construct( $accessKey, $secretKey, $options, $token = null ) {
         $this->accessKey = $accessKey;
         $this->secretKey = $secretKey;
