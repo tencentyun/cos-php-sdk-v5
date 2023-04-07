@@ -17,13 +17,16 @@ try {
     $result = $cosClient->createMediaQualityEstimateJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'QualityEstimate',
-        'QueueId' => 'p81e648af2aee4968857xxxxxxxxxxxxxxxx',
         'Input' => array(
             'Object' => 'test.mp4',
         ),
         'Operation' => array(
             'UserData' => 'xxx', // 透传用户信息
 //            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
+//            'QualityEstimateConfig' => array(
+//                'Rotate' => '',
+//                'Mode' => '',
+//            ),
         ),
         'CallBack' => 'http://xxx.com/callback',
         'CallBackFormat' => 'JSON',
