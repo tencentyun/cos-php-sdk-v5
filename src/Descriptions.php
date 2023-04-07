@@ -11761,16 +11761,15 @@ class Descriptions {
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
@@ -11779,6 +11778,14 @@ class Descriptions {
                     'properties' => array(
                         'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QualityEstimateConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Rotate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
                 'CallBackMqConfig' => array(
