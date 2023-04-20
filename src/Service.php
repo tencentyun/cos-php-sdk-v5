@@ -3792,6 +3792,7 @@ class Service {
                 'GetFileUncompressResult' => Descriptions::GetFileUncompressResult(), // 查询文件解压结果
                 'CreateFileCompressJobs' => Descriptions::CreateFileCompressJobs(), // 提交多文件打包压缩任务
                 'GetFileCompressResult' => Descriptions::GetFileCompressResult(), // 查询多文件打包压缩结果
+                'CreateM3U8PlayListJobs' => Descriptions::CreateM3U8PlayListJobs(), // 查询多文件打包压缩结果
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7401,6 +7402,7 @@ class Service {
                 'GetFileUncompressResultOutput' => Descriptions::GetFileUncompressResultOutput(),
                 'CreateFileCompressJobsOutput' => Descriptions::CreateFileCompressJobsOutput(),
                 'GetFileCompressResultOutput' => Descriptions::GetFileCompressResultOutput(),
+                'CreateM3U8PlayListJobsOutput' => Descriptions::CreateM3U8PlayListJobsOutput(),
             )
         );
     }

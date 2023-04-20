@@ -346,6 +346,7 @@ class CommandToRequestTransformer {
                 'GetFileUncompressResult' => 1,
                 'CreateFileCompressJobs' => 1,
                 'GetFileCompressResult' => 1,
+                'CreateM3U8PlayListJobs' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 $bucketname = $command['Bucket'];
