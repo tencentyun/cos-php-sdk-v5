@@ -207,7 +207,7 @@ use GuzzleHttp\Psr7;
  * @method object GetFileUncompressResult(array $args) 查询文件解压结果
  * @method object CreateFileCompressJobs(array $args) 提交多文件打包压缩任务
  * @method object GetFileCompressResult(array $args) 查询多文件打包压缩结果
- * @method object CreateM3U8PlayListJobs(array $args) m3u8编辑任务
+ * @method object CreateM3U8PlayListJobs(array $args) 查询多文件打包压缩结果
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
