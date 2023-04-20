@@ -12889,4 +12889,127 @@ class Descriptions {
         );
     }
 
+    public static function CreateM3U8PlayListJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}m3u8_playlist',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateM3U8PlayListJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'StartTime' => array( 'location' => 'query', 'type' => 'integer', 'sentAs' => 'startTime'),
+                'EndTime' => array( 'location' => 'query', 'type' => 'integer', 'sentAs' => 'endTime'),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'M3U8List' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array('xmlFlattened' => true),
+                            'items' => array(
+                                'name' => 'M3U8List',
+                                'type' => 'object',
+                                'sentAs' => 'M3U8List',
+                                'properties' => array(
+                                    'BucketId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Index' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'ObjectPath' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                        ),
+                        'Output' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateM3U8PlayListJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'M3U8List' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'BucketId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Index' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'ObjectPath' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                        ),
+                        'Output' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'ResultInfo' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'OutputUrl' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ErrorInfo' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'ObjectPath' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
 }
