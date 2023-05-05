@@ -261,6 +261,7 @@ class Client extends GuzzleClient {
         }
         if ($this->cosConfig['token'] != null) {
             $handler->push(Middleware::mapRequest(function (RequestInterface $request) {
+                $request = $request->withHeader('x-ci-security-token', $this->cosConfig['token']);
                 return $request->withHeader('x-cos-security-token', $this->cosConfig['token']);
             }));
         }
