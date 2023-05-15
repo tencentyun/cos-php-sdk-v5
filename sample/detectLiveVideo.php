@@ -34,6 +34,9 @@ try {
 //            'CallbackType' => 1,
             'BizType' => '07d41bbb5a3a93dca4xxxxxxxxxxx', // 直播流审核 BizType 必填，可联系工作人员生成后使用
         ),
+        'StorageConf' => array(
+            'Path' => 'xxx',
+        ),
     ));
     // 请求成功
     print_r($result);
