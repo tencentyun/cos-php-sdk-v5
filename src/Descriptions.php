@@ -1108,6 +1108,16 @@ class Descriptions {
                             'type' => 'integer',
                             'location' => 'xml',
                         ),
+                        'Freeze' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'PornScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'AdsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'PoliticsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'TerrorismScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -1261,6 +1271,7 @@ class Descriptions {
                                     'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Text' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'OffsetTime' => array( 'type' => 'integer', 'location' => 'xml', ),
                                     'Duration' => array( 'type' => 'integer', 'location' => 'xml', ),
                                     'Result' => array( 'type' => 'integer', 'location' => 'xml', ),
@@ -1685,6 +1696,7 @@ class Descriptions {
                         'Label' => array( 'type' => 'string', 'location' => 'xml', ),
                         'SubLabel' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Result' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'ForbidState' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'PornInfo' => array(
                             'type' => 'object',
                             'location' => 'xml',
@@ -1991,6 +2003,17 @@ class Descriptions {
                                 'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
+                        'Encryption' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Algorithm' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Key' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'IV' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'KeyId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'KeyType' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
                 'Conf' => array(
@@ -2010,6 +2033,16 @@ class Descriptions {
                                 'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Count' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'TimeInterval' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Freeze' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'PornScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'AdsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'PoliticsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'TerrorismScore' => array( 'type' => 'integer', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -2096,6 +2129,7 @@ class Descriptions {
                         'SnapshotCount' => array('type' => 'string', 'location' => 'xml',),
                         'Label' => array('type' => 'string', 'location' => 'xml',),
                         'Result' => array('type' => 'integer', 'location' => 'xml',),
+                        'ForbidState' => array('type' => 'integer', 'location' => 'xml',),
                         'PornInfo' => array(
                             'type' => 'object',
                             'location' => 'xml',
@@ -2146,6 +2180,7 @@ class Descriptions {
                                     'SnapshotTime' => array('type' => 'integer', 'location' => 'xml',),
                                     'Text' => array('type' => 'string', 'location' => 'xml',),
                                     'Label' => array('type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                     'Result' => array('type' => 'integer', 'location' => 'xml',),
                                     'PornInfo' => array(
                                         'type' => 'object',
@@ -2164,6 +2199,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Text' => array('type' => 'integer', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'integer', 'location' => 'xml',),
                                                         'Keywords' => array(
                                                             'type' => 'array',
                                                             'location' => 'xml',
@@ -2191,6 +2227,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                         'Location' => array(
                                                             'type' => 'object',
                                                             'location' => 'xml',
@@ -2236,6 +2273,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Text' => array('type' => 'integer', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'integer', 'location' => 'xml',),
                                                         'Keywords' => array(
                                                             'type' => 'array',
                                                             'location' => 'xml',
@@ -2263,6 +2301,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                         'Location' => array(
                                                             'type' => 'object',
                                                             'location' => 'xml',
@@ -2308,6 +2347,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Text' => array('type' => 'integer', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'integer', 'location' => 'xml',),
                                                         'Keywords' => array(
                                                             'type' => 'array',
                                                             'location' => 'xml',
@@ -2335,6 +2375,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                         'Location' => array(
                                                             'type' => 'object',
                                                             'location' => 'xml',
@@ -2380,6 +2421,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Text' => array('type' => 'integer', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'integer', 'location' => 'xml',),
                                                         'Keywords' => array(
                                                             'type' => 'array',
                                                             'location' => 'xml',
@@ -2407,6 +2449,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                         'Location' => array(
                                                             'type' => 'object',
                                                             'location' => 'xml',
@@ -2452,6 +2495,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Text' => array('type' => 'integer', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'integer', 'location' => 'xml',),
                                                         'Keywords' => array(
                                                             'type' => 'array',
                                                             'location' => 'xml',
@@ -2479,6 +2523,7 @@ class Descriptions {
                                                     'location' => 'xml',
                                                     'properties' => array(
                                                         'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                        'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                         'Location' => array(
                                                             'type' => 'object',
                                                             'location' => 'xml',
@@ -2521,6 +2566,7 @@ class Descriptions {
                                     'OffsetTime' => array('type' => 'integer', 'location' => 'xml',),
                                     'Duration' => array('type' => 'integer', 'location' => 'xml',),
                                     'Label' => array('type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                     'Result' => array('type' => 'integer', 'location' => 'xml',),
                                     'PornInfo' => array(
                                         'type' => 'object',
@@ -2529,6 +2575,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
                                             'Category' => array('type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -2560,6 +2607,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
                                             'Category' => array('type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -2591,6 +2639,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
                                             'Category' => array('type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -2622,6 +2671,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
                                             'Category' => array('type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -2653,6 +2703,7 @@ class Descriptions {
                                             'HitFlag' => array('type' => 'string', 'location' => 'xml',),
                                             'Score' => array('type' => 'string', 'location' => 'xml',),
                                             'Category' => array('type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -2776,6 +2827,16 @@ class Descriptions {
                         'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'Freeze' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'PornScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'AdsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'PoliticsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'TerrorismScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -2860,6 +2921,7 @@ class Descriptions {
                         'Object' => array('type' => 'string', 'location' => 'xml',),
                         'Url' => array('type' => 'string', 'location' => 'xml',),
                         'PageCount' => array('type' => 'integer', 'location' => 'xml',),
+                        'ForbidState' => array('type' => 'integer', 'location' => 'xml',),
                         'Labels' => array(
                             'type' => 'object',
                             'location' => 'xml',
@@ -2931,6 +2993,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -2958,6 +3021,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -3002,6 +3066,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -3029,6 +3094,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -3073,6 +3139,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -3100,6 +3167,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -3144,6 +3212,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -3171,6 +3240,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array('type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -3987,6 +4057,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Keywords' => array(
                                         'type' => 'array',
                                         'location' => 'xml',
@@ -4014,6 +4085,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Location' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -4061,6 +4133,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Keywords' => array(
                                         'type' => 'array',
                                         'location' => 'xml',
@@ -4088,6 +4161,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Location' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -4135,6 +4209,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Keywords' => array(
                                         'type' => 'array',
                                         'location' => 'xml',
@@ -4162,6 +4237,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Location' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -4209,6 +4285,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Keywords' => array(
                                         'type' => 'array',
                                         'location' => 'xml',
@@ -4236,6 +4313,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Location' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -4283,6 +4361,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Keywords' => array(
                                         'type' => 'array',
                                         'location' => 'xml',
@@ -4310,6 +4389,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Location' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -4357,6 +4437,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Keywords' => array(
                                         'type' => 'array',
                                         'location' => 'xml',
@@ -4384,6 +4465,7 @@ class Descriptions {
                                 'location' => 'xml',
                                 'properties' => array(
                                     'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                    'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                     'Location' => array(
                                         'type' => 'object',
                                         'location' => 'xml',
@@ -4470,6 +4552,17 @@ class Descriptions {
                                     'Role' => array( 'type' => 'string', 'location' => 'xml', ),
                                 ),
                             ),
+                            'Encryption' => array(
+                                'location' => 'xml',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Algorithm' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Key' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'IV' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'KeyId' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'KeyType' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                ),
+                            ),
                         ),
                     ),
                 ),
@@ -4481,6 +4574,16 @@ class Descriptions {
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Async' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Freeze' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'PornScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'AdsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'PoliticsScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'TerrorismScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            ),
+                        ),
                     ),
                 ),
             ),
@@ -4510,6 +4613,7 @@ class Descriptions {
                             'Label' => array( 'type' => 'string', 'location' => 'xml',),
                             'Result' => array( 'type' => 'integer', 'location' => 'xml',),
                             'Score' => array( 'type' => 'integer', 'location' => 'xml',),
+                            'ForbidState' => array( 'type' => 'integer', 'location' => 'xml',),
                             'Category' => array( 'type' => 'string', 'location' => 'xml',),
                             'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
@@ -4534,6 +4638,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Keywords' => array(
                                                     'type' => 'array',
                                                     'location' => 'xml',
@@ -4561,6 +4666,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Location' => array(
                                                     'type' => 'object',
                                                     'location' => 'xml',
@@ -4608,6 +4714,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Keywords' => array(
                                                     'type' => 'array',
                                                     'location' => 'xml',
@@ -4635,6 +4742,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Location' => array(
                                                     'type' => 'object',
                                                     'location' => 'xml',
@@ -4682,6 +4790,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Keywords' => array(
                                                     'type' => 'array',
                                                     'location' => 'xml',
@@ -4709,6 +4818,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Location' => array(
                                                     'type' => 'object',
                                                     'location' => 'xml',
@@ -4756,6 +4866,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Keywords' => array(
                                                     'type' => 'array',
                                                     'location' => 'xml',
@@ -4783,6 +4894,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Location' => array(
                                                     'type' => 'object',
                                                     'location' => 'xml',
@@ -4830,6 +4942,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Keywords' => array(
                                                     'type' => 'array',
                                                     'location' => 'xml',
@@ -4857,6 +4970,7 @@ class Descriptions {
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                 'Location' => array(
                                                     'type' => 'object',
                                                     'location' => 'xml',
@@ -5128,6 +5242,7 @@ class Descriptions {
                         'SubLabel' => array('type' => 'string', 'location' => 'xml',),
                         'Result' => array('type' => 'integer', 'location' => 'xml',),
                         'Score' => array('type' => 'integer', 'location' => 'xml',),
+                        'ForbidState' => array('type' => 'integer', 'location' => 'xml',),
                         'PornInfo' => array(
                             'type' => 'object',
                             'location' => 'xml',
@@ -5145,6 +5260,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -5172,6 +5288,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Location' => array(
                                                 'type' => 'object',
                                                 'location' => 'xml',
@@ -5217,6 +5334,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -5244,6 +5362,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Location' => array(
                                                 'type' => 'object',
                                                 'location' => 'xml',
@@ -5289,6 +5408,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -5316,6 +5436,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Location' => array(
                                                 'type' => 'object',
                                                 'location' => 'xml',
@@ -5361,6 +5482,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -5388,6 +5510,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Location' => array(
                                                 'type' => 'object',
                                                 'location' => 'xml',
@@ -5433,6 +5556,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Keywords' => array(
                                                 'type' => 'array',
                                                 'location' => 'xml',
@@ -5460,6 +5584,7 @@ class Descriptions {
                                         'location' => 'xml',
                                         'properties' => array(
                                             'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                            'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                             'Location' => array(
                                                 'type' => 'object',
                                                 'location' => 'xml',
@@ -5735,6 +5860,7 @@ class Descriptions {
                     'location' => 'xml',
                     'type' => 'object',
                     'properties' => array(
+                        'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'DetectType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                         'ReturnHighlightHtml' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -5892,6 +6018,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -5919,6 +6046,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -5963,6 +6091,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -5990,6 +6119,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -6034,6 +6164,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -6061,6 +6192,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -6105,6 +6237,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Text' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Keywords' => array(
                                                                     'type' => 'array',
                                                                     'location' => 'xml',
@@ -6132,6 +6265,7 @@ class Descriptions {
                                                             'location' => 'xml',
                                                             'properties' => array(
                                                                 'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                                                                'SubLabel' => array( 'type' => 'string', 'location' => 'xml',),
                                                                 'Location' => array(
                                                                     'type' => 'object',
                                                                     'location' => 'xml',
@@ -8153,6 +8287,13 @@ class Descriptions {
                         'Callback' => array( 'type' => 'string', 'location' => 'xml', ),
                         'BizType' => array( 'type' => 'string', 'location' => 'xml', ),
                         'CallbackType' => array( 'type' => 'integer', 'location' => 'xml', ),
+                    ),
+                ),
+                'StorageConf' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Path' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
             ),
