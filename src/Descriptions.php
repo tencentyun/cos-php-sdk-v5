@@ -27,21 +27,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -135,6 +133,35 @@ class Descriptions {
                                             'properties' => array(
                                                 'IsHlsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
                                                 'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                'AudioMixArray' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'name' => 'AudioMix',
+                                        'sentAs' => 'AudioMix',
+                                        'properties' => array(
+                                            'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'EffectConfig' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'EnableStartFadein' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'StartFadeinTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EnableEndFadeout' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EndFadeoutTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EnableBgmFade' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'BgmFadeTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                ),
                                             ),
                                         ),
                                     ),
@@ -273,19 +300,17 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'array',
                     'location' => 'xml',
                     'data' => array(
@@ -709,13 +734,11 @@ class Descriptions {
                     'location' => 'uri',
                 ),
                 'Tag' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'tag',
                 ),
                 'QueueId' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'queueId',
@@ -797,27 +820,24 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
                         'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Output' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
@@ -900,21 +920,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true, 
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' =>false, 'type' => 'string', 'location' => 'xml', ), // 拼接任务Input可以为空，完全用数组内的元素拼接
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ), // 拼接任务Input可以为空，完全用数组内的元素拼接
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -922,13 +940,12 @@ class Descriptions {
                         'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Output' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
-                                'Region' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
-                                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
-                                'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                         'ConcatTemplate' => array(
@@ -3334,46 +3351,40 @@ class Descriptions {
                     'location' => 'uri',
                 ),
                 'Tag' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'xml',
                 ),
                 'QueueId' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'xml',
                 ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
                         'Output' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
                                 'Region' => array(
-                                    'type' => 'string','required' => true,'location' => 'xml',
+                                    'type' => 'string','location' => 'xml',
                                 ),
                                 'Bucket' => array(
-                                    'type' => 'string','required' => true,'location' => 'xml',
+                                    'type' => 'string','location' => 'xml',
                                 ),
                                 'Object' => array(
-                                    'type' => 'string','required' => true,'location' => 'xml',
+                                    'type' => 'string','location' => 'xml',
                                 ),
                             ),
                         ),
                         'DocProcess' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
@@ -3800,13 +3811,11 @@ class Descriptions {
                     'location' => 'uri',
                 ),
                 'Tag' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'tag',
                 ),
                 'QueueId' => array(
-                    'required' => true,
                     'type' => 'string',
                     'location' => 'query',
                     'sentAs' => 'queueId',
@@ -5669,21 +5678,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -6731,21 +6738,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -6764,13 +6769,12 @@ class Descriptions {
                             ),
                         ),
                         'Output' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
-                                'Region' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
-                                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
-                                'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -6831,21 +6835,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -7072,21 +7074,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -7223,21 +7223,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'CallBack' => array( 'required' => false, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -7346,21 +7344,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -7442,17 +7438,16 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
@@ -7544,32 +7539,29 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
                         'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
                         'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
                         'VideoTag' => array(
-                            'required' => true,
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
-                                'Scenario' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                                'Scenario' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -7630,21 +7622,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -7855,21 +7845,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -8068,21 +8056,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -8164,21 +8150,19 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -8567,10 +8551,9 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Snapshot' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
@@ -8727,8 +8710,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Container' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -8986,8 +8969,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Container' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -9191,8 +9174,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Container' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -9348,8 +9331,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'ConcatTemplate' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -9549,8 +9532,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'ColorEnhance' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -9684,8 +9667,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Container' => array(
                     'type' => 'object',
@@ -9863,9 +9846,9 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'AudioMode' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'AudioMode' => array( 'location' => 'xml', 'type' => 'string', ),
                 'AudioConfig' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -9984,8 +9967,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Resolution' => array( 'location' => 'xml', 'type' => 'string', ),
                 'EnableScaleUp' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Version' => array( 'location' => 'xml', 'type' => 'string', ),
@@ -10089,8 +10072,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'PicProcess' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -10204,8 +10187,8 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'Name' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Watermark' => array(
                     'type' => 'object',
                     'location' => 'xml',
@@ -10753,17 +10736,16 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
@@ -11835,7 +11817,7 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'type' => 'string', 'location' => 'uri', ),
                 'Name' => array( 'type' => 'string', 'location' => 'xml', ),
                 'QueueID' => array( 'type' => 'string', 'location' => 'xml', ),
                 'State' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -11901,7 +11883,7 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
                 'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
@@ -11985,17 +11967,16 @@ class Descriptions {
             ),
             'parameters' => array(
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
-                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
-                'QueueId' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'Input' => array(
-                    'required' => true,
                     'type' => 'object',
                     'location' => 'xml',
                     'properties' => array(
-                        'Object' => array( 'required' => true, 'type' => 'string', 'location' => 'xml', ),
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
                 'Operation' => array(
