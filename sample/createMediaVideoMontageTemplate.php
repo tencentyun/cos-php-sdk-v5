@@ -19,6 +19,7 @@ try {
         'Tag' => 'VideoMontage',
         'Name' => 'VideoMontage-Template-Name',
         'Duration' => '',
+        'Scene' => '',
         'Container' => array(
             'Format' => 'mp4',
         ),
@@ -37,10 +38,20 @@ try {
             'Channels' => '',
             'Remove' => '',
         ),
-        'AudioMix' => array(
-            'AudioSource' => 'https://examplebucket-125000000.cos.ap-guangzhou.myqcloud.com/test01.mp3',
-            'MixMode' => 'Once',
-            'Replace' => 'true',
+        'AudioMixArray' => array(
+            array(
+                'AudioSource' => 'https://examplebucket-125000000.cos.ap-guangzhou.myqcloud.com/test01.mp3',
+                'MixMode' => 'Once',
+                'Replace' => 'true',
+                'EffectConfig' => array(
+                    'EnableStartFadein' => 'true',
+                    'StartFadeinTime' => '3',
+                    'EnableEndFadeout' => 'false',
+                    'EndFadeoutTime' => '0',
+                    'EnableBgmFade' => 'true',
+                    'BgmFadeTime' => '1.7',
+                ),
+            ),
         ),
     ));
     // 请求成功

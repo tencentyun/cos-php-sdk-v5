@@ -46,6 +46,34 @@ try {
             'Container' => array(
                 'Format' => 'mp4',
             ),
+            'AudioMixArray' => array(
+                array(
+                    'AudioSource' => '',
+                    'MixMode' => '',
+                    'Replace' => '',
+                    'EffectConfig' => array(
+                        'EnableStartFadein' => '',
+                        'StartFadeinTime' => '',
+                        'EnableEndFadeout' => '',
+                        'EndFadeoutTime' => '',
+                        'EnableBgmFade' => '',
+                        'BgmFadeTime' => '',
+                    ),
+                ),
+                array(
+                    'AudioSource' => '',
+                    'MixMode' => '',
+                    'Replace' => '',
+                    'EffectConfig' => array(
+                        'EnableStartFadein' => '',
+                        'StartFadeinTime' => '',
+                        'EnableEndFadeout' => '',
+                        'EndFadeoutTime' => '',
+                        'EnableBgmFade' => '',
+                        'BgmFadeTime' => '',
+                    ),
+                ),
+            ),
         ),
     ));
     // 请求成功

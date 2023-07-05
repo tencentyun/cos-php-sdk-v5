@@ -8,26 +8,19 @@ $region = "ap-beijing"; //替换为用户的 region，已创建桶归属的regio
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
-        'schema' => 'https', //协议头部，默认为http
+        'schema' => 'https', // 万象接口必须用https
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
+
 try {
-    // 提交视频标签任务 https://cloud.tencent.com/document/product/436/67202
-    $result = $cosClient->createMediaVideoTagJobs(array(
-        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'VideoTag',
-        'Input' => array(
-            'Object' => 'video01.mp4'
-        ),
-        'Operation' => array(
-            'VideoTag' => array(
-                'Scenario' => 'Stream',
-            ),
-//            'UserData' => 'xxx', // 透传用户信息
-//            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
-        ),
-        'CallBack' => '',
+    // 查询 AI 内容识别服务状态 https://cloud.tencent.com/document/product/460/79594
+    $result = $cosClient->getAiBucketList(array(
+//        'Regions' => '', // 可选 地域信息，例如 ap-shanghai、ap-beijing，若查询多个地域以“,”分隔字符串
+//        'BucketNames' => '', // 可选 存储桶名称，以“,”分隔，支持多个存储桶，精确搜索
+//        'BucketName' => '', // 可选 存储桶名称前缀，前缀搜索
+//        'PageNumber' => 1, // 可选 第几页
+//        'PageSize' => 20, // 可选 每页个数
     ));
     // 请求成功
     print_r($result);

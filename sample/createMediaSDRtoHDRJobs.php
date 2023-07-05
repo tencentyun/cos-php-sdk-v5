@@ -17,7 +17,6 @@ try {
     $result = $cosClient->createMediaSDRtoHDRJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'SDRtoHDR',
-        'QueueId' => 'p81e648af2aee496885a8d09a8s09d8a0sd6',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),

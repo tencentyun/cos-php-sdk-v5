@@ -18,7 +18,6 @@ try {
     $result = $cosClient->createMediaSnapshotJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Snapshot',
-        'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
             'Object' => 'video01.mp4'
@@ -49,7 +48,6 @@ try {
     $result = $cosClient->createMediaSnapshotJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Snapshot',
-        'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
             'Object' => 'video01.mp4'

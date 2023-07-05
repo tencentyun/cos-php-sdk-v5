@@ -13,11 +13,10 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // 提交一个音视频流分离任务 https://cloud.tencent.com/document/product/460/76911
+    // 提交一个音视频流分离任务 https://cloud.tencent.com/document/product/460/84787
     $result = $cosClient->createMediaStreamExtractJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'StreamExtract',
-        'QueueId' => 'p81e648af2aee4968857xxxxxxxxxxxxxxxx',
         'Input' => array(
             'Object' => 'test.mp4',
         ),
