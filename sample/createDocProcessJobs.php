@@ -16,7 +16,6 @@ try {
     $result = $cosClient->createDocProcessJobs(array(
         'Bucket' => 'examplebucket-1250000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'DocProcess', //任务的 Tag：DocProcess 固定值
-        'QueueId' => 'pd8e422a2ea134165a92f2012ea43****', //任务所在的队列 ID
         'Input' => array(
             'Object' => 'Append功能测试.pdf' //待操作的文件对象
         ),

@@ -18,7 +18,6 @@ try {
     $result = $cosClient->createMediaConcatJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Concat',
-        'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
             'Object' => 'video01.mp4'
@@ -42,7 +41,6 @@ try {
     $result = $cosClient->createMediaConcatJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Concat',
-        'QueueId' => 'asdadadfafsdkjhfjghdfjg',
         'CallBack' => 'https://example.com/callback',
         'Input' => array(
             'Object' => 'video01.mp4'
@@ -87,6 +85,34 @@ try {
                     'Width' => '1280',
                     'Height' => '',
                     'Fps' => '30',
+                ),
+                'AudioMixArray' => array(
+                    array(
+                        'AudioSource' => '',
+                        'MixMode' => '',
+                        'Replace' => '',
+                        'EffectConfig' => array(
+                            'EnableStartFadein' => '',
+                            'StartFadeinTime' => '',
+                            'EnableEndFadeout' => '',
+                            'EndFadeoutTime' => '',
+                            'EnableBgmFade' => '',
+                            'BgmFadeTime' => '',
+                        ),
+                    ),
+                    array(
+                        'AudioSource' => '',
+                        'MixMode' => '',
+                        'Replace' => '',
+                        'EffectConfig' => array(
+                            'EnableStartFadein' => '',
+                            'StartFadeinTime' => '',
+                            'EnableEndFadeout' => '',
+                            'EndFadeoutTime' => '',
+                            'EnableBgmFade' => '',
+                            'BgmFadeTime' => '',
+                        ),
+                    ),
                 ),
             ),
         ),

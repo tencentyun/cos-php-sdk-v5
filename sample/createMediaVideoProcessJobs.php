@@ -18,7 +18,6 @@ try {
     $result = $cosClient->createMediaVideoProcessJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'VideoProcess',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),
@@ -44,7 +43,6 @@ try {
     $result = $cosClient->createMediaVideoProcessJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'VideoProcess',
-        'QueueId' => 'p81e648afxxxxxxxxxxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),

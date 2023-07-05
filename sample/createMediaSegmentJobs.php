@@ -17,7 +17,6 @@ try {
     $result = $cosClient->createMediaSegmentJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Segment',
-        'QueueId' => 'p81e648af2aee496885707ca0xxxxxxxxx',
         'Input' => array(
             'Object' => 'video01.mp4'
         ),

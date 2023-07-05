@@ -18,7 +18,6 @@ try {
     $result = $cosClient->createMediaPicProcessJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'PicProcess',
-        'QueueId' => 'pcf4d6d9e5e734asd0as8d09as8d09a8d0',
         'Input' => array(
             'Object' => 'test01.png'
         ),
@@ -43,7 +42,6 @@ try {
     $result = $cosClient->createMediaPicProcessJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'PicProcess',
-        'QueueId' => 'pcf4d6d9e5e734asd0as8d09as8d09a8d0',
         'Input' => array(
             'Object' => 'test01.png'
         ),

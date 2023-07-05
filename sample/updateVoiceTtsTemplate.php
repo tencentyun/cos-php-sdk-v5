@@ -8,33 +8,23 @@ $region = "ap-beijing"; //替换为用户的 region，已创建桶归属的regio
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
-        'schema' => 'https', //协议头部，默认为http
+        'schema' => 'https', // 万象接口必须使用https
         'credentials'=> array(
             'secretId'  => $secretId ,
             'secretKey' => $secretKey)));
 try {
-    // https://cloud.tencent.com/document/product/436/83108 提交哈希值计算任务-异步
-    $result = $cosClient->createFileHashCodeJobs(array(
+    // 更新语音合成模板 https://cloud.tencent.com/document/product/460/84758
+    $result = $cosClient->updateVoiceTtsTemplate(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'FileHashCode',
-        'Input' => array(
-            'Object' => 'test.mp4',
-        ),
-        'Operation' => array(
-            'UserData' => 'xxx',
-            'FileHashCodeConfig' => array(
-                'Type' => 'MD5',
-                'AddToHeader' => 'true',
-            ),
-        ),
-//        'CallBackFormat' => '',
-//        'CallBackType' => '',
-//        'CallBack' => '',
-//        'CallBackMqConfig' => array(
-//            'MqRegion' => '',
-//            'MqMode' => '',
-//            'MqName' => '',
-//        ),
+        'Key' => '', // TemplateId
+        'Tag' => 'Tts',
+        'Name' => 'TemplateName',
+        'Mode' => 'Sync',
+        'Codec' => 'pcm',
+        'VoiceType' => 'aixiaoxing',
+        'Volume' => '2',
+        'Speed' => '200',
+        'Emotion' => 'arousal',
     ));
     // 请求成功
     print_r($result);
