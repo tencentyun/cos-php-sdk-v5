@@ -207,7 +207,7 @@ use GuzzleHttp\Psr7;
  * @method object GetFileUncompressResult(array $args) 查询文件解压结果
  * @method object CreateFileCompressJobs(array $args) 提交多文件打包压缩任务
  * @method object GetFileCompressResult(array $args) 查询多文件打包压缩结果
- * @method object CreateM3U8PlayListJobs(array $args) 获取指定hls/m3u8文件指定时间区间内的ts资源
+ * @method object CreateM3U8PlayListJobs(array $args) 查询多文件打包压缩结果
  * @method object GetPicQueueList(array $args) 搜索图片处理队列
  * @method object UpdatePicQueue(array $args) 更新图片处理队列
  * @method object GetPicBucketList(array $args) 查询图片处理服务状态
