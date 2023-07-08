@@ -3804,7 +3804,7 @@ class Service {
                 'GetFileUncompressResult' => Descriptions::GetFileUncompressResult(), // 查询文件解压结果
                 'CreateFileCompressJobs' => Descriptions::CreateFileCompressJobs(), // 提交多文件打包压缩任务
                 'GetFileCompressResult' => Descriptions::GetFileCompressResult(), // 查询多文件打包压缩结果
-                'CreateM3U8PlayListJobs' => Descriptions::CreateM3U8PlayListJobs(), // 查询多文件打包压缩结果
+                'CreateM3U8PlayListJobs' => Descriptions::CreateM3U8PlayListJobs(), // 获取指定hls/m3u8文件指定时间区间内的ts资源
                 'GetPicQueueList' => Descriptions::GetPicQueueList(), // 搜索图片处理队列
                 'UpdatePicQueue' => Descriptions::UpdatePicQueue(), // 更新图片处理队列
                 'GetPicBucketList' => Descriptions::GetPicBucketList(), // 查询图片处理服务状态

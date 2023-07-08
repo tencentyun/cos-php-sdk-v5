@@ -56,7 +56,10 @@ class ResultTransformer {
         if ($command['Bucket'] != null && $result['Bucket'] == null) {
             $result['Bucket'] = $command['Bucket'];
         }
-        $result['Location'] = $request->getHeader("Host")[0] .  $request->getUri()->getPath();
+        $result['Location'] = $request->getHeader('Host')[0] .  $request->getUri()->getPath();
+        if ($this->config['locationWithSchema']) {
+            $result['Location'] = $request->getUri()->__toString();
+        }
         return $result;
     }
 
