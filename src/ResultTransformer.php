@@ -58,7 +58,7 @@ class ResultTransformer {
         }
         $result['Location'] = $request->getHeader('Host')[0] .  $request->getUri()->getPath();
         if ($this->config['locationWithSchema']) {
-            $result['Location'] = $request->getUri()->__toString();
+            $result['Location'] = $this->config['schema'] . '://' . $result['Location'];
         }
         return $result;
     }
@@ -97,7 +97,7 @@ class ResultTransformer {
             }
         }
 
-        if ($action == "GetBucketGuetzli" ) {
+        if ($action == "GetBucketGuetzli") {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
@@ -107,7 +107,7 @@ class ResultTransformer {
             }
         }
 
-        if ($action == "GetCiService" ) {
+        if ($action == "GetCiService") {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
@@ -118,7 +118,7 @@ class ResultTransformer {
             }
         }
 
-        if ($action == "GetOriginProtect" ) {
+        if ($action == "GetOriginProtect") {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
@@ -129,7 +129,7 @@ class ResultTransformer {
             }
         }
 
-        if ($action == "GetHotLink" ) {
+        if ($action == "GetHotLink") {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);

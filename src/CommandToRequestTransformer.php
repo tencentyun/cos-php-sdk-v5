@@ -121,10 +121,9 @@ class CommandToRequestTransformer {
         if ( null !== $body ) {
             return $request;
         } else {
-            throw new InvalidArgumentException(
-                "You must specify a non-null value for the {$bodyParameter} or {$sourceParameter} parameters." );
-            }
+            throw new InvalidArgumentException("You must specify a non-null value for the {$bodyParameter} or {$sourceParameter} parameters.");
         }
+    }
 
         // update md5
 
