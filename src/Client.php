@@ -207,7 +207,7 @@ use GuzzleHttp\Psr7;
  * @method object GetFileUncompressResult(array $args) 查询文件解压结果
  * @method object CreateFileCompressJobs(array $args) 提交多文件打包压缩任务
  * @method object GetFileCompressResult(array $args) 查询多文件打包压缩结果
- * @method object CreateM3U8PlayListJobs(array $args) 查询多文件打包压缩结果
+ * @method object CreateM3U8PlayListJobs(array $args) 获取指定hls/m3u8文件指定时间区间内的ts资源
  * @method object GetPicQueueList(array $args) 搜索图片处理队列
  * @method object UpdatePicQueue(array $args) 更新图片处理队列
  * @method object GetPicBucketList(array $args) 查询图片处理服务状态
@@ -265,6 +265,7 @@ class Client extends GuzzleClient {
         $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
         $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
         $this->cosConfig['timezone'] = isset($cosConfig['timezone']) ? $cosConfig['timezone'] : 'PRC';
+        $this->cosConfig['locationWithSchema'] = isset($cosConfig['locationWithSchema']) ? $cosConfig['locationWithSchema'] : false;
 
         // check config
         $this->inputCheck();
@@ -434,7 +435,7 @@ class Client extends GuzzleClient {
     public function getObjectUrlWithoutSign($bucket, $key, array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
         $request = $this->commandToRequestTransformer($command);
-        return $request->getUri()-> __toString();
+        return $request->getUri()->__toString();
     }
 
     public function upload($bucket, $key, $body, $options = array()) {

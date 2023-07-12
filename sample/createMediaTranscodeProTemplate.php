@@ -10,7 +10,7 @@ $cosClient = new Qcloud\Cos\Client(
         'region' => $region,
         'schema' => 'https', // 万象接口必须使用https
         'credentials'=> array(
-            'secretId'  => $secretId ,
+            'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
     // 创建音视频转码 pro 模板 https://cloud.tencent.com/document/product/460/84732

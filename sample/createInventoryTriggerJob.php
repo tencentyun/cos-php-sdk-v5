@@ -10,7 +10,7 @@ $cosClient = new Qcloud\Cos\Client(
         'region' => $region,
         'schema' => 'https', // 万象接口必须使用https
         'credentials'=> array(
-            'secretId'  => $secretId ,
+            'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
     // https://cloud.tencent.com/document/product/436/71516 触发批量存量任务
