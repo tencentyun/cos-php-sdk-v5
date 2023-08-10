@@ -70,6 +70,13 @@ class Descriptions {
                                     'location' => 'xml',
                                     'properties' => array(
                                         'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ClipConfig' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                        ),
                                     ),
                                 ),
                                 'Video' => array(
