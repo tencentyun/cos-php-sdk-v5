@@ -227,6 +227,12 @@ use GuzzleHttp\Psr7;
  * @method object CreateAiTranslationJobs(array $args) 提交一个翻译任务
  * @method object CreateVoiceSpeechRecognitionJobs(array $args) 提交一个语音识别任务
  * @method object CreateAiWordsGeneralizeJobs(array $args) 提交一个分词任务
+ * @method object CreateMediaVideoEnhanceJobs(array $args) 提交画质增强任务
+ * @method object CreateMediaVideoEnhanceTemplate(array $args) 创建画质增强模板
+ * @method object UpdateMediaVideoEnhanceTemplate(array $args) 更新画质增强模板
+ * @method object OpenImageSlim(array $args) 开通图片瘦身
+ * @method object CloseImageSlim(array $args) 关闭图片瘦身
+ * @method object GetImageSlim(array $args) 查询图片瘦身状态
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

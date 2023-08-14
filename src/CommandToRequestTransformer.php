@@ -71,7 +71,8 @@ class CommandToRequestTransformer {
             || $action == 'PutBucketGuetzli' || $action == 'GetBucketGuetzli' || $action == 'DeleteBucketGuetzli'
             || $action == 'BindCiService' || $action == 'GetCiService' || $action == 'UnBindCiService'
             || $action == 'GetHotLink' || $action == 'AddHotLink'
-            || $action == 'OpenOriginProtect' || $action == 'GetOriginProtect' || $action == 'CloseOriginProtect') {
+            || $action == 'OpenOriginProtect' || $action == 'GetOriginProtect' || $action == 'CloseOriginProtect'
+            || $action == 'OpenImageSlim' || $action == 'GetImageSlim' || $action == 'CloseImageSlim' ) {
             $domain_type = '.pic.';
         }
 
@@ -366,6 +367,9 @@ class CommandToRequestTransformer {
                 'CreateAiTranslationJobs' => 1,
                 'CreateVoiceSpeechRecognitionJobs' => 1,
                 'CreateAiWordsGeneralizeJobs' => 1,
+                'CreateMediaVideoEnhanceJobs' => 1,
+                'CreateMediaVideoEnhanceTemplate' => 1,
+                'UpdateMediaVideoEnhanceTemplate' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 // 万象接口需要https，http方式报错

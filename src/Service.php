@@ -3824,6 +3824,12 @@ class Service {
                 'CreateAiTranslationJobs' => Descriptions::CreateAiTranslationJobs(), // 提交一个翻译任务
                 'CreateVoiceSpeechRecognitionJobs' => Descriptions::CreateVoiceSpeechRecognitionJobs(), // 提交一个语音识别任务
                 'CreateAiWordsGeneralizeJobs' => Descriptions::CreateAiWordsGeneralizeJobs(), // 提交一个分词任务
+                'CreateMediaVideoEnhanceJobs' => Descriptions::CreateMediaVideoEnhanceJobs(), // 提交画质增强任务
+                'CreateMediaVideoEnhanceTemplate' => Descriptions::CreateMediaVideoEnhanceTemplate(), // 创建画质增强模板
+                'UpdateMediaVideoEnhanceTemplate' => Descriptions::UpdateMediaVideoEnhanceTemplate(), // 更新画质增强模板
+                'OpenImageSlim' => Descriptions::OpenImageSlim(), // 开通图片瘦身
+                'CloseImageSlim' => Descriptions::CloseImageSlim(), // 关闭图片瘦身
+                'GetImageSlim' => Descriptions::GetImageSlim(), // 查询图片瘦身状态
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -6127,6 +6133,14 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-request-id',
                         ),
+                        'BucketAzType' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-bucket-az-type', // undefined 或 MAZ
+                        ),
+                        'BucketArch' => array(
+                            'location' => 'header',
+                            'sentAs' => 'x-cos-bucket-arch', // undefined 或 OFS
+                        ),
                     ),
                 ),
                 'SelectObjectContentOutput' => array(
@@ -7453,6 +7467,12 @@ class Service {
                 'CreateAiTranslationJobsOutput' => Descriptions::CreateAiTranslationJobsOutput(),
                 'CreateVoiceSpeechRecognitionJobsOutput' => Descriptions::CreateVoiceSpeechRecognitionJobsOutput(),
                 'CreateAiWordsGeneralizeJobsOutput' => Descriptions::CreateAiWordsGeneralizeJobsOutput(),
+                'CreateMediaVideoEnhanceJobsOutput' => Descriptions::CreateMediaVideoEnhanceJobsOutput(),
+                'CreateMediaVideoEnhanceTemplateOutput' => Descriptions::CreateMediaVideoEnhanceTemplateOutput(),
+                'UpdateMediaVideoEnhanceTemplateOutput' => Descriptions::UpdateMediaVideoEnhanceTemplateOutput(),
+                'OpenImageSlimOutput' => Descriptions::OpenImageSlimOutput(),
+                'CloseImageSlimOutput' => Descriptions::CloseImageSlimOutput(),
+                'GetImageSlimOutput' => Descriptions::GetImageSlimOutput(),
             )
         );
     }
