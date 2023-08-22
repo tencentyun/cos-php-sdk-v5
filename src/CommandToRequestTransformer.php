@@ -253,7 +253,7 @@ class CommandToRequestTransformer {
                     }
                 }
 
-                $path = $this->config['schema'].'://'. $host . $request->getUri()->getPath();
+                $path = 'https://'. $host . $request->getUri()->getPath();
                 $uri = new Uri( $path );
                 $query = $request->getUri()->getQuery();
                 $uri = $uri->withQuery( $query );
