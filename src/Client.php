@@ -421,7 +421,6 @@ class Client extends GuzzleClient {
      * Get the config of the cos client.
      *
      * @param array|string $option
-     *
      * @return mixed
      */
     public function getCosConfig($option = null)
