@@ -417,8 +417,22 @@ class Client extends GuzzleClient {
         return $this->api;
     }
 
-    private function getCosConfig() {
-        return $this->cosConfig;
+    /**
+     * Get the config of the cos client.
+     *
+     * @param array|string $option
+     * @return mixed
+     */
+    public function getCosConfig($option = null)
+    {
+        return $option === null
+            ? $this->cosConfig
+            : (isset($this->cosConfig[$option]) ? $this->cosConfig[$option] : array());
+    }
+
+    public function setCosConfig($option, $value)
+    {
+        $this->cosConfig[$option] = $value;
     }
 
     private function createPresignedUrl(RequestInterface $request, $expires) {
@@ -430,7 +444,6 @@ class Client extends GuzzleClient {
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires);
     }
-
 
     public function getObjectUrl($bucket, $key, $expires = "+30 minutes", array $args = array()) {
         $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
@@ -468,7 +481,6 @@ class Client extends GuzzleClient {
 
     public function download($bucket, $key, $saveAs, $options = array()) {
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : RangeDownload::DEFAULT_PART_SIZE;
-        $contentLength = 0;
         $versionId = isset($options['VersionId']) ? $options['VersionId'] : '';
 
         $rt = $this->headObject(array(
@@ -590,7 +602,6 @@ class Client extends GuzzleClient {
         }
         return $final_key;
     }
-
 
     public static function handleSignature($secretId, $secretKey, $options) {
             return function (callable $handler) use ($secretId, $secretKey, $options) {
