@@ -240,16 +240,16 @@ class CommandToRequestTransformer {
             $action = $command->getName();
             if(key_exists($action, array(
                 'DescribeMediaBuckets' => 1,
-                'DescribeDocProcessBuckets' =>1,
-                'GetPicBucketList' =>1,
-                'GetAiBucketList' =>1,
+                'DescribeDocProcessBuckets' => 1,
+                'GetPicBucketList' => 1,
+                'GetAiBucketList' => 1,
             ))) {
                 $origin_host = "ci.{$this->config['region']}.myqcloud.com";
                 $host = $origin_host;
                 if ($this->config['ip'] != null) {
                     $host = $this->config['ip'];
                     if ($this->config['port'] != null) {
-                        $host = $this->config['ip'] . ":" . $this->config['port'];
+                        $host = $this->config['ip'] . ':' . $this->config['port'];
                     }
                 }
 
@@ -373,7 +373,7 @@ class CommandToRequestTransformer {
             );
             if (key_exists($action, $ciActions)) {
                 // 万象接口需要https，http方式报错
-                if($this->config['schema'] !== 'https') {
+                if ($this->config['schema'] !== 'https') {
                     $e = new Exception\CosException('CI request schema must be "https", instead of "http"');
                     $e->setExceptionCode('Invalid Argument');
                     throw $e;
