@@ -253,7 +253,13 @@ class CommandToRequestTransformer {
                     }
                 }
 
-                $path = 'https://'. $host . $request->getUri()->getPath();
+                // 万象接口需要https，http方式报错
+                if ($this->config['schema'] !== 'https') {
+                    $e = new Exception\CosException('CI request schema must be "https", instead of "http"');
+                    $e->setExceptionCode('Invalid Argument');
+                    throw $e;
+                }
+                $path = $this->config['schema'].'://'. $host . $request->getUri()->getPath();
                 $uri = new Uri( $path );
                 $query = $request->getUri()->getQuery();
                 $uri = $uri->withQuery( $query );
