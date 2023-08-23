@@ -17365,6 +17365,17 @@ class Descriptions {
                 ),
                 'Status' => array( 'type' => 'string', 'location' => 'xml', ),
                 'SlimMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                'Suffixs' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Suffix' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                        ),
+                    ),
+                ),
             )
         );
     }
