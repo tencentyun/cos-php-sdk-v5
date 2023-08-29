@@ -25,6 +25,7 @@ try {
     $textWatermarkRule->setDx(10); // 水平（横轴）边距，单位为像素，缺省值为0
     $textWatermarkRule->setDy(10); // 垂直（纵轴）边距，单位为像素，默认值为0
     $textWatermarkRule->setBatch(1); // 平铺水印功能，可将文字水印平铺至整张图片。值为1时，表示开启平铺水印功能
+    $textWatermarkRule->setSpacing(10); // 平铺模式下的水平、垂直间距相对文字水印贴图的宽高百分比，范围为[0,100]，默认10
     $textWatermarkRule->setDegree(10); // 当 batch 值为1时生效。文字水印的旋转角度设置，取值范围为0 - 360，默认0
     $textWatermarkRule->setShadow(10); // 文字阴影效果，有效值为[0,100]，默认为0，表示无阴影
     $textWatermarkRule->setScatype(1); // 根据原图的大小，缩放调整文字水印的大小
