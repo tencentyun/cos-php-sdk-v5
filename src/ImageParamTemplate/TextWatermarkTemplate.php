@@ -16,6 +16,7 @@ class TextWatermarkTemplate extends ImageTemplate
     private $dx;
     private $dy;
     private $batch;
+    private $spacing;
     private $degree;
     private $shadow;
     private $scatype;
@@ -32,6 +33,7 @@ class TextWatermarkTemplate extends ImageTemplate
         $this->dx = "";
         $this->dy = "";
         $this->batch = "";
+        $this->spacing = "";
         $this->degree = "";
         $this->shadow = "";
         $this->scatype = "";
@@ -72,6 +74,10 @@ class TextWatermarkTemplate extends ImageTemplate
 
     public function setBatch($value) {
         $this->batch = "/batch/" . $value;
+    }
+
+    public function setSpacing($value) {
+        $this->spacing = "/spacing/" . $value;
     }
 
     public function setDegree($value) {
@@ -126,6 +132,10 @@ class TextWatermarkTemplate extends ImageTemplate
         return $this->batch;
     }
 
+    public function getSpacing() {
+        return $this->spacing;
+    }
+
     public function getDegree() {
         return $this->degree;
     }
@@ -172,6 +182,9 @@ class TextWatermarkTemplate extends ImageTemplate
         if($this->batch) {
             $res .= $this->batch;
         }
+        if($this->spacing) {
+            $res .= $this->spacing;
+        }
         if($this->degree) {
             $res .= $this->degree;
         }
@@ -200,6 +213,7 @@ class TextWatermarkTemplate extends ImageTemplate
         $this->dx = "";
         $this->dy = "";
         $this->batch = "";
+        $this->spacing = "";
         $this->degree = "";
         $this->shadow = "";
         $this->scatype = "";
