@@ -235,11 +235,12 @@ use GuzzleHttp\Psr7;
  * @method object GetImageSlim(array $args) 查询图片瘦身状态
  * @see \Qcloud\Cos\Service::getService()
  */
-class Client extends GuzzleClient {
+class Client extends GuzzleClient
+{
     const VERSION = '2.6.6';
 
     public $httpClient;
-    
+
     private $api;
     private $desc;
     private $action;
@@ -274,7 +275,8 @@ class Client extends GuzzleClient {
         'locationWithScheme' => false,
     ];
 
-    public function __construct(array $cosConfig) {
+    public function __construct(array $cosConfig)
+    {
         $this->rawCosConfig = $cosConfig;
 
         $this->cosConfig = processCosConfig(array_replace_recursive($this->cosConfig, $cosConfig));
@@ -285,17 +287,21 @@ class Client extends GuzzleClient {
         $service = Service::getService();
         $handler = HandlerStack::create();
         $handler->push(Middleware::retry($this->retryDecide(), $this->retryDelay()));
-		$handler->push(Middleware::mapRequest(function (RequestInterface $request) {
-			return $request->withHeader('User-Agent', $this->cosConfig['userAgent']);
-        }));
+        $handler->push(
+            Middleware::mapRequest(function (RequestInterface $request) {
+                return $request->withHeader('User-Agent', $this->cosConfig['userAgent']);
+            })
+        );
         if ($this->cosConfig['anonymous'] != true) {
             $handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig));
         }
         if ($this->cosConfig['token'] != null) {
-            $handler->push(Middleware::mapRequest(function (RequestInterface $request) {
-                $request = $request->withHeader('x-ci-security-token', $this->cosConfig['token']);
-                return $request->withHeader('x-cos-security-token', $this->cosConfig['token']);
-            }));
+            $handler->push(
+                Middleware::mapRequest(function (RequestInterface $request) {
+                    $request = $request->withHeader('x-ci-security-token', $this->cosConfig['token']);
+                    return $request->withHeader('x-cos-security-token', $this->cosConfig['token']);
+                })
+            );
         }
         $handler->push($this::handleErrors());
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig, $this->cosConfig['token']);
@@ -308,19 +314,24 @@ class Client extends GuzzleClient {
             'allow_redirects' => $this->cosConfig['allow_redirects']
         ]);
         $this->desc = new Description($service);
-        $this->api = (array) $this->desc->getOperations();
-        parent::__construct($this->httpClient, $this->desc, [$this,
-        'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
-        null);
+        $this->api = (array)$this->desc->getOperations();
+        parent::__construct(
+            $this->httpClient,
+            $this->desc,
+            [$this, 'commandToRequestTransformer'],
+            [$this, 'responseToResultTransformer'],
+            null
+        );
     }
 
-    public function inputCheck() {
+    public function inputCheck()
+    {
         $message = null;
         //检查Region
-        if (empty($this->cosConfig['region'])   &&
-            empty($this->cosConfig['domain'])   &&
+        if (empty($this->cosConfig['region']) &&
+            empty($this->cosConfig['domain']) &&
             empty($this->cosConfig['endpoint']) &&
-            empty($this->cosConfig['ip'])       &&
+            empty($this->cosConfig['ip']) &&
             !$this->cosConfig['allow_accelerate']) {
             $message = 'Region is empty';
         }
@@ -335,35 +346,36 @@ class Client extends GuzzleClient {
         }
     }
 
-
-    public function retryDecide() {
-      return function (
-        $retries,
-        RequestInterface $request,
-        ResponseInterface $response = null,
-        \Exception $exception = null
-      ) {
-        if ($retries >= $this->cosConfig['retry']) {
-          return false;
-        }
-        if ($response != null && $response->getStatusCode() >= 400 ) {
-            return true;
-        }
-        if ($exception instanceof Exception\ServiceResponseException) {
-            if ($exception->getStatusCode() >= 400) {
+    public function retryDecide()
+    {
+        return function (
+            $retries,
+            RequestInterface $request,
+            ResponseInterface $response = null,
+            \Exception $exception = null
+        ) {
+            if ($retries >= $this->cosConfig['retry']) {
+                return false;
+            }
+            if ($response != null && $response->getStatusCode() >= 400) {
                 return true;
             }
-        }
-  
-        if ($exception instanceof ConnectException) {
-          return true;
-        }
-  
-        return false;
-      };
+            if ($exception instanceof Exception\ServiceResponseException) {
+                if ($exception->getStatusCode() >= 400) {
+                    return true;
+                }
+            }
+
+            if ($exception instanceof ConnectException) {
+                return true;
+            }
+
+            return false;
+        };
     }
 
-    public function retryDelay() {
+    public function retryDelay()
+    {
         return function ($numberOfRetries) {
             return 1000 * $numberOfRetries;
         };
@@ -373,9 +385,9 @@ class Client extends GuzzleClient {
     {
         $this->action = $command->GetName();
         $this->operation = $this->api[$this->action];
-        $transformer = new CommandToRequestTransformer($this->cosConfig, $this->operation); 
-        $seri = new Serializer($this->desc);
-        $request = $seri($command);
+        $transformer = new CommandToRequestTransformer($this->cosConfig, $this->operation);
+        $serializer = new Serializer($this->desc);
+        $request = $serializer($command);
         $request = $transformer->bucketStyleTransformer($command, $request);
         $request = $transformer->uploadBodyTransformer($command, $request);
         $request = $transformer->metadataTransformer($command, $request);
@@ -390,10 +402,10 @@ class Client extends GuzzleClient {
 
     public function responseToResultTransformer(ResponseInterface $response, RequestInterface $request, CommandInterface $command)
     {
-        $transformer = new ResultTransformer($this->cosConfig, $this->operation); 
+        $transformer = new ResultTransformer($this->cosConfig, $this->operation);
         $transformer->writeDataToLocal($command, $request, $response);
-        $deseri = new Deserializer($this->desc, true);
-        $result = $deseri($response, $request, $command);
+        $deserializer = new Deserializer($this->desc, true);
+        $result = $deserializer($response, $request, $command);
 
         $result = $transformer->metaDataTransformer($command, $response, $result);
         $result = $transformer->extraHeadersTransformer($command, $request, $result);
@@ -401,25 +413,26 @@ class Client extends GuzzleClient {
         $result = $transformer->ciContentInfoTransformer($command, $result);
         return $result;
     }
-    
-    public function __destruct() {
+
+    public function __destruct()
+    {
     }
 
-    public function __call($method, array $args) {
+    public function __call($method, array $args)
+    {
         try {
-            $rt = parent::__call(ucfirst($method), $args);
-            return $rt;
+            return parent::__call(ucfirst($method), $args);
         } catch (\Exception $e) {
             $previous = $e->getPrevious();
             if ($previous !== null) {
                 throw $previous;
-            } else {
-                throw $e;
             }
+            throw $e;
         }
     }
 
-    public function getApi() {
+    public function getApi()
+    {
         return $this->api;
     }
 
@@ -433,7 +446,7 @@ class Client extends GuzzleClient {
     {
         return $option === null
             ? $this->cosConfig
-            : (isset($this->cosConfig[$option]) ? $this->cosConfig[$option] : array());
+            : (isset($this->cosConfig[$option]) ? $this->cosConfig[$option] : []);
     }
 
     public function setCosConfig($option, $value)
@@ -441,101 +454,107 @@ class Client extends GuzzleClient {
         $this->cosConfig[$option] = $value;
     }
 
-    private function createPresignedUrl(RequestInterface $request, $expires) {
+    private function createPresignedUrl(RequestInterface $request, $expires)
+    {
         return $this->signature->createPresignedUrl($request, $expires);
     }
 
-    public function getPresignedUrl($method, $args, $expires = "+30 minutes") {
+    public function getPresignedUrl($method, $args, $expires = '+30 minutes')
+    {
         $command = $this->getCommand($method, $args);
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires);
     }
 
-    public function getObjectUrl($bucket, $key, $expires = "+30 minutes", array $args = array()) {
-        $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
+    public function getObjectUrl($bucket, $key, $expires = '+30 minutes', array $args = [])
+    {
+        $command = $this->getCommand('GetObject', $args + ['Bucket' => $bucket, 'Key' => $key]);
         $request = $this->commandToRequestTransformer($command);
         return $this->createPresignedUrl($request, $expires)->__toString();
     }
 
-    public function getObjectUrlWithoutSign($bucket, $key, array $args = array()) {
-        $command = $this->getCommand('GetObject', $args + array('Bucket' => $bucket, 'Key' => $key));
+    public function getObjectUrlWithoutSign($bucket, $key, array $args = [])
+    {
+        $command = $this->getCommand('GetObject', $args + ['Bucket' => $bucket, 'Key' => $key]);
         $request = $this->commandToRequestTransformer($command);
         return $request->getUri()->__toString();
     }
 
-    public function upload($bucket, $key, $body, $options = array()) {
+    public function upload($bucket, $key, $body, $options = [])
+    {
         $body = Psr7\Utils::streamFor($body);
         $options['Retry'] = $this->cosConfig['retry'];
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
         if ($body->getSize() < $options['PartSize']) {
-            $rt = $this->putObject(array(
-                    'Bucket' => $bucket,
-                    'Key'    => $key,
-                    'Body'   => $body,
-                ) + $options);
-        }
-        else {
-            $multipartUpload = new MultipartUpload($this, $body, array(
+            $result = $this->putObject(
+                [
                     'Bucket' => $bucket,
                     'Key' => $key,
-                ) + $options);
-
-            $rt = $multipartUpload->performUploading();
+                    'Body' => $body,
+                ] + $options
+            );
         }
-        return $rt;
+        else {
+            $multipartUpload = new MultipartUpload($this, $body, ['Bucket' => $bucket, 'Key' => $key] + $options);
+
+            $result = $multipartUpload->performUploading();
+        }
+        return $result;
     }
 
-    public function download($bucket, $key, $saveAs, $options = array()) {
+    public function download($bucket, $key, $saveAs, $options = [])
+    {
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : RangeDownload::DEFAULT_PART_SIZE;
         $versionId = isset($options['VersionId']) ? $options['VersionId'] : '';
 
-        $rt = $this->headObject(array(
-                'Bucket'=>$bucket,
-                'Key'=>$key,
-                'VersionId'=>$versionId,
-            )
-        );
-        $contentLength = $rt['ContentLength'];
+        $result = $this->headObject([
+            'Bucket' => $bucket,
+            'Key' => $key,
+            'VersionId' => $versionId,
+        ]);
+        $contentLength = $result['ContentLength'];
         $resumableJson = [
-            'LastModified' => $rt['LastModified'],
-            'ContentLength' => $rt['ContentLength'],
-            'ETag' => $rt['ETag'],
-            'Crc64ecma' => $rt['Crc64ecma']
+            'LastModified' => $result['LastModified'],
+            'ContentLength' => $result['ContentLength'],
+            'ETag' => $result['ETag'],
+            'Crc64ecma' => $result['Crc64ecma']
         ];
         $options['ResumableJson'] = $resumableJson;
 
         if ($contentLength < $options['PartSize']) {
-            $rt = $this->getObject(array(
-                    'Bucket' => $bucket,
-                    'Key'    => $key,
-                    'SaveAs'   => $saveAs,
-                ) + $options);
-        } else {
-            $rangeDownload = new RangeDownload($this, $contentLength, $saveAs, array(
+            $result = $this->getObject(
+                [
                     'Bucket' => $bucket,
                     'Key' => $key,
-                ) + $options);
+                    'SaveAs' => $saveAs,
+                ] + $options
+            );
+        } else {
+            $rangeDownload = new RangeDownload($this, $contentLength, $saveAs, ['Bucket' => $bucket, 'Key' => $key] + $options);
 
-            $rt = $rangeDownload->performDownloading();
+            $result = $rangeDownload->performDownloading();
         }
-        return $rt;
+        return $result;
     }
 
-    public function resumeUpload($bucket, $key, $body, $uploadId, $options = array()) {
+    public function resumeUpload($bucket, $key, $body, $uploadId, $options = [])
+    {
         $body = Psr7\Utils::streamFor($body);
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : MultipartUpload::DEFAULT_PART_SIZE;
-        $multipartUpload = new MultipartUpload($this, $body, array(
-                'Bucket' => $bucket,
-                'Key' => $key,
-                'UploadId' => $uploadId,
-            ) + $options);
+        $multipartUpload = new MultipartUpload(
+            $this, $body, [
+                     'Bucket' => $bucket,
+                     'Key' => $key,
+                     'UploadId' => $uploadId,
+                 ] + $options
+        );
 
-        $rt = $multipartUpload->resumeUploading();
-        return $rt;
+        $result = $multipartUpload->resumeUploading();
+        return $result;
     }
 
-    public function copy($bucket, $key, $copySource, $options = array()) {
-
+    public function copy($bucket, $key, $copySource, $options = [])
+    {
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : Copy::DEFAULT_PART_SIZE;
 
         // set copysource client
@@ -544,80 +563,75 @@ class Client extends GuzzleClient {
         $cosSourceClient = new Client($sourceConfig);
         $copySource['VersionId'] = isset($copySource['VersionId']) ? $copySource['VersionId'] : '';
 
-        $rt = $cosSourceClient->headObject(
-            array('Bucket'=>$copySource['Bucket'],
-                'Key'=>$copySource['Key'],
-                'VersionId'=>$copySource['VersionId'],
-            )
-        );
+        $result = $cosSourceClient->headObject([
+            'Bucket' => $copySource['Bucket'],
+            'Key' => $copySource['Key'],
+            'VersionId' => $copySource['VersionId']
+        ]);
 
-        $contentLength = $rt['ContentLength'];
+        $contentLength = $result['ContentLength'];
         // sample copy
         if ($contentLength < $options['PartSize']) {
-            $rt = $this->copyObject(array(
+            return $this->copyObject(
+                [
                     'Bucket' => $bucket,
-                    'Key'    => $key,
-                    'CopySource'   => "{$copySource['Bucket']}.cos.{$copySource['Region']}.myqcloud.com/". urlencode("{$copySource['Key']}")."?versionId={$copySource['VersionId']}",
-                ) + $options
+                    'Key' => $key,
+                    'CopySource' => "{$copySource['Bucket']}.cos.{$copySource['Region']}.myqcloud.com/". urlencode("{$copySource['Key']}")."?versionId={$copySource['VersionId']}",
+                ] + $options
             );
-            return $rt;
         }
         // multi part copy
         $copySource['ContentLength'] = $contentLength;
-        $copy = new Copy($this, $copySource, array(
-                'Bucket' => $bucket,
-                'Key'    => $key
-            ) + $options
-        );
+        $copy = new Copy($this, $copySource, ['Bucket' => $bucket, 'Key' => $key] + $options);
         return $copy->copy();
     }
 
-    public function doesBucketExist($bucket, array $options = array())
+    public function doesBucketExist($bucket, array $options = [])
     {
         try {
-            $this->HeadBucket(array(
-                'Bucket' => $bucket));
+            $this->HeadBucket(['Bucket' => $bucket]);
             return true;
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
     }
 
-    public function doesObjectExist($bucket, $key, array $options = array())
+    public function doesObjectExist($bucket, $key, array $options = [])
     {
         try {
-            $this->HeadObject(array(
-                'Bucket' => $bucket,
-                'Key' => $key));
+            $this->HeadObject(['Bucket' => $bucket, 'Key' => $key]);
             return true;
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             return false;
         }
     }
-    
-    public static function explodeKey($key) {
+
+    public static function explodeKey($key)
+    {
         // Remove a leading slash if one is found
         $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
         // Remove empty element
-        $split_key = array_filter($split_key, function($var) {
+        $split_key = array_filter($split_key, function ($var) {
             return !($var == '' || $var == null);
         });
-        $final_key = implode("/", $split_key);
-        if (substr($key, -1)  == '/') {
+        $final_key = implode('/', $split_key);
+        if (substr($key, -1) == '/') {
             $final_key = $final_key . '/';
         }
         return $final_key;
     }
 
-    public static function handleSignature($secretId, $secretKey, $options) {
-            return function (callable $handler) use ($secretId, $secretKey, $options) {
-                    return new SignatureMiddleware($handler, $secretId, $secretKey, $options);
-            };
+    public static function handleSignature($secretId, $secretKey, $options)
+    {
+        return function (callable $handler) use ($secretId, $secretKey, $options) {
+            return new SignatureMiddleware($handler, $secretId, $secretKey, $options);
+        };
     }
 
-    public static function handleErrors() {
-            return function (callable $handler) {
-                    return new ExceptionMiddleware($handler);
-            };
+    public static function handleErrors()
+    {
+        return function (callable $handler) {
+            return new ExceptionMiddleware($handler);
+        };
     }
 }

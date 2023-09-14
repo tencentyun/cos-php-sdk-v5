@@ -4,7 +4,7 @@ namespace Qcloud\Cos;
 
 function region_map($region)
 {
-    $regionmap = array(
+    $regionMap = [
         'cn-east' => 'ap-shanghai',
         'cn-south' => 'ap-guangzhou',
         'cn-north' => 'ap-beijing-1',
@@ -17,11 +17,8 @@ function region_map($region)
         'gz' => 'ap-guangzhou',
         'cd' => 'ap-chengdu',
         'sgp' => 'ap-singapore'
-    );
-    if (isset($regionmap[$region])) {
-        return $regionmap[$region];
-    }
-    return $region;
+    ];
+    return isset($regionMap[$region]) ? $regionMap[$region] : $region;
 }
 
 function processCosConfig($config)
@@ -72,11 +69,11 @@ function startWith($haystack, $needle)
 
 function headersMap($command, $request)
 {
-    $headermap = array(
+    $headersMap = [
         'TransferEncoding' => 'Transfer-Encoding',
         'ChannelId' => 'x-cos-channel-id'
-    );
-    foreach ($headermap as $key => $value) {
+    ];
+    foreach ($headersMap as $key => $value) {
         if (isset($command[$key])) {
             $request = $request->withHeader($value, $command[$key]);
         }
