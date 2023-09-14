@@ -37,7 +37,7 @@ class CommandToRequestTransformer {
                     $uri = $this->config['ip'] . ":" . $this->config['port'];
                 }   
             }
-            return $request->withUri(new Uri($this->config['schema']."://". $uri. "/"));
+            return $request->withUri(new Uri($this->config['scheme']."://". $uri. "/"));
         }
         $operation = $this->operation;
         $bucketname = $command['Bucket'];
@@ -92,7 +92,7 @@ class CommandToRequestTransformer {
             }
         }
 
-        $path = $this->config['schema'].'://'. $host . $uri;
+        $path = $this->config['scheme'].'://'. $host . $uri;
         $uri = new Uri( $path );
         $query = $request->getUri()->getQuery();
         if ( $uri->getQuery() != $query && $uri->getQuery() != '' ) {
@@ -254,12 +254,12 @@ class CommandToRequestTransformer {
                 }
 
                 // 万象接口需要https，http方式报错
-                if ($this->config['schema'] !== 'https') {
-                    $e = new Exception\CosException('CI request schema must be "https", instead of "http"');
+                if ($this->config['scheme'] !== 'https') {
+                    $e = new Exception\CosException('CI request scheme must be "https", instead of "http"');
                     $e->setExceptionCode('Invalid Argument');
                     throw $e;
                 }
-                $path = $this->config['schema'].'://'. $host . $request->getUri()->getPath();
+                $path = $this->config['scheme'].'://'. $host . $request->getUri()->getPath();
                 $uri = new Uri( $path );
                 $query = $request->getUri()->getQuery();
                 $uri = $uri->withQuery( $query );
@@ -379,8 +379,8 @@ class CommandToRequestTransformer {
             );
             if (key_exists($action, $ciActions)) {
                 // 万象接口需要https，http方式报错
-                if ($this->config['schema'] !== 'https') {
-                    $e = new Exception\CosException('CI request schema must be "https", instead of "http"');
+                if ($this->config['scheme'] !== 'https') {
+                    $e = new Exception\CosException('CI request scheme must be "https", instead of "http"');
                     $e->setExceptionCode('Invalid Argument');
                     throw $e;
                 }
@@ -400,7 +400,7 @@ class CommandToRequestTransformer {
                         $host = $this->config['ip'] . ':' . $this->config['port'];
                     }
                 }
-                $path = $this->config['schema'].'://'. $host . $request->getUri()->getPath();
+                $path = $this->config['scheme'].'://'. $host . $request->getUri()->getPath();
                 $uri = new Uri( $path );
                 $query = $request->getUri()->getQuery();
                 $uri = $uri->withQuery( $query );

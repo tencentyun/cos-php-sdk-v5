@@ -8,7 +8,7 @@ $region = "ap-beijing"; //替换为用户的 region，已创建桶归属的regio
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
-        'schema' => 'https', // 万象接口必须用https
+        'scheme' => 'https', // 万象接口必须用https
         'credentials' => array(
             'secretId' => $secretId,
             'secretKey' => $secretKey)));

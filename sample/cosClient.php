@@ -9,7 +9,7 @@ $token = "COS_TMPTOKEN"; //如果使用永久密钥不需要填入token，如果
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region, //园区
-        'schema' => 'https', //协议头部，默认为http
+        'scheme' => 'https', //协议头部，默认为http
         'timeout' => 10, //超时时间
         'connect_timeout' => 10, //连接超时时间
         'ip' => '', //ip
