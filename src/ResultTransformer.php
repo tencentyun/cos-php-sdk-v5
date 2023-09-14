@@ -57,8 +57,8 @@ class ResultTransformer {
             $result['Bucket'] = $command['Bucket'];
         }
         $result['Location'] = $request->getHeader('Host')[0] .  $request->getUri()->getPath();
-        if ($this->config['locationWithSchema']) {
-            $result['Location'] = $this->config['schema'] . '://' . $result['Location'];
+        if ($this->config['locationWithScheme']) {
+            $result['Location'] = $this->config['scheme'] . '://' . $result['Location'];
         }
         return $result;
     }
