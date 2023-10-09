@@ -239,7 +239,7 @@ class Client extends GuzzleClient {
     const VERSION = '2.6.6';
 
     public $httpClient;
-    
+
     private $api;
     private $desc;
     private $action;

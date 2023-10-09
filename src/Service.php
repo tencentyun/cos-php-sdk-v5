@@ -1562,7 +1562,7 @@ class Service {
                         ),
                     )
                 ),
-                // 设置存储桶（Bucket）的访问权限（Access Control List, ACL)
+                // 设置存储桶（Bucket）的访问权限 (Access Control List, ACL)
                 'PutBucketAcl' => array(
                     'httpMethod' => 'PUT',
                     'uri' => '/{Bucket}?acl',
@@ -5621,11 +5621,21 @@ class Service {
                             'items' => array(
                                 'type' => 'object',
                                 'properties' => array(
-                                    'Name' => array(
-                                        'type' => 'string',
-                                    ),
-                                    'CreationDate' => array(
-                                        'type' => 'string',
+                                    'Bucket' => array(
+                                        'type' => 'array',
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'items' => array(
+                                                'properties' => array(
+                                                    'Name' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                    'CreationDate' => array(
+                                                        'type' => 'string',
+                                                    ),
+                                                ),
+                                            ),
+                                        )
                                     ),
                                 ),
                             ),
