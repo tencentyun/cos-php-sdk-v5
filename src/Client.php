@@ -51,7 +51,7 @@ use GuzzleHttp\Psr7;
  * @method object PutObject(array $args) 上传对象
  * @method object AppendObject(array $args) 追加对象
  * @method object PutObjectAcl(array $args) 设置 COS 对象的访问权限信息（Access Control List, ACL）
- * @method object PutBucketAcl(array $args) 设置存储桶（Bucket）的访问权限（Access Control List, ACL)
+ * @method object PutBucketAcl(array $args) 设置存储桶（Bucket）的访问权限 (Access Control List, ACL)
  * @method object PutBucketCors(array $args) 设置存储桶（Bucket）的跨域配置信息
  * @method object PutBucketDomain(array $args) 设置存储桶（Bucket）的Domain信息
  * @method object PutBucketLifecycle(array $args) 设置存储桶（Bucket）生命周期配置
@@ -239,7 +239,7 @@ class Client extends GuzzleClient {
     const VERSION = '2.6.6';
 
     public $httpClient;
-    
+
     private $api;
     private $desc;
     private $action;
