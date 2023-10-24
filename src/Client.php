@@ -211,8 +211,8 @@ use GuzzleHttp\Psr7;
  * @method object GetPicQueueList(array $args) 搜索图片处理队列
  * @method object UpdatePicQueue(array $args) 更新图片处理队列
  * @method object GetPicBucketList(array $args) 查询图片处理服务状态
- * @method object GetAiBucketList(array $args) 查询AI内容识别服务
- * @method object OpenAiService(array $args) 开通AI内容识别服务
+ * @method object GetAiBucketList(array $args) 查询 AI 内容识别服务状态
+ * @method object OpenAiService(array $args) 开通 AI 内容识别
  * @method object CloseAiService(array $args) 关闭AI内容识别服务
  * @method object GetAiQueueList(array $args) 搜索 AI 内容识别队列
  * @method object UpdateAiQueue(array $args) 更新 AI 内容识别队列
