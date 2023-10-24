@@ -51,7 +51,7 @@ use GuzzleHttp\Psr7;
  * @method object PutObject(array $args) 上传对象
  * @method object AppendObject(array $args) 追加对象
  * @method object PutObjectAcl(array $args) 设置 COS 对象的访问权限信息（Access Control List, ACL）
- * @method object PutBucketAcl(array $args) 设置存储桶（Bucket）的访问权限（Access Control List, ACL)
+ * @method object PutBucketAcl(array $args) 设置存储桶（Bucket）的访问权限 (Access Control List, ACL)
  * @method object PutBucketCors(array $args) 设置存储桶（Bucket）的跨域配置信息
  * @method object PutBucketDomain(array $args) 设置存储桶（Bucket）的Domain信息
  * @method object PutBucketLifecycle(array $args) 设置存储桶（Bucket）生命周期配置
@@ -248,42 +248,48 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.6.5';
+    const VERSION = '2.6.7';
 
     public $httpClient;
-    
+
     private $api;
     private $desc;
     private $action;
     private $operation;
-    private $cosConfig;
     private $signature;
     private $rawCosConfig;
 
+    private $cosConfig = [
+        'scheme' => 'http',
+        'region' => null,
+        'credentials' => [
+            'appId' => null,
+            'secretId' => '',
+            'secretKey' => '',
+            'anonymous' => false,
+            'token' => null,
+        ],
+        'timeout' => 3600,
+        'connect_timeout' => 3600,
+        'ip' => null,
+        'port' => null,
+        'endpoint' => null,
+        'domain' => null,
+        'proxy' => null,
+        'retry' => 1,
+        'userAgent' => 'cos-php-sdk-v5.' . Client::VERSION,
+        'pathStyle' => false,
+        'signHost' => true,
+        'allow_redirects' => false,
+        'allow_accelerate' => false,
+        'timezone' => 'PRC',
+        'locationWithScheme' => false,
+    ];
+
     public function __construct(array $cosConfig) {
         $this->rawCosConfig = $cosConfig;
-        $this->cosConfig['schema'] = isset($cosConfig['schema']) ? $cosConfig['schema'] : 'http';
-        $this->cosConfig['region'] = isset($cosConfig['region']) ? region_map($cosConfig['region']) : null;
-        $this->cosConfig['appId'] = isset($cosConfig['credentials']['appId']) ? $cosConfig['credentials']['appId'] : null;
-        $this->cosConfig['secretId'] = isset($cosConfig['credentials']['secretId']) ? trim($cosConfig['credentials']['secretId']) : '';
-        $this->cosConfig['secretKey'] = isset($cosConfig['credentials']['secretKey']) ? trim($cosConfig['credentials']['secretKey']) : '';
-        $this->cosConfig['anonymous'] = isset($cosConfig['credentials']['anonymous']) ? $cosConfig['credentials']['anonymous'] : false;
-        $this->cosConfig['token'] = isset($cosConfig['credentials']['token']) ? trim($cosConfig['credentials']['token']) : null;
-        $this->cosConfig['timeout'] = isset($cosConfig['timeout']) ? $cosConfig['timeout'] : 3600;
-        $this->cosConfig['connect_timeout'] = isset($cosConfig['connect_timeout']) ? $cosConfig['connect_timeout'] : 3600;
-        $this->cosConfig['ip'] = isset($cosConfig['ip']) ? $cosConfig['ip'] : null;
-        $this->cosConfig['port'] = isset($cosConfig['port']) ? $cosConfig['port'] : null;
-        $this->cosConfig['endpoint'] = isset($cosConfig['endpoint']) ? $cosConfig['endpoint'] : null;
-        $this->cosConfig['domain'] = isset($cosConfig['domain']) ? $cosConfig['domain'] : null;
-        $this->cosConfig['proxy'] = isset($cosConfig['proxy']) ? $cosConfig['proxy'] : null;
-        $this->cosConfig['retry'] = isset($cosConfig['retry']) ? $cosConfig['retry'] : 1;
-        $this->cosConfig['userAgent'] = isset($cosConfig['userAgent']) ? $cosConfig['userAgent'] : 'cos-php-sdk-v5.'. Client::VERSION;
-        $this->cosConfig['pathStyle'] = isset($cosConfig['pathStyle']) ? $cosConfig['pathStyle'] : false;
-        $this->cosConfig['signHost'] = isset($cosConfig['signHost']) ? $cosConfig['signHost'] : true;
-        $this->cosConfig['allow_redirects'] = isset($cosConfig['allow_redirects']) ? $cosConfig['allow_redirects'] : false;
-        $this->cosConfig['allow_accelerate'] = isset($cosConfig['allow_accelerate']) ? $cosConfig['allow_accelerate'] : false;
-        $this->cosConfig['timezone'] = isset($cosConfig['timezone']) ? $cosConfig['timezone'] : 'PRC';
-        $this->cosConfig['locationWithSchema'] = isset($cosConfig['locationWithSchema']) ? $cosConfig['locationWithSchema'] : false;
+
+        $this->cosConfig = processCosConfig(array_replace_recursive($this->cosConfig, $cosConfig));
 
         // check config
         $this->inputCheck();
@@ -307,7 +313,7 @@ class Client extends GuzzleClient {
         $this->signature = new Signature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig, $this->cosConfig['token']);
         $area = $this->cosConfig['allow_accelerate'] ? 'accelerate' : $this->cosConfig['region'];
         $this->httpClient = new HttpClient([
-            'base_uri' => "{$this->cosConfig['schema']}://cos.{$area}.myqcloud.com/",
+            'base_uri' => "{$this->cosConfig['scheme']}://cos.{$area}.myqcloud.com/",
             'timeout' => $this->cosConfig['timeout'],
             'handler' => $handler,
             'proxy' => $this->cosConfig['proxy'],

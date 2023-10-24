@@ -24,6 +24,29 @@ function region_map($region)
     return $region;
 }
 
+function processCosConfig($config)
+{
+    $config['region'] = !empty($config['region']) ? region_map($config['region']) : $config['region'];
+    $config['secretId'] = trim($config['credentials']['secretId']);
+    $config['secretKey'] = trim($config['credentials']['secretKey']);
+    $config['token'] = !empty($config['credentials']['token']) ? trim($config['credentials']['token']) : $config['credentials']['token'];
+    $config['appId'] = $config['credentials']['appId'];
+    $config['anonymous'] = $config['credentials']['anonymous'];
+    unset($config['credentials']);
+
+    if (isset($config['schema'])) {
+        $config['scheme'] = $config['schema'];
+        unset($config['schema']);
+    }
+
+    if (isset($config['locationWithSchema'])) {
+        $config['locationWithScheme'] = $config['locationWithSchema'];
+        unset($config['locationWithSchema']);
+    }
+
+    return $config;
+}
+
 function encodeKey($key)
 {
     return str_replace('%2F', '/', rawurlencode($key));
