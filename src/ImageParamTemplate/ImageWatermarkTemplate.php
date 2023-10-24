@@ -6,6 +6,7 @@ class ImageWatermarkTemplate extends ImageTemplate
 {
 
     private $image;
+    private $imageKey;
     private $gravity;
     private $dx;
     private $dy;
@@ -14,11 +15,13 @@ class ImageWatermarkTemplate extends ImageTemplate
     private $spcent;
     private $dissolve;
     private $batch;
+    private $spacing;
     private $degree;
 
     public function __construct() {
         parent::__construct();
         $this->image = "";
+        $this->imageKey = "";
         $this->gravity = "";
         $this->dx = "";
         $this->dy = "";
@@ -27,6 +30,7 @@ class ImageWatermarkTemplate extends ImageTemplate
         $this->spcent = "";
         $this->dissolve = "";
         $this->batch = "";
+        $this->spacing = "";
         $this->degree = "";
     }
 
@@ -36,6 +40,14 @@ class ImageWatermarkTemplate extends ImageTemplate
      */
     public function setImage($value) {
         $this->image = "/image/" . $this->ciBase64($value);
+    }
+
+    /**
+     * 如果您在添加水印时不希望暴露水印所在的图片地址，可使用该参数。
+     * @param $value
+     */
+    public function setImageKey($value) {
+        $this->imageKey = "/image_key/" . $this->ciBase64($value);
     }
 
     /**
@@ -111,6 +123,14 @@ class ImageWatermarkTemplate extends ImageTemplate
     }
 
     /**
+     * 平铺水印功能，宽高百分比
+     * @param $value
+     */
+    public function setSpacing($value) {
+        $this->spacing = "/spacing/" . $value;
+    }
+
+    /**
      * 当 batch 值为1时生效。图片水印的旋转角度设置，取值范围为0 - 360，默认0
      * @param $value
      */
@@ -120,6 +140,10 @@ class ImageWatermarkTemplate extends ImageTemplate
 
     public function getImage() {
         return $this->image;
+    }
+
+    public function getImageKey() {
+        return $this->imageKey;
     }
 
     public function getGravity() {
@@ -154,6 +178,10 @@ class ImageWatermarkTemplate extends ImageTemplate
         return $this->batch;
     }
 
+    public function getSpacing() {
+        return $this->spacing;
+    }
+
     public function getDegree() {
         return $this->degree;
     }
@@ -163,6 +191,9 @@ class ImageWatermarkTemplate extends ImageTemplate
         $res = "";
         if($this->image) {
             $res .= $this->image;
+        }
+        if($this->imageKey) {
+            $res .= $this->imageKey;
         }
         if($this->gravity) {
             $res .= $this->gravity;
@@ -188,6 +219,9 @@ class ImageWatermarkTemplate extends ImageTemplate
         if($this->batch) {
             $res .= $this->batch;
         }
+        if($this->spacing) {
+            $res .= $this->spacing;
+        }
         if($this->degree) {
             $res .= $this->degree;
         }
@@ -199,6 +233,7 @@ class ImageWatermarkTemplate extends ImageTemplate
 
     public function resetRule() {
         $this->image = "";
+        $this->imageKey = "";
         $this->gravity = "";
         $this->dx = "";
         $this->dy = "";
@@ -207,6 +242,7 @@ class ImageWatermarkTemplate extends ImageTemplate
         $this->spcent = "";
         $this->dissolve = "";
         $this->batch = "";
+        $this->spacing = "";
         $this->degree = "";
     }
 }

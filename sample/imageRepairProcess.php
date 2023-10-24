@@ -13,7 +13,29 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // --------------------- 1. 保存效果图到本地 ------------------------------ //
+    // -------------------- 1. 下载时处理-原图存储在COS -------------------- //
+    $object = 'xxx.jpg';
+    $ciProcessParams = new Qcloud\Cos\ImageParamTemplate\CIProcessTransformation('ImageRepair');
+    $ciProcessParams->addParam('MaskPic', 'https://www.xxx.com/xxx.jpg', true); // MaskPic/MaskPoly 二选一
+    // $ciProcessParams->addParam('MaskPoly', '[[[200, 200], [400, 200], [400, 400], [200, 400]]]', true); // MaskPic/MaskPoly 二选一
+    $query = $ciProcessParams->queryString();
+
+    $downloadUrl = $cosClient->getObjectUrl('examplebucket-1250000000', $object); // 获取下载链接
+    echo "{$downloadUrl}&{$query}"; // 携带签名的图片地址以“&”连接
+    // -------------------- 1. 下载时处理-原图存储在COS -------------------- //
+
+    // -------------------- 2. 下载时处理-原图来自其他链接 -------------------- //
+    $ciProcessParams = new Qcloud\Cos\ImageParamTemplate\CIProcessTransformation('ImageRepair');
+    $ciProcessParams->addParam('detect-url', 'https://www.xxx.com/xxx1.jpg');
+    $ciProcessParams->addParam('MaskPic', 'https://www.xxx.com/xxx2.jpg', true); // MaskPic/MaskPoly 二选一
+    // $ciProcessParams->addParam('MaskPoly', '[[[200, 200], [400, 200], [400, 400], [200, 400]]]', true); // MaskPic/MaskPoly 二选一
+    $query = $ciProcessParams->queryString();
+
+    $downloadUrl = $cosClient->getObjectUrl('examplebucket-1250000000', ''); // 获取下载链接
+    echo "{$downloadUrl}&{$query}";
+    // -------------------- 2. 下载时处理-原图来自其他链接 -------------------- //
+
+    // --------------------- 3. 保存效果图到本地 ------------------------------ //
     $imageUrl = 'https://www.xxx.com/xxx.jpg';
     $result = $cosClient->imageRepairProcess(array(
         'Bucket' => 'examplebucket-1250000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
@@ -25,9 +47,9 @@ try {
     ));
     // 请求成功
     print_r($result);
-    // --------------------- 1. 保存效果图到本地 ------------------------------ //
+    // --------------------- 3. 保存效果图到本地 ------------------------------ //
 
-    // --------------------- 2. 上传时处理 ------------------------------ //
+    // --------------------- 4. 上传时处理 ------------------------------ //
     $ciProcessParams = new Qcloud\Cos\ImageParamTemplate\CIProcessTransformation('ImageRepair');
     $ciProcessParams->addParam('MaskPic', 'https://www.xxx.com/xxx.jpg', true); // MaskPic/MaskPoly 二选一
 //    $ciProcessParams->addParam('MaskPoly', '[[[200, 200], [400, 200], [400, 400], [200, 400]]]', true); // MaskPic/MaskPoly 二选一
@@ -42,9 +64,9 @@ try {
     ));
     // 请求成功
     print_r($result);
-    // --------------------- 2. 上传时处理 ------------------------------ //
+    // --------------------- 4. 上传时处理 ------------------------------ //
 
-    // --------------------- 3. 云上数据处理 ------------------------------ //
+    // --------------------- 5. 云上数据处理 ------------------------------ //
     $ciProcessParams = new Qcloud\Cos\ImageParamTemplate\CIProcessTransformation('ImageRepair');
     $ciProcessParams->addParam('MaskPic', 'https://www.xxx.com/xxx.jpg', true); // MaskPic/MaskPoly 二选一
 //    $ciProcessParams->addParam('MaskPoly', '[[[200, 200], [400, 200], [400, 400], [200, 400]]]', true); // MaskPic/MaskPoly 二选一
@@ -58,7 +80,7 @@ try {
     ));
     // 请求成功
     print_r($result);
-    // --------------------- 3. 云上数据处理 ------------------------------ //
+    // --------------------- 5. 云上数据处理 ------------------------------ //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

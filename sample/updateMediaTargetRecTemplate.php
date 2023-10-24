@@ -13,22 +13,17 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 更新文件处理的队列
-    $result = $cosClient->updateFileProcessQueue(array(
+    // 更新视频目标检测模板
+    $result = $cosClient->updateMediaTargetRecTemplate(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Key' => 'pcc3ae89sa9d807fs89dg789sdg', // queueId
-        'Name' => 'queue-file-process-name', // 队列名称,长度不超过128
-        'State' => 'Active', // Active 表示队列内的作业会被调度执行;  Paused 表示队列暂停
-        'NotifyConfig' => array(
-            'State' => 'Off',
-//            'Event' => '',
-//            'ResultFormat' => '',
-//            'Type' => '',
-//            'Url' => '',
-//            'MqMode' => '',
-//            'MqRegion' => '',
-//            'MqName' => '',
-        ),
+        'Key' => '', // TemplateId
+        'Tag' => 'VideoTargetRec',
+        'Name' => 'template-name',
+        'VideoTargetRec' => array(
+            'Body' => 'true',
+            'Pet' => 'true',
+            'Car' => 'false',
+        ), //  Body、Pet、Car 不能同时为 false
     ));
     // 请求成功
     print_r($result);

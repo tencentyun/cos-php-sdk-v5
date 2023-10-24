@@ -3810,6 +3810,7 @@ class Service {
                 'GetPicBucketList' => Descriptions::GetPicBucketList(), // 查询图片处理服务状态
                 'GetAiBucketList' => Descriptions::GetAiBucketList(), // 查询 AI 内容识别服务状态
                 'OpenAiService' => Descriptions::OpenAiService(), // 开通 AI 内容识别
+                'CloseAiService' => Descriptions::CloseAiService(), // 关闭AI内容识别服务
                 'GetAiQueueList' => Descriptions::GetAiQueueList(), // 搜索 AI 内容识别队列
                 'UpdateAiQueue' => Descriptions::UpdateAiQueue(), // 更新 AI 内容识别队列
                 'CreateMediaTranscodeProTemplate' => Descriptions::CreateMediaTranscodeProTemplate(), // 创建音视频转码 pro 模板
@@ -3830,6 +3831,17 @@ class Service {
                 'OpenImageSlim' => Descriptions::OpenImageSlim(), // 开通图片瘦身
                 'CloseImageSlim' => Descriptions::CloseImageSlim(), // 关闭图片瘦身
                 'GetImageSlim' => Descriptions::GetImageSlim(), // 查询图片瘦身状态
+                'AutoTranslationBlockProcess' => Descriptions::AutoTranslationBlockProcess(), // 实时文字翻译
+                'RecognizeLogoProcess' => Descriptions::RecognizeLogoProcess(), // Logo 识别
+                'DetectLabelProcess' => Descriptions::DetectLabelProcess(), // 图片标签
+                'AIGameRecProcess' => Descriptions::AIGameRecProcess(), // 游戏场景识别
+                'AIBodyRecognitionProcess' => Descriptions::AIBodyRecognitionProcess(), // 人体识别
+                'DetectPetProcess' => Descriptions::DetectPetProcess(), // 宠物识别
+                'AILicenseRecProcess' => Descriptions::AILicenseRecProcess(), // 卡证识别
+                'CreateMediaTargetRecTemplate' => Descriptions::CreateMediaTargetRecTemplate(), // 创建视频目标检测模板
+                'UpdateMediaTargetRecTemplate' => Descriptions::UpdateMediaTargetRecTemplate(), // 更新视频目标检测模板
+                'CreateMediaTargetRecJobs' => Descriptions::CreateMediaTargetRecJobs(), // 提交视频目标检测任务
+                'CreateMediaSegmentVideoBodyJobs' => Descriptions::CreateMediaSegmentVideoBodyJobs(), // 提交视频人像抠图任务
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7453,6 +7465,7 @@ class Service {
                 'GetPicBucketListOutput' => Descriptions::GetPicBucketListOutput(),
                 'GetAiBucketListOutput' => Descriptions::GetAiBucketListOutput(),
                 'OpenAiServiceOutput' => Descriptions::OpenAiServiceOutput(),
+                'CloseAiServiceOutput' => Descriptions::CloseAiServiceOutput(),
                 'GetAiQueueListOutput' => Descriptions::GetAiQueueListOutput(),
                 'UpdateAiQueueOutput' => Descriptions::UpdateAiQueueOutput(),
                 'CreateMediaTranscodeProTemplateOutput' => Descriptions::CreateMediaTranscodeProTemplateOutput(),
@@ -7473,6 +7486,17 @@ class Service {
                 'OpenImageSlimOutput' => Descriptions::OpenImageSlimOutput(),
                 'CloseImageSlimOutput' => Descriptions::CloseImageSlimOutput(),
                 'GetImageSlimOutput' => Descriptions::GetImageSlimOutput(),
+                'AutoTranslationBlockProcessOutput' => Descriptions::AutoTranslationBlockProcessOutput(),
+                'RecognizeLogoProcessOutput' => Descriptions::RecognizeLogoProcessOutput(),
+                'DetectLabelProcessOutput' => Descriptions::DetectLabelProcessOutput(),
+                'AIGameRecProcessOutput' => Descriptions::AIGameRecProcessOutput(),
+                'AIBodyRecognitionProcessOutput' => Descriptions::AIBodyRecognitionProcessOutput(),
+                'DetectPetProcessOutput' => Descriptions::DetectPetProcessOutput(),
+                'AILicenseRecProcessOutput' => Descriptions::AILicenseRecProcessOutput(),
+                'CreateMediaTargetRecTemplateOutput' => Descriptions::CreateMediaTargetRecTemplateOutput(),
+                'UpdateMediaTargetRecTemplateOutput' => Descriptions::UpdateMediaTargetRecTemplateOutput(),
+                'CreateMediaTargetRecJobsOutput' => Descriptions::CreateMediaTargetRecJobsOutput(),
+                'CreateMediaSegmentVideoBodyJobsOutput' => Descriptions::CreateMediaSegmentVideoBodyJobsOutput(),
             )
         );
     }

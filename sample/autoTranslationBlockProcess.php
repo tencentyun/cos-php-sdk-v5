@@ -9,28 +9,19 @@ $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
         'schema' => 'https', //协议头部，默认为http
-        'credentials'=> array(
-            'secretId'  => $secretId,
+        'credentials' => array(
+            'secretId' => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 更新文件处理的队列
-    $result = $cosClient->updateFileProcessQueue(array(
+    // 实时文字翻译
+    $result = $cosClient->autoTranslationBlockProcess(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Key' => 'pcc3ae89sa9d807fs89dg789sdg', // queueId
-        'Name' => 'queue-file-process-name', // 队列名称,长度不超过128
-        'State' => 'Active', // Active 表示队列内的作业会被调度执行;  Paused 表示队列暂停
-        'NotifyConfig' => array(
-            'State' => 'Off',
-//            'Event' => '',
-//            'ResultFormat' => '',
-//            'Type' => '',
-//            'Url' => '',
-//            'MqMode' => '',
-//            'MqRegion' => '',
-//            'MqName' => '',
-        ),
+        'InputText' => '', // 待翻译的文本
+        'SourceLang' => '', // 输入语言，如 "zh"
+        'TargetLang' => '', // 输出语言，如 "en"
+//        'TextDomain' => '', // 文本所属业务领域，如: "ecommerce", //缺省值为 general
+//        'TextStyle' => '', // 文本类型，如: "title", //缺省值为 sentence
     ));
-    // 请求成功
     print_r($result);
 } catch (\Exception $e) {
     // 请求失败

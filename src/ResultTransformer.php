@@ -140,6 +140,17 @@ class ResultTransformer {
             }
         }
 
+        if ($action == "AutoTranslationBlockProcess") {
+            $length = intval($result['ContentLength']);
+            if($length > 0){
+                $content = $this->geCiContentInfo($result, $length);
+                $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
+                $arr = json_decode(json_encode($obj),true);
+                $result['TranslationResult'] = isset($arr[0]) ? $arr[0] : '';
+                unset($result['Body']);
+            }
+        }
+
         $xml2JsonActions = array(
             'CreateMediaTranscodeJobs' => 1,
             'CreateMediaJobs' => 1,
@@ -161,7 +172,6 @@ class ResultTransformer {
             'CreateMediaSDRtoHDRJobs' => 1,
             'CreateMediaDigitalWatermarkJobs' => 1,
             'CreateMediaExtractDigitalWatermarkJobs' => 1,
-            'OpticalOcrRecognition' => 1,
             'GetWorkflowInstance' => 1,
             'CreateMediaTranscodeTemplate' => 1,
             'UpdateMediaTranscodeTemplate' => 1,
@@ -197,6 +207,7 @@ class ResultTransformer {
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $xmlData = json_decode(json_encode($obj),true);
                 $result['Response'] = $xmlData;
+                unset($result['Body']);
             }
         }
 

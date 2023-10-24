@@ -12,26 +12,26 @@ $cosClient = new Qcloud\Cos\Client(
         'credentials'=> array(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
+$local_path = "/data/exampleobject";
 try {
-    // 更新文件处理的队列
-    $result = $cosClient->updateFileProcessQueue(array(
+    // -------------------- 1. 游戏场景识别 原图存储在COS -------------------- //
+    $result = $cosClient->aIGameRecProcess(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Key' => 'pcc3ae89sa9d807fs89dg789sdg', // queueId
-        'Name' => 'queue-file-process-name', // 队列名称,长度不超过128
-        'State' => 'Active', // Active 表示队列内的作业会被调度执行;  Paused 表示队列暂停
-        'NotifyConfig' => array(
-            'State' => 'Off',
-//            'Event' => '',
-//            'ResultFormat' => '',
-//            'Type' => '',
-//            'Url' => '',
-//            'MqMode' => '',
-//            'MqRegion' => '',
-//            'MqName' => '',
-        ),
+        'Key' => 'test.jpg',
     ));
     // 请求成功
     print_r($result);
+    // -------------------- 1. 游戏场景识别 原图存储在COS -------------------- //
+
+    // -------------------- 2. 游戏场景识别 原图来自其他链接 -------------------- //
+    $result = $cosClient->aIGameRecProcess(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Key' => '', // 该值为空即可
+        'DetectUrl' => 'https://www.xxx.com/xxx.jpg',
+    ));
+    // 请求成功
+    print_r($result);
+    // -------------------- 2. 游戏场景识别 原图来自其他链接 -------------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

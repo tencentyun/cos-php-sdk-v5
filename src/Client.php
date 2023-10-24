@@ -211,8 +211,9 @@ use GuzzleHttp\Psr7;
  * @method object GetPicQueueList(array $args) 搜索图片处理队列
  * @method object UpdatePicQueue(array $args) 更新图片处理队列
  * @method object GetPicBucketList(array $args) 查询图片处理服务状态
- * @method object GetAiBucketList(array $args) 查询 AI 内容识别服务状态
- * @method object OpenAiService(array $args) 开通 AI 内容识别
+ * @method object GetAiBucketList(array $args) 查询AI内容识别服务
+ * @method object OpenAiService(array $args) 开通AI内容识别服务
+ * @method object CloseAiService(array $args) 关闭AI内容识别服务
  * @method object GetAiQueueList(array $args) 搜索 AI 内容识别队列
  * @method object UpdateAiQueue(array $args) 更新 AI 内容识别队列
  * @method object CreateMediaTranscodeProTemplate(array $args) 创建音视频转码 pro 模板
@@ -233,6 +234,17 @@ use GuzzleHttp\Psr7;
  * @method object OpenImageSlim(array $args) 开通图片瘦身
  * @method object CloseImageSlim(array $args) 关闭图片瘦身
  * @method object GetImageSlim(array $args) 查询图片瘦身状态
+ * @method object AutoTranslationBlockProcess(array $args) 实时文字翻译
+ * @method object RecognizeLogoProcess(array $args) Logo 识别
+ * @method object DetectLabelProcess(array $args) 图片标签
+ * @method object AIGameRecProcess(array $args) 游戏场景识别
+ * @method object AIBodyRecognitionProcess(array $args) 人体识别
+ * @method object DetectPetProcess(array $args) 宠物识别
+ * @method object AILicenseRecProcess(array $args) 卡证识别
+ * @method object CreateMediaTargetRecTemplate(array $args) 创建视频目标检测模板
+ * @method object UpdateMediaTargetRecTemplate(array $args) 更新视频目标检测模板
+ * @method object CreateMediaTargetRecJobs(array $args) 提交视频目标检测任务
+ * @method object CreateMediaSegmentVideoBodyJobs(array $args) 提交视频人像抠图任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
