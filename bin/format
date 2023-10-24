@@ -6,55 +6,102 @@
  * Usage: php bin/format
  */
 
-function scan_dir(string $dir, callable $filter = null): array
-{
-    $files = array_filter(scandir($dir), function (string $file) {
-        return $file[0] !== '.';
-    });
-    array_walk($files, function (&$file) use ($dir) {
-        $file = "{$dir}/{$file}";
-    });
-    return array_values($filter ? array_filter($files, $filter) : $files);
-}
+$directories = ['src', 'tests', 'sample'];
+$rootDirectoryPath = realpath(dirname(__DIR__));
 
-function fix_tests_in_this_dir(string $dir, string $root = '')
-{
-    $files = scan_dir($dir);
-    foreach ($files as $file) {
-        if (pathinfo($file, PATHINFO_EXTENSION) === 'php') {
-            $requirement_level = (function () use ($root, $file) {
-                for ($l = 0; $l < 8; $l++) {
-                    $file = dirname($file);
-                    if ($file === $root) {
-                        return $l;
-                    }
-                }
-                return -1;
-            })();
-            if ($requirement_level < 0) {
-                echo("Failed to get requirement level of file {$file}");
-            }
-            $content = file_get_contents($file);
-            $changed = false;
-            // empty lines
-            $_content = trim($content) . "\n";
-            if ($content !== $_content) {
-                echo "Format empty lines in {$file}", PHP_EOL;
-                $content = $_content;
-                $changed = true;
-            }
-            if ($changed) {
-                file_put_contents($file, $content);
-            }
-        } elseif (is_dir($file)) {
-            fix_tests_in_this_dir($file, $root);
-        }
+foreach ($directories as $directory) {
+    $directoryPath = $rootDirectoryPath . '/' . $directory;
+
+    $directoryIterator = new RecursiveDirectoryIterator($directoryPath, RecursiveDirectoryIterator::SKIP_DOTS);
+    $iterator = new RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::SELF_FIRST);
+
+    $phpFiles = findPhpFiles($iterator);
+
+    foreach ($phpFiles as $file) {
+        $formattedContent = formatFile($file);
+        writeToFile($file, $formattedContent, $directory);
     }
 }
 
-$root = realpath(dirname(__DIR__));
-$dirs = ['src', 'tests', 'sample'];
-foreach ($dirs as $dir) {
-    fix_tests_in_this_dir($root . '/' . $dir, $root);
+echo 'Formatting completed', PHP_EOL;
+
+/**
+ * Returns an array of PHP file paths from the directory iterator.
+ *
+ * @param  RecursiveIteratorIterator $iterator The iterator of the directory to search through.
+ * @return array An array of PHP file paths.
+ */
+function findPhpFiles($iterator)
+{
+    $phpFiles = [];
+    foreach ($iterator as $file) {
+        if ($file->getExtension() !== 'php' || $file->isDir()) {
+            continue;
+        }
+        $phpFiles[] = $file->getPathname();
+    }
+    return $phpFiles;
 }
-echo 'Format done', PHP_EOL;
+
+/**
+ * Returns the formatted content of a file.
+ *
+ * @param  string $file The path to the file to format.
+ * @return string The formatted content.
+ */
+function formatFile($file)
+{
+    $content = file_get_contents($file);
+    return formatLineEndings($content);
+}
+
+/**
+ * Returns the content with formatted line endings.
+ *
+ * @param  string $content The content to format.
+ * @return string The content with formatted line endings.
+ */
+function formatLineEndings($content)
+{
+    return trim($content) . "\n";
+}
+
+/**
+ * Returns the content with all occurrences of 'schema' replaced with 'scheme'.
+ *
+ * @param  string $content The content to perform replacements on.
+ * @return string The content with all occurrences of 'schema' replaced with 'scheme'.
+ */
+function replaceSchemaWithScheme($content)
+{
+    return str_replace(['schema', 'Schema'], ['scheme', 'Scheme'], $content);
+}
+
+/**
+ * Writes the provided content to a file if it differs from the original content of the file.
+ * Also checks the directory and if it's not 'src', replaces 'schema' with 'scheme' in the content.
+ *
+ * @param  string $file The path to the file to write.
+ * @param  string $content The content to write to the file.
+ * @param  string $directory The directory the file resides in.
+ */
+function writeToFile($file, $content, $directory)
+{
+    $originalContent = file_get_contents($file);
+    $changed = false;
+    if ($originalContent !== $content) {
+        echo "Formatted empty lines in {$file}", PHP_EOL;
+        $changed = true;
+    }
+    if ($directory != 'src') {
+        $_content = replaceSchemaWithScheme($content);
+        if ($content !== $_content) {
+            echo "Use scheme instead of schema in {$file}", PHP_EOL;
+            $content = $_content;
+            $changed = true;
+        }
+    }
+    if ($changed) {
+        file_put_contents($file, $content);
+    }
+}
