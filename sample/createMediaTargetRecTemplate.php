@@ -8,18 +8,21 @@ $region = "ap-beijing"; //替换为用户的 region，已创建桶归属的regio
 $cosClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
-        'scheme' => 'https', //协议头部，默认为http
+        'schema' => 'https', //协议头部，默认为http
         'credentials'=> array(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 搜索文件处理队列
-    $result = $cosClient->getFileProcessQueueList(array(
+    // 创建视频目标检测模板
+    $result = $cosClient->createMediaTargetRecTemplate(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-//        'QueueIds' => '', // 队列 ID，以“,”符号分割字符串
-//        'State' => 'Active', // Active 表示队列内的作业会被调度执行;  Paused 表示队列暂停
-//        'PageNumber' => '1', // 第几页,默认值1
-//        'PageSize' => '10', // 每页个数,默认值10
+        'Tag' => 'VideoTargetRec',
+        'Name' => 'template-name',
+        'VideoTargetRec' => array(
+            'Body' => 'true',
+            'Pet' => 'true',
+            'Car' => 'false',
+        ), //  Body、Pet、Car 不能同时为 false
     ));
     // 请求成功
     print_r($result);

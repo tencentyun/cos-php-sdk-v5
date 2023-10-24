@@ -14,11 +14,11 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // 开通文件处理服务
-//    $result = $cosClient->openFileProcessService(array(
-//        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-//    ));
-//    // 请求成功
-//    print_r($result);
+    $result = $cosClient->openFileProcessService(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+    ));
+    // 请求成功
+    print_r($result);
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

@@ -359,6 +359,7 @@ class CommandToRequestTransformer {
                 'GetPicQueueList' => 1,
                 'UpdatePicQueue' => 1,
                 'OpenAiService' => 1,
+                'CloseAiService' => 1,
                 'GetAiQueueList' => 1,
                 'UpdateAiQueue' => 1,
                 'CreateMediaTranscodeProTemplate' => 1,
@@ -376,6 +377,10 @@ class CommandToRequestTransformer {
                 'CreateMediaVideoEnhanceJobs' => 1,
                 'CreateMediaVideoEnhanceTemplate' => 1,
                 'UpdateMediaVideoEnhanceTemplate' => 1,
+                'CreateMediaTargetRecTemplate' => 1,
+                'UpdateMediaTargetRecTemplate' => 1,
+                'CreateMediaTargetRecJobs' => 1,
+                'CreateMediaSegmentVideoBodyJobs' => 1,
             );
             if (key_exists($action, $ciActions)) {
                 // 万象接口需要https，http方式报错

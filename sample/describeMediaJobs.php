@@ -16,12 +16,21 @@ try {
     /*
     拉取符合条件的任务, 支持
     Transcode、Snapshot、Animation、Concat、SmartCover、VideoProcess、VideoMontage、VoiceSeparate、SDRtoHDR、
-    DigitalWatermark、ExtractDigitalWatermark、SuperResolution、VideoTag、PicProcess、Segment
+    DigitalWatermark、ExtractDigitalWatermark、SuperResolution、VideoTag、PicProcess、Segment 等
     */
     $result = $cosClient->describeMediaJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Transcode', // 任务 的Tag
-        'QueueId' => 'paaf4fce5521a40888a3034a5dxxxxxxx', // queueId
+//        'QueueId' => '', // queueId
+//        'OrderByTime' => '',
+//        'NextToken' => '',
+//        'Size' => '',
+//        'States' => '',
+//        'StartCreationTime' => '',
+//        'EndCreationTime' => '',
+//        'WorkflowId' => '',
+//        'InventoryTriggerJobId' => '',
+//        'InputObject' => '',
     ));
     // 请求成功
     print_r($result);
