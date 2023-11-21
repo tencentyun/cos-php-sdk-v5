@@ -27,6 +27,6 @@ $cosClient = new Qcloud\Cos\Client(
             'anonymous' => true, //匿名模式
         ),
         'timezone' => 'PRC', //时区
-        'locationWithSchema' => true //Location中是否包含schema
+        'locationWithScheme' => true //Location中是否包含scheme
     )
 );

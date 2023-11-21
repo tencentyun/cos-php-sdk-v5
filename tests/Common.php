@@ -55,7 +55,7 @@ class Common
             $cosClient = new Client(
                 array(
                     'region' => self::getRegion(),
-                    'schema' => 'https',
+                    'scheme' => 'https',
                     'credentials' => array(
                         'secretId' => getenv('COS_KEY'),
                         'secretKey' => getenv('COS_SECRET')
@@ -73,7 +73,7 @@ class Common
             $cosClient = new Client(
                 array(
                     'region' => self::getRegion(),
-                    'schema' => 'https',
+                    'scheme' => 'https',
                     'credentials' => array(
                         'secretId' => getenv('CI_KEY'),
                         'secretKey' => getenv('CI_SECRET')
@@ -91,7 +91,7 @@ class Common
             $cosClient = new Client(
                 array(
                     'region' => $region,
-                    'schema' => 'https',
+                    'scheme' => 'https',
                     'credentials' => array(
                         'secretId' => getenv('CI_KEY'),
                         'secretKey' => getenv('CI_SECRET')
