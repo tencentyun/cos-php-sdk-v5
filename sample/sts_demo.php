@@ -77,7 +77,7 @@ $token = 'token'; // 第一步获取到的 $tempKeys['credentials']['sessionToke
 $tokenClient = new Qcloud\Cos\Client(
     array(
         'region' => $region,
-        'schema' => 'https', //协议头部，默认为http
+        'scheme' => 'https', //协议头部，默认为http
         'credentials'=> array(
             'secretId'  => $tmpSecretId ,
             'secretKey' => $tmpSecretKey,
