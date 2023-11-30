@@ -72,8 +72,14 @@ class CommandToRequestTransformer {
             || $action == 'BindCiService' || $action == 'GetCiService' || $action == 'UnBindCiService'
             || $action == 'GetHotLink' || $action == 'AddHotLink'
             || $action == 'OpenOriginProtect' || $action == 'GetOriginProtect' || $action == 'CloseOriginProtect'
-            || $action == 'OpenImageSlim' || $action == 'GetImageSlim' || $action == 'CloseImageSlim' ) {
+            || $action == 'OpenImageSlim' || $action == 'GetImageSlim' || $action == 'CloseImageSlim') {
             $domain_type = '.pic.';
+        }
+
+        if ($domain_type == '.pic.' && ($this->config['allow_accelerate'] || $this->config['region'] == 'accelerate')) {
+            $e = new Exception\CosException('CI request does not support using accelerate domain');
+            $e->setExceptionCode('RegionUnsupport');
+            throw $e;
         }
 
         $origin_host = $this->config['allow_accelerate'] ?
