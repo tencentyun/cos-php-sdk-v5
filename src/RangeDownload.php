@@ -14,21 +14,27 @@ class RangeDownload {
     private $progress;
     private $totalSize;
     private $resumableJson;
+    private $concurrency;
+    private $partNumberList;
+    private $downloadedSize;
+    private $saveAs;
+    private $resumableTaskFile;
+    private $resumableDownload;
+    private $resumableJsonLocal;
+    private $fp;
+    private $fp_resume;
 
     public function __construct( $client, $contentLength, $saveAs, $options = array() ) {
         $this->client = $client;
         $this->options = $options;
         $this->partSize = isset( $options['PartSize'] ) ? $options['PartSize'] : self::DEFAULT_PART_SIZE;
         $this->concurrency = isset( $options['Concurrency'] ) ? $options['Concurrency'] : 10;
-        $this->progress = isset( $options['Progress'] ) ? $options['Progress'] : function( $totalSize, $downloadedSize ) {
-        }
-        ;
+        $this->progress = isset( $options['Progress'] ) ? $options['Progress'] : function( $totalSize, $downloadedSize ) {};
         $this->parts = [];
         $this->partNumberList = [];
         $this->downloadedSize = 0;
         $this->totalSize = $contentLength;
         $this->saveAs = $saveAs;
-        $this->resumableJson = [];
         $this->resumableJson = isset( $options['ResumableJson'] ) ? $options['ResumableJson'] : [];
         unset( $options['ResumableJson'] );
         $this->resumableTaskFile = isset( $options['ResumableTaskFile'] ) ? $options['ResumableTaskFile'] : $saveAs . '.cosresumabletask';
@@ -141,5 +147,4 @@ class RangeDownload {
         $promise = $pool->promise();
         $promise->wait();
     }
-
 }

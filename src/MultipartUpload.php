@@ -18,6 +18,10 @@ class MultipartUpload {
     private $progress;
     private $totalSize;
     private $uploadedSize;
+    private $concurrency;
+    private $partNumberList;
+    private $needMd5;
+    private $retry;
 
     public function __construct($client, $body, $options = array()) {
         $minPartSize = $options['PartSize'];
@@ -35,6 +39,7 @@ class MultipartUpload {
         $this->needMd5 = isset($options['ContentMD5']) ? $options['ContentMD5'] : true;
         $this->retry = isset($options['Retry']) ? $options['Retry'] : 3;
     }
+
     public function performUploading() {
         $uploadId= $this->initiateMultipartUpload();
         $this->uploadParts($uploadId);
@@ -51,6 +56,7 @@ class MultipartUpload {
         );
 
     }
+
     public function uploadParts($uploadId) {
         $uploadRequests = function ($uploadId) {
             $partNumber = 1;
@@ -163,5 +169,4 @@ class MultipartUpload {
         $result = $this->client->createMultipartUpload($this->options);
         return $result['UploadId'];
     }
-
 }
