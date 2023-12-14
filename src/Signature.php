@@ -42,6 +42,7 @@ class Signature {
             'origin',
             'range',
             'transfer-encoding',
+            'pic-operations',
         ];
         date_default_timezone_set($this->options['timezone']);
     }
