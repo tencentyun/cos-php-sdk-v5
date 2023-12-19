@@ -95,7 +95,6 @@ class Signature {
         foreach ( $request->getHeaders() as $key => $value ) {
             $key = strtolower( urlencode( $key ) );
             $value = rawurlencode( $value[0] );
-//            echo $key . "======" . $value . PHP_EOL;
             if ( !$this->options['signHost'] && $key == 'host' ) {
                 continue;
             }
