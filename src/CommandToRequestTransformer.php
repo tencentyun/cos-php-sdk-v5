@@ -21,18 +21,18 @@ class CommandToRequestTransformer {
         $action = $command->getName();
         if ($action == 'ListBuckets') {
             $uri = "service.cos.myqcloud.com";
-    
+
             if ($this->config['endpoint'] != null) {
                 $uri = $this->config['endpoint'];
-            }   
+            }
             if ($this->config['domain'] != null) {
                 $uri = $this->config['domain'];
-            }   
+            }
             if ($this->config['ip'] != null) {
                 $uri = $this->config['ip'];
                 if ($this->config['port'] != null) {
                     $uri = $this->config['ip'] . ":" . $this->config['port'];
-                }   
+                }
             }
             return $request->withUri(new Uri($this->config['scheme']."://". $uri. "/"));
         }
@@ -134,7 +134,7 @@ class CommandToRequestTransformer {
             $request = $this->addMd5( $request );
         }
         if ( isset( $operation['parameters']['ContentMD5'] ) &&
-        isset( $command['ContentMD5'] ) ) {
+            isset( $command['ContentMD5'] ) ) {
             $value = $command['ContentMD5'];
             if ( $value != false ) {
                 $request = $this->addMd5( $request );

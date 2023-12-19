@@ -3,6 +3,7 @@
 namespace Qcloud\Cos;
 
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -13,6 +14,7 @@ use GuzzleHttp\Command\CommandInterface;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Uri;
 
 /**
  * @method object AbortMultipartUpload(array $args) 舍弃一个分块上传且删除已上传的分片块
@@ -248,7 +250,7 @@ use GuzzleHttp\Psr7;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.6.8';
+    const VERSION = '2.6.9';
 
     public $httpClient;
 
@@ -276,7 +278,7 @@ class Client extends GuzzleClient {
         'endpoint' => null,
         'domain' => null,
         'proxy' => null,
-        'retry' => 1,
+        'retry' => 6,
         'userAgent' => 'cos-php-sdk-v5.' . Client::VERSION,
         'pathStyle' => false,
         'signHost' => true,
@@ -284,6 +286,7 @@ class Client extends GuzzleClient {
         'allow_accelerate' => false,
         'timezone' => 'PRC',
         'locationWithScheme' => false,
+        'autoChange' => true,
     ];
 
     public function __construct(array $cosConfig) {
@@ -296,10 +299,69 @@ class Client extends GuzzleClient {
 
         $service = Service::getService();
         $handler = HandlerStack::create();
-        $handler->push(Middleware::retry($this->retryDecide(), $this->retryDelay()));
+
+        $handler->push(Middleware::retry(function ($retries, $request, $response, $exception) use (&$retryCount) {
+            $retryCount = $retries;
+            if ($retryCount >= $this->cosConfig['retry']) {
+                return false;
+            }
+
+            if ($response) {
+                if ($response->getStatusCode() >= 500) {
+                    return true;
+                }
+            } elseif ($exception) {
+                return true;
+            }
+
+            if ($response != null && $response->getStatusCode() >= 400 ) {
+                return true;
+            }
+            if ($exception instanceof Exception\ServiceResponseException) {
+                if ($exception->getStatusCode() >= 400) {
+                    return true;
+                }
+            }
+
+            if ($exception instanceof ConnectException) {
+                return true;
+            }
+            return false;
+        }, $this->retryDelay()));
+
+        $handler->push(Middleware::mapRequest(function (RequestInterface $request) use (&$retryCount) {
+            if ($retryCount > 2 && $this->cosConfig['autoChange']) {
+                $origin = $request->getUri();
+                $host = str_replace("myqcloud.com", "tencentcos.cn", $origin->getHost());
+
+                // 将 URI 转换为字符串，然后替换主机名
+                $originUriString = (string) $origin;
+                $originUriString = str_replace("myqcloud.com", "tencentcos.cn", $originUriString);
+                $originUriString = str_replace($origin->getScheme() . "://", "", $originUriString);
+
+                // 创建新的 URI 对象
+                $uri = new Uri($originUriString);
+
+                // 获取路径，并从路径中移除主机名
+                $path = $uri->getPath();
+                $path = str_replace($host, '', $path);
+
+                // 使用新的路径创建新的 URI
+                $uri = $uri->withPath($path);
+                $uri = $uri->withHost($host)->withScheme($origin->getScheme());
+
+
+                // 更新请求的 URI 和主机头
+                $request = $request->withUri($uri)->withHeader('Host', $host);
+                return $request;
+            }
+            return $request;
+        }));
+
 		$handler->push(Middleware::mapRequest(function (RequestInterface $request) {
 			return $request->withHeader('User-Agent', $this->cosConfig['userAgent']);
         }));
+
         if ($this->cosConfig['anonymous'] != true) {
             $handler->push($this::handleSignature($this->cosConfig['secretId'], $this->cosConfig['secretKey'], $this->cosConfig));
         }
@@ -322,8 +384,8 @@ class Client extends GuzzleClient {
         $this->desc = new Description($service);
         $this->api = (array) $this->desc->getOperations();
         parent::__construct($this->httpClient, $this->desc, [$this,
-        'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
-        null);
+            'commandToRequestTransformer'], [$this, 'responseToResultTransformer'],
+            null);
     }
 
     public function inputCheck() {
@@ -347,34 +409,6 @@ class Client extends GuzzleClient {
         }
     }
 
-
-    public function retryDecide() {
-      return function (
-        $retries,
-        RequestInterface $request,
-        ResponseInterface $response = null,
-        \Exception $exception = null
-      ) {
-        if ($retries >= $this->cosConfig['retry']) {
-          return false;
-        }
-        if ($response != null && $response->getStatusCode() >= 400 ) {
-            return true;
-        }
-        if ($exception instanceof Exception\ServiceResponseException) {
-            if ($exception->getStatusCode() >= 400) {
-                return true;
-            }
-        }
-  
-        if ($exception instanceof ConnectException) {
-          return true;
-        }
-  
-        return false;
-      };
-    }
-
     public function retryDelay() {
         return function ($numberOfRetries) {
             return 1000 * $numberOfRetries;
@@ -385,7 +419,7 @@ class Client extends GuzzleClient {
     {
         $this->action = $command->GetName();
         $this->operation = $this->api[$this->action];
-        $transformer = new CommandToRequestTransformer($this->cosConfig, $this->operation); 
+        $transformer = new CommandToRequestTransformer($this->cosConfig, $this->operation);
         $seri = new Serializer($this->desc);
         $request = $seri($command);
         $request = $transformer->bucketStyleTransformer($command, $request);

@@ -32,7 +32,6 @@ class Signature {
             'content-length',
             'content-md5',
             'content-type',
-            'expect',
             'expires',
             'host',
             'if-match',
@@ -42,6 +41,7 @@ class Signature {
             'origin',
             'range',
             'transfer-encoding',
+            'pic-operations',
         ];
         date_default_timezone_set($this->options['timezone']);
     }
@@ -95,6 +95,7 @@ class Signature {
         foreach ( $request->getHeaders() as $key => $value ) {
             $key = strtolower( urlencode( $key ) );
             $value = rawurlencode( $value[0] );
+//            echo $key . "======" . $value . PHP_EOL;
             if ( !$this->options['signHost'] && $key == 'host' ) {
                 continue;
             }
