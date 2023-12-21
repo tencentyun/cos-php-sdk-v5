@@ -680,4 +680,3 @@ class Client extends GuzzleClient {
             };
     }
 }
-
