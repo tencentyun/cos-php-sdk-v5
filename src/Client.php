@@ -287,6 +287,7 @@ class Client extends GuzzleClient {
         'timezone' => 'PRC',
         'locationWithScheme' => false,
         'autoChange' => true,
+        'limit_flag' => false,
     ];
 
     public function __construct(array $cosConfig) {
@@ -301,36 +302,47 @@ class Client extends GuzzleClient {
         $handler = HandlerStack::create();
 
         $handler->push(Middleware::retry(function ($retries, $request, $response, $exception) use (&$retryCount) {
+
+            $this->cosConfig['limit_flag'] = false;
+
             $retryCount = $retries;
             if ($retryCount >= $this->cosConfig['retry']) {
                 return false;
             }
 
+
             if ($response) {
-                if ($response->getStatusCode() >= 500) {
+                if ($response->getStatusCode() >= 300 && !$response->hasHeader('x-cos-request-id')) {
+                    $this->cosConfig['limit_flag'] = true;
+                    return true;
+                }
+
+                if ($response->getStatusCode() >= 500 ) {
                     return true;
                 }
             } elseif ($exception) {
-                return true;
-            }
+                if ($exception instanceof Exception\ServiceResponseException) {
+                    if ($exception->getStatusCode() >= 500) {
+                        $this->cosConfig['limit_flag'] = true;
+                        return true;
+                    }
 
-            if ($response != null && $response->getStatusCode() >= 400 ) {
-                return true;
-            }
-            if ($exception instanceof Exception\ServiceResponseException) {
-                if ($exception->getStatusCode() >= 400) {
+                }
+                if ($exception instanceof ConnectException) {
                     return true;
                 }
-            }
-
-            if ($exception instanceof ConnectException) {
-                return true;
             }
             return false;
         }, $this->retryDelay()));
 
         $handler->push(Middleware::mapRequest(function (RequestInterface $request) use (&$retryCount) {
-            if ($retryCount > 2 && $this->cosConfig['autoChange']) {
+            // 获取域名
+            $origin_host = $request->getUri()->getHost();
+
+            // 匹配 *.cos.{Region}.myqcloud.com
+            $pattern1 = '/\.cos\.[a-z0-9-]+\.myqcloud\.com$/';
+
+            if ($retryCount > 2 && $this->cosConfig['autoChange'] && $this->cosConfig['limit_flag'] && preg_match($pattern1, $origin_host)) {
                 $origin = $request->getUri();
                 $host = str_replace("myqcloud.com", "tencentcos.cn", $origin->getHost());
 
@@ -352,7 +364,7 @@ class Client extends GuzzleClient {
 
 
                 // 更新请求的 URI 和主机头
-                $request = $request->withUri($uri)->withHeader('Host', $host);
+                $request->withUri($uri)->withHeader('Host', $host);
                 return $request;
             }
             return $request;
@@ -436,6 +448,7 @@ class Client extends GuzzleClient {
 
     public function responseToResultTransformer(ResponseInterface $response, RequestInterface $request, CommandInterface $command)
     {
+
         $transformer = new ResultTransformer($this->cosConfig, $this->operation); 
         $transformer->writeDataToLocal($command, $request, $response);
         $deseri = new Deserializer($this->desc, true);
@@ -667,3 +680,4 @@ class Client extends GuzzleClient {
             };
     }
 }
+
