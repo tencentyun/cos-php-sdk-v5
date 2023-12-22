@@ -364,7 +364,7 @@ class Client extends GuzzleClient {
 
 
                 // 更新请求的 URI 和主机头
-                $request->withUri($uri)->withHeader('Host', $host);
+                $request = $request->withUri($uri)->withHeader('Host', $host);
                 return $request;
             }
             return $request;
