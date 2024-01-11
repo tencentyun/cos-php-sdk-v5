@@ -377,6 +377,7 @@ class CommandToRequestTransformer {
             'CreateMediaTargetRecTemplate' => 1,
             'UpdateMediaTargetRecTemplate' => 1,
             'CreateMediaTargetRecJobs' => 1,
+            'CreateMediaSegmentVideoBodyJobs' => 1,
             'OpenAsrService' => 1,
             'CloseAsrService' => 1,
             'GetAsrQueueList' => 1,
