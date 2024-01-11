@@ -13,41 +13,31 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 提交人声分离任务 https://cloud.tencent.com/document/product/436/58341
-    // start --------------- 使用模版 ----------------- //
-    $result = $cosClient->createMediaVoiceSeparateJobs(array(
+    // 提交音乐评分任务 https://cloud.tencent.com/document/product/460/96095
+    $result = $cosClient->createVoiceVocalScoreJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-        'Tag' => 'VoiceSeparate',
-        'CallBack' => '',
+        'Tag' => 'VocalScore',
         'Input' => array(
-            'Object' => 'test.mp3'
+            'Object' => 'test.mp3',
         ),
         'Operation' => array(
-            'TemplateId' => '',
-            'Output' => array(
-                'Region' => $region,
-                'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
-                'Object' => 'VoiceSeparate01.mp3',
-                'AuObject' => 'VoiceSeparate02.mp3',
-                'BassObject' => 'VoiceSeparate03.mp3',
-                'DrumObject' => 'VoiceSeparate04.mp3',
-            ),
-            'VoiceSeparate' => array(
-                'AudioMode' => 'AudioAndBackground',
-                'AudioConfig' => array(
-                    'Codec' => 'mp3',
-                    'Samplerate' => '11025',
-                    'Bitrate' => '256',
-                    'Channels' => '2',
-                ),
+            "VocalScore" => array(
+                'StandardObject' => 'test.mp3',
             ),
 //            'UserData' => 'xxx', // 透传用户信息
 //            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
         ),
+//        'CallBack' => '',
+//        'CallBackFormat' => '',
+//        'CallBackType' => '',
+//        'CallBackMqConfig' => array(
+//            'MqRegion' => '',
+//            'MqMode' => '',
+//            'MqName' => '',
+//        ),
     ));
     // 请求成功
     print_r($result);
-    // end --------------- 自定义参数 ----------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

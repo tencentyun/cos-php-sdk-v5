@@ -5966,6 +5966,8 @@ class Descriptions {
                                 'Bucket' => array('type' => 'string', 'location' => 'xml', ),
                                 'Object' => array('type' => 'string', 'location' => 'xml', ),
                                 'AuObject' => array('type' => 'string', 'location' => 'xml', ),
+                                'BassObject' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'DrumObject' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -15733,6 +15735,18 @@ class Descriptions {
                                 'TemplateName' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TtsTpl' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'VoiceType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Volume' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Speed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Emotion' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
                                 'TtsConfig' => array(
                                     'type' => 'object',
                                     'location' => 'xml',
@@ -15785,6 +15799,9 @@ class Descriptions {
                                                             'CodecTimeBase' => array( 'type' => 'string', 'location' => 'xml', ),
                                                             'CodecTagString' => array( 'type' => 'string', 'location' => 'xml', ),
                                                             'CodecTag' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                            'ColorPrimaries' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                            'ColorRange' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                            'ColorTransfer' => array( 'type' => 'string', 'location' => 'xml', ),
                                                             'Profile' => array( 'type' => 'string', 'location' => 'xml', ),
                                                             'Height' => array( 'type' => 'integer', 'location' => 'xml', ),
                                                             'Width' => array( 'type' => 'integer', 'location' => 'xml', ),
@@ -18520,4 +18537,657 @@ class Descriptions {
             ),
         );
     }
+
+    public static function OpenAsrService() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}asrbucket',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'OpenAsrServiceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function OpenAsrServiceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'AsrBucket' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'BucketId' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                        'Region' => array( 'type' => 'string', 'location' => 'xml',),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                    ),
+                ),
+            )
+        );
+    }
+
+    public static function GetAsrBucketList() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/asrbucket',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetAsrBucketListOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Regions' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'regions' ),
+                'BucketNames' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'bucketNames' ),
+                'BucketName' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'bucketName' ),
+                'PageNumber' => array( 'type' => 'integer', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'integer', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function GetAsrBucketListOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'TotalCount' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'AsrBucketList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'BucketId' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Name' => array( 'type' => 'string', 'location' => 'xml',),
+                            'Region' => array( 'type' => 'string', 'location' => 'xml',),
+                            'CreateTime' => array( 'type' => 'string', 'location' => 'xml',),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CloseAsrService() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/{Bucket}asrbucket',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CloseAsrServiceOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function CloseAsrServiceOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'BucketName' => array( 'type' => 'string', 'location' => 'xml', ),
+            ),
+        );
+    }
+
+    public static function GetAsrQueueList() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}asrqueue',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetAsrQueueListOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'QueueIds' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'queueIds' ),
+                'State' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'state' ),
+                'PageNumber' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageNumber' ),
+                'PageSize' => array( 'type' => 'string', 'location' => 'query', 'sentAs' => 'pageSize' ),
+            ),
+        );
+    }
+    public static function GetAsrQueueListOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'TotalCount' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageNumber' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'PageSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                'QueueList' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array(
+                        'type' => 'object',
+                        'location' => 'xml',
+                        'properties' => array(
+                            'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'Name' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'MaxSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            'MaxConcurrent' => array( 'type' => 'integer', 'location' => 'xml', ),
+                            'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'UpdateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                            'NotifyConfig' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Event' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'ResultFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+                'NonExistPIDs' => array(
+                    'type' => 'array',
+                    'location' => 'xml',
+                    'items' => array( 'type' => 'string', 'location' => 'xml', ),
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateAsrQueue() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}asrqueue/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateAsrQueueOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'State' => array( 'location' => 'xml', 'type' => 'string', ),
+                'NotifyConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Event' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'ResultFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateAsrQueueOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Queue' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MaxSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'MaxConcurrent' => array( 'type' => 'integer', 'location' => 'xml', ),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UpdateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'NotifyConfig' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Event' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ResultFormat' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateMediaNoiseReductionTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateMediaNoiseReductionTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'NoiseReduction' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateMediaNoiseReductionTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Template' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'BucketId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UpdateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'NoiseReduction' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function UpdateMediaNoiseReductionTemplate() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/{Bucket}template/{/Key*}',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateMediaNoiseReductionTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'required' => true, 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'NoiseReduction' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function UpdateMediaNoiseReductionTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Template' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Name' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'TemplateId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'BucketId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Category' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'UpdateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreateTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'NoiseReduction' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateVoiceSoundHoundJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateVoiceSoundHoundJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackMqConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateVoiceSoundHoundJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'SoundHoundResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'SongList' => array(
+                                            'type' => 'array',
+                                            'location' => 'xml',
+                                            'items' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'Inlier' => array( 'type' => 'integer', 'location' => 'xml',),
+                                                    'SingerName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                    'SongName' => array( 'type' => 'string', 'location' => 'xml',),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
+    public static function CreateVoiceVocalScoreJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateVoiceVocalScoreJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'VocalScore' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'StandardObject' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                    ),
+                ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackMqConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+            ),
+        );
+    }
+    public static function CreateVoiceVocalScoreJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'x-ci-request-id', ),
+                'ContentType' => array( 'type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type', ),
+                'ContentLength' => array( 'type' => 'numeric', 'minimum'=> 0, 'location' => 'header', 'sentAs' => 'Content-Length', ),
+                'JobsDetail' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Code' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'QueueId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Input' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Object' => array( 'type' => 'string', 'location' => 'xml', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'UserData' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'JobLevel' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'VocalScore' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'StandardObject' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'VocalScoreResult' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'PitchScore' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'SentenceScores' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'StartTime' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                                        'EndTime' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                                    ),
+                                                ),
+                                                'TotalScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            ),
+                                        ),
+                                        'RhythemScore' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'SentenceScores' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'StartTime' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                                        'EndTime' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                                        'Score' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                                    ),
+                                                ),
+                                                'TotalScore' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        );
+    }
+
 }

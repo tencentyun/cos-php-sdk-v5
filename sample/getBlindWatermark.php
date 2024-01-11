@@ -21,6 +21,8 @@ try {
     $picOperationsTemplate = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();
     $picOperationsTemplate->setIsPicInfo(1);
     $picOperationsTemplate->addRule($blindWatermarkTemplate, "resultobject");
+
+    // -------------------- 1. 上传时处理 -------------------- //
     $result = $cosClient->putObject(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
@@ -29,6 +31,17 @@ try {
     ));
     // 请求成功
     print_r($result);
+    // -------------------- 1. 上传时处理 -------------------- //
+
+    // -------------------- 2. 云上数据处理 -------------------- //
+    $result = $cosClient->ImageProcess(array(
+        'Bucket' => 'examplebucket-1250000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Key' => 'exampleobject',
+        'PicOperations' => $picOperations->queryString(),
+    ));
+    // 请求成功
+    print_r($result);
+    // -------------------- 2. 云上数据处理 -------------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);

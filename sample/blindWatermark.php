@@ -17,6 +17,8 @@ try {
     $blindWatermarkTemplate->setImage("http://examplebucket-125000000.cos.ap-beijing.myqcloud.com/shuiyin.jpeg");
     $blindWatermarkTemplate->setType(2);
     $blindWatermarkTemplate->setLevel(3);
+
+    // -------------------- 1. 下载时处理 -------------------- //
     $result = $cosClient->getObject(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => 'exampleobject',
@@ -25,6 +27,32 @@ try {
     ));
     // 请求成功
     print_r($result);
+    // -------------------- 1. 下载时处理 -------------------- //
+
+    // -------------------- 2. 上传时处理 -------------------- //
+    $local_path = "/data/exampleobject";
+    $picOperationsTemplate = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();
+    $picOperationsTemplate->setIsPicInfo(1);
+    $picOperationsTemplate->addRule($blindWatermarkTemplate, "resultobject");
+    $result = $cosClient->putObject(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Key' => 'exampleobject',
+        'Body' => fopen($local_path, 'rb'),
+        'PicOperations' => $picOperationsTemplate->queryString(),
+    ));
+    // 请求成功
+    print_r($result);
+    // -------------------- 2. 上传时处理 -------------------- //
+
+    // -------------------- 3. 云上数据处理 -------------------- //
+    $result = $cosClient->ImageProcess(array(
+        'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
+        'Key' => 'exampleobject',
+        'PicOperations' => $picOperationsTemplate->queryString(),
+    ));
+    // 请求成功
+    print_r($result);
+    // -------------------- 3. 云上数据处理 -------------------- //
 } catch (\Exception $e) {
     // 请求失败
     echo($e);
