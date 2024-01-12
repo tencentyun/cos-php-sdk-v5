@@ -248,10 +248,10 @@ use GuzzleHttp\Psr7\Uri;
  * @method object CreateMediaTargetRecJobs(array $args) 提交视频目标检测任务
  * @method object CreateMediaSegmentVideoBodyJobs(array $args) 提交视频人像抠图任务
  * @method object OpenAsrService(array $args) 开通智能语音服务
- * @method object GetAsrBucketList(array $args) 查询智能语音服务
- * @method object CloseAsrService(array $args) 关闭智能语音服务
- * @method object GetAsrQueueList(array $args) 查询智能语音队列
- * @method object UpdateAsrQueue(array $args) 更新智能语音队列
+ * @method object GetAsrBucketList(array $args) 开通智能语音服务
+ * @method object CloseAsrService(array $args) 查询智能语音服务
+ * @method object GetAsrQueueList(array $args) 关闭智能语音服务
+ * @method object UpdateAsrQueue(array $args) 查询智能语音队列
  * @method object CreateMediaNoiseReductionTemplate(array $args) 创建音频降噪模板
  * @method object UpdateMediaNoiseReductionTemplate(array $args) 更新音频降噪模板
  * @method object CreateVoiceSoundHoundJobs(array $args) 提交听歌识曲任务
