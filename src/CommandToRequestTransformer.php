@@ -239,6 +239,7 @@ class CommandToRequestTransformer {
             'DescribeDocProcessBuckets' => 1,
             'GetPicBucketList' => 1,
             'GetAiBucketList' => 1,
+            'GetAsrBucketList' => 1,
         ))) {
             $origin_host = "ci.{$this->config['region']}.myqcloud.com";
             $host = $origin_host;
@@ -377,6 +378,14 @@ class CommandToRequestTransformer {
             'UpdateMediaTargetRecTemplate' => 1,
             'CreateMediaTargetRecJobs' => 1,
             'CreateMediaSegmentVideoBodyJobs' => 1,
+            'OpenAsrService' => 1,
+            'CloseAsrService' => 1,
+            'GetAsrQueueList' => 1,
+            'UpdateAsrQueue' => 1,
+            'CreateMediaNoiseReductionTemplate' => 1,
+            'UpdateMediaNoiseReductionTemplate' => 1,
+            'CreateVoiceSoundHoundJobs' => 1,
+            'CreateVoiceVocalScoreJobs' => 1,
         );
         if (key_exists($action, $ciActions)) {
             // 万象接口需要https，http方式报错

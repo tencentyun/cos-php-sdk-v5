@@ -247,6 +247,15 @@ use GuzzleHttp\Psr7\Uri;
  * @method object UpdateMediaTargetRecTemplate(array $args) 更新视频目标检测模板
  * @method object CreateMediaTargetRecJobs(array $args) 提交视频目标检测任务
  * @method object CreateMediaSegmentVideoBodyJobs(array $args) 提交视频人像抠图任务
+ * @method object OpenAsrService(array $args) 开通智能语音服务
+ * @method object GetAsrBucketList(array $args) 查询智能语音服务
+ * @method object CloseAsrService(array $args) 关闭智能语音服务
+ * @method object GetAsrQueueList(array $args) 查询智能语音队列
+ * @method object UpdateAsrQueue(array $args) 更新智能语音队列
+ * @method object CreateMediaNoiseReductionTemplate(array $args) 创建音频降噪模板
+ * @method object UpdateMediaNoiseReductionTemplate(array $args) 更新音频降噪模板
+ * @method object CreateVoiceSoundHoundJobs(array $args) 提交听歌识曲任务
+ * @method object CreateVoiceVocalScoreJobs(array $args) 提交音乐评分任务
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {

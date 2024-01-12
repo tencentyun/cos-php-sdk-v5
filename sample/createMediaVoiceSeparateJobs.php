@@ -29,6 +29,8 @@ try {
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                 'Object' => 'VoiceSeparate01.mp3',
                 'AuObject' => 'VoiceSeparate02.mp3',
+                'BassObject' => 'VoiceSeparate03.mp3',
+                'DrumObject' => 'VoiceSeparate04.mp3',
             ),
 //            'UserData' => 'xxx', // 透传用户信息
 //            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
@@ -52,6 +54,8 @@ try {
                 'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
                 'Object' => 'VoiceSeparate01.mp3',
                 'AuObject' => 'VoiceSeparate02.mp3',
+                'BassObject' => 'VoiceSeparate03.mp3',
+                'DrumObject' => 'VoiceSeparate04.mp3',
             ),
             'VoiceSeparate' => array(
                 'AudioMode' => 'AudioAndBackground',
