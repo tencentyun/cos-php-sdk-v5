@@ -3843,10 +3843,10 @@ class Service {
                 'CreateMediaTargetRecJobs' => Descriptions::CreateMediaTargetRecJobs(), // 提交视频目标检测任务
                 'CreateMediaSegmentVideoBodyJobs' => Descriptions::CreateMediaSegmentVideoBodyJobs(), // 提交视频人像抠图任务
                 'OpenAsrService' => Descriptions::OpenAsrService(), //开通智能语音服务
-                'GetAsrBucketList' => Descriptions::GetAsrBucketList(), // 开通智能语音服务
-                'CloseAsrService' => Descriptions::CloseAsrService(), // 查询智能语音服务
-                'GetAsrQueueList' => Descriptions::GetAsrQueueList(), // 关闭智能语音服务
-                'UpdateAsrQueue' => Descriptions::UpdateAsrQueue(), // 查询智能语音队列
+                'GetAsrBucketList' => Descriptions::GetAsrBucketList(), // 查询智能语音服务
+                'CloseAsrService' => Descriptions::CloseAsrService(), // 关闭智能语音服务
+                'GetAsrQueueList' => Descriptions::GetAsrQueueList(), // 查询智能语音队列
+                'UpdateAsrQueue' => Descriptions::UpdateAsrQueue(), // 更新智能语音队列
                 'CreateMediaNoiseReductionTemplate' => Descriptions::CreateMediaNoiseReductionTemplate(), // 创建音频降噪模板
                 'UpdateMediaNoiseReductionTemplate' => Descriptions::UpdateMediaNoiseReductionTemplate(), // 更新音频降噪模板
                 'CreateVoiceSoundHoundJobs' => Descriptions::CreateVoiceSoundHoundJobs(), // 提交听歌识曲任务
