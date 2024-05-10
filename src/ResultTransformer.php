@@ -86,6 +86,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $xmlData = json_decode(json_encode($obj),true);
                 if ($picRuleSize == 1 && isset($xmlData['ProcessResults']['Object'])){
@@ -101,6 +104,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $arr = json_decode(json_encode($obj),true);
                 $result['GuetzliStatus'] = isset($arr[0]) ? $arr[0] : '';
@@ -111,6 +117,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $arr = json_decode(json_encode($obj),true);
                 $result['CIStatus'] = isset($arr[0]) ? $arr[0] : '';
@@ -122,6 +131,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $arr = json_decode(json_encode($obj),true);
                 $result['OriginProtectStatus'] = isset($arr[0]) ? $arr[0] : '';
@@ -133,6 +145,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $arr = json_decode(json_encode($obj),true);
                 $result['Hotlink'] = $arr;
@@ -144,6 +159,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $arr = json_decode(json_encode($obj),true);
                 $result['TranslationResult'] = isset($arr[0]) ? $arr[0] : '';
@@ -204,6 +222,9 @@ class ResultTransformer {
             $length = intval($result['ContentLength']);
             if($length > 0){
                 $content = $this->geCiContentInfo($result, $length);
+                if (version_compare(PHP_VERSION, '8.0.0', '<')) {
+                    libxml_disable_entity_loader(true);
+                }
                 $obj = simplexml_load_string($content, "SimpleXMLElement", LIBXML_NOCDATA);
                 $xmlData = json_decode(json_encode($obj),true);
                 $result['Response'] = $xmlData;

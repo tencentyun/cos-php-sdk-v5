@@ -553,10 +553,29 @@ class Client extends GuzzleClient {
         return $rt;
     }
 
+    public static function simplifyPath($path) {
+        $names = explode("/", $path);
+        $stack = array();
+        foreach ($names as $name) {
+            if ($name == "..") {
+                if (!empty($stack)) {
+                    array_pop($stack);
+                }
+            } elseif ($name && $name != ".") {
+                array_push($stack, $name);
+            }
+        }
+        return "/" . implode("/", $stack);
+    }
+
     public function download($bucket, $key, $saveAs, $options = array()) {
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : RangeDownload::DEFAULT_PART_SIZE;
         $versionId = isset($options['VersionId']) ? $options['VersionId'] : '';
-
+        if ("/" == self::simplifyPath($key)) {
+            $e = new Exception\CosException('GET OBEJCT NOT FOUND');
+            $e->setExceptionCode('404');
+            throw $e;
+        }
         $rt = $this->headObject(array(
                 'Bucket'=>$bucket,
                 'Key'=>$key,
@@ -664,6 +683,12 @@ class Client extends GuzzleClient {
     }
     
     public static function explodeKey($key) {
+
+        if ("/" == self::simplifyPath($key)) {
+            $e = new Exception\CosException('GET OBEJCT NOT FOUND');
+            $e->setExceptionCode('404');
+            throw $e;
+        }
         // Remove a leading slash if one is found
         $split_key = explode('/', $key && $key[0] == '/' ? substr($key, 1) : $key);
         // Remove empty element
