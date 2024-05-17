@@ -284,6 +284,44 @@ class CosClientObjectTest extends TestCosClientBase {
     }
 
     /*
+     * get object,key访问getObject
+     * 404
+     */
+    public function testGetObjectInvalidKey()
+    {
+        try {
+            $key = "//////";
+            $this->cosClient->getObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $key,));
+            $this->assertTrue(False);
+        } catch (ServiceResponseException $e) {
+
+            $this->assertEquals(
+                404,
+                $e->getExceptionCode()
+            );
+        }
+    }
+
+    public function testGetObjectInvalidOtherKey()
+    {
+        try {
+            $key = "/../";
+            $this->cosClient->getObject(array(
+                'Bucket' => $this->bucket,
+                'Key' => $key,));
+            $this->assertTrue(False);
+        } catch (ServiceResponseException $e) {
+
+            $this->assertEquals(
+                404,
+                $e->getExceptionCode()
+            );
+        }
+    }
+
+    /*
      * range下载大文件
      * 200
      */
