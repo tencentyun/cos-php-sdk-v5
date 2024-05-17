@@ -297,12 +297,16 @@ class Client extends GuzzleClient {
         'locationWithScheme' => false,
         'autoChange' => true,
         'limit_flag' => false,
+        'isCheckRequestPath' => true,
     ];
 
     public function __construct(array $cosConfig) {
         $this->rawCosConfig = $cosConfig;
 
         $this->cosConfig = processCosConfig(array_replace_recursive($this->cosConfig, $cosConfig));
+
+        global $globalCosConfig;
+        $globalCosConfig = $this->cosConfig;
 
         // check config
         $this->inputCheck();
@@ -409,6 +413,7 @@ class Client extends GuzzleClient {
             null);
     }
 
+
     public function inputCheck() {
         $message = null;
         //检查Region
@@ -458,7 +463,7 @@ class Client extends GuzzleClient {
     public function responseToResultTransformer(ResponseInterface $response, RequestInterface $request, CommandInterface $command)
     {
 
-        $transformer = new ResultTransformer($this->cosConfig, $this->operation); 
+        $transformer = new ResultTransformer($this->cosConfig, $this->operation);
         $transformer->writeDataToLocal($command, $request, $response);
         $deseri = new Deserializer($this->desc, true);
         $result = $deseri($response, $request, $command);
@@ -469,7 +474,7 @@ class Client extends GuzzleClient {
         $result = $transformer->ciContentInfoTransformer($command, $result);
         return $result;
     }
-    
+
     public function __destruct() {
     }
 
@@ -571,8 +576,8 @@ class Client extends GuzzleClient {
     public function download($bucket, $key, $saveAs, $options = array()) {
         $options['PartSize'] = isset($options['PartSize']) ? $options['PartSize'] : RangeDownload::DEFAULT_PART_SIZE;
         $versionId = isset($options['VersionId']) ? $options['VersionId'] : '';
-        if ("/" == self::simplifyPath($key)) {
-            $e = new Exception\CosException('GET OBEJCT NOT FOUND');
+        if ($this->cosConfig['isCheckRequestPath'] && "/" == self::simplifyPath($key)) {
+            $e = new Exception\CosException('Getobject Key is illegal');
             $e->setExceptionCode('404');
             throw $e;
         }
@@ -683,9 +688,9 @@ class Client extends GuzzleClient {
     }
     
     public static function explodeKey($key) {
-
-        if ("/" == self::simplifyPath($key)) {
-            $e = new Exception\CosException('GET OBEJCT NOT FOUND');
+        global $globalCosConfig;
+        if ($globalCosConfig['isCheckRequestPath'] && "/" == self::simplifyPath($key)) {
+            $e = new Exception\CosException('Getobject Key is illegal');
             $e->setExceptionCode('404');
             throw $e;
         }
