@@ -259,7 +259,7 @@ use GuzzleHttp\Psr7\Uri;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.6.9';
+    const VERSION = '2.6.10';
 
     public $httpClient;
 
@@ -295,7 +295,7 @@ class Client extends GuzzleClient {
         'allow_accelerate' => false,
         'timezone' => 'PRC',
         'locationWithScheme' => false,
-        'autoChange' => true,
+        'autoChange' => false,
         'limit_flag' => false,
         'isCheckRequestPath' => true,
     ];
