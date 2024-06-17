@@ -3851,6 +3851,22 @@ class Service {
                 'UpdateMediaNoiseReductionTemplate' => Descriptions::UpdateMediaNoiseReductionTemplate(), // 更新音频降噪模板
                 'CreateVoiceSoundHoundJobs' => Descriptions::CreateVoiceSoundHoundJobs(), // 提交听歌识曲任务
                 'CreateVoiceVocalScoreJobs' => Descriptions::CreateVoiceVocalScoreJobs(), // 提交音乐评分任务
+                'CreateDataset' => Descriptions::CreateDataset(), // 创建数据集
+                'CreateDatasetBinding' => Descriptions::CreateDatasetBinding(), // 绑定存储桶与数据集
+                'CreateFileMetaIndex' => Descriptions::CreateFileMetaIndex(), // 创建元数据索引
+                'DatasetFaceSearch' => Descriptions::DatasetFaceSearch(), // 人脸搜索
+                'DatasetSimpleQuery' => Descriptions::DatasetSimpleQuery(), // 简单查询
+                'DeleteDataset' => Descriptions::DeleteDataset(), // 删除数据集
+                'DeleteDatasetBinding' => Descriptions::DeleteDatasetBinding(), // 解绑存储桶与数据集
+                'DeleteFileMetaIndex' => Descriptions::DeleteFileMetaIndex(), // 删除元数据索引
+                'DescribeDataset' => Descriptions::DescribeDataset(), // 查询数据集
+                'DescribeDatasetBinding' => Descriptions::DescribeDatasetBinding(), // 查询数据集与存储桶的绑定关系
+                'DescribeDatasetBindings' => Descriptions::DescribeDatasetBindings(), // 查询绑定关系列表
+                'DescribeDatasets' => Descriptions::DescribeDatasets(), // 列出数据集
+                'DescribeFileMetaIndex' => Descriptions::DescribeFileMetaIndex(), // 查询元数据索引
+                'SearchImage' => Descriptions::SearchImage(), // 图像检索
+                'UpdateDataset' => Descriptions::UpdateDataset(), // 更新数据集
+                'UpdateFileMetaIndex' => Descriptions::UpdateFileMetaIndex(), // 更新元数据索引
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7525,6 +7541,23 @@ class Service {
                 'UpdateMediaNoiseReductionTemplateOutput' => Descriptions::UpdateMediaNoiseReductionTemplateOutput(),
                 'CreateVoiceSoundHoundJobsOutput' => Descriptions::CreateVoiceSoundHoundJobsOutput(),
                 'CreateVoiceVocalScoreJobsOutput' => Descriptions::CreateVoiceVocalScoreJobsOutput(),
+                'CreateDatasetOutput' => Descriptions::CreateDatasetOutput(),
+                'CreateDatasetBindingOutput' => Descriptions::CreateDatasetBindingOutput(),
+                'CreateFileMetaIndexOutput' => Descriptions::CreateFileMetaIndexOutput(),
+                'DatasetFaceSearchOutput' => Descriptions::DatasetFaceSearchOutput(),
+                'DatasetSimpleQueryOutput' => Descriptions::DatasetSimpleQueryOutput(),
+                'DeleteDatasetOutput' => Descriptions::DeleteDatasetOutput(),
+                'DeleteDatasetBindingOutput' => Descriptions::DeleteDatasetBindingOutput(),
+                'DeleteFileMetaIndexOutput' => Descriptions::DeleteFileMetaIndexOutput(),
+                'DescribeDatasetOutput' => Descriptions::DescribeDatasetOutput(),
+                'DescribeDatasetBindingOutput' => Descriptions::DescribeDatasetBindingOutput(),
+                'DescribeDatasetBindingsOutput' => Descriptions::DescribeDatasetBindingsOutput(),
+                'DescribeDatasetsOutput' => Descriptions::DescribeDatasetsOutput(),
+                'DescribeFileMetaIndexOutput' => Descriptions::DescribeFileMetaIndexOutput(),
+                'SearchImageOutput' => Descriptions::SearchImageOutput(),
+                'UpdateDatasetOutput' => Descriptions::UpdateDatasetOutput(),
+                'UpdateFileMetaIndexOutput' => Descriptions::UpdateFileMetaIndexOutput(),
+
             )
         );
     }

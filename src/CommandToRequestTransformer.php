@@ -264,6 +264,54 @@ class CommandToRequestTransformer {
             $request = $request->withHeader( 'Host', $origin_host );
             return $request;
         }
+        if(key_exists($action, array(
+            'CreateDataset' => 1,
+            'DeleteDataset' => 1,
+            'DescribeDataset' => 1,
+            'DescribeDatasets' => 1,
+            'UpdateDataset' => 1,
+            'CreateDatasetBinding' => 1,
+            'DeleteDatasetBinding' => 1,
+            'DescribeDatasetBinding' => 1,
+            'DescribeDatasetBindings' => 1,
+            'CreateFileMetaIndex' => 1,
+            'DeleteFileMetaIndex' => 1,
+            'DescribeFileMetaIndex' => 1,
+            'UpdateFileMetaIndex' => 1,
+            'SearchImage' => 1,
+            'DatasetFaceSearch' => 1,
+            'DatasetSimpleQuery' => 1,
+        ))) {
+            if (!$command->hasParam( 'AppId' )){
+                $e = new Exception\CosException('params must include "Appid"');
+                $e->setExceptionCode('Invalid Argument');
+                throw $e;
+            }
+            $appid=$command['AppId'];
+            $origin_host = "$appid.ci.{$this->config['region']}.myqcloud.com";
+            $host = $origin_host;
+            if ($this->config['ip'] != null) {
+                $host = $this->config['ip'];
+                if ($this->config['port'] != null) {
+                    $host = $this->config['ip'] . ':' . $this->config['port'];
+                }
+            }
+
+            // 万象接口需要https，http方式报错
+            if ($this->config['scheme'] !== 'https') {
+                $e = new Exception\CosException('CI request scheme must be "https", instead of "http"');
+                $e->setExceptionCode('Invalid Argument');
+                throw $e;
+            }
+            $path = $this->config['scheme'].'://'. $host . $request->getUri()->getPath();
+            $uri = new Uri( $path );
+            $query = $request->getUri()->getQuery();
+            $uri = $uri->withQuery( $query );
+            $request = $request->withUri( $uri );
+            $request = $request->withHeader( 'Host', $origin_host );
+            return $request;
+        }
+        
         $ciActions = array(
             'DetectText' => 1,
             'CreateMediaTranscodeJobs' => 1,

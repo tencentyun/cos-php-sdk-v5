@@ -19189,5 +19189,1088 @@ class Descriptions {
             ),
         );
     }
+// 创建数据集
+// 本接口用于创建一个数据集（Dataset），数据集是由文件元数据构成的集合，用于存储和管理元数据。
+// https://cloud.tencent.com/document/product/460/106020
+    public static function CreateDataset() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/dataset',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateDatasetOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function CreateDatasetOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Dataset' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'BindCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'FileCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'TotalFileSize' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 绑定存储桶与数据集
+// 本文档介绍创建数据集（Dataset）和对象存储（COS）Bucket 的绑定关系，绑定后将使用创建数据集时所指定算子对文件进行处理。
+// 绑定关系创建后，将对 COS 中新增的文件进行准实时的增量追踪扫描，使用创建数据集时所指定算子对文件进行处理，抽取文件元数据信息进行索引。通过此方式为文件建立索引后，您可以使用元数据查询API对元数据进行查询、管理和统计。
+
+// https://cloud.tencent.com/document/product/460/106159
+    public static function CreateDatasetBinding() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/datasetbinding',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateDatasetBindingOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'URI' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function CreateDatasetBindingOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Binding' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                        'State' => array( 'location' => 'json', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Detail' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 创建元数据索引
+// 提取一个 COS 文件的元数据，在数据集中建立索引。会根据数据集中的算子提取不同的元数据建立索引，也支持建立自定义的元数据索引。
+// https://cloud.tencent.com/document/product/460/106022
+    public static function CreateFileMetaIndex() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/filemeta',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateFileMetaIndexOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'Callback' => array( 'location' => 'json', 'type' => 'string', ),
+                'File' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'CustomId' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Key' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Value' => array( 'location' => 'json', 'type' => 'string', ),
+                        'MediaType' => array( 'location' => 'json', 'type' => 'string', ),
+                        'ContentType' => array( 'location' => 'json', 'type' => 'string', ),
+                        'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                        'MaxFaceNum' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'Persons' => array(
+                            'location' => 'json',
+                            'type' => 'array',
+                            'items' => array(
+                                'location' => 'json',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'PersonId' => array( 'location' => 'json', 'type' => 'string', ),
+                                )
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+        );
+    }
+    public static function CreateFileMetaIndexOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'EventId' => array( 'location' => 'json', 'type' => 'string', ),
+
+            ),
+        );
+    }
+
+// 人脸搜索
+// 从数据集中搜索与指定图片最相似的前N张图片并返回人脸坐标可对数据集内文件进行一个或多个人员的人脸识别。
+// https://cloud.tencent.com/document/product/460/106166
+    public static function DatasetFaceSearch() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/datasetquery/facesearch',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DatasetFaceSearchOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                'MaxFaceNum' => array( 'location' => 'json', 'type' => 'integer', ),
+                'Limit' => array( 'location' => 'json', 'type' => 'integer', ),
+                'MatchThreshold' => array( 'location' => 'json', 'type' => 'integer', ),
+            ),
+
+        );
+    }
+    public static function DatasetFaceSearchOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'FaceResult' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'FaceInfos' => array(
+                                'location' => 'json',
+                                'type' => 'array',
+                                'items' => array(
+                                    'location' => 'json',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'PersonId' => array( 'location' => 'json', 'type' => 'string', ),
+                                        'FaceBoundary' => array(
+                                            'location' => 'json',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Height' => array( 'location' => 'json', 'type' => 'integer', ),
+                                                'Width' => array( 'location' => 'json', 'type' => 'integer', ),
+                                                'Left' => array( 'location' => 'json', 'type' => 'integer', ),
+                                                'Top' => array( 'location' => 'json', 'type' => 'integer', ),
+                                            ),
+                                        ),
+                                        'FaceId' => array( 'location' => 'json', 'type' => 'string', ),
+                                        'Score' => array( 'location' => 'json', 'type' => 'integer', ),
+                                        'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                                    )
+                                ),
+                            ),
+                        )
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 简单查询
+// 可以根据已提取的文件元数据（包含文件名、标签、路径、自定义标签、文本等字段）查询和统计数据集内文件，支持逻辑关系表达方式。
+// https://cloud.tencent.com/document/product/460/106375
+    public static function DatasetSimpleQuery() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/datasetquery/simple',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DatasetSimpleQueryOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'Query' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Operation' => array( 'location' => 'json', 'type' => 'string', ),
+                        'SubQueries' => array(
+                            'location' => 'json',
+                            'type' => 'array',
+                            'items' => array(
+                                'location' => 'json',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Value' => array( 'location' => 'json', 'type' => 'string', ),
+                                    'Operation' => array( 'location' => 'json', 'type' => 'string', ),
+                                    'Field' => array( 'location' => 'json', 'type' => 'string', ),
+                                )
+                            ),
+                        ),
+                        'Field' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Value' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+                'MaxResults' => array( 'location' => 'json', 'type' => 'integer', ),
+                'NextToken' => array( 'location' => 'json', 'type' => 'string', ),
+                'Sort' => array( 'location' => 'json', 'type' => 'string', ),
+                'Order' => array( 'location' => 'json', 'type' => 'string', ),
+                'Aggregations' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Operation' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Field' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+                'WithFields' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function DatasetSimpleQueryOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Files' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'ObjectId' => array( 'location' => 'json', 'type' => 'string', ),
+                            'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Filename' => array( 'location' => 'json', 'type' => 'string', ),
+                            'MediaType' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ContentType' => array( 'location' => 'json', 'type' => 'string', ),
+                            'COSStorageClass' => array( 'location' => 'json', 'type' => 'string', ),
+                            'COSCRC64' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Size' => array( 'location' => 'json', 'type' => 'integer', ),
+                            'CacheControl' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ContentDisposition' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ContentEncoding' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ContentLanguage' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ServerSideEncryption' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ETag' => array( 'location' => 'json', 'type' => 'string', ),
+                            'FileModifiedTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'CustomId' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ObjectACL' => array( 'location' => 'json', 'type' => 'string', ),
+                            'COSTaggingCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                            'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                        )
+                    ),
+                ),
+                'Aggregations' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'Operation' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Value' => array( 'location' => 'json', 'type' => 'float', ),
+                            'Groups' => array(
+                                'location' => 'json',
+                                'type' => 'array',
+                                'items' => array(
+                                    'location' => 'json',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Count' => array( 'location' => 'json', 'type' => 'integer', ),
+                                        'Value' => array( 'location' => 'json', 'type' => 'string', ),
+                                    )
+                                ),
+                            ),
+                            'Field' => array( 'location' => 'json', 'type' => 'string', ),
+                        )
+                    ),
+                ),
+                'NextToken' => array( 'location' => 'json', 'type' => 'string', ),
+
+            ),
+        );
+    }
+
+// 删除数据集
+// 删除一个数据集（Dataset）。
+// https://cloud.tencent.com/document/product/460/106157
+    public static function DeleteDataset() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/dataset',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DeleteDatasetOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function DeleteDatasetOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Dataset' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'BindCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'FileCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'TotalFileSize' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 解绑存储桶与数据集
+// 解绑数据集和对象存储（COS）Bucket ，解绑会导致 COS Bucket新增的变更不会同步到数据集，请谨慎操作。
+// https://cloud.tencent.com/document/product/460/106160
+    public static function DeleteDatasetBinding() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/datasetbinding',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DeleteDatasetBindingOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'URI' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function DeleteDatasetBindingOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+
+            ),
+        );
+    }
+
+// 删除元数据索引
+// 从数据集内删除一个文件的元信息。无论该文件的元信息是否在数据集内存在，均会返回删除成功。
+// 
+
+// https://cloud.tencent.com/document/product/460/106163
+    public static function DeleteFileMetaIndex() {
+        return array(
+            'httpMethod' => 'DELETE',
+            'uri' => '/filemeta',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DeleteFileMetaIndexOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'URI' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function DeleteFileMetaIndexOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+
+            ),
+        );
+    }
+
+// 查询数据集
+// 查询一个数据集（Dataset）信息。
+// https://cloud.tencent.com/document/product/460/106155
+    public static function DescribeDataset() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/dataset',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeDatasetOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'datasetname' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'statistics' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+            ),
+
+        );
+    }
+    public static function DescribeDatasetOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Dataset' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'BindCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'FileCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'TotalFileSize' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 查询数据集与存储桶的绑定关系
+// 查询数据集和对象存储（COS）Bucket 绑定关系列表。
+// https://cloud.tencent.com/document/product/460/106485
+    public static function DescribeDatasetBinding() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/datasetbinding',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeDatasetBindingOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'datasetname' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'uri' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+            ),
+
+        );
+    }
+    public static function DescribeDatasetBindingOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Binding' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                        'State' => array( 'location' => 'json', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Detail' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 查询绑定关系列表
+// 查询数据集和对象存储（COS）Bucket 绑定关系列表。
+// https://cloud.tencent.com/document/product/460/106161
+    public static function DescribeDatasetBindings() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/datasetbindings',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeDatasetBindingsOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'datasetname' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'maxresults' => array(
+                    'type' => 'integer',
+                    'location' => 'query'
+                ),
+                'nexttoken' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+            ),
+
+        );
+    }
+    public static function DescribeDatasetBindingsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'NextToken' => array( 'location' => 'json', 'type' => 'string', ),
+                'Bindings' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                            'State' => array( 'location' => 'json', 'type' => 'string', ),
+                            'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Detail' => array( 'location' => 'json', 'type' => 'string', ),
+                        )
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 列出数据集
+// 获取数据集（Dataset）列表。
+// https://cloud.tencent.com/document/product/460/106158
+    public static function DescribeDatasets() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/datasets',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeDatasetsOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'maxresults' => array(
+                    'type' => 'integer',
+                    'location' => 'query'
+                ),
+                'nexttoken' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'prefix' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+            ),
+
+        );
+    }
+    public static function DescribeDatasetsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Datasets' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                            'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'BindCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                            'FileCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                            'TotalFileSize' => array( 'location' => 'json', 'type' => 'integer', ),
+                            'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                        )
+                    ),
+                ),
+                'NextToken' => array( 'location' => 'json', 'type' => 'string', ),
+
+            ),
+        );
+    }
+
+// 查询元数据索引
+// 获取数据集内已完成索引的一个文件的元数据。
+// https://cloud.tencent.com/document/product/460/106164
+    public static function DescribeFileMetaIndex() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/filemeta',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DescribeFileMetaIndexOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'datasetname' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+                'uri' => array(
+                    'type' => 'string',
+                    'location' => 'query'
+                ),
+            ),
+
+        );
+    }
+    public static function DescribeFileMetaIndexOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Files' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Filename' => array( 'location' => 'json', 'type' => 'string', ),
+                            'MediaType' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ContentType' => array( 'location' => 'json', 'type' => 'string', ),
+                            'COSStorageClass' => array( 'location' => 'json', 'type' => 'string', ),
+                            'COSCRC64' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ObjectACL' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Size' => array( 'location' => 'json', 'type' => 'integer', ),
+                            'CacheControl' => array( 'location' => 'json', 'type' => 'string', ),
+                            'ETag' => array( 'location' => 'json', 'type' => 'string', ),
+                            'FileModifiedTime' => array( 'location' => 'json', 'type' => 'string', ),
+                            ' CustomId' => array( 'location' => 'json', 'type' => 'string', ),
+                        )
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 图像检索
+// 可通过输入自然语言或图片，基于语义对数据集内文件进行图像检索。
+// https://cloud.tencent.com/document/product/460/106376
+    public static function SearchImage() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/datasetquery/imagesearch',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'SearchImageOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'Mode' => array( 'location' => 'json', 'type' => 'string', ),
+                'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                'Limit' => array( 'location' => 'json', 'type' => 'integer', ),
+                'Text' => array( 'location' => 'json', 'type' => 'string', ),
+                'MatchThreshold' => array( 'location' => 'json', 'type' => 'integer', ),
+            ),
+
+        );
+    }
+    public static function SearchImageOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'ImageResult' => array(
+                    'location' => 'json',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'json',
+                        'type' => 'object',
+                        'properties' => array(
+                            'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                            'Score' => array( 'location' => 'json', 'type' => 'integer', ),
+                        )
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 更新数据集
+// 更新一个数据集（Dataset）信息。
+// https://cloud.tencent.com/document/product/460/106156
+    public static function UpdateDataset() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/dataset',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateDatasetOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function UpdateDatasetOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Dataset' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Description' => array( 'location' => 'json', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'json', 'type' => 'string', ),
+                        'BindCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'FileCount' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'TotalFileSize' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 更新元数据索引
+// 更新数据集内已索引的一个文件的部分元数据。
+// 
+//并非所有的元数据都允许您自定义更新，在您发起更新请求时需要填写数据集，默认会根据该数据集的算子进行元数据重新提取并更新已存在的索引，此外您也可以更新部分自定义的元数据索引，如CustomTags、CustomId等字段，具体请参考请求参数一节。
+// https://cloud.tencent.com/document/product/460/106162
+    public static function UpdateFileMetaIndex() {
+        return array(
+            'httpMethod' => 'PUT',
+            'uri' => '/filemeta',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'UpdateFileMetaIndexOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
+                'Callback' => array( 'location' => 'json', 'type' => 'string', ),
+                'File' => array(
+                    'location' => 'json',
+                    'type' => 'object',
+                    'properties' => array(
+                        'CustomId' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Key' => array( 'location' => 'json', 'type' => 'string', ),
+                        'Value' => array( 'location' => 'json', 'type' => 'string', ),
+                        'MediaType' => array( 'location' => 'json', 'type' => 'string', ),
+                        'ContentType' => array( 'location' => 'json', 'type' => 'string', ),
+                        'URI' => array( 'location' => 'json', 'type' => 'string', ),
+                        'MaxFaceNum' => array( 'location' => 'json', 'type' => 'integer', ),
+                        'Persons' => array(
+                            'location' => 'json',
+                            'type' => 'array',
+                            'items' => array(
+                                'location' => 'json',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'PersonId' => array( 'location' => 'json', 'type' => 'string', ),
+                                )
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+        );
+    }
+    public static function UpdateFileMetaIndexOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'EventId' => array( 'location' => 'json', 'type' => 'string', ),
+
+            ),
+        );
+    }
+
 
 }
