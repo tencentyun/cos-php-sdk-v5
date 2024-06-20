@@ -256,22 +256,22 @@ use GuzzleHttp\Psr7\Uri;
  * @method object UpdateMediaNoiseReductionTemplate(array $args) 更新音频降噪模板
  * @method object CreateVoiceSoundHoundJobs(array $args) 提交听歌识曲任务
  * @method object CreateVoiceVocalScoreJobs(array $args) 提交音乐评分任务
- * @method object CreateDataset(array $args) // 创建数据集
- * @method object CreateDatasetBinding(array $args) // 绑定存储桶与数据集
- * @method object CreateFileMetaIndex(array $args) // 创建元数据索引
- * @method object DatasetFaceSearch(array $args) // 人脸搜索
- * @method object DatasetSimpleQuery(array $args) // 简单查询
- * @method object DeleteDataset(array $args) // 删除数据集
- * @method object DeleteDatasetBinding(array $args) // 解绑存储桶与数据集
- * @method object DeleteFileMetaIndex(array $args) // 删除元数据索引
- * @method object DescribeDataset(array $args) // 查询数据集
- * @method object DescribeDatasetBinding(array $args) // 查询数据集与存储桶的绑定关系
- * @method object DescribeDatasetBindings(array $args) // 查询绑定关系列表
- * @method object DescribeDatasets(array $args) // 列出数据集
- * @method object DescribeFileMetaIndex(array $args) // 查询元数据索引
- * @method object SearchImage(array $args) // 图像检索
- * @method object UpdateDataset(array $args) // 更新数据集
- * @method object UpdateFileMetaIndex(array $args) // 更新元数据索引
+ * @method object CreateDataset(array $args) 创建数据集
+ * @method object CreateDatasetBinding(array $args) 绑定存储桶与数据集
+ * @method object CreateFileMetaIndex(array $args) 创建元数据索引
+ * @method object DatasetFaceSearch(array $args) 人脸搜索
+ * @method object DatasetSimpleQuery(array $args) 简单查询
+ * @method object DeleteDataset(array $args) 删除数据集
+ * @method object DeleteDatasetBinding(array $args) 解绑存储桶与数据集
+ * @method object DeleteFileMetaIndex(array $args) 删除元数据索引
+ * @method object DescribeDataset(array $args) 查询数据集
+ * @method object DescribeDatasetBinding(array $args) 查询数据集与存储桶的绑定关系
+ * @method object DescribeDatasetBindings(array $args) 查询绑定关系列表
+ * @method object DescribeDatasets(array $args) 列出数据集
+ * @method object DescribeFileMetaIndex(array $args) 查询元数据索引
+ * @method object SearchImage(array $args) 图像检索
+ * @method object UpdateDataset(array $args) 更新数据集
+ * @method object UpdateFileMetaIndex(array $args) 更新元数据索引
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
