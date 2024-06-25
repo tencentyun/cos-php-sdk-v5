@@ -22,9 +22,22 @@ try {
 		),
 		'DatasetName'=> 'test', // 数据集名称，同一个账户下唯一。;是否必传：是
 		// 简单查询参数条件，可自嵌套。;是否必传：是
-		'Query'=> array(
-		  'Operation'=> 'and', // 操作运算符。枚举值： not：逻辑非。 or：逻辑或。 and：逻辑与。 lt：小于。 lte：小于等于。 gt：大于。 gte：大于等于。 eq：等于。 exist：存在性查询。 prefix：前缀查询。 match-phrase：字符串匹配查询。 nested：字段为数组时，其中同一对象内逻辑条件查询。;是否必传：是
-		),
+        'Query'=> array(
+            'Operation'=> 'and', // 操作运算符。枚举值： not：逻辑非。 or：逻辑或。 and：逻辑与。 lt：小于。 lte：小于等于。 gt：大于。 gte：大于等于。 eq：等于。 exist：存在性查询。 prefix：前缀查询。 match-phrase：字符串匹配查询。 nested：字段为数组时，其中同一对象内逻辑条件查询。;是否必传：是
+            'SubQueries' => array(
+                array(
+                    'Field'=> 'ContentType',
+                    'Value'=> 'image/jpeg',
+                    'Operation'=> 'eq',
+                ),
+                array(
+                    'Field'=> 'Size',
+                    'Value'=> '1000',
+                    'Operation'=> 'gt',
+                ),
+            ),
+        ),
+
 		'MaxResults'=> 100, // 返回文件元数据的最大个数，取值范围为0200。 使用聚合参数时，该值表示返回分组的最大个数，取值范围为02000。 不设置此参数或者设置为0时，则取默认值100。;是否必传：否
 		'Sort'=> 'CustomId', // 排序字段列表。请参考字段和操作符的支持列表。 多个排序字段可使用半角逗号（,）分隔，例如：Size,Filename。 最多可设置5个排序字段。 排序字段顺序即为排序优先级顺序。;是否必传：是
 		'Order'=> 'desc', // 排序字段的排序方式。取值如下： asc：升序； desc（默认）：降序。 多个排序方式可使用半角逗号（,）分隔，例如：asc,desc。 排序方式不可多于排序字段，即参数Order的元素数量需小于等于参数Sort的元素数量。例如Sort取值为Size,Filename时，Order可取值为asc,desc或asc。 排序方式少于排序字段时，未排序的字段默认取值asc。例如Sort取值为Size,Filename，Order取值为asc时，Filename默认排序方式为asc，即升序排列;是否必传：是
