@@ -25,6 +25,7 @@ try {
     $imageWatermarkRule->setSpcent(200); // 与 scatype 搭配使用
     $imageWatermarkRule->setDissolve(70); // 图片水印的透明度
     $imageWatermarkRule->setBatch(1); // 平铺水印功能，可将图片水印平铺至整张图片
+    $imageWatermarkRule->setSpacing(10); // 平铺模式下的水平、垂直间距相对文字水印贴图的宽高百分比，范围为[0,100]，默认10
     $imageWatermarkRule->setDegree(90); // 当 batch 值为1时生效。图片水印的旋转角度设置
 
     $picOperations = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();

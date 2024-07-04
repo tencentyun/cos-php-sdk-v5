@@ -20271,6 +20271,769 @@ class Descriptions {
             ),
         );
     }
+// 压缩包预览
+// 该接口可以在不解压文件的情况下预览压缩包内的内容，包含文件数量、名称、文件时间等，接口为同步请求方式
+// https://cloud.tencent.com/document/product/460/93030
+    public static function ZipFilePreview() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ZipFilePreviewOutput',
+            'responseType' => 'model',
+
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Key' => array(
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'zipfileUrl' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'zipfile-url'
+                ),
+                'uncompressKey' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'uncompress-key'
+                ),
+            ),
+
+        );
+    }
+    public static function ZipFilePreviewOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-cos-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'FileNumber' => array( 'location' => 'xml', 'type' => 'integer', ),
+                'IsTruncated' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Contents' => array(
+                    'location' => 'xml',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'xml',
+                        'type' => 'object',
+                        'properties' => array(
+                            'Key' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'LastModified' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'UncompressedSize' => array( 'location' => 'xml', 'type' => 'integer', ),
+                        )
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 获取hls播放密钥
+// 该接口用于获取hls播放密钥。
+// https://cloud.tencent.com/document/product/436/104292
+    public static function GetHLSPlayKey() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}playKey',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetHLSPlayKeyOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+            ),
+
+        );
+    }
+    public static function GetHLSPlayKeyOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'PlayKeyList' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'MasterPlayKey' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'BackupPlayKey' => array( 'location' => 'xml', 'type' => 'string', ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 提交任务
+// 提交一个视频明水印任务
+// https://cloud.tencent.com/document/product/460/84781
+    public static function PostWatermarkJobs() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'PostWatermarkJobsOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'WatermarkTemplateId' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Output' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Region' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Bucket' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                            ),
+                        ),
+                        'UserData' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'JobLevel' => array( 'location' => 'xml', 'type' => 'string', ),
+                    ),
+                ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+            ),
+
+        );
+    }
+    public static function PostWatermarkJobsOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'location' => 'xml',
+                    'type' => 'array',
+                    'items' => array(
+                        'location' => 'xml',
+                        'type' => 'object',
+                        'properties' => array(
+                            'Code' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'Message' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'JobId' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'State' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'CreationTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'EndTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                            'Input' => array(
+                                'location' => 'xml',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'Region' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    'Bucket' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                                ),
+                            ),
+                            'Operation' => array(
+                                'location' => 'xml',
+                                'type' => 'object',
+                                'properties' => array(
+                                    'WatermarkTemplateId' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    'UserData' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    'JobLevel' => array( 'location' => 'xml', 'type' => 'string', ),
+                                ),
+                            ),
+                        )
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 生成播放列表
+// 生成边转边播的播放列表能够分析视频文件产出 m3u8 文件。生成播放列表后即时播放，并根据播放进度实施按需转码，相比离线转码能极大减少了转码等待时间并大幅度降低了转码和存储开销
+// https://cloud.tencent.com/document/product/460/106683
+    public static function GeneratePlayList() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}jobs',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GeneratePlayListOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Input' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                    ),
+                ),
+                'Operation' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Transcode' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Container' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Format' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'ClipConfig' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                'Video' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Codec' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Width' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Height' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Bitrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Fps' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Gop' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Maxrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    ),
+                                ),
+                                'TransConfig' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'InitialClipNum' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'CosTag' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'HlsEncrypt' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'IsHlsEncrypt' => array( 'location' => 'xml', 'type' => 'string', ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        'Output' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Region' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Bucket' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                            ),
+                        ),
+                        'UserData' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'JobLevel' => array( 'location' => 'xml', 'type' => 'string', ),
+                    ),
+                ),
+                'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
+                'CallBackMqConfig' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'MqRegion' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'MqMode' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'MqName' => array( 'location' => 'xml', 'type' => 'string', ),
+                    ),
+                ),
+            ),
+
+        );
+    }
+    public static function GeneratePlayListOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'JobsDetail' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Code' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Message' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'JobId' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'State' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Progress' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'CreationTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'EndTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Input' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'BucketId' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Region' => array( 'location' => 'xml', 'type' => 'string', ),
+                            ),
+                        ),
+                        'Operation' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Transcode' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Container' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Format' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'ClipConfig' => array(
+                                                    'location' => 'xml',
+                                                    'type' => 'object',
+                                                    'properties' => array(
+                                                        'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                        'Video' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Codec' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Width' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Height' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Bitrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Fps' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Gop' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Maxrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                            ),
+                                        ),
+                                        'TransConfig' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'InitialClipNum' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'CosTag' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'HlsEncrypt' => array(
+                                                    'location' => 'xml',
+                                                    'type' => 'object',
+                                                    'properties' => array(
+                                                        'IsHlsEncrypt' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                'Output' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Region' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Bucket' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Object' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    ),
+                                ),
+                                'UserData' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'JobLevel' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'TemplateName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'MediaInfo' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Format' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'NumStream' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'NumProgram' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'FormatName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'FormatLongName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Bitrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Size' => array( 'location' => 'xml', 'type' => 'string', ),
+                                            ),
+                                        ),
+                                        'Stream' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Video' => array(
+                                                    'location' => 'xml',
+                                                    'type' => 'array',
+                                                    'items' => array(
+                                                        'location' => 'xml',
+                                                        'type' => 'object',
+                                                        'properties' => array(
+                                                            'Index' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecLongName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecTimeBase' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecTagString' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecTag' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'ColorPrimaries' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'ColorRange' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'ColorTransfer' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Profile' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Height' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Width' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'HasBFrame' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'RefFrames' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Sar' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Dar' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'PixFormat' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'FieldOrder' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Level' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Fps' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'AvgFps' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Timebase' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Bitrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'NumFrames' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Language' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                        )
+                                                    ),
+                                                ),
+                                                'Audio' => array(
+                                                    'location' => 'xml',
+                                                    'type' => 'array',
+                                                    'items' => array(
+                                                        'location' => 'xml',
+                                                        'type' => 'object',
+                                                        'properties' => array(
+                                                            'Index' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecLongName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecTimeBase' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecTagString' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'CodecTag' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'SampleFmt' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'SampleRate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Channel' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'ChannelLayout' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Timebase' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Duration' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Bitrate' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Language' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                        )
+                                                    ),
+                                                ),
+                                                'Subtitle' => array(
+                                                    'location' => 'xml',
+                                                    'type' => 'array',
+                                                    'items' => array(
+                                                        'location' => 'xml',
+                                                        'type' => 'object',
+                                                        'properties' => array(
+                                                            'Index' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Language' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                        )
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                                'MediaResult' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'OutputFile' => array(
+                                            'location' => 'xml',
+                                            'type' => 'object',
+                                            'properties' => array(
+                                                'Bucket' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Region' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'ObjectName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                'Md5Info' => array(
+                                                    'location' => 'xml',
+                                                    'type' => 'array',
+                                                    'items' => array(
+                                                        'location' => 'xml',
+                                                        'type' => 'object',
+                                                        'properties' => array(
+                                                            'ObjectName' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                            'Md5' => array( 'location' => 'xml', 'type' => 'string', ),
+                                                        )
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
+// 创建模板
+// 创建明水印模板
+// https://cloud.tencent.com/document/product/460/84725
+    public static function CreateWatermarkTemplate() {
+        return array(
+            'httpMethod' => 'POST',
+            'uri' => '/{Bucket}template',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'CreateWatermarkTemplateOutput',
+            'responseType' => 'model',
+            'data' => array(
+                'xmlRoot' => array(
+                    'name' => 'Request',
+                ),
+            ),
+            'parameters' => array(
+                'Bucket' => array(
+                    'required' => true,
+                    'type' => 'string',
+                    'location' => 'uri',
+                ),
+                'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                'Watermark' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'Type' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Pos' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'LocMode' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Dx' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Dy' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'EndTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'SlideConfig' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'SlideMode' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'XSlideSpeed' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'YSlideSpeed' => array( 'location' => 'xml', 'type' => 'string', ),
+                            ),
+                        ),
+                        'Image' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Url' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Mode' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Width' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Height' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Transparency' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Background' => array( 'location' => 'xml', 'type' => 'string', ),
+                            ),
+                        ),
+                        'Text' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'FontSize' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'FontType' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'FontColor' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Transparency' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Text' => array( 'location' => 'xml', 'type' => 'string', ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+
+        );
+    }
+    public static function CreateWatermarkTemplateOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'x-ci-request-id',
+                ),
+                'ContentType' => array(
+                    'type' => 'string',
+                    'location' => 'header',
+                    'sentAs' => 'Content-Type',
+                ),
+                'ContentLength' => array(
+                    'type' => 'numeric',
+                    'minimum'=> 0,
+                    'location' => 'header',
+                    'sentAs' => 'Content-Length',
+                ),
+                'Template' => array(
+                    'location' => 'xml',
+                    'type' => 'object',
+                    'properties' => array(
+                        'TemplateId' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Name' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'BucketId' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Category' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'UpdateTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'CreateTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                        'Watermark' => array(
+                            'location' => 'xml',
+                            'type' => 'object',
+                            'properties' => array(
+                                'Type' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Pos' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'LocMode' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Dx' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'Dy' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'StartTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'EndTime' => array( 'location' => 'xml', 'type' => 'string', ),
+                                'SlideConfig' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'SlideMode' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'XSlideSpeed' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'YSlideSpeed' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    ),
+                                ),
+                                'Image' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'Url' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Mode' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Width' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Height' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Transparency' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Background' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    ),
+                                ),
+                                'Text' => array(
+                                    'location' => 'xml',
+                                    'type' => 'object',
+                                    'properties' => array(
+                                        'FontSize' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'FontType' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'FontColor' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Transparency' => array( 'location' => 'xml', 'type' => 'string', ),
+                                        'Text' => array( 'location' => 'xml', 'type' => 'string', ),
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+
+            ),
+        );
+    }
+
 
 
 }

@@ -17,6 +17,7 @@ try {
     $blindWatermarkTemplate->setImage("http://examplebucket-125000000.cos.ap-beijing.myqcloud.com/shuiyin.jpeg");
     $blindWatermarkTemplate->setType(2);
     $blindWatermarkTemplate->setLevel(3);
+    $blindWatermarkTemplate->setVersion("2.0");
 
     // -------------------- 1. 下载时处理 -------------------- //
     $result = $cosClient->getObject(array(

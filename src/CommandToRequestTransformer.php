@@ -434,6 +434,10 @@ class CommandToRequestTransformer {
             'UpdateMediaNoiseReductionTemplate' => 1,
             'CreateVoiceSoundHoundJobs' => 1,
             'CreateVoiceVocalScoreJobs' => 1,
+            'GetHLSPlayKey' => 1,
+            'PostWatermarkJobs' => 1,
+            'GeneratePlayList' => 1,
+            'CreateWatermarkTemplate' => 1,
         );
         if (key_exists($action, $ciActions)) {
             // 万象接口需要https，http方式报错

@@ -8,6 +8,7 @@ class BlindWatermarkTemplate extends ImageTemplate {
     private $image;
     private $text;
     private $level;
+    private $version;
 
     public function __construct() {
         parent::__construct();
@@ -16,6 +17,7 @@ class BlindWatermarkTemplate extends ImageTemplate {
         $this->image = "";
         $this->text = "";
         $this->level = "";
+        $this->version = "";
 
     }
 
@@ -38,6 +40,9 @@ class BlindWatermarkTemplate extends ImageTemplate {
     public function setLevel($value) {
         $this->level = "/level/" . $value;
     }
+    public function setVersion($value) {
+        $this->version = "/version/" . $value;
+    }
 
     public function getType() {
         return $this->type;
@@ -53,6 +58,10 @@ class BlindWatermarkTemplate extends ImageTemplate {
 
     public function getLevel() {
         return $this->level;
+    }
+
+    public function getVersion() {
+        return $this->version;
     }
 
 
@@ -71,6 +80,9 @@ class BlindWatermarkTemplate extends ImageTemplate {
         if($this->level){
             $res .= $this->level;
         }
+        if($this->version){
+            $res .= $this->version;
+        }
         if($res){
             $res = $head . $res;
         }
@@ -83,5 +95,6 @@ class BlindWatermarkTemplate extends ImageTemplate {
         $this->image = "";
         $this->text = "";
         $this->level = "";
+        $this->version = "";
     }
 }

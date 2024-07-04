@@ -3867,6 +3867,12 @@ class Service {
                 'SearchImage' => Descriptions::SearchImage(), // 图像检索
                 'UpdateDataset' => Descriptions::UpdateDataset(), // 更新数据集
                 'UpdateFileMetaIndex' => Descriptions::UpdateFileMetaIndex(), // 更新元数据索引
+                'ZipFilePreview' => Descriptions::ZipFilePreview(), // 压缩包预览同步请求
+                'GetHLSPlayKey' => Descriptions::GetHLSPlayKey(), // 获取hls播放密钥
+                'PostWatermarkJobs' => Descriptions::PostWatermarkJobs(), // 视频明水印-提交任务
+                'GeneratePlayList' => Descriptions::GeneratePlayList(), // 生成播放列表
+                'CreateWatermarkTemplate' => Descriptions::CreateWatermarkTemplate(), // 创建明水印模板
+
             ),
             'models' => array(
                 'AbortMultipartUploadOutput' => array(
@@ -7557,6 +7563,11 @@ class Service {
                 'SearchImageOutput' => Descriptions::SearchImageOutput(),
                 'UpdateDatasetOutput' => Descriptions::UpdateDatasetOutput(),
                 'UpdateFileMetaIndexOutput' => Descriptions::UpdateFileMetaIndexOutput(),
+                'ZipFilePreviewOutput' => Descriptions::ZipFilePreviewOutput(),
+                'GetHLSPlayKeyOutput' => Descriptions::GetHLSPlayKeyOutput(),
+                'PostWatermarkJobsOutput' => Descriptions::PostWatermarkJobsOutput(),
+                'GeneratePlayListOutput' => Descriptions::GeneratePlayListOutput(),
+                'CreateWatermarkTemplateOutput' => Descriptions::CreateWatermarkTemplateOutput(),
 
             )
         );
