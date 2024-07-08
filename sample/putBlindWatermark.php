@@ -17,6 +17,7 @@ try {
     $blindWatermarkTemplate = new Qcloud\Cos\ImageParamTemplate\BlindWatermarkTemplate();
     $blindWatermarkTemplate->setText("Test");
     $blindWatermarkTemplate->setType(3);
+    $blindWatermarkTemplate->setVersion("2.0");
     $picOperationsTemplate = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();
     $picOperationsTemplate->setIsPicInfo(1);
     $picOperationsTemplate->addRule($blindWatermarkTemplate, "resultobject");

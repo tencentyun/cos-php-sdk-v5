@@ -18,6 +18,7 @@ try {
     $blindWatermarkTemplate->setPick();
     $blindWatermarkTemplate->setImage("http://examplebucket-125000000.cos.ap-beijing.myqcloud.com/shuiyin.jpeg");
     $blindWatermarkTemplate->setType(2);
+    $blindWatermarkTemplate->setVersion("2.0");
     $picOperationsTemplate = new Qcloud\Cos\ImageParamTemplate\PicOperationsTransformation();
     $picOperationsTemplate->setIsPicInfo(1);
     $picOperationsTemplate->addRule($blindWatermarkTemplate, "resultobject");
