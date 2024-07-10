@@ -17,7 +17,7 @@ $payload = array(
     "IssuedTimeStamp" => time(),
     "ExpireTimeStamp" => time() + 3600 * 6,
     "UsageLimit" => 3,
-    "ProtectSchema" => "rsa1024",
+    "ProtectScheme" => "rsa1024",
     "PublicKey" => base64_encode($publicKey),
     "ProtectContentKey" => 1,
 );

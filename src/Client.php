@@ -272,11 +272,11 @@ use GuzzleHttp\Psr7\Uri;
  * @method object SearchImage(array $args) 图像检索
  * @method object UpdateDataset(array $args) 更新数据集
  * @method object UpdateFileMetaIndex(array $args) 更新元数据索引
- * @method object ZipFilePreview(array $args) // 压缩包预览同步请求
- * @method object GetHLSPlayKey(array $args) // 获取hls播放密钥
- * @method object PostWatermarkJobs(array $args) // 视频明水印-提交任务
- * @method object GeneratePlayList(array $args) // 生成播放列表
- * @method object CreateWatermarkTemplate(array $args) // 创建明水印模板
+ * @method object ZipFilePreview(array $args) 压缩包预览同步请求
+ * @method object GetHLSPlayKey(array $args) 获取hls播放密钥
+ * @method object PostWatermarkJobs(array $args) 视频明水印-提交任务
+ * @method object GeneratePlayList(array $args) 生成播放列表
+ * @method object CreateWatermarkTemplate(array $args) 创建明水印模板
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
