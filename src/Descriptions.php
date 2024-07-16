@@ -1024,6 +1024,7 @@ class Descriptions {
                                             'Url' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
                                             'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'FragmentIndex' => array( 'type' => 'string', 'location' => 'xml', ),
                                             // 'Mode' => array( 'type' => 'string', 'location' => 'xml', ), 拼接接口不需要Mode参数
                                         ),
                                     ),
