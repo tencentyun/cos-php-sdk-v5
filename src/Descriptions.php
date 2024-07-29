@@ -20278,7 +20278,7 @@ class Descriptions {
     public static function ZipFilePreview() {
         return array(
             'httpMethod' => 'GET',
-            'uri' => '/{Bucket}{/Key*}?ci-process=',
+            'uri' => '/{Bucket}{/Key*}?ci-process=zippreview',
             'class' => 'Qcloud\\Cos\\Command',
             'responseClass' => 'ZipFilePreviewOutput',
             'responseType' => 'model',
