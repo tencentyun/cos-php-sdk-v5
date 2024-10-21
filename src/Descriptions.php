@@ -12866,6 +12866,7 @@ class Descriptions {
                 'eyeEnlarging' => array( 'type' => 'integer', 'location' => 'query', ),
                 'gender' => array( 'type' => 'integer', 'location' => 'query', ),
                 'age' => array( 'type' => 'integer', 'location' => 'query', ),
+                'detectUrl' => array('type' => 'string', 'location' => 'query', 'sentAs' => 'detect-url'),
             ),
         );
     }

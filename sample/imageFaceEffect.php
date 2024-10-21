@@ -14,7 +14,7 @@ $cosClient = new Qcloud\Cos\Client(
             'secretKey' => $secretKey)));
 try {
     // 人脸特效 https://cloud.tencent.com/document/product/460/47197
-    $result = $cosClient->imageFaceEffect(array(
+    $result = $cosClient->ImageFaceEffect(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Key' => '', // ObjectKey
         'type' => 'face-beautify', // 人脸特效类型。人脸美颜：face-beautify；人脸性别转换：face-gender-transformation；人脸年龄变化：face-age-transformation；人像分割：face-segmentation
