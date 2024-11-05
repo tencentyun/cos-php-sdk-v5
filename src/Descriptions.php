@@ -4050,7 +4050,7 @@ class Descriptions {
     public static function DetectImage() {
         return array(
             'httpMethod' => 'GET',
-            'uri' => '/{Bucket}{/Key*}',
+            'uri' => '/{Bucket}{/Key*}?ci-process=sensitive-content-recognition',
             'class' => 'Qcloud\\Cos\\Command',
             'responseClass' => 'DetectImageOutput',
             'responseType' => 'model',
@@ -4069,10 +4069,67 @@ class Descriptions {
                         'Qcloud\\Cos\\Client::explodeKey'
                     )
                 ),
-                'ci-process' => array(
+                'DetectType' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'detect-type'
+                ),
+                'DetectUrl' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'detect-url'
+                ),
+                'Interval' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'interval'
+                ),
+                'MaxFrames' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'max-frames'
+                ),
+                'BizType' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'biz-type'
+                ),
+                'LargeImageDetect' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'large-image-detect'
+                ),
+                'DataId' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'dataid'
+                ),
+                'Async' => array(
+                    'type' => 'integer',
+                    'location' => 'query',
+                    'sentAs' => 'async'
+                ),
+                'Callback' => array(
+                    'type' => 'string',
+                    'location' => 'query',
+                    'sentAs' => 'callback'
+                ),
+            ),
+        );
+    }
+
+    public static function DetectImageUrl() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}?ci-process=sensitive-content-recognition',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'DetectImageOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array(
                     'required' => true,
                     'type' => 'string',
-                    'location' => 'query'
+                    'location' => 'uri',
                 ),
                 'DetectType' => array(
                     'type' => 'string',

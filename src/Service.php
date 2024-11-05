@@ -3710,6 +3710,7 @@ class Service {
                 'DescribeDocProcessJob' => Descriptions::DescribeDocProcessJob(), // 查询文档转码任务
                 'GetDescribeDocProcessJobs' => Descriptions::GetDescribeDocProcessJobs(), // 拉取符合条件的文档转码任务
                 'DetectImage' => Descriptions::DetectImage(), // 图片审核
+                'DetectImageUrl' => Descriptions::DetectImageUrl(), // 图片审核
                 'DetectImages' => Descriptions::DetectImages(), // 图片审核-批量
                 'DetectVirus' => Descriptions::DetectVirus(), // 云查毒
                 'GetDetectVirusResult' => Descriptions::GetDetectVirusResult(), // 查询病毒检测任务结果
