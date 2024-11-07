@@ -13905,6 +13905,7 @@ class Descriptions {
                             'properties' => array(
                                 'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'PrefixReplaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'UnCompressKey' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                         'Output' => array(

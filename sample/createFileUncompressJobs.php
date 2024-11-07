@@ -25,6 +25,7 @@ try {
             'FileUncompressConfig' => array(
                 'Prefix' => 'prefix',
                 'PrefixReplaced' => '1',
+                // 'UnCompressKey' => '',  //解压密钥，传入时需先经过 base64编码。
             ),
             'Output' => array(
                 'Region' => $region,
