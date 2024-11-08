@@ -13905,6 +13905,8 @@ class Descriptions {
                             'properties' => array(
                                 'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'PrefixReplaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'UnCompressKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'ListingFile' => array( 'type' => 'boolean', 'location' => 'xml', 'format' => 'boolean-string',),
                             ),
                         ),
                         'Output' => array(
@@ -14061,6 +14063,7 @@ class Descriptions {
                         'JobId' => array( 'type' => 'string', 'location' => 'xml', ),
                         'Tag' => array( 'type' => 'string', 'location' => 'xml', ),
                         'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Progress' => array( 'type' => 'integer', 'location' => 'xml', ),
                         'CreationTime' => array( 'type' => 'string', 'location' => 'xml', ),
                         'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
                         'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
@@ -14085,6 +14088,7 @@ class Descriptions {
                                     'properties' => array(
                                         'Region' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Object' => array( 'type' => 'string', 'location' => 'xml', ),
                                     ),
                                 ),
                                 'FileUncompressConfig' => array(
@@ -14093,6 +14097,8 @@ class Descriptions {
                                     'properties' => array(
                                         'Prefix' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'PrefixReplaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'UnCompressKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ListingFile' => array( 'type' => 'boolean', 'location' => 'xml', ),
                                     ),
                                 ),
                                 'FileUncompressResult' => array(
@@ -14102,6 +14108,26 @@ class Descriptions {
                                         'Region' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'Bucket' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'FileCount' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'FileList' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'IsTruncated' => array( 'type' => 'boolean', 'location' => 'xml', ),
+                                                'Contents' => array(
+                                                    'type' => 'array',
+                                                    'location' => 'xml',
+                                                    'items' => array(
+                                                        'type' => 'object',
+                                                        'location' => 'xml',
+                                                        'properties' => array(
+                                                            'Key' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                            'LastModified' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                            'FileSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                                        ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
                                     ),
                                 ),
                             ),
