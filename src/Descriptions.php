@@ -2145,7 +2145,7 @@ class Descriptions {
                             'type' => 'object',
                             'properties' => array(
                                 'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
-                                'Count' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Count' => array( 'type' => 'integer', 'location' => 'xml', ),
                                 'TimeInterval' => array( 'type' => 'numeric', 'location' => 'xml', ),
                             ),
                         ),
@@ -3485,39 +3485,19 @@ class Descriptions {
                             'type' => 'object',
                             'location' => 'xml',
                             'properties' => array(
-                                'SrcType' => array(
-                                    'type' => 'string',
-                                ),
-                                'TgtType' => array(
-                                    'type' => 'string',
-                                ),
-                                'SheetId' => array(
-                                    'type' => 'integer',
-                                ),
-                                'StartPage' => array(
-                                    'type' => 'integer',
-                                ),
-                                'EndPage' => array(
-                                    'type' => 'integer',
-                                ),
-                                'ImageParams' => array(
-                                    'type' => 'string',
-                                ),
-                                'DocPassword' => array(
-                                    'type' => 'string',
-                                ),
-                                'Comments' => array(
-                                    'type' => 'integer',
-                                ),
-                                'PaperDirection' => array(
-                                    'type' => 'integer',
-                                ),
-                                'Quality' => array(
-                                    'type' => 'integer',
-                                ),
-                                'Zoom' => array(
-                                    'type' => 'integer',
-                                ),
+                                'SrcType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TgtType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'StartPage' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'EndPage' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'SheetId' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'PaperDirection' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'PaperSize' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'ImageParams' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Quality' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'Zoom' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'ImageDpi' => array( 'type' => 'integer', 'location' => 'xml', ),
+                                'DocPassword' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Comments' => array( 'type' => 'integer', 'location' => 'xml', ),
                             ),
                         ),
                     ),
