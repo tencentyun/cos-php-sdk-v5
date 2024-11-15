@@ -3787,6 +3787,7 @@ class Service {
                 'CloseOriginProtect' => Descriptions::CloseOriginProtect(), // 关闭原图保护
                 'ImageDetectFace' => Descriptions::ImageDetectFace(), // 人脸检测
                 'ImageFaceEffect' => Descriptions::ImageFaceEffect(), // 人脸特效
+                'ImageUrlFaceEffect' => Descriptions::ImageUrlFaceEffect(), // 人脸特效
                 'IDCardOCR' => Descriptions::IDCardOCR(), // 身份证识别
                 'IDCardOCRByUpload' => Descriptions::IDCardOCRByUpload(), // 身份证识别-上传时处理
                 'GetLiveCode' => Descriptions::GetLiveCode(), // 获取数字验证码

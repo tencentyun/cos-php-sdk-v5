@@ -12907,6 +12907,27 @@ class Descriptions {
             ),
         );
     }
+
+    public static function ImageUrlFaceEffect() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}?ci-process=face-effect',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'ImageFaceEffectOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'type' => array( 'type' => 'string', 'location' => 'query', ),
+                'whitening' => array( 'type' => 'integer', 'location' => 'query', ),
+                'smoothing' => array( 'type' => 'integer', 'location' => 'query', ),
+                'faceLifting' => array( 'type' => 'integer', 'location' => 'query', ),
+                'eyeEnlarging' => array( 'type' => 'integer', 'location' => 'query', ),
+                'gender' => array( 'type' => 'integer', 'location' => 'query', ),
+                'age' => array( 'type' => 'integer', 'location' => 'query', ),
+                'detectUrl' => array('type' => 'string', 'location' => 'query', 'sentAs' => 'detect-url'),
+            ),
+        );
+    }
     public static function ImageFaceEffectOutput() {
         return array(
             'type' => 'object',

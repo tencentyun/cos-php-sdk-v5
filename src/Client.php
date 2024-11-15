@@ -192,6 +192,7 @@ use GuzzleHttp\Psr7\Uri;
  * @method object CloseOriginProtect(array $args) 关闭原图保护
  * @method object ImageDetectFace(array $args) 人脸检测
  * @method object ImageFaceEffect(array $args) 人脸特效
+ * @method object ImageUrlFaceEffect(array $args) 人脸特效
  * @method object IDCardOCR(array $args) 身份证识别
  * @method object IDCardOCRByUpload(array $args) 身份证识别-上传时处理
  * @method object GetLiveCode(array $args) 获取数字验证码
