@@ -29,6 +29,7 @@ class Descriptions {
                 'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
                 'Tag' => array( 'location' => 'xml', 'type' => 'string', ),
                 'QueueId' => array( 'location' => 'xml', 'type' => 'string', ),
+                'QueueType' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBack' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackFormat' => array( 'location' => 'xml', 'type' => 'string', ),
                 'CallBackType' => array( 'location' => 'xml', 'type' => 'string', ),
@@ -271,6 +272,33 @@ class Descriptions {
                                 'State' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
+                        'Subtitles' => array(
+                            'type' => 'object',
+                            'location' => 'xml',
+                            'properties' => array(
+                                'Subtitle' => array(
+                                    'type' => 'array',
+                                    'location' => 'xml',
+                                    'data' => array(
+                                        'xmlFlattened' => true,
+                                    ),
+                                    'items' => array(
+                                        'type' => 'object',
+                                        'name' => 'Subtitle',
+                                        'sentAs' => 'Subtitle',
+                                        'properties' => array(
+                                            'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Embed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'FontType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'FontSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'FontColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'OutlineColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'VMargin' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        ),
                     ),
                 ),
                 'CallBackMqConfig' => array(
@@ -280,6 +308,15 @@ class Descriptions {
                         'MqRegion' => array( 'type' => 'string', 'location' => 'xml', ),
                         'MqMode' => array( 'type' => 'string', 'location' => 'xml', ),
                         'MqName' => array( 'type' => 'string', 'location' => 'xml', ),
+                    ),
+                ),
+                'CallBackKafkaConfig' => array(
+                    'type' => 'object',
+                    'location' => 'xml',
+                    'properties' => array(
+                        'Region' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'InstanceId' => array( 'type' => 'string', 'location' => 'xml', ),
+                        'Topic' => array( 'type' => 'string', 'location' => 'xml', ),
                     ),
                 ),
             ),
@@ -19290,6 +19327,11 @@ class Descriptions {
                 'DatasetName' => array( 'location' => 'json', 'type' => 'string', ),
                 'Description' => array( 'location' => 'json', 'type' => 'string', ),
                 'TemplateId' => array( 'location' => 'json', 'type' => 'string', ),
+                'Version' => array( 'location' => 'json', 'type' => 'string', ),
+                'Volume' => array( 'location' => 'json', 'type' => 'integer', ),
+                'TrainingMode' => array( 'location' => 'json', 'type' => 'integer', ),
+                'TrainingDataset' => array( 'location' => 'json', 'type' => 'string', ),
+                'TrainingURI' => array( 'location' => 'json', 'type' => 'string', ),
             ),
 
         );
