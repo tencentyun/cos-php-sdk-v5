@@ -1313,6 +1313,15 @@ class Service {
                             'location' => 'header',
                             'sentAs' => 'x-cos-tagging',
                         ),
+                        'Expires' => array(
+                            'type' => array(
+                                'object',
+                                'string',
+                                'integer',
+                            ),
+                            'format' => 'date-time-http',
+                            'location' => 'header',
+                        ),
                     )
                 ),
                 // 追加对象
