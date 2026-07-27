@@ -99,6 +99,20 @@ class Descriptions {
                                         'HlsTsTime' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'Pixfmt' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'LongShortMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Rotate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Roi' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Crop' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Interlaced' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ColorParam' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'ColorRange' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ColorSpace' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ColorTrc' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ColorPrimaries' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                        ),
                                     ),
                                 ),
                                 'TimeInterval' => array(
@@ -119,6 +133,7 @@ class Descriptions {
                                         'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'KeepTwoTracks' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'KeepAllTracks' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'SwitchTrack' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'SampleFormat' => array( 'type' => 'string', 'location' => 'xml', ),
                                     ),
@@ -134,14 +149,38 @@ class Descriptions {
                                         'VideoBitrateAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'IsCheckAudioBitrate' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'AudioBitrateAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'IsCheckVideoFps' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'VideoFpsAdjMethod' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'DeleteMetadata' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'IsHdr2Sdr' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'TranscodeIndex' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'HlsEncrypt' => array(
                                             'type' => 'object',
                                             'location' => 'xml',
                                             'properties' => array(
                                                 'IsHlsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
                                                 'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                        ),
+                                        'DashEncrypt' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'IsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                        ),
+                                        'AIGCMetadata' => array(
+                                            'type' => 'object',
+                                            'location' => 'xml',
+                                            'properties' => array(
+                                                'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ContentProducer' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ProduceID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ReservedCode1' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ContentPropagator' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'PropagateID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'ReservedCode2' => array( 'type' => 'string', 'location' => 'xml', ),
                                             ),
                                         ),
                                     ),
@@ -239,6 +278,15 @@ class Descriptions {
                                             'Text' => array( 'type' => 'string', 'location' => 'xml', ),
                                         ),
                                     ),
+                                    'SlideConfig' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'SlideMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'XSlideSpeed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'YSlideSpeed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
                                 ),
                             )
                         ),
@@ -250,6 +298,8 @@ class Descriptions {
                                 'Dy' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Width' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'Startime' => array( 'type' => 'numeric', 'location' => 'xml', ),
+                                'Endtime' => array( 'type' => 'numeric', 'location' => 'xml', ),
                             ),
                         ),
                         'Output' => array(
@@ -528,6 +578,30 @@ class Descriptions {
                                 'properties' => array(
                                     'Format' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'TranscodeIndex' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'HlsEncrypt' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'IsHlsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                    'AIGCMetadata' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'ContentProducer' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'ProduceID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'ReservedCode1' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'ContentPropagator' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'PropagateID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'ReservedCode2' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             'SDRtoHDR' => array(
@@ -633,6 +707,69 @@ class Descriptions {
                                                     'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
                                                 ),
                                             ),
+                                            'AIGCMetadata' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'ContentProducer' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'ProduceID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'ReservedCode1' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'ContentPropagator' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'PropagateID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'ReservedCode2' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'AudioMix' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'EffectConfig' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'EnableStartFadein' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'StartFadeinTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EnableEndFadeout' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EndFadeoutTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EnableBgmFade' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'BgmFadeTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'AudioMixArray' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'name' => 'AudioMixArray',
+                                            'sentAs' => 'AudioMixArray',
+                                            'properties' => array(
+                                                'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'EffectConfig' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'EnableStartFadein' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'StartFadeinTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'EnableEndFadeout' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'EndFadeoutTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'EnableBgmFade' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'BgmFadeTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    ),
+                                                ),
+                                            ),
                                         ),
                                     ),
                                 ),
@@ -689,6 +826,159 @@ class Descriptions {
                                     'Dy' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Width' => array( 'type' => 'string', 'location' => 'xml', ),
                                     'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                            'DigitalWatermark' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Message' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Version' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'IgnoreError' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'State' => array( 'type' => 'string', 'location' => 'xml', ),
+                                ),
+                            ),
+                            'ConcatTemplate' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Audio' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Samplerate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Channels' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                    'Index' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'DirectConcat' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'ConcatFragments' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'name' => 'ConcatFragment',
+                                            'type' => 'object',
+                                            'sentAs' => 'ConcatFragment',
+                                            'properties' => array(
+                                                'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'FragmentIndex' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                // 'Mode' => array( 'type' => 'string', 'location' => 'xml', ), 拼接接口不需要Mode参数
+                                            ),
+                                        ),
+                                    ),
+                                    'Video' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Codec' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Fps' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Bitrate' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Remove' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                    'Container' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Format' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                    'AudioMix' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'EffectConfig' => array(
+                                                'type' => 'object',
+                                                'location' => 'xml',
+                                                'properties' => array(
+                                                    'EnableStartFadein' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'StartFadeinTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EnableEndFadeout' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EndFadeoutTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'EnableBgmFade' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    'BgmFadeTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'AudioMixArray' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'name' => 'AudioMixArray',
+                                            'sentAs' => 'AudioMixArray',
+                                            'properties' => array(
+                                                'AudioSource' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'MixMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'Replace' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'EffectConfig' => array(
+                                                    'type' => 'object',
+                                                    'location' => 'xml',
+                                                    'properties' => array(
+                                                        'EnableStartFadein' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'StartFadeinTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'EnableEndFadeout' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'EndFadeoutTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'EnableBgmFade' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                        'BgmFadeTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                    ),
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                    'SceneChangeInfo' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Time' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'TransitionType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                            'Subtitles' => array(
+                                'type' => 'object',
+                                'location' => 'xml',
+                                'properties' => array(
+                                    'Subtitle' => array(
+                                        'type' => 'array',
+                                        'location' => 'xml',
+                                        'data' => array(
+                                            'xmlFlattened' => true,
+                                        ),
+                                        'items' => array(
+                                            'type' => 'object',
+                                            'name' => 'Subtitle',
+                                            'sentAs' => 'Subtitle',
+                                            'properties' => array(
+                                                'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'Embed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'FontType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'FontSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'FontColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'OutlineColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                                'VMargin' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            ),
+                                        ),
+                                    ),
                                 ),
                             ),
                             'Output' => array(
@@ -1135,7 +1425,82 @@ class Descriptions {
                                         ),
                                     ),
                                 ),
+                                'SceneChangeInfo' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'Time' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'TransitionType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
                             ),
+                        ),
+                        'WatermarkTemplateId' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'WatermarkTemplateId',
+                                'type' => 'string',
+                                'location' => 'xml',
+                                'sentAs' => 'WatermarkTemplateId',
+                            ),
+                        ),
+                        'Watermark' => array(
+                            'type' => 'array',
+                            'location' => 'xml',
+                            'data' => array(
+                                'xmlFlattened' => true,
+                            ),
+                            'items' => array(
+                                'name' => 'Watermark',
+                                'type' => 'object',
+                                'sentAs' => 'Watermark',
+                                'properties' => array(
+                                    'Type' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Pos' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'LocMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Dx' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Dy' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    'Image' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'Url' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Width' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Height' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Transparency' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Background' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                    'Text' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'FontSize' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'FontType' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'FontColor' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Transparency' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'Text' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                    'SlideConfig' => array(
+                                        'type' => 'object',
+                                        'location' => 'xml',
+                                        'properties' => array(
+                                            'SlideMode' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'XSlideSpeed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                            'YSlideSpeed' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        ),
+                                    ),
+                                ),
+                            )
                         ),
                     ),
                 ),
@@ -7810,12 +8175,28 @@ class Descriptions {
                             'properties' => array(
                                 'Format' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Duration' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TranscodeIndex' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'StartTime' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'EndTime' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'HlsEncrypt' => array(
                                     'type' => 'object',
                                     'location' => 'xml',
                                     'properties' => array(
                                         'IsHlsEncrypt' => array( 'type' => 'string', 'location' => 'xml', ),
                                         'UriKey' => array( 'type' => 'string', 'location' => 'xml', ),
+                                    ),
+                                ),
+                                'AIGCMetadata' => array(
+                                    'type' => 'object',
+                                    'location' => 'xml',
+                                    'properties' => array(
+                                        'Label' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ContentProducer' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ProduceID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ReservedCode1' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ContentPropagator' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'PropagateID' => array( 'type' => 'string', 'location' => 'xml', ),
+                                        'ReservedCode2' => array( 'type' => 'string', 'location' => 'xml', ),
                                     ),
                                 ),
                             ),
@@ -9977,6 +10358,7 @@ class Descriptions {
                             'properties' => array(
                                 'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Time' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TransitionType' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -10137,6 +10519,7 @@ class Descriptions {
                             'properties' => array(
                                 'Mode' => array( 'type' => 'string', 'location' => 'xml', ),
                                 'Time' => array( 'type' => 'string', 'location' => 'xml', ),
+                                'TransitionType' => array( 'type' => 'string', 'location' => 'xml', ),
                             ),
                         ),
                     ),
@@ -21162,6 +21545,30 @@ class Descriptions {
         );
     }
 
-
+    public static function GetMediaAIGCMetadata() {
+        return array(
+            'httpMethod' => 'GET',
+            'uri' => '/{Bucket}{/Key*}?ci-process=MediaAIGCMetadata',
+            'class' => 'Qcloud\\Cos\\Command',
+            'responseClass' => 'GetMediaAIGCMetadataOutput',
+            'responseType' => 'model',
+            'parameters' => array(
+                'Bucket' => array( 'required' => true, 'type' => 'string', 'location' => 'uri', ),
+                'Key' => array( 'type' => 'string', 'location' => 'uri', ),
+            ),
+        );
+    }
+    public static function GetMediaAIGCMetadataOutput() {
+        return array(
+            'type' => 'object',
+            'additionalProperties' => true,
+            'properties' => array(
+                'RequestId' => array( 'location' => 'header', 'sentAs' => 'x-cos-request-id', ),
+                'ContentType' => array('type' => 'string', 'location' => 'header', 'sentAs' => 'Content-Type',),
+                'ContentLength' => array('type' => 'numeric', 'minimum' => 0, 'location' => 'header', 'sentAs' => 'Content-Length',),
+                'AIGC' => array( 'type' => 'string', 'location' => 'json', ),
+            )
+        );
+    }
 
 }

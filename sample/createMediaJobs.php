@@ -13,7 +13,6 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 多任务接口 https://cloud.tencent.com/document/product/436/58335
     $result = $cosClient->CreateMediaJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Transcode', // 可选，单一任务时，优先以Operation.Tag为准，当Operation无Tag参数时，该参数生效

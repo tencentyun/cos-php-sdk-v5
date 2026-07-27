@@ -115,6 +115,24 @@ try {
                     ),
                 ),
             ),
+            'Watermark' => array(
+                array(
+                    'Type' => 'Text',
+                    'Pos' => 'TopRight',
+                    'LocMode' => 'Absolute',
+                    'Dx' => '128',
+                    'Dy' => '128',
+                    'StartTime' => '',
+                    'EndTime' => '',
+                    'Text' => array(
+                        'FontSize' => '30',
+                        'FontType' => 'simfang.ttf',
+                        'FontColor' => '0x000000',
+                        'Transparency' => '30',
+                        'Text' => '水印内容',
+                    ),
+                ),
+            ),
         ),
     ));
     // 请求成功

@@ -3883,6 +3883,7 @@ class Service {
                 'PostWatermarkJobs' => Descriptions::PostWatermarkJobs(), // 视频明水印-提交任务
                 'GeneratePlayList' => Descriptions::GeneratePlayList(), // 生成播放列表
                 'CreateWatermarkTemplate' => Descriptions::CreateWatermarkTemplate(), // 创建明水印模板
+                'GetMediaAIGCMetadata' => Descriptions::GetMediaAIGCMetadata(), // 查询 AIGC 音视频元数据标识
 
             ),
             'models' => array(
@@ -7579,6 +7580,7 @@ class Service {
                 'PostWatermarkJobsOutput' => Descriptions::PostWatermarkJobsOutput(),
                 'GeneratePlayListOutput' => Descriptions::GeneratePlayListOutput(),
                 'CreateWatermarkTemplateOutput' => Descriptions::CreateWatermarkTemplateOutput(),
+                'GetMediaAIGCMetadataOutput' => Descriptions::GetMediaAIGCMetadataOutput(),
 
             )
         );

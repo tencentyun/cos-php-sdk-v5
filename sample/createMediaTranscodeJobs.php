@@ -13,7 +13,6 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 提交转码任务 https://cloud.tencent.com/document/product/436/54009
     // start --------------- 使用模版 ----------------- //
     $result = $cosClient->createMediaTranscodeJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
@@ -107,6 +106,15 @@ try {
                     'AdjDarMethod' => 'scale',
                     'IsCheckReso' => 'false',
                     'ResoAdjMethod' => '1',
+                    'AIGCMetadata' => array(
+                        'Label' => '',
+                        'ContentProducer' => '',
+                        'ProduceID' => '',
+                        'ReservedCode1' => '',
+                        'ContentPropagator' => '',
+                        'PropagateID' => '',
+                        'ReservedCode2' => '',
+                    ),
                 ),
                 'TimeInterval' => array(
                     'Start' => '0',

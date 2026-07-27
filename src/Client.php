@@ -279,6 +279,7 @@ use GuzzleHttp\Psr7\Uri;
  * @method object PostWatermarkJobs(array $args) 视频明水印-提交任务
  * @method object GeneratePlayList(array $args) 生成播放列表
  * @method object CreateWatermarkTemplate(array $args) 创建明水印模板
+ * @method object GetMediaAIGCMetadata(array $args) 查询 AIGC 音视频元数据标识
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
@@ -403,6 +404,35 @@ class Client extends GuzzleClient {
                 $request = $request->withUri($uri)->withHeader('Host', $host);
                 return $request;
             }
+
+            // 匹配 *.ci.{Region}.myqcloud.com
+            $pattern2 = '/\.ci\.[a-z0-9-]+\.myqcloud\.com$/';
+            if ($retryCount > 2 && $this->cosConfig['autoChange'] && $this->cosConfig['limit_flag'] && preg_match($pattern2, $origin_host)) {
+                $origin = $request->getUri();
+                $host = str_replace("myqcloud.com", "tencentci.cn", $origin->getHost());
+
+                // 将 URI 转换为字符串，然后替换主机名
+                $originUriString = (string) $origin;
+                $originUriString = str_replace("myqcloud.com", "tencentci.cn", $originUriString);
+                $originUriString = str_replace($origin->getScheme() . "://", "", $originUriString);
+
+                // 创建新的 URI 对象
+                $uri = new Uri($originUriString);
+
+                // 获取路径，并从路径中移除主机名
+                $path = $uri->getPath();
+                $path = str_replace($host, '', $path);
+
+                // 使用新的路径创建新的 URI
+                $uri = $uri->withPath($path);
+                $uri = $uri->withHost($host)->withScheme($origin->getScheme());
+
+
+                // 更新请求的 URI 和主机头
+                $request = $request->withUri($uri)->withHeader('Host', $host);
+                return $request;
+            }
+
             return $request;
         }));
 

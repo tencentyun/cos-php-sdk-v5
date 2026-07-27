@@ -13,7 +13,6 @@ $cosClient = new Qcloud\Cos\Client(
             'secretId'  => $secretId,
             'secretKey' => $secretKey)));
 try {
-    // 提交转封装任务 https://cloud.tencent.com/document/product/436/67186
     $result = $cosClient->createMediaSegmentJobs(array(
         'Bucket' => 'examplebucket-125000000', //存储桶名称，由BucketName-Appid 组成，可以在COS控制台查看 https://console.cloud.tencent.com/cos5/bucket
         'Tag' => 'Segment',
@@ -24,9 +23,21 @@ try {
             'Segment' => array(
                 'Format' => 'mkv',
                 'Duration' => '5',
+                'TranscodeIndex' => '',
+                'StartTime' => '',
+                'EndTime' => '',
                 'HlsEncrypt' => array(
                     'IsHlsEncrypt' => 'false',
                     'UriKey' => '',
+                ),
+                'AIGCMetadata' => array(
+                    'Label' => '',
+                    'ContentProducer' => '',
+                    'ProduceID' => '',
+                    'ReservedCode1' => '',
+                    'ContentPropagator' => '',
+                    'PropagateID' => '',
+                    'ReservedCode2' => '',
                 ),
             ),
             'Output' => array(
@@ -37,7 +48,14 @@ try {
 //            'UserData' => 'xxx', // 透传用户信息
 //            'JobLevel' => '0', // 任务优先级，级别限制：0 、1 、2。级别越大任务优先级越高，默认为0
         ),
-        'CallBack' => '',
+//        'CallBack' => '',
+//        'CallBackFormat' => '',
+//        'CallBackType' => '',
+//        'CallBackMqConfig' => array(
+//            'MqRegion' => '',
+//            'MqMode' => '',
+//            'MqName' => '',
+//        ),
     ));
     // 请求成功
     print_r($result);
