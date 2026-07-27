@@ -283,7 +283,7 @@ use GuzzleHttp\Psr7\Uri;
  * @see \Qcloud\Cos\Service::getService()
  */
 class Client extends GuzzleClient {
-    const VERSION = '2.6.16';
+    const VERSION = '2.6.17';
 
     public $httpClient;
 
