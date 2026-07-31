@@ -317,7 +317,7 @@ class Client extends GuzzleClient {
         'signHost' => true,
         'allow_redirects' => false,
         'allow_accelerate' => false,
-        'timezone' => 'PRC',
+        'timezone' => 'Asia/Shanghai',
         'locationWithScheme' => false,
         'autoChange' => false,
         'limit_flag' => false,
